@@ -1,11 +1,9 @@
 #ifndef WELCOMESTATE_H
 #define WELCOMESTATE_H
 
-#include <string>
-#include <QString>
-#include "Engine\game.h"
-#include "Engine\state.h"
-#include "Engine\command.h"
+#include "game.h"
+#include "state.h"
+#include "command.h"
 
 namespace dc {
 namespace game {
@@ -21,7 +19,7 @@ namespace game {
         engine::Command *onEval(std::string input) override;
 
     private:
-        QString mWelcomeMsg;
+        std::string mWelcomeMsg;
     };
 
 }

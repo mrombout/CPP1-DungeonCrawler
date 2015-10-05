@@ -1,25 +1,19 @@
 #include <iostream>
-#include <QDebug>
 #include "game.h"
 
 namespace dc {
 namespace engine {
 
-    Game::Game(QObject *parent) :
-        QObject(parent),
-        StateManager<Game>(this)
-    {
-        mApp = QCoreApplication::instance();
+    Game::Game() : StateManager<Game>(this) {
+        
     }
 
-    Game::~Game()
-    {
+    Game::~Game() {
 
     }
 
-    void Game::run()
-    {
-        qDebug() << "START - Game";
+    void Game::start() {
+		std::cout << "START - Game" << std::endl;
 
         if(currentState())
             mLoop = true;
@@ -35,22 +29,15 @@ namespace engine {
         } while(mLoop);
     }
 
-    void Game::stop()
-    {
-        qDebug() << "STOP - Game";
+    void Game::stop() {
+        std::cout << "STOP - Game";
 
         mLoop = false;
         quit();
     }
 
-    void Game::quit()
-    {
-        emit finished();
-    }
-
-    void Game::aboutToQuitApp()
-    {
-
+    void Game::quit() {
+        
     }
 
 }
