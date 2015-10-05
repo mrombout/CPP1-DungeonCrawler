@@ -10,5 +10,5 @@ project("DungeonCrawler" CXX)
 add_subdirectory(src/engine)
 add_subdirectory(src/game)
 add_subdirectory(src/launcher)
-#add_subdirectory(src/model)
+add_subdirectory(src/model)
 
