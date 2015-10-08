@@ -3,6 +3,6 @@
 
 namespace dc {
     void game::LookCommand::execute(engine::CommandParameters &parameters) const {
-        std::cout << "Dankstorm!" << std::endl;
+        std::cout << parameters.player().room().description() << std::endl;
     }
 }

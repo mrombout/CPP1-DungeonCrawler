@@ -8,11 +8,11 @@
 namespace dc {
     namespace engine {
 
-        class Game : public StateManager {
+        class GameLoop : public StateManager {
         public:
-            explicit Game();
+            explicit GameLoop();
 
-            ~Game();
+            ~GameLoop();
 
             void start();
 

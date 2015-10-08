@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Dungeon.h"
+#include "Player.h"
 
 namespace dc {
     namespace model {
@@ -11,6 +13,14 @@ namespace dc {
         Game::~Game() {
             delete mDungeon;
             delete mPlayer;
+        }
+
+        Player &Game::player() const {
+            return *mPlayer;
+        }
+
+        Dungeon &Game::dungeon() const {
+            return *mDungeon;
         }
     }
 }

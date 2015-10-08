@@ -14,7 +14,7 @@ namespace dc {
     namespace model {
         class Dungeon {
         public:
-            Dungeon(int seed, std::string &name, std::vector<Floor*> floors);
+            Dungeon(int seed, const std::string &name, std::vector<Floor*> floors);
             ~Dungeon();
 
         private:

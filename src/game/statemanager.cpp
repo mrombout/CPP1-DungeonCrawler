@@ -1,8 +1,12 @@
 #include "statemanager.h"
 #include "state.h"
+#include "state/GameplayState.h"
 
 namespace dc {
     namespace engine {
+        StateManager::StateManager(GameLoop *owner) : mOwner(owner),
+                                                      mStates() { }
+
         State *StateManager::currentState() const {
             if(mStates.empty())
                 return 0;
@@ -70,9 +74,13 @@ namespace dc {
             return 0;
         }
 
-        void StateManager::onPrint(Game &game, Command *command) {
+        void StateManager::onPrint(GameLoop &game, Command *command) {
             if(currentState()) {
-                currentState()->onPrint(game, command);
+                if(game::GameplayState *state = dynamic_cast<game::GameplayState*>(currentState())) {
+                    state->onPrint(game, command);
+                } else {
+                    currentState()->onPrint(game, command);
+                }
             }
         }
 

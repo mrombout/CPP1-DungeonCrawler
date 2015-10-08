@@ -9,8 +9,12 @@ namespace engine {
 
     }
 
-    void Command::execute() const {
+    void Command::execute(engine::GameLoop &game) const {
         throw NotImplementedException();
+    }
+
+    void Command::execute(CommandParameters &parameters) const {
+
     }
 }
 }

@@ -6,7 +6,7 @@
 namespace dc {
     namespace engine {
         class State;
-        class Game;
+        class GameLoop;
     }
 }
 
@@ -14,14 +14,14 @@ namespace dc {
     namespace engine {
         class CommandParameters {
         public:
-            CommandParameters(Game &game, model::Player &player, State &state) :
+            CommandParameters(GameLoop &game, model::Player &player, State &state) :
                     mGame(game),
                     mPlayer(player),
                     mState(state) {
 
             }
 
-            Game &game() const {
+            GameLoop &game() const {
                 return mGame;
             }
 
@@ -34,7 +34,7 @@ namespace dc {
             }
 
         private:
-            Game &mGame;
+            GameLoop &mGame;
             model::Player &mPlayer;
             State &mState;
         };

@@ -12,7 +12,7 @@ namespace game {
 
     }
 
-    void WelcomeState::onInitialize(engine::Game *game)
+    void WelcomeState::onInitialize(engine::GameLoop *game)
     {
         std::ifstream file("assets/intro.txt");
         std::string line;
@@ -22,14 +22,14 @@ namespace game {
         }
     }
 
-    void WelcomeState::onEnter(engine::Game *game)
+    void WelcomeState::onEnter(engine::GameLoop *game)
     {
         std::cout << mWelcomeMsg << std::endl;
     }
 
     std::string WelcomeState::onRead()
     {
-        std::cout << "\t(N)ew Game \n\t(L)oad Game \n\t(E)xit" << std::endl;
+        std::cout << "\t(N)ew GameLoop \n\t(L)oad GameLoop \n\t(E)xit" << std::endl;
 
         std::string input;
         std::cin >> input;
@@ -42,6 +42,10 @@ namespace game {
         if(input == "n") {
             return new NewGameCommand();
         }
+    }
+
+    void WelcomeState::onPrint(engine::GameLoop &game, engine::Command *command) {
+        command->execute(game);
     }
 
 }

@@ -1,4 +1,4 @@
-project(Game)
+project(GameLoop)
 
 file(GLOB_RECURSE GAME_SRC ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 file(GLOB_RECURSE GAME_INC ${CMAKE_CURRENT_SOURCE_DIR} *.h)

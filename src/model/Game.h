@@ -15,6 +15,9 @@ namespace dc {
             Game(Dungeon *dungeon, Player *player);
             ~Game();
 
+            Player &player() const;
+            Dungeon &dungeon() const;
+
         private:
             Dungeon *mDungeon;
             Player *mPlayer;

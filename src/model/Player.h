@@ -8,6 +8,8 @@ namespace dc {
     namespace model {
         class Player {
         public:
+            Player(Room &room);
+
             Room &room() const;
 
         private:

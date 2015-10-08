@@ -6,6 +6,9 @@
 
 namespace dc {
     namespace engine {
+        class GameLoop;
+    }
+    namespace model {
         class Game;
     }
 }
@@ -16,13 +19,16 @@ namespace dc {
         public:
             GameplayState();
 
-            void onInitialize(engine::Game *game) override;
-            void onEnter(engine::Game *game) override;
+            void onInitialize(engine::GameLoop *game) override;
+            void onEnter(engine::GameLoop *game) override;
             std::string onRead() override;
             engine::Command *onEval(std::string input) override;
 
+            void onPrint(engine::GameLoop &game, engine::Command *command) override;
+
         private:
             const CommandManager mCommandManager;
+            model::Game *mGame;
         };
     }
 }

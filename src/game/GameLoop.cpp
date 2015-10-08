@@ -1,19 +1,19 @@
 #include <iostream>
-#include "game.h"
+#include "GameLoop.h"
 
 namespace dc {
 namespace engine {
 
-    Game::Game() : StateManager(this) {
+    GameLoop::GameLoop() : StateManager(this) {
         
     }
 
-    Game::~Game() {
+    GameLoop::~GameLoop() {
 
     }
 
-    void Game::start() {
-		std::cout << "START - Game" << std::endl;
+    void GameLoop::start() {
+		std::cout << "START - GameLoop" << std::endl;
 
         if(currentState())
             mLoop = true;
@@ -30,14 +30,14 @@ namespace engine {
         } while(mLoop);
     }
 
-    void Game::stop() {
-        std::cout << "STOP - Game";
+    void GameLoop::stop() {
+        std::cout << "STOP - GameLoop";
 
         mLoop = false;
         quit();
     }
 
-    void Game::quit() {
+    void GameLoop::quit() {
         
     }
 

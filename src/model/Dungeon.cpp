@@ -3,7 +3,7 @@
 
 namespace dc {
     namespace model {
-        Dungeon::Dungeon(int seed, std::string &name, std::vector<Floor *> floors) :
+        Dungeon::Dungeon(int seed, const std::string &name, std::vector<Floor *> floors) :
                 mName(name),
                 mFloors(floors) {
 

@@ -6,7 +6,7 @@
 
 namespace dc {
     namespace engine {
-        class Game;
+        class GameLoop;
         class State;
         class Command;
     }
@@ -18,8 +18,7 @@ namespace engine {
     class StateManager
     {
     public:
-        StateManager(Game *owner) :
-            mOwner(owner) { }
+        StateManager(GameLoop *owner);
         virtual ~StateManager() { }
 
         State * currentState() const;
@@ -34,12 +33,12 @@ namespace engine {
 
         Command * eval(std::string input);
 
-        void onPrint(Game &game, Command *command);
+        void onPrint(GameLoop &game, Command *command);
 
         bool isInState(const State *state) const;
 
     private:
-        Game* mOwner;
+        GameLoop * mOwner;
 
         std::vector<State*> mStates;
     };
