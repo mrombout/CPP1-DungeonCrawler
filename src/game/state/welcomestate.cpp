@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <command/NewGameCommand.h>
 #include "welcomestate.h"
 
 namespace dc {
@@ -38,7 +39,9 @@ namespace game {
 
     engine::Command *WelcomeState::onEval(std::string input)
     {
-        return 0;
+        if(input == "n") {
+            return new NewGameCommand();
+        }
     }
 
 }

@@ -6,23 +6,25 @@
 #include "statemanager.h"
 
 namespace dc {
-namespace engine {
+    namespace engine {
 
-    class Game : public StateManager<Game> {
-    public:
-        explicit Game();
-        ~Game();
+        class Game : public StateManager {
+        public:
+            explicit Game();
 
-        void start();
-        void stop();
+            ~Game();
 
-        void quit();
+            void start();
 
-    private:
-        bool mLoop;
-    };
+            void stop();
 
-}
+            void quit();
+
+        private:
+            bool mLoop;
+        };
+
+    }
 }
 
 #endif // GAMELOOP_H

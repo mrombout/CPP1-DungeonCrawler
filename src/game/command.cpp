@@ -1,3 +1,4 @@
+#include <exception/NotImplementedException.h>
 #include "command.h"
 
 namespace dc {
@@ -8,6 +9,9 @@ namespace engine {
 
     }
 
+    void Command::execute() const {
+        throw NotImplementedException();
+    }
 }
 }
 

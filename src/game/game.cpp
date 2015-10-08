@@ -4,7 +4,7 @@
 namespace dc {
 namespace engine {
 
-    Game::Game() : StateManager<Game>(this) {
+    Game::Game() : StateManager(this) {
         
     }
 
@@ -25,7 +25,7 @@ namespace engine {
                 command = eval(input);
             } while(!command);
 
-            print(command);
+            onPrint(*this, command);
         } while(mLoop);
     }
 

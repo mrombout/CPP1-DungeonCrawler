@@ -3,12 +3,13 @@
 
 #include <iostream>
 #include <string>
+#include "exception/NotImplementedException.h"
 #include "command.h"
+#include "game.h"
 
 namespace dc {
 namespace engine {
 
-template <class T>
 class State
 {
 public:
@@ -21,15 +22,15 @@ public:
 
     }
 
-    virtual void onInitialize(T* game) {
+    virtual void onInitialize(Game* game) {
 
     }
 
-    virtual void onEnter(T* game) {
+    virtual void onEnter(Game* game) {
 
     }
 
-    virtual void onLeave(T* game) {
+    virtual void onLeave(Game* game) {
 
     }
 
@@ -43,7 +44,15 @@ public:
         return 0;
     }
 
-    virtual void onPrint(Command *command) {
+    virtual void onPrint(Game &game, Command *command) {
+        try {
+            command->execute();
+        } catch(NotImplementedException e) {
+            // TODO: Memleak, weghalen dit en even de player uit game halen oid
+            model::Player *player = new model::Player();
+            CommandParameters cp(game, *player, *this);
+            command->execute(cp);
+        }
 
     }
 

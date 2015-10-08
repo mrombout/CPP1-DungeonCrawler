@@ -8,7 +8,7 @@
 namespace dc {
 namespace game {
 
-    class WelcomeState : public engine::State<engine::Game>
+    class WelcomeState : public engine::State
     {
     public:
         WelcomeState();
