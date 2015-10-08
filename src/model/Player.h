@@ -2,12 +2,17 @@
 #define DUNGEONCRAWLER_PLAYER_H
 
 #include "Inventory.h"
+#include "Room.h"
 
 namespace dc {
     namespace model {
         class Player {
+        public:
+            Room &room() const;
+
         private:
             Inventory *mInventory;
+            Room &mRoom;
         };
     }
 }

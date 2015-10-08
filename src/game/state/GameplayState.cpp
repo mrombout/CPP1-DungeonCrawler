@@ -2,6 +2,11 @@
 
 namespace dc {
     namespace game {
+        GameplayState::GameplayState() :
+            mCommandManager() {
+
+        }
+
         void GameplayState::onInitialize(engine::Game *game) {
 
         }
@@ -17,7 +22,7 @@ namespace dc {
         }
 
         engine::Command *GameplayState::onEval(std::string input) {
-            return 0;
+            return mCommandManager.create(input);
         }
     }
 }

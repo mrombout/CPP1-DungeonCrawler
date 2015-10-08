@@ -1,5 +1,13 @@
-//
-// Created by Mike Rombout on 5/10/2015.
-//
-
 #include "Passage.h"
+
+namespace dc {
+    namespace model {
+
+        Passage::Passage(Room &sideA, Room &sideB) :
+            mSideA(sideA),
+            mSideB(sideB) {
+
+        }
+
+    }
+}

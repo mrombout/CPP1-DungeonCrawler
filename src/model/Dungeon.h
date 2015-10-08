@@ -12,11 +12,11 @@ namespace dc {
 
 namespace dc {
     namespace model {
-        /**
-         * NOTE: Random thought, instead of persisting the entire dungeon to a text file. How about saving only the
-         * dynamic data and regenerate the same dungeon from the seed! E.g. we'd save that monster X is in room 3.
-         */
         class Dungeon {
+        public:
+            Dungeon(int seed, std::string &name, std::vector<Floor*> floors);
+            ~Dungeon();
+
         private:
             std::string mName;
             int mSeed;

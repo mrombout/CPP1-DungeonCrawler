@@ -12,6 +12,12 @@ namespace dc {
 namespace dc {
     namespace model {
         class Floor {
+        public:
+            Floor(int level, std::vector<Room*> rooms);
+            ~Floor();
+
+            int level() const;
+
         private:
             int mLevel;
 

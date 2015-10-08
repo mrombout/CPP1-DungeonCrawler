@@ -26,6 +26,7 @@ namespace engine {
             } while(!command);
 
             onPrint(*this, command);
+            delete command;
         } while(mLoop);
     }
 

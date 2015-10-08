@@ -14,6 +14,10 @@ namespace dc {
 namespace dc {
     namespace model {
         class Room {
+        public:
+            Room(std::string description, bool visited, Passage &north, Passage &east, Passage &south, Passage &west, std::vector<Trap*> traps);
+            ~Room();
+
         private:
             std::string mDescription;
             bool mVisited;

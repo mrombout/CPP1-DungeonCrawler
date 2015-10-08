@@ -1,5 +1,9 @@
-//
-// Created by Mike Rombout on 5/10/2015.
-//
-
 #include "Player.h"
+
+namespace dc {
+    namespace model {
+        Room &dc::model::Player::room() const {
+            return mRoom;
+        }
+    }
+}

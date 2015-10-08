@@ -10,6 +10,9 @@ namespace dc {
 namespace dc {
     namespace model {
         class Passage {
+        public:
+            Passage(Room &sideA, Room &sideB);
+
         private:
             Room &mSideA;
             Room &mSideB;
