@@ -3,10 +3,22 @@
 
 namespace dc {
     namespace model {
+        Room::Room(std::string description) : Room(description, false) {
+
+        }
+
+        Room::Room(std::string description, bool visited) : Room(description, visited, std::vector<Trap*>()) {
+
+        }
+
         Room::Room(std::string description, bool visited, std::vector<Trap*> traps) :
                 mDescription(description),
                 mVisited(visited),
-                mTraps(traps) {
+                mTraps(traps),
+                mNorth(nullptr),
+                mEast(nullptr),
+                mSouth(nullptr),
+                mWest(nullptr) {
 
         }
 
@@ -36,6 +48,26 @@ namespace dc {
 
         std::string Room::description() const {
             return mDescription;
+        }
+
+        void Room::setVisited(bool visited) {
+            mVisited = visited;
+        }
+
+        Passage *Room::north() const {
+            return mNorth;
+        }
+
+        Passage *Room::east() const {
+            return mEast;
+        }
+
+        Passage *Room::south() const {
+            return mSouth;
+        }
+
+        Passage *Room::west() const {
+            return mWest;
         }
     }
 }

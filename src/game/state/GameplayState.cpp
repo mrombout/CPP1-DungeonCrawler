@@ -1,3 +1,6 @@
+#include <generator/FloorGenerator.h>
+#include <generator/SimpleFloorGenerator.h>
+#include <generator/DungeonGenerator.h>
 #include "GameplayState.h"
 #include "CommandParameters.h"
 #include "Game.h"
@@ -35,6 +38,12 @@ namespace dc {
             model::Player *player = new model::Player(*roomA);
 
             mGame = new model::Game(dungeon, player);
+
+            // generate random dungeon
+            int seed = 1;
+            SimpleFloorGenerator floorGenerator = SimpleFloorGenerator();
+            DungeonGenerator dungeonGenerator(floorGenerator);
+            dungeonGenerator.generate(seed);
         }
 
         void GameplayState::onEnter(engine::GameLoop *game) {

@@ -1,4 +1,5 @@
 #include "Floor.h"
+#include "Room.h"
 
 namespace dc {
     namespace model {
