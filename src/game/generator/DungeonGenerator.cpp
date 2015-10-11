@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include <util/Random.h>
 #include "DungeonGenerator.h"
 
 using namespace dc::model;
@@ -50,7 +51,11 @@ DungeonGenerator::DungeonGenerator(SimpleFloorGenerator &floorGenerator) :
 Dungeon *DungeonGenerator::generate(unsigned int seed) const {
     std::string dName = generateDungeonName(seed);
     std::vector<Floor*> dFloors = std::vector<Floor*>();
-    dFloors.push_back(generateDungeonFloor(seed, 1));
+
+    int numFloors = rand() % 10 + 1;
+    for(int i = 1; i <= numFloors; ++i) {
+        dFloors.push_back(generateDungeonFloor(seed, i));
+    }
 
     return new Dungeon(seed, dName, dFloors);
 }
