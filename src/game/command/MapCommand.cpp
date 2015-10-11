@@ -5,6 +5,7 @@
 #include "Room.h"
 #include "Floor.h"
 #include "Passage.h"
+#include <generator/Point.h>
 
 namespace dc {
 	void game::MapCommand::execute(engine::CommandParameters &parameters) const {
@@ -15,8 +16,8 @@ namespace dc {
 
 	void game::MapCommand::render(model::Room &room) const {
 		// create empty map
-		int width = 16;
-		int height = 16;
+		int width = 15;
+		int height = 15;
 
 		char** mGrid = new char*[height];
 		for (int i = 0; i < height; ++i) {
@@ -31,7 +32,9 @@ namespace dc {
 		queue.push(&room);
 		markedRooms[&room] = true;
 
-		std::cout << "Render player room" << std::endl;
+		Point point(width / 2, height / 2);
+
+		mGrid[point.y()][point.x()] = '@';
 
 		while(!queue.empty()) {
 			model::Room *currentRoom = queue.front();
@@ -43,7 +46,32 @@ namespace dc {
 				if(adjacantRoom.isVisited() && markedRooms.count(&adjacantRoom) == 0) {
 					markedRooms[&adjacantRoom] = true;
 					queue.push(currentRoom);
-					std::cout << "Rendering: " + adjacantRoom.description() << std::endl;
+
+					switch(passage->direction()) {
+						case model::Passage::North:
+							point.up();
+							mGrid[point.y()][point.x()] = '|';
+							point.up();
+							break;
+						case model::Passage::East:
+							point.right();
+							mGrid[point.y()][point.x()] = '-';
+							point.right();
+							break;
+						case model::Passage::South:
+							point.down();
+							mGrid[point.y()][point.x()] = '-';
+							point.down();
+							break;
+						case model::Passage::West:
+							point.left();
+							mGrid[point.y()][point.x()] = '-';
+							point.left();
+							break;
+						default: break;
+					}
+
+					mGrid[point.y()][point.x()] = 'N';
 				}
 			}
 		}

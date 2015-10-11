@@ -7,6 +7,7 @@
 #include "FloorGenerator.h"
 #include "Point.h"
 #include "RoomGenerator.h"
+#include "Passage.h"
 
 /**
  * Generates a random floor consisting of a random number of rooms in a random
@@ -28,20 +29,12 @@ private:
 
 	RoomGenerator mRoomGenerator;
 
-    enum Direction {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST,
-        NONE
-    };
-
     void dig(dc::model::Room *room, Point point);
 	void reset();
 
 	dc::model::Room *createRoom();
 
-    Direction getRandomNeighbour(const dc::model::Room &room, const Point &point) const;
+    dc::model::Passage::Direction getRandomNeighbour(const dc::model::Room &room, const Point &point) const;
     bool isVisited(int x, int y) const;
 };
 

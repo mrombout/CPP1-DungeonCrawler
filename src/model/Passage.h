@@ -11,12 +11,22 @@ namespace dc {
     namespace model {
         class Passage {
         public:
-            Passage(Room &sideA, Room &sideB);
+			enum Direction {
+				North,
+				East,
+				South,
+				West,
+				Unknown
+			};
 
+            Passage(Direction direction, Room &sideA, Room &sideB);
+
+			Direction direction() const;
 			Room &sideA() const;
 			Room &sideB() const;
 
         private:
+			Direction mDirection;
             Room &mSideA;
             Room &mSideB;
         };

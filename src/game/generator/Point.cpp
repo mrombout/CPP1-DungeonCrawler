@@ -21,3 +21,19 @@ void Point::setX(int x) {
 void Point::setY(int y) {
     mY = y;
 }
+
+void Point::up() {
+	--mY;
+}
+
+void Point::down() {
+	++mY;
+}
+
+void Point::left() {
+	--mX;
+}
+
+void Point::right() {
+	++mX;
+}

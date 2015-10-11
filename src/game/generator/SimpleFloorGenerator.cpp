@@ -60,30 +60,30 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
 
     Room *currentRoom = room;
 	Point currentPoint = point;
-    Direction direction = getRandomNeighbour(*currentRoom, point);
-    while(direction != NONE) {
+    Passage::Direction direction = getRandomNeighbour(*currentRoom, point);
+    while(direction != Passage::Direction::Unknown) {
 		Room *nextRoom = createRoom();
-        Passage *passage = new Passage(*currentRoom, *nextRoom);
+        Passage *passage = new Passage(direction, *currentRoom, *nextRoom);
         switch(direction) {
-            case NORTH:
+            case Passage::Direction::North:
                 std::cout << "Diggin north" << std::endl;
                 currentRoom->setNorth(passage);
                 nextRoom->setSouth(passage);
                 point.setY(point.y() - 1);
                 break;
-            case EAST:
+            case Passage::Direction::East:
                 std::cout << "Diggin east" << std::endl;
                 currentRoom->setEast(passage);
                 nextRoom->setWest(passage);
                 point.setX(point.x() + 1);
                 break;
-            case SOUTH:
+            case Passage::Direction::South:
                 std::cout << "Diggin south" << std::endl;
                 currentRoom->setSouth(passage);
                 nextRoom->setNorth(passage);
                 point.setY(point.y() + 1);
                 break;
-            case WEST:
+            case Passage::Direction::West:
                 std::cout << "Diggin west" << std::endl;
                 currentRoom->setWest(passage);
                 nextRoom->setEast(passage);
@@ -118,19 +118,19 @@ bool SimpleFloorGenerator::isVisited(int x, int y) const {
     return mGrid[xIndex][yIndex];
 }
 
-SimpleFloorGenerator::Direction SimpleFloorGenerator::getRandomNeighbour(const Room &room, const Point &point) const {
-    std::vector<Direction> directions = std::vector<Direction>();
+Passage::Direction SimpleFloorGenerator::getRandomNeighbour(const Room &room, const Point &point) const {
+    std::vector<Passage::Direction> directions = std::vector<Passage::Direction>();
 
     if(!room.north() && point.y() >= 0 && !isVisited(point.x(), point.y() - 1))
-        directions.push_back(NORTH);
+        directions.push_back(Passage::Direction::North);
     if(!room.east() && point.x() < mWidth - 1 && !isVisited(point.x() + 1, point.y()))
-        directions.push_back(EAST);
+        directions.push_back(Passage::Direction::East);
     if(!room.south() && point.y() < mHeight - 1 && !isVisited(point.x(), point.y() + 1))
-        directions.push_back(SOUTH);
+        directions.push_back(Passage::Direction::South);
     if(!room.west() && point.x() >= 0 && !isVisited(point.x() - 1, point.y()))
-        directions.push_back(WEST);
+        directions.push_back(Passage::Direction::West);
 
     if(directions.empty())
-        return NONE;
+        return Passage::Direction::Unknown;
     return directions[rand() % directions.size()];
 }

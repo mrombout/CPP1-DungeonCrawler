@@ -3,11 +3,16 @@
 namespace dc {
     namespace model {
 
-        Passage::Passage(Room &sideA, Room &sideB) :
+        Passage::Passage(Direction direction, Room &sideA, Room &sideB) :
             mSideA(sideA),
-            mSideB(sideB) {
+            mSideB(sideB),
+			mDirection(direction) {
 
         }
+
+	    Passage::Direction Passage::direction() const {
+			return mDirection;
+	    }
 
 	    Room& Passage::sideA() const {
 			return mSideA;

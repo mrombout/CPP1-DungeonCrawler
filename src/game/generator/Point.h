@@ -11,6 +11,11 @@ public:
     void setX(int x);
     void setY(int y);
 
+	void up();
+	void down();
+	void left();
+	void right();
+
 private:
     int mX;
     int mY;
