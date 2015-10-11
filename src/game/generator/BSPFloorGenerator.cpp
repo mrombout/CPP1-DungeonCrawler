@@ -1,8 +1,10 @@
 #include <stdlib.h>
 #include "BSPFloorGenerator.h"
 #include "Leaf.h"
+#include "Floor.h"
 
-dc::model::Floor  *BSPFloorGenerator::generate(unsigned int seed) {
+/*
+dc::model::Floor *BSPFloorGenerator::generate(unsigned int seed) {
     std::vector<Leaf*> leafs;
 
     Leaf *root = new Leaf(0, 0, 25, 25);
@@ -27,3 +29,4 @@ dc::model::Floor  *BSPFloorGenerator::generate(unsigned int seed) {
 
     root->createRooms(seed);
 }
+*/
