@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
 #include "SimpleFloorGenerator.h"
-#include "Leaf.h"
 #include "Room.h"
 #include "Point.h"
 #include "Passage.h"
