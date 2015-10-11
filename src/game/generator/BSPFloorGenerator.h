@@ -4,7 +4,7 @@
 #include "Floor.h"
 #include "FloorGenerator.h"
 
-class Bonkers : public FloorGenerator {
+class BSPFloorGenerator : public FloorGenerator {
     dc::model::Floor *generate(unsigned int seed);
 };
 

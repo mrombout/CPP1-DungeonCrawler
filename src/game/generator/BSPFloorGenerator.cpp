@@ -2,7 +2,7 @@
 #include "BSPFloorGenerator.h"
 #include "Leaf.h"
 
-dc::model::Floor  *Bonkers::generate(unsigned int seed) {
+dc::model::Floor  *BSPFloorGenerator::generate(unsigned int seed) {
     std::vector<Leaf*> leafs;
 
     Leaf *root = new Leaf(0, 0, 25, 25);
