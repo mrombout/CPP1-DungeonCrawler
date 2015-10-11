@@ -4,7 +4,11 @@
 #include <Floor.h>
 
 class FloorGenerator {
-    virtual dc::model::Floor *generate(unsigned int seed, int level) = 0;
+public:
+	virtual ~FloorGenerator();
+
+private:
+	virtual dc::model::Floor *generate(unsigned int seed, int level) = 0;
 };
 
 
