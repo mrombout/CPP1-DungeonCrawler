@@ -6,6 +6,7 @@
 #include "Floor.h"
 #include "FloorGenerator.h"
 #include "Point.h"
+#include "RoomGenerator.h"
 
 /**
  * Generates a random floor consisting of a random number of rooms in a random
@@ -14,13 +15,18 @@
  */
 class SimpleFloorGenerator : public FloorGenerator {
 public:
-    dc::model::Floor *generate(unsigned int seed, int level) override;
+    explicit SimpleFloorGenerator();
+
+	dc::model::Floor *generate(unsigned int seed, int level) override;
 
 private:
     int mWidth;
     int mHeight;
 
     bool** mGrid;
+	std::vector<dc::model::Room*> mRooms;
+
+	RoomGenerator mRoomGenerator;
 
     enum Direction {
         NORTH,
@@ -31,10 +37,12 @@ private:
     };
 
     void dig(dc::model::Room *room, Point point);
+	void reset();
 
-    SimpleFloorGenerator::Direction getRandomNeighbour(dc::model::Room room, Point &point);
+	dc::model::Room *createRoom();
 
-    bool isVisited(int x, int y);
+    Direction getRandomNeighbour(const dc::model::Room &room, const Point &point) const;
+    bool isVisited(int x, int y) const;
 };
 
 

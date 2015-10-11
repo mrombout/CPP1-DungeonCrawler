@@ -8,37 +8,62 @@
 
 using namespace dc::model;
 
-Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
-    Room *exit = new Room("Exit Thingy!");
+SimpleFloorGenerator::SimpleFloorGenerator() :
+	mGrid(nullptr),
+	mWidth(0),
+	mHeight(0) {
 
-    mWidth = 5;
-    mHeight = 5;
-
-    mGrid = new bool*[mHeight];
-    for(int i = 0; i < mHeight; ++i) {
-        mGrid[i] = new bool[mWidth];
-        std::fill_n(mGrid[i], mWidth, false);
-    }
-
-    Point *startPosition = nullptr;
-    if(level % 2 == 0) {
-        startPosition = new Point(0, 0);
-    } else {
-        startPosition = new Point(mWidth, mHeight);
-    }
-
-    dig(exit, *startPosition);
-
-    std::cout << "Done generating dungeon" << std::endl;
 }
 
-void SimpleFloorGenerator::dig(dc::model::Room *room, Point point) {
-    mGrid[point.x() - 1][point.y() - 1] = true;
+Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
+	Room *exit = createRoom();
 
-    dc::model::Room *currentRoom = room;
+	// reset state
+	reset();
+
+    // determine start position
+    Point startPosition(0, 0);
+    if(level % 2 == 0) {
+        startPosition = Point(mWidth - 1, mHeight - 1);
+    }
+
+    // start digging
+    dig(exit, startPosition);
+
+    std::cout << "Done generating dungeon" << std::endl;
+	return new Floor(level, mRooms);
+}
+
+void SimpleFloorGenerator::reset() {
+	if (mGrid != nullptr) {
+		// delete the old array
+		for (int i = 0; i < mHeight; ++i)
+			delete[] mGrid[i];
+		delete[] mGrid;
+	}
+	if (!mRooms.empty()) {
+		mRooms.clear();
+	}
+
+	// create a new array of a new size
+	mWidth = 5;
+	mHeight = 5;
+
+	mGrid = new bool*[mHeight];
+	for (int i = 0; i < mHeight; ++i) {
+		mGrid[i] = new bool[mWidth];
+		std::fill_n(mGrid[i], mWidth, false);
+	}
+}
+
+void SimpleFloorGenerator::dig(Room *room, Point point) {
+    mGrid[point.x()][point.y()] = true;
+
+    Room *currentRoom = room;
+	Point currentPoint = point;
     Direction direction = getRandomNeighbour(*currentRoom, point);
     while(direction != NONE) {
-        Room *nextRoom = new Room("Random room description!");
+		Room *nextRoom = createRoom();
         Passage *passage = new Passage(*currentRoom, *nextRoom);
         switch(direction) {
             case NORTH:
@@ -72,34 +97,41 @@ void SimpleFloorGenerator::dig(dc::model::Room *room, Point point) {
         dig(nextRoom, point);
         std::cout << "unwinding" << std::endl;
 
-        direction = getRandomNeighbour(*currentRoom, point);
+		point = currentPoint;
+        direction = getRandomNeighbour(*currentRoom, currentPoint);
     }
 
     std::cout << "End looping" << std::endl;
 }
 
-SimpleFloorGenerator::Direction SimpleFloorGenerator::getRandomNeighbour(Room room, Point &point) {
+Room* SimpleFloorGenerator::createRoom() {
+	Room* newRoom = new Room("Some Random description " + std::to_string(mRooms.size() + 1));
+	mRooms.push_back(newRoom);
+	return newRoom;
+}
+
+bool SimpleFloorGenerator::isVisited(int x, int y) const {
+    int xIndex = x;
+    int yIndex = y;
+
+    if(xIndex < 0 || xIndex > mWidth || yIndex < 0 || yIndex > mHeight)
+        return true;
+    return mGrid[xIndex][yIndex];
+}
+
+SimpleFloorGenerator::Direction SimpleFloorGenerator::getRandomNeighbour(const Room &room, const Point &point) const {
     std::vector<Direction> directions = std::vector<Direction>();
 
-    if(!room.north() && point.y() > 0 && !isVisited(point.x(), point.y() - 1))
+    if(!room.north() && point.y() >= 0 && !isVisited(point.x(), point.y() - 1))
         directions.push_back(NORTH);
-    if(!room.east() && point.x() < mWidth && !isVisited(point.x() + 1, point.y()))
+    if(!room.east() && point.x() < mWidth - 1 && !isVisited(point.x() + 1, point.y()))
         directions.push_back(EAST);
-    if(!room.south() && point.y() < mHeight && !isVisited(point.x(), point.y() + 1))
+    if(!room.south() && point.y() < mHeight - 1 && !isVisited(point.x(), point.y() + 1))
         directions.push_back(SOUTH);
-    if(!room.west() && point.x() > 0 && !isVisited(point.x() - 1, point.y()))
+    if(!room.west() && point.x() >= 0 && !isVisited(point.x() - 1, point.y()))
         directions.push_back(WEST);
 
     if(directions.empty())
         return NONE;
     return directions[rand() % directions.size()];
-}
-
-bool SimpleFloorGenerator::isVisited(int x, int y) {
-    int xIndex = x - 1;
-    int yIndex = y - 1;
-
-    if(xIndex < 0 || xIndex > mWidth || yIndex < 0 || yIndex > mHeight)
-        return true;
-    return mGrid[xIndex][yIndex];
 }
