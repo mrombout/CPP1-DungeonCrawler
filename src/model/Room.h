@@ -22,6 +22,7 @@ namespace dc {
 
             std::string description() const;
 
+			std::vector<Passage*> adjacantPassages() const;
             Passage *north() const;
             Passage *east() const;
             Passage *south() const;
@@ -32,6 +33,7 @@ namespace dc {
             void setSouth(Passage *passage);
             void setWest(Passage *passage);
 
+			bool isVisited() const;
             void setVisited(bool visited);
 
         private:

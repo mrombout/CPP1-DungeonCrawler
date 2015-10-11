@@ -46,11 +46,30 @@ namespace dc {
             mWest = passage;
         }
 
-        std::string Room::description() const {
+	    bool Room::isVisited() const {
+			return mVisited;
+	    }
+
+	    std::string Room::description() const {
             return mDescription;
         }
 
-        void Room::setVisited(bool visited) {
+	    std::vector<Passage*> Room::adjacantPassages() const {
+			std::vector<Passage*> passages;
+
+			if (north())
+				passages.push_back(north());
+			if (east())
+				passages.push_back(east());
+			if (south())
+				passages.push_back(south());
+			if (west())
+				passages.push_back(west());
+
+			return passages;
+	    }
+
+	    void Room::setVisited(bool visited) {
             mVisited = visited;
         }
 

@@ -13,6 +13,9 @@ namespace dc {
         public:
             Passage(Room &sideA, Room &sideB);
 
+			Room &sideA() const;
+			Room &sideB() const;
+
         private:
             Room &mSideA;
             Room &mSideB;

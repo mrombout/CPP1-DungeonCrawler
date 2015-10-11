@@ -25,9 +25,11 @@ namespace dc {
             model::Room *roomB = new model::Room("Description B", true, std::vector<model::Trap*>());
             model::Passage *passageAB = new model::Passage(*roomA, *roomB);
 
+			roomA->setEast(passageAB);
+			roomB->setWest(passageAB);
+
             rooms.push_back(roomA);
             rooms.push_back(roomB);
-
 
             std::vector<model::Floor*> floors = std::vector<model::Floor*>();
             model::Floor *floor = new model::Floor(0, rooms);
