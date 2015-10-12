@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "Point.h"
 
 namespace dc {
     namespace model {
@@ -16,10 +17,13 @@ namespace dc {
     namespace model {
         class Room {
         public:
-            Room(std::string description);
-            Room(std::string description, bool visited);
-            Room(std::string description, bool visited, std::vector<Trap*> traps);
+            Room(Point position, std::string description);
+            Room(Point position, std::string description, bool visited);
+            Room(Point position, std::string description, bool visited, std::vector<Trap*> traps);
             ~Room();
+
+            void setPosition(Point point);
+            const Point &position() const;
 
             std::string description() const;
 
@@ -41,6 +45,7 @@ namespace dc {
             void setFloor(Floor* floor);
 
         private:
+            Point mPosition;
             std::string mDescription;
             bool mVisited;
 

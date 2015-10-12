@@ -7,9 +7,14 @@
 namespace dc {
 	namespace game {
 		class MapCommand : public engine::Command {
+		public:
 			virtual void execute(engine::CommandParameters &parameters) const override;
+
+		private:
 			void render(model::Room &room) const;
-		};
+
+            void drawPassage(char **grid, model::Passage *passage) const;
+        };
 	}
 }
 

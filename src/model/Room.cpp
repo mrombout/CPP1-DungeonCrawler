@@ -3,15 +3,16 @@
 
 namespace dc {
     namespace model {
-        Room::Room(std::string description) : Room(description, false) {
+        Room::Room(Point position, std::string description) :Room(position, description, false) {
 
         }
 
-        Room::Room(std::string description, bool visited) : Room(description, visited, std::vector<Trap*>()) {
+        Room::Room(Point position, std::string description, bool visited) : Room(position, description, visited, std::vector<Trap*>()) {
 
         }
 
-        Room::Room(std::string description, bool visited, std::vector<Trap*> traps) :
+        Room::Room(Point position, std::string description, bool visited, std::vector<Trap*> traps) :
+                mPosition(position),
                 mDescription(description),
                 mVisited(visited),
                 mTraps(traps),
@@ -49,6 +50,10 @@ namespace dc {
 	    bool Room::isVisited() const {
 			return mVisited;
 	    }
+
+        const Point &Room::position() const {
+            return mPosition;
+        }
 
 	    std::string Room::description() const {
             return mDescription;
@@ -91,6 +96,10 @@ namespace dc {
 
         void Room::setFloor(Floor *floor) {
             mFloor = floor;
+        }
+
+        void Room::setPosition(Point point) {
+            mPosition = point;
         }
     }
 }

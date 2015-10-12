@@ -14,8 +14,6 @@ SimpleFloorGenerator::SimpleFloorGenerator() :
 }
 
 Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
-	Room *exit = createRoom();
-
 	// reset state
 	reset();
 
@@ -24,6 +22,9 @@ Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
     if(level % 2 == 0) {
         startPosition = Point(mWidth - 1, mHeight - 1);;
     }
+
+    Room *exit = createRoom();
+    exit->setPosition(startPosition);
 
     // start digging floor
     dig(exit, startPosition);
@@ -53,7 +54,7 @@ void SimpleFloorGenerator::reset() {
 }
 
 void SimpleFloorGenerator::dig(Room *room, Point point) {
-    mGrid[point.x()][point.y()] = room;
+    mGrid[point.y()][point.x()] = room;
 
     Room *currentRoom = room;
 	Point currentPoint = point;
@@ -61,6 +62,7 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
     while(direction != Passage::Direction::Unknown) {
 		Room *nextRoom = createRoom();
         Passage *passage = new Passage(*currentRoom, *nextRoom);
+
         switch(direction) {
             case Passage::Direction::North:
                 std::cout << "Diggin north" << std::endl;
@@ -90,6 +92,7 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
                 break;
         }
 
+        nextRoom->setPosition(point);
         dig(nextRoom, point);
         std::cout << "unwinding" << std::endl;
 
@@ -100,8 +103,8 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
     std::cout << "End looping" << std::endl;
 }
 
-Room* SimpleFloorGenerator::createRoom() {
-	Room* newRoom = new Room("Some Random description");
+Room * SimpleFloorGenerator::createRoom() {
+	Room* newRoom = new Room(Point(0, 0), "Some Random description");
 	return newRoom;
 }
 
@@ -111,7 +114,7 @@ bool SimpleFloorGenerator::isVisited(int x, int y) const {
 
     if(xIndex < 0 || xIndex > mWidth || yIndex < 0 || yIndex > mHeight)
         return true;
-    return mGrid[xIndex][yIndex] != nullptr;
+    return mGrid[yIndex][xIndex] != nullptr;
 }
 
 Passage::Direction SimpleFloorGenerator::getRandomNeighbour(const Room &room, const Point &point) const {
