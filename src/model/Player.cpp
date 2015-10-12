@@ -10,5 +10,9 @@ namespace dc {
         Room &dc::model::Player::room() const {
             return mRoom;
         }
+
+        Inventory &dc::model::Player::inventory() const {
+            return (Inventory &) mInventory;
+        }
     }
 }

@@ -3,3 +3,10 @@
 //
 
 #include "Item.h"
+namespace dc {
+    namespace model {
+        std::string Item::description() const {
+            return mDescription;
+        }
+    }
+}

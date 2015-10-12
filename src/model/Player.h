@@ -11,6 +11,7 @@ namespace dc {
             Player(Room &room);
 
             Room &room() const;
+            Inventory &inventory() const;
 
         private:
             Inventory *mInventory;
