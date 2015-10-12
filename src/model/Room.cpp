@@ -57,14 +57,10 @@ namespace dc {
 	    std::vector<Passage*> Room::adjacantPassages() const {
 			std::vector<Passage*> passages;
 
-			if (north())
-				passages.push_back(north());
-			if (east())
-				passages.push_back(east());
-			if (south())
-				passages.push_back(south());
-			if (west())
-				passages.push_back(west());
+            passages.push_back(north());
+            passages.push_back(east());
+            passages.push_back(south());
+            passages.push_back(west());
 
 			return passages;
 	    }

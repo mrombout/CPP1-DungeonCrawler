@@ -63,7 +63,7 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
     Passage::Direction direction = getRandomNeighbour(*currentRoom, point);
     while(direction != Passage::Direction::Unknown) {
 		Room *nextRoom = createRoom();
-        Passage *passage = new Passage(direction, *currentRoom, *nextRoom);
+        Passage *passage = new Passage(*currentRoom, *nextRoom);
         switch(direction) {
             case Passage::Direction::North:
                 std::cout << "Diggin north" << std::endl;
@@ -104,7 +104,7 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
 }
 
 Room* SimpleFloorGenerator::createRoom() {
-	Room* newRoom = new Room("Some Random description " + std::to_string(mRooms.size() + 1));
+	Room* newRoom = new Room("Some Random description");
 	mRooms.push_back(newRoom);
 	return newRoom;
 }

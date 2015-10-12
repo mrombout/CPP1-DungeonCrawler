@@ -19,14 +19,12 @@ namespace dc {
 				Unknown
 			};
 
-            Passage(Direction direction, Room &sideA, Room &sideB);
+            Passage(Room &sideA, Room &sideB);
 
-			Direction direction() const;
 			Room &sideA() const;
 			Room &sideB() const;
 
         private:
-			Direction mDirection;
             Room &mSideA;
             Room &mSideB;
         };
