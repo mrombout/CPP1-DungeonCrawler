@@ -8,6 +8,7 @@ namespace dc {
     namespace model {
         class Passage;
         class Trap;
+        class Floor;
     }
 }
 
@@ -36,6 +37,9 @@ namespace dc {
 			bool isVisited() const;
             void setVisited(bool visited);
 
+            Floor *floor() const;
+            void setFloor(Floor* floor);
+
         private:
             std::string mDescription;
             bool mVisited;
@@ -44,6 +48,8 @@ namespace dc {
             Passage *mEast;
             Passage *mSouth;
             Passage *mWest;
+
+            Floor *mFloor;
 
             std::vector<Trap*> mTraps;
         };

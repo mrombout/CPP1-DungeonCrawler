@@ -8,7 +8,6 @@
 using namespace dc::model;
 
 SimpleFloorGenerator::SimpleFloorGenerator() :
-	mGrid(nullptr),
 	mWidth(0),
 	mHeight(0) {
 
@@ -23,40 +22,38 @@ Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
     // determine start position
     Point startPosition(0, 0);
     if(level % 2 == 0) {
-        startPosition = Point(mWidth - 1, mHeight - 1);
+        startPosition = Point(mWidth - 1, mHeight - 1);;
     }
 
-    // start digging
+    // start digging floor
     dig(exit, startPosition);
 
+    // create floor
+    Room* startRoom = mGrid[0][0];
+    Room* exitRoom = mGrid[mWidth - 1][mHeight - 1];
+    if(level % 2 == 0) {
+        Room* tmp = startRoom;
+        startRoom = exitRoom;
+        exitRoom = tmp;
+    }
+
     std::cout << "Done generating dungeon" << std::endl;
-	return new Floor(level, mRooms);
+	return new Floor(level, mGrid, startRoom, exitRoom);
 }
 
 void SimpleFloorGenerator::reset() {
-	if (mGrid != nullptr) {
-		// delete the old array
-		for (int i = 0; i < mHeight; ++i)
-			delete[] mGrid[i];
-		delete[] mGrid;
-	}
-	if (!mRooms.empty()) {
-		mRooms.clear();
-	}
-
 	// create a new array of a new size
 	mWidth = 5;
 	mHeight = 5;
 
-	mGrid = new bool*[mHeight];
-	for (int i = 0; i < mHeight; ++i) {
-		mGrid[i] = new bool[mWidth];
-		std::fill_n(mGrid[i], mWidth, false);
-	}
+    mGrid.resize(mHeight);
+    for(int i = 0; i < mHeight; ++i) {
+        mGrid[i].resize(mWidth, nullptr);
+    }
 }
 
 void SimpleFloorGenerator::dig(Room *room, Point point) {
-    mGrid[point.x()][point.y()] = true;
+    mGrid[point.x()][point.y()] = room;
 
     Room *currentRoom = room;
 	Point currentPoint = point;
@@ -105,7 +102,6 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
 
 Room* SimpleFloorGenerator::createRoom() {
 	Room* newRoom = new Room("Some Random description");
-	mRooms.push_back(newRoom);
 	return newRoom;
 }
 
@@ -115,7 +111,7 @@ bool SimpleFloorGenerator::isVisited(int x, int y) const {
 
     if(xIndex < 0 || xIndex > mWidth || yIndex < 0 || yIndex > mHeight)
         return true;
-    return mGrid[xIndex][yIndex];
+    return mGrid[xIndex][yIndex] != nullptr;
 }
 
 Passage::Direction SimpleFloorGenerator::getRandomNeighbour(const Room &room, const Point &point) const {

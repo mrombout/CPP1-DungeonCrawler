@@ -13,15 +13,25 @@ namespace dc {
     namespace model {
         class Floor {
         public:
-            Floor(int level, std::vector<Room*> rooms);
+            Floor(int level, std::vector<std::vector<Room*>> rooms, Room* startRoom, Room* exitRoom);
             ~Floor();
 
             int level() const;
 
+            unsigned int width() const;
+            unsigned int height() const;
+
+            Room &startRoom() const;
+            Room &exitRoom() const;
+
+            const std::vector<std::vector<Room*>> &rooms() const;
+
         private:
             int mLevel;
 
-            std::vector<Room*> mRooms;
+            Room* mStartRoom;
+            Room* mExitRoom;
+            std::vector<std::vector<Room*>> mRooms;
         };
     }
 }

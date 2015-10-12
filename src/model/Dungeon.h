@@ -17,6 +17,8 @@ namespace dc {
             Dungeon(int seed, const std::string &name, std::vector<Floor*> floors);
             ~Dungeon();
 
+            Floor &floor(int level) const;
+
         private:
             std::string mName;
             int mSeed;

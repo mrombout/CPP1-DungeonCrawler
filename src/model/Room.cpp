@@ -84,5 +84,13 @@ namespace dc {
         Passage *Room::west() const {
             return mWest;
         }
+
+        Floor *Room::floor() const {
+            return mFloor;
+        }
+
+        void Room::setFloor(Floor *floor) {
+            mFloor = floor;
+        }
     }
 }

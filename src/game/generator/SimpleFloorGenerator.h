@@ -21,11 +21,10 @@ public:
 	dc::model::Floor *generate(unsigned int seed, int level) override;
 
 private:
-    int mWidth;
-    int mHeight;
+    unsigned int mWidth;
+    unsigned int mHeight;
 
-    bool** mGrid;
-	std::vector<dc::model::Room*> mRooms;
+    std::vector<std::vector<dc::model::Room*>> mGrid;
 
 	RoomGenerator mRoomGenerator;
 
