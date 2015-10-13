@@ -18,6 +18,7 @@ namespace dc {
         class GameplayState : public engine::State {
         public:
             GameplayState();
+            ~GameplayState();
 
             void onInitialize(engine::GameLoop *game) override;
             void onEnter(engine::GameLoop *game) override;

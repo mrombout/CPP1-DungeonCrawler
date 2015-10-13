@@ -14,5 +14,9 @@ namespace dc {
                 delete *it;
             }
         }
+
+        Floor &Dungeon::floor(int level) const {
+            return *mFloors[level];
+        }
     }
 }
