@@ -11,7 +11,18 @@ namespace dc {
     namespace model {
         class Passage {
         public:
+			enum Direction {
+				North,
+				East,
+				South,
+				West,
+				Unknown
+			};
+
             Passage(Room &sideA, Room &sideB);
+
+			Room &sideA() const;
+			Room &sideB() const;
 
         private:
             Room &mSideA;

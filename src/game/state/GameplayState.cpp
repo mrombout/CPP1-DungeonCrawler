@@ -1,3 +1,6 @@
+#include <generator/FloorGenerator.h>
+#include <generator/SimpleFloorGenerator.h>
+#include <generator/DungeonGenerator.h>
 #include "GameplayState.h"
 #include "CommandParameters.h"
 #include "Game.h"
@@ -16,23 +19,19 @@ namespace dc {
 
         }
 
+        GameplayState::~GameplayState() {
+            delete mGame;
+        }
+
         void GameplayState::onInitialize(engine::GameLoop *game) {
-            std::vector<model::Room*> rooms = std::vector<model::Room*>();
-            model::Room *roomA = new model::Room("Description A", true, std::vector<model::Trap*>());
-            model::Room *roomB = new model::Room("Description B", true, std::vector<model::Trap*>());
-            model::Passage *passageAB = new model::Passage(*roomA, *roomB);
+            // generate random dungeon
+            unsigned int seed = 1;
 
-            rooms.push_back(roomA);
-            rooms.push_back(roomB);
+            SimpleFloorGenerator floorGenerator = SimpleFloorGenerator();
+            DungeonGenerator dungeonGenerator(floorGenerator);
+            model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
-
-            std::vector<model::Floor*> floors = std::vector<model::Floor*>();
-            model::Floor *floor = new model::Floor(0, rooms);
-            floors.push_back(floor);
-
-            model::Dungeon *dungeon = new model::Dungeon(0, "Dungeon 1", floors);
-
-            model::Player *player = new model::Player(*roomA);
+            model::Player *player = new model::Player(dungeon->floor(0).startRoom());
 
             mGame = new model::Game(dungeon, player);
         }

@@ -9,5 +9,12 @@ namespace dc {
 
         }
 
+	    Room& Passage::sideA() const {
+			return mSideA;
+	    }
+
+	    Room& Passage::sideB() const {
+			return mSideB;
+	    }
     }
 }

@@ -3,10 +3,23 @@
 
 namespace dc {
     namespace model {
-        Room::Room(std::string description, bool visited, std::vector<Trap*> traps) :
+        Room::Room(Point position, std::string description) :Room(position, description, false) {
+
+        }
+
+        Room::Room(Point position, std::string description, bool visited) : Room(position, description, visited, std::vector<Trap*>()) {
+
+        }
+
+        Room::Room(Point position, std::string description, bool visited, std::vector<Trap*> traps) :
+                mPosition(position),
                 mDescription(description),
                 mVisited(visited),
-                mTraps(traps) {
+                mTraps(traps),
+                mNorth(nullptr),
+                mEast(nullptr),
+                mSouth(nullptr),
+                mWest(nullptr) {
 
         }
 
@@ -34,8 +47,59 @@ namespace dc {
             mWest = passage;
         }
 
-        std::string Room::description() const {
+	    bool Room::isVisited() const {
+			return mVisited;
+	    }
+
+        const Point &Room::position() const {
+            return mPosition;
+        }
+
+	    std::string Room::description() const {
             return mDescription;
+        }
+
+	    std::vector<Passage*> Room::adjacantPassages() const {
+			std::vector<Passage*> passages;
+
+            passages.push_back(north());
+            passages.push_back(east());
+            passages.push_back(south());
+            passages.push_back(west());
+
+			return passages;
+	    }
+
+	    void Room::setVisited(bool visited) {
+            mVisited = visited;
+        }
+
+        Passage *Room::north() const {
+            return mNorth;
+        }
+
+        Passage *Room::east() const {
+            return mEast;
+        }
+
+        Passage *Room::south() const {
+            return mSouth;
+        }
+
+        Passage *Room::west() const {
+            return mWest;
+        }
+
+        Floor *Room::floor() const {
+            return mFloor;
+        }
+
+        void Room::setFloor(Floor *floor) {
+            mFloor = floor;
+        }
+
+        void Room::setPosition(Point point) {
+            mPosition = point;
         }
     }
 }

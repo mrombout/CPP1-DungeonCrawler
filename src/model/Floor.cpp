@@ -1,4 +1,5 @@
 #include "Floor.h"
+#include "Room.h"
 
 namespace dc {
     namespace model {
@@ -6,16 +7,41 @@ namespace dc {
             return mLevel;
         }
 
-        Floor::Floor(int level, std::vector<Room *> rooms) :
+        Floor::Floor(int level, std::vector<std::vector<Room *>> rooms, Room* startRoom, Room*exitRoom) :
             mLevel(level),
-            mRooms(rooms) {
+            mStartRoom(startRoom),
+            mExitRoom(exitRoom) {
+            mRooms = rooms;
 
+            for(std::vector<Room*> row : rooms) {
+                for(Room* room : row) {
+                    room->setFloor(this);
+                }
+            }
         }
 
         Floor::~Floor() {
-            for(std::vector<model::Room*>::iterator it = mRooms.begin(); it != mRooms.end(); ++it) {
-                delete *it;
-            }
+
+        }
+
+        Room &Floor::startRoom() const {
+            return *mStartRoom;
+        }
+
+        Room &Floor::exitRoom() const {
+            return *mExitRoom;
+        }
+
+        unsigned int Floor::width() const {
+            return mRooms[0].size();
+        }
+
+        unsigned int Floor::height() const {
+            return mRooms.size();
+        }
+
+        const std::vector<std::vector<Room *>> &Floor::rooms() const {
+            return mRooms;
         }
     }
 }
