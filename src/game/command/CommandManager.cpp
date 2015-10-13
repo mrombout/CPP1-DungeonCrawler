@@ -1,6 +1,7 @@
 #include "CommandManager.h"
 #include "command.h"
 #include "LookCommand.h"
+#include "InventoryCommand.h"
 #include "MapCommand.h"
 
 namespace dc {
@@ -10,6 +11,8 @@ namespace dc {
                 return new LookCommand();
             } else if(name == "map") {
 				return new MapCommand();
+            } else if (name == "use") {
+                return new InventoryCommand();
             }
 
             return nullptr;

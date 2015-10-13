@@ -22,7 +22,7 @@ namespace dc {
 		for(int i = 0; i < height; ++i) {
 			mGrid[i] = new char[width];
 			mGrid[i][width - 1] = mGrid[i][0];
-			std::fill_n(mGrid[i], width, '.');
+			std::fill_n(mGrid[i], width, ' ');
 		}
 
 		// render to buffer

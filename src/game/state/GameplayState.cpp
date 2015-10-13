@@ -1,4 +1,4 @@
-#include <generator/FloorGenerator.h>
+#include <Sword.h>
 #include <generator/SimpleFloorGenerator.h>
 #include <generator/DungeonGenerator.h>
 #include "GameplayState.h"
@@ -11,6 +11,7 @@
 #include "Passage.h"
 #include "Trap.h"
 #include "command/NullCommand.h"
+#include <Item.h>
 
 namespace dc {
     namespace game {
@@ -23,6 +24,7 @@ namespace dc {
             delete mGame;
         }
 
+
         void GameplayState::onInitialize(engine::GameLoop *game) {
             // generate random dungeon
             unsigned int seed = 1;
@@ -31,7 +33,13 @@ namespace dc {
             DungeonGenerator dungeonGenerator(floorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
-            model::Player *player = new model::Player(dungeon->floor(0).startRoom());
+            std::vector<model::Item*> items = std::vector<model::Item*>();
+            model::Item *item = new model::Sword("A Sword");
+            items.push_back(item);
+
+            model::Inventory *inventory = new model::Inventory(items);
+            
+            model::Player *player = new model::Player(dungeon->floor(0).startRoom(), inventory);
 
             mGame = new model::Game(dungeon, player);
         }

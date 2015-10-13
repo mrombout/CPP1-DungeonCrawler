@@ -1,6 +1,6 @@
 #include "GameLoop.h"
 #include "statemanager.h"
-#include "State/welcomestate.h"
+#include "state/WelcomeState.h"
 
 int main(int argc, char *argv[])
 {

@@ -8,9 +8,10 @@ namespace dc {
     namespace model {
         class Player {
         public:
-            Player(Room &room);
+            Player(Room &room, Inventory *inventory);
 
             Room &room() const;
+            Inventory &inventory() const;
 
         private:
             Inventory *mInventory;
