@@ -7,8 +7,8 @@ namespace dc {
     namespace model {
         class Item {
         public:
-            Item();
-            virtual ~Item() = 0;
+            Item(std::string description);
+            virtual ~Item();
 
             std::string description() const;
         private:

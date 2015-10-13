@@ -1,3 +1,4 @@
+#include <Sword.h>
 #include "GameplayState.h"
 #include "CommandParameters.h"
 #include "Game.h"
@@ -32,7 +33,14 @@ namespace dc {
 
             model::Dungeon *dungeon = new model::Dungeon(0, "Dungeon 1", floors);
 
-            model::Player *player = new model::Player(*roomA);
+            std::vector<model::Item*> items = std::vector<model::Item*>();
+
+            model::Item *item = new model::Sword("A Sword");
+            items.push_back(item);
+
+            model::Inventory *inventory = new model::Inventory(items);
+
+            model::Player *player = new model::Player(*roomA, inventory);
 
             mGame = new model::Game(dungeon, player);
         }

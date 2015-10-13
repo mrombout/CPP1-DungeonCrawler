@@ -2,8 +2,8 @@
 
 namespace dc {
     namespace model {
-        Player::Player(Room &room) :
-            mRoom(room) {
+        Player::Player(Room &room, Inventory *inventory) :
+            mRoom(room), mInventory(inventory) {
 
         }
 
