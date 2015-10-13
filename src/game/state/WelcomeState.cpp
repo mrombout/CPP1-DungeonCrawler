@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <command/NewGameCommand.h>
-#include "welcomestate.h"
+#include "command/NewGameCommand.h"
+#include "WelcomeState.h"
 
 namespace dc {
 namespace game {

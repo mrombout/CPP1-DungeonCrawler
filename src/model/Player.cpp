@@ -12,7 +12,7 @@ namespace dc {
         }
 
         Inventory &dc::model::Player::inventory() const {
-            return (Inventory &) mInventory;
+            return *mInventory;
         }
     }
 }

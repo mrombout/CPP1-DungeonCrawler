@@ -8,7 +8,7 @@ namespace dc {
         class Item {
         public:
             Item(std::string description);
-            virtual ~Item();
+            virtual ~Item() { }
 
             std::string description() const;
         private:
