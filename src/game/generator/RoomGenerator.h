@@ -1,6 +1,8 @@
 #ifndef DUNGEONCRAWLER_ROOMGENERATOR_H
 #define DUNGEONCRAWLER_ROOMGENERATOR_H
 
+static const int VARIANCE = 1;
+
 #include "Room.h"
 
 /**
@@ -9,7 +11,7 @@
  */
 class RoomGenerator {
 public:
-    dc::model::Room *generate(unsigned int seed);
+    dc::model::Room *generate(unsigned int seed, unsigned int level);
 };
 
 

@@ -1,5 +1,12 @@
+#include <stdlib.h>
+#include <util/Random.h>
 #include "RoomGenerator.h"
 #include "StringGenerator.h"
+#include "BearTrap.h"
+#include "EvilSummonTrap.h"
+#include "NearDeathTrap.h"
+#include "RatTrap.h"
+#include "TeleportTrap.h"
 
 std::vector<std::vector<std::string>> roomDescriptions{
     // room shape/size
@@ -47,6 +54,34 @@ std::vector<std::vector<std::string>> roomDescriptions{
     }
 };
 
-dc::model::Room *RoomGenerator::generate(unsigned int seed) {
-    return new dc::model::Room(Point(0, 0), StringGenerator::generateString(roomDescriptions, seed));
+dc::model::Room *RoomGenerator::generate(unsigned int seed, unsigned int level) {
+    srand(seed);
+
+    int roomLevel = Random::nextInt(level - VARIANCE, level + VARIANCE);
+
+    dc::model::Room *room = new dc::model::Room(Point(0, 0), StringGenerator::generateString(roomDescriptions, seed));
+
+    if(rand() % 100 < 25) {
+        int trapNum = rand() % 5;
+        switch(trapNum) {
+            case 0:
+                room->addTrap(new dc::model::BearTrap());
+                break;
+            case 1:
+                room->addTrap(new dc::model::EvilSummonTrap());
+                break;
+            case 2:
+                room->addTrap(new dc::model::NearDeathTrap());
+                break;
+            case 3:
+                room->addTrap(new dc::model::RatTrap());
+                break;
+            case 4:
+                room->addTrap(new dc::model::TeleportTrap());
+                break;
+            default:break;
+        }
+    }
+
+    return room;
 }

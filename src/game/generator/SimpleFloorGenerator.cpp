@@ -14,7 +14,7 @@ SimpleFloorGenerator::SimpleFloorGenerator(RoomGenerator &roomGenerator) :
 
 }
 
-Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
+Floor *SimpleFloorGenerator::generate(unsigned int seed, unsigned int level) {
 	// reset state
 	reset();
 
@@ -24,11 +24,11 @@ Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
         startPosition = Point(mWidth - 1, mHeight - 1);;
     }
 
-    Room *exit = createRoom(seed);
+    Room *exit = createRoom(seed, level);
     exit->setPosition(startPosition);
 
     // start digging floor
-    dig(exit, startPosition, seed);
+    dig(exit, startPosition, seed, level);
 
     // create floor
     Room* startRoom = mGrid[0][0];
@@ -54,14 +54,14 @@ void SimpleFloorGenerator::reset() {
     }
 }
 
-void SimpleFloorGenerator::dig(Room *room, Point point, unsigned int seed) {
+void SimpleFloorGenerator::dig(Room *room, Point point, unsigned int &seed, unsigned int &level) {
     mGrid[point.y()][point.x()] = room;
 
     Room *currentRoom = room;
 	Point currentPoint = point;
     Passage::Direction direction = getRandomNeighbour(*currentRoom, point);
     while(direction != Passage::Direction::Unknown) {
-		Room *nextRoom = createRoom(seed);
+		Room *nextRoom = createRoom(seed, level);
         Passage *passage = new Passage(*currentRoom, *nextRoom);
 
         switch(direction) {
@@ -94,7 +94,7 @@ void SimpleFloorGenerator::dig(Room *room, Point point, unsigned int seed) {
         }
 
         nextRoom->setPosition(point);
-        dig(nextRoom, point, seed);
+        dig(nextRoom, point, seed, level);
         std::cout << "unwinding" << std::endl;
 
 		point = currentPoint;
@@ -104,8 +104,8 @@ void SimpleFloorGenerator::dig(Room *room, Point point, unsigned int seed) {
     std::cout << "End looping" << std::endl;
 }
 
-Room * SimpleFloorGenerator::createRoom(unsigned int seed) {
-    return mRoomGenerator.generate(seed);
+Room * SimpleFloorGenerator::createRoom(unsigned int &seed, unsigned int &level) {
+    return mRoomGenerator.generate(seed, level);
 }
 
 bool SimpleFloorGenerator::isVisited(int x, int y) const {

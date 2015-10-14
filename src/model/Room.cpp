@@ -105,5 +105,13 @@ namespace dc {
         void Room::setPosition(Point point) {
             mPosition = point;
         }
+
+        std::vector<Trap*> Room::traps() const {
+            return mTraps;
+        }
+
+        void Room::addTrap(Trap *trap) {
+            mTraps.push_back(trap);
+        }
     }
 }

@@ -45,6 +45,9 @@ namespace dc {
             Floor *floor() const;
             void setFloor(Floor* floor);
 
+            std::vector<Trap*> traps() const;
+            void addTrap(Trap* trap);
+
         private:
             Point mPosition;
             std::string mDescription;
