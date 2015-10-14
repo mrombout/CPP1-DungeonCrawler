@@ -17,6 +17,7 @@ namespace dc {
     namespace model {
         class Room {
         public:
+            Room(std::string description);
             Room(Point position, std::string description);
             Room(Point position, std::string description, bool visited);
             Room(Point position, std::string description, bool visited, std::vector<Trap*> traps);

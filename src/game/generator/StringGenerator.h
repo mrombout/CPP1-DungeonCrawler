@@ -1,13 +1,12 @@
-//
-// Created by Mike Rombout on 14/10/2015.
-//
-
 #ifndef DUNGEONCRAWLER_STRINGGENERATOR_H
 #define DUNGEONCRAWLER_STRINGGENERATOR_H
 
+#include <vector>
+#include <string>
 
 class StringGenerator {
-
+public:
+    static std::vector<std::string> generate(std::vector<std::vector<std::string>> &sources, unsigned int seed);
 };
 
 

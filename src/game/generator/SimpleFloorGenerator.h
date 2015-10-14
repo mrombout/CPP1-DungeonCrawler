@@ -7,7 +7,12 @@
 #include "Point.h"
 #include "RoomGenerator.h"
 #include "Passage.h"
-#include "Room.h"
+
+namespace dc {
+    namespace model {
+        class Room;
+    }
+}
 
 /**
  * Generates a random floor consisting of a random number of rooms in a random
@@ -16,7 +21,7 @@
  */
 class SimpleFloorGenerator : public FloorGenerator {
 public:
-    explicit SimpleFloorGenerator();
+    explicit SimpleFloorGenerator(RoomGenerator &roomGenerator);
 
 	dc::model::Floor *generate(unsigned int seed, int level) override;
 
@@ -26,12 +31,12 @@ private:
 
     std::vector<std::vector<dc::model::Room*>> mGrid;
 
-	RoomGenerator mRoomGenerator;
+	RoomGenerator &mRoomGenerator;
 
-    void dig(dc::model::Room *room, Point point);
+    void dig(dc::model::Room *room, Point point, unsigned int i);
 	void reset();
 
-	dc::model::Room *createRoom();
+	dc::model::Room *createRoom(unsigned int seed);
 
     dc::model::Passage::Direction getRandomNeighbour(const dc::model::Room &room, const Point &point) const;
     bool isVisited(int x, int y) const;

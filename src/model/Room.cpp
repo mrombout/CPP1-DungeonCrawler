@@ -3,7 +3,11 @@
 
 namespace dc {
     namespace model {
-        Room::Room(Point position, std::string description) :Room(position, description, false) {
+        Room::Room(std::string description) : Room(Point(0, 0), description) {
+
+        }
+
+        Room::Room(Point position, std::string description) : Room(position, description, false) {
 
         }
 
