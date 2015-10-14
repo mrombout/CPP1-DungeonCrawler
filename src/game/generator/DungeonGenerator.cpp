@@ -1,10 +1,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "DungeonGenerator.h"
+#include "StringGenerator.h"
 
 using namespace dc::model;
 
-std::string dungeonTypes[] = {
+std::vector<std::string> dungeonTypes = {
     "Point",
     "Delves",
     "Quarters",
@@ -15,7 +16,7 @@ std::string dungeonTypes[] = {
     "Quarry"
 };
 
-std::string dungeonAdjective[] {
+std::vector<std::string> dungeonAdjective {
     "Frozen",
     "Scourged",
     "Mythic",
@@ -29,11 +30,11 @@ std::string dungeonAdjective[] {
     "Fabled"
 };
 
-std::string dungeonNoun[] {
+std::vector<std::string> dungeonNoun {
     "Priest",
     "Scorpion",
     "Mountain",
-    "Cells",
+    "Prison",
     "Warlock",
     "King",
     "Kaizar",
@@ -62,15 +63,28 @@ Dungeon *DungeonGenerator::generate(unsigned int seed) const {
 std::string DungeonGenerator::generateDungeonName(unsigned int seed) const {
     std::string dungeonName;
 
-    if(rand() > .5) {
-        dungeonName.append(dungeonTypes[rand() % dungeonTypes->size()]);
+    if(rand() % 100 > 50) {
+        std::vector<std::vector<std::string>> source{
+            dungeonTypes,
+            dungeonAdjective,
+            dungeonNoun
+        };
+        std::vector<std::string> words = StringGenerator::generate(source, seed);
+
+        dungeonName.append(words[0]);
         dungeonName.append(" of the ");
-        dungeonName.append(dungeonAdjective[rand() % dungeonAdjective->size()] + " ");
-        dungeonName.append(dungeonNoun[rand() % dungeonNoun->size()]);
+        dungeonName.append(words[1] + " ");
+        dungeonName.append(words[2]);
     } else {
+        std::vector<std::vector<std::string>> source{
+                dungeonAdjective,
+                dungeonTypes
+        };
+        std::vector<std::string> words = StringGenerator::generate(source, seed);
+
         dungeonName.append("The ");
-        dungeonName.append(dungeonAdjective[rand() % dungeonAdjective->size()] + " ");
-        dungeonName.append(dungeonTypes[rand() % dungeonTypes->size()]);
+        dungeonName.append(words[0]);
+        dungeonName.append(words[1]);
     }
 
     return dungeonName;

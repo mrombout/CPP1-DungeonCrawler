@@ -1,0 +1,14 @@
+//
+// Created by Mike Rombout on 14/10/2015.
+//
+
+#ifndef DUNGEONCRAWLER_STRINGGENERATOR_H
+#define DUNGEONCRAWLER_STRINGGENERATOR_H
+
+
+class StringGenerator {
+
+};
+
+
+#endif //DUNGEONCRAWLER_STRINGGENERATOR_H
