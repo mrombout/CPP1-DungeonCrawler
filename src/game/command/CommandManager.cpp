@@ -1,3 +1,5 @@
+#include <sstream>
+#include <vector>
 #include "CommandManager.h"
 #include "command.h"
 #include "LookCommand.h"
@@ -7,11 +9,29 @@
 namespace dc {
     namespace game {
         engine::Command *CommandManager::create(std::string name) const {
-            if(name == "look") {
+
+            // Split input by spaces
+            std::stringstream input(name);
+            std::string s;
+            std::vector<std::string> parameters;
+
+            while (getline(input, s, ' ')) {
+                parameters.push_back(s.c_str());
+            }
+
+            std::string commandName;
+            commandName =  (parameters.size() > 0) ? name : parameters[0];
+
+            if (parameters.size() > 0) {
+                // Remove first element from vector (the command name)
+                parameters.erase(parameters.begin());
+            }
+
+            if(commandName == "look") {
                 return new LookCommand();
-            } else if(name == "map") {
+            } else if(commandName == "map") {
 				return new MapCommand();
-            } else if (name == "use") {
+            } else if (commandName == "use") {
                 return new InventoryCommand();
             }
 

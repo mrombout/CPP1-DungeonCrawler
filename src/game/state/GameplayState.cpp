@@ -50,7 +50,8 @@ namespace dc {
 
         std::string GameplayState::onRead() {
             std::string input;
-            std::cin >> input;
+            getline(std::cin, input);
+
             return input;
         }
 
