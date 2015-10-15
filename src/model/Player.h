@@ -3,10 +3,11 @@
 
 #include "Inventory.h"
 #include "Room.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {
-        class Player {
+        class Player : public Character {
         public:
             Player(Room &room, Inventory *inventory);
 

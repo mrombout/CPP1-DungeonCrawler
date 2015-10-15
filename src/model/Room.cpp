@@ -3,7 +3,11 @@
 
 namespace dc {
     namespace model {
-        Room::Room(Point position, std::string description) :Room(position, description, false) {
+        Room::Room(std::string description) : Room(Point(0, 0), description) {
+
+        }
+
+        Room::Room(Point position, std::string description) : Room(position, description, false) {
 
         }
 
@@ -100,6 +104,14 @@ namespace dc {
 
         void Room::setPosition(Point point) {
             mPosition = point;
+        }
+
+        std::vector<Trap*> Room::traps() const {
+            return mTraps;
+        }
+
+        void Room::addTrap(Trap *trap) {
+            mTraps.push_back(trap);
         }
     }
 }

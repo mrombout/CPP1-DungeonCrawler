@@ -3,6 +3,7 @@
 namespace dc {
     namespace model {
         Player::Player(Room &room, Inventory *inventory) :
+            Character(),
             mRoom(room), mInventory(inventory) {
 
         }

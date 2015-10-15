@@ -17,6 +17,7 @@ namespace dc {
     namespace model {
         class Room {
         public:
+            Room(std::string description);
             Room(Point position, std::string description);
             Room(Point position, std::string description, bool visited);
             Room(Point position, std::string description, bool visited, std::vector<Trap*> traps);
@@ -43,6 +44,9 @@ namespace dc {
 
             Floor *floor() const;
             void setFloor(Floor* floor);
+
+            std::vector<Trap*> traps() const;
+            void addTrap(Trap* trap);
 
         private:
             Point mPosition;
