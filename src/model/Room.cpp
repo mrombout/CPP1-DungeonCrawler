@@ -3,7 +3,11 @@
 
 namespace dc {
     namespace model {
-        Room::Room(Point position, std::string description) :Room(position, description, false) {
+        Room::Room(std::string description) : Room(Point(0, 0), description) {
+
+        }
+
+        Room::Room(Point position, std::string description) : Room(position, description, false) {
 
         }
 
@@ -47,30 +51,30 @@ namespace dc {
             mWest = passage;
         }
 
-	    bool Room::isVisited() const {
-			return mVisited;
-	    }
+        bool Room::isVisited() const {
+            return mVisited;
+        }
 
         const Point &Room::position() const {
             return mPosition;
         }
 
-	    std::string Room::description() const {
+        std::string Room::description() const {
             return mDescription;
         }
 
-	    std::vector<Passage*> Room::adjacantPassages() const {
-			std::vector<Passage*> passages;
+        std::vector<Passage*> Room::adjacantPassages() const {
+            std::vector<Passage*> passages;
 
             passages.push_back(north());
             passages.push_back(east());
             passages.push_back(south());
             passages.push_back(west());
 
-			return passages;
-	    }
+            return passages;
+        }
 
-	    void Room::setVisited(bool visited) {
+        void Room::setVisited(bool visited) {
             mVisited = visited;
         }
 
@@ -100,6 +104,22 @@ namespace dc {
 
         void Room::setPosition(Point point) {
             mPosition = point;
+        }
+
+        std::vector<Trap*> Room::traps() const {
+            return mTraps;
+        }
+
+        void Room::addTrap(Trap *trap) {
+            mTraps.push_back(trap);
+        }
+
+        std::vector<Mob *> Room::mobs() const {
+            return mMobs;
+        }
+
+        void Room::addMob(Mob *mob) {
+            mMobs.push_back(mob);
         }
     }
 }
