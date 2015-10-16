@@ -1,17 +1,11 @@
 #include <Sword.h>
-#include <generator/SimpleFloorGenerator.h>
-#include <generator/DungeonGenerator.h>
+#include "generator/MobGenerator.h"
+#include "generator/SimpleFloorGenerator.h"
+#include "generator/DungeonGenerator.h"
 #include "GameplayState.h"
-#include "CommandParameters.h"
 #include "Game.h"
-#include "Player.h"
-#include "Dungeon.h"
-#include "Floor.h"
-#include "Room.h"
-#include "Passage.h"
 #include "Trap.h"
 #include "command/NullCommand.h"
-#include <Item.h>
 
 namespace dc {
     namespace game {
@@ -29,7 +23,8 @@ namespace dc {
             // generate random dungeon
             unsigned int seed = 1;
 
-            RoomGenerator roomGenerator = RoomGenerator();
+            MobGenerator mobGenerator;
+            RoomGenerator roomGenerator(mobGenerator);
             SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
             DungeonGenerator dungeonGenerator(floorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);

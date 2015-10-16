@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <util/Random.h>
+#include "MobGenerator.h"
 #include "RoomGenerator.h"
 #include "StringGenerator.h"
 #include "BearTrap.h"
@@ -55,6 +56,11 @@ std::vector<std::vector<std::string>> roomDescriptions{
     }
 };
 
+RoomGenerator::RoomGenerator(MobGenerator &mobGenerator) :
+    mMobGenerator(mobGenerator) {
+
+}
+
 dc::model::Room *RoomGenerator::generate(unsigned int seed, unsigned int level) {
     srand(seed);
 
@@ -71,8 +77,6 @@ dc::model::Room *RoomGenerator::generate(unsigned int seed, unsigned int level) 
 }
 
 void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int seed, unsigned int level) {
-    dc::model::Room *room = new dc::model::Room(Point(0, 0), StringGenerator::generateString(roomDescriptions, seed));
-
     if(rand() % 100 < 25) {
         int trapNum = rand() % 5;
         switch(trapNum) {
@@ -97,11 +101,9 @@ void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int seed, unsi
 }
 
 void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int seed, unsigned int level) {
-    dc::model::Mob *mob = new dc::model::Mob();
+    dc::model::Mob *mob = mMobGenerator.generate(seed, level);
 
-    // TODO: Fancy algoritme toepassen
+    // TODO: Fancy algoritme toepassen, om te bepalen of hier een mob moet komen
 
     room->addMob(mob);
-
-    return room;
 }
