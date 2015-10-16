@@ -29,7 +29,8 @@ namespace dc {
             // generate random dungeon
             unsigned int seed = 1;
 
-            SimpleFloorGenerator floorGenerator = SimpleFloorGenerator();
+            RoomGenerator roomGenerator = RoomGenerator();
+            SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
             DungeonGenerator dungeonGenerator(floorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 

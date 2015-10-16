@@ -10,7 +10,6 @@ static const int VARIANCE = 1;
  * loot. Each room gets a random description.
  */
 class RoomGenerator {
-
 public:
     dc::model::Room *generate(unsigned int seed, unsigned int level);
 
@@ -18,6 +17,7 @@ private:
     void generateTraps(dc::model::Room *seed, unsigned int level, unsigned int i);
 
     void generateMobs(dc::model::Room *room, unsigned int seed, unsigned int level);
+public:
 };
 
 

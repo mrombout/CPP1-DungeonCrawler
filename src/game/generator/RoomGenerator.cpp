@@ -71,6 +71,8 @@ dc::model::Room *RoomGenerator::generate(unsigned int seed, unsigned int level) 
 }
 
 void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int seed, unsigned int level) {
+    dc::model::Room *room = new dc::model::Room(Point(0, 0), StringGenerator::generateString(roomDescriptions, seed));
+
     if(rand() % 100 < 25) {
         int trapNum = rand() % 5;
         switch(trapNum) {
@@ -100,4 +102,6 @@ void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int seed, unsig
     // TODO: Fancy algoritme toepassen
 
     room->addMob(mob);
+
+    return room;
 }

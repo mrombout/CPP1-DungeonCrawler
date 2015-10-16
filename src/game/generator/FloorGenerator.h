@@ -8,7 +8,7 @@ public:
 	virtual ~FloorGenerator();
 
 private:
-	virtual dc::model::Floor *generate(unsigned int seed, int level) = 0;
+	virtual dc::model::Floor *generate(unsigned int seed, unsigned int level) = 0;
 };
 
 

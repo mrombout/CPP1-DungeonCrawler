@@ -7,13 +7,14 @@
 
 using namespace dc::model;
 
-SimpleFloorGenerator::SimpleFloorGenerator() :
+SimpleFloorGenerator::SimpleFloorGenerator(RoomGenerator &roomGenerator) :
+    mRoomGenerator(roomGenerator),
 	mWidth(0),
 	mHeight(0) {
 
 }
 
-Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
+Floor *SimpleFloorGenerator::generate(unsigned int seed, unsigned int level) {
 	// reset state
 	reset();
 
@@ -23,11 +24,11 @@ Floor *SimpleFloorGenerator::generate(unsigned int seed, int level) {
         startPosition = Point(mWidth - 1, mHeight - 1);;
     }
 
-    Room *exit = createRoom();
+    Room *exit = createRoom(seed, level);
     exit->setPosition(startPosition);
 
     // start digging floor
-    dig(exit, startPosition);
+    dig(exit, startPosition, seed, level);
 
     // create floor
     Room* startRoom = mGrid[0][0];
@@ -53,14 +54,14 @@ void SimpleFloorGenerator::reset() {
     }
 }
 
-void SimpleFloorGenerator::dig(Room *room, Point point) {
+void SimpleFloorGenerator::dig(Room *room, Point point, unsigned int &seed, unsigned int &level) {
     mGrid[point.y()][point.x()] = room;
 
     Room *currentRoom = room;
 	Point currentPoint = point;
     Passage::Direction direction = getRandomNeighbour(*currentRoom, point);
     while(direction != Passage::Direction::Unknown) {
-		Room *nextRoom = createRoom();
+		Room *nextRoom = createRoom(seed, level);
         Passage *passage = new Passage(*currentRoom, *nextRoom);
 
         switch(direction) {
@@ -93,7 +94,7 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
         }
 
         nextRoom->setPosition(point);
-        dig(nextRoom, point);
+        dig(nextRoom, point, seed, level);
         std::cout << "unwinding" << std::endl;
 
 		point = currentPoint;
@@ -103,9 +104,8 @@ void SimpleFloorGenerator::dig(Room *room, Point point) {
     std::cout << "End looping" << std::endl;
 }
 
-Room * SimpleFloorGenerator::createRoom() {
-	Room* newRoom = new Room(Point(0, 0), "Some Random description");
-	return newRoom;
+Room * SimpleFloorGenerator::createRoom(unsigned int &seed, unsigned int &level) {
+    return mRoomGenerator.generate(seed, level);
 }
 
 bool SimpleFloorGenerator::isVisited(int x, int y) const {

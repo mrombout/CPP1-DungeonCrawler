@@ -3,8 +3,17 @@
 
 namespace dc {
     namespace model {
-        class Trap {
+        class Player;
+    }
+}
 
+namespace dc {
+    namespace model {
+        class Trap {
+        public:
+            virtual ~Trap() { }
+
+            virtual void spring(dc::model::Player &player) = 0;
         };
     }
 }
