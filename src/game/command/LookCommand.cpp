@@ -13,7 +13,7 @@ namespace dc {
         if(!room.mobs().empty()) {
             std::cout << "In the darkness of the rooms lurk:" << "\n";
             for(dc::model::Mob *mob : room.mobs()) {
-                std::cout << "- a " << mob->name() << "\n";
+                std::cout << "- a " << mob->name() << "(" << mob->health() << "/" << mob->maxHealth() << ")" << "\n";
             }
         }
     }

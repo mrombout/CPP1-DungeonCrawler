@@ -18,10 +18,14 @@ namespace dc {
             const std::string &name() const;
             void setName(std::string pName);
 
+            int maxHealth() const;
+            void setMaxHealth(int pMaxHealth);
+
             int health() const;
             void setHealth(int pHealth);
             void decreaseHealth(int pHealth);
             void increaseHealth(int pHealth);
+            void damage(unsigned int pDamage);
 
             int level() const;
             void setLevel(int pLevel);
@@ -48,6 +52,8 @@ namespace dc {
 
         private:
             std::string mName;
+
+            int mMaxHealth;
             int mHealth;
 
             int mLevel;

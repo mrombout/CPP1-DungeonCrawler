@@ -114,7 +114,7 @@ namespace dc {
             mTraps.push_back(trap);
         }
 
-        std::vector<Mob *> Room::mobs() const {
+        const std::vector<Mob*> &Room::mobs() const {
             return mMobs;
         }
 

@@ -8,7 +8,7 @@ namespace dc {
         class Sword : public Item {
 
         public:
-            Sword(const std::string &description) : Item(description) { }
+            Sword(const std::string &name, const std::string &description) : Item(name, description) { }
 
             virtual ~Sword();
         };

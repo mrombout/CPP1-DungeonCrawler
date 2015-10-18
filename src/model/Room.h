@@ -49,7 +49,7 @@ namespace dc {
             std::vector<Trap*> traps() const;
             void addTrap(Trap* trap);
 
-            std::vector<Mob*> mobs() const;
+            const std::vector<Mob*> &mobs() const;
             void addMob(Mob* mob);
 
         private:

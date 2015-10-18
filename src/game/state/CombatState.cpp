@@ -1,10 +1,18 @@
+#include <string>
+#include <sstream>
+#include <vector>
+#include "command/AttackCommand.h"
+#include "command/FleeCommand.h"
+#include "command/InventoryCommand.h"
 #include "GameplayState.h"
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "Game.h"
 
-CombatState::CombatState() :
-    mCommandManager() {
+CombatState::CombatState(dc::model::Game game, const std::vector<dc::model::Mob *> &mobs) :
+        mCommandManager(*this),
+        mGame(game),
+        mMobs(mobs) {
 
 }
 
@@ -21,24 +29,38 @@ void CombatState::onEnter(dc::engine::GameLoop *game) {
 }
 
 std::string CombatState::onRead() {
-    std::cout << "(" << "0" << "/" << "100" << ")>";
+    std::cout << "(" << "0" << "/" << "100" << ") ";
+
     std::string input;
-    std::cin >> input;
+
+    std::getline(std::cin, input);
+
     return input;
 }
 
 dc::engine::Command *CombatState::onEval(std::string input) {
-    dc::engine::Command *command = mCommandManager.create(input);
-    if(!command) {
-        std::cout << "What are you doing?! Fight!" << std::endl;
-        // TODO: Cache this NullCommand
-        return new dc::game::NullCommand();
-    }
+    // read inputs
+    std::vector<std::string> inputs;
+    std::stringstream ss(input);
+    std::string item;
+    while(ss >> item)
+        inputs.push_back(item);
+
+    // determine command
+    dc::engine::Command *command = mCommandManager.create(inputs);
 
     return command;
 }
 
 void CombatState::onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) {
-    dc::engine::CommandParameters cp(game, mGame->player(), *this);
+    // execute player turn
+    dc::engine::CommandParameters cp(game, mGame.player(), *this);
     command->execute(cp);
+
+    // execute enemies turn
+
+}
+
+dc::model::Mob *CombatState::mob(unsigned int num) const {
+    return mMobs[num];
 }
