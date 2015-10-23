@@ -1,6 +1,8 @@
 #ifndef DUNGEONCRAWLER_CHARACTER_H
 #define DUNGEONCRAWLER_CHARACTER_H
 
+#include <string>
+
 namespace dc {
     namespace model {
         class Equipable;
@@ -13,13 +15,17 @@ namespace dc {
         public:
             Character();
 
-            int name() const;
-            void setName(int pName);
+            const std::string &name() const;
+            void setName(std::string pName);
+
+            int maxHealth() const;
+            void setMaxHealth(int pMaxHealth);
 
             int health() const;
             void setHealth(int pHealth);
             void decreaseHealth(int pHealth);
             void increaseHealth(int pHealth);
+            void damage(unsigned int pDamage);
 
             int level() const;
             void setLevel(int pLevel);
@@ -41,11 +47,13 @@ namespace dc {
             int perception() const;
             void setPerception(int pPerception);
 
-            Equipable & weapon() const;
+            Equipable &weapon() const;
             void setWeapon(Equipable *pWeapon);
 
         private:
-            int mName;
+            std::string mName;
+
+            int mMaxHealth;
             int mHealth;
 
             int mLevel;

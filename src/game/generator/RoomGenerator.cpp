@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <util/Random.h>
+#include "MobGenerator.h"
 #include "RoomGenerator.h"
 #include "StringGenerator.h"
 #include "BearTrap.h"
@@ -7,6 +8,7 @@
 #include "NearDeathTrap.h"
 #include "RatTrap.h"
 #include "TeleportTrap.h"
+#include "Mob.h"
 
 std::vector<std::vector<std::string>> roomDescriptions{
     // room shape/size
@@ -30,7 +32,7 @@ std::vector<std::vector<std::string>> roomDescriptions{
         "its really just that. ",
         "you feel a pleasant vibe in the air, but your feeling have betrayed you before. ",
         "for a moment you could've sworn you'd been here before. ",
-        "the floor is made of a nice shaggy carpet. It feels nice even through the thick leather on your muddy boots. ",
+        "the floor is made of a nice shaggy carpet. It feels nice even through the thick leather of your muddy boots. ",
         "the air in this room is damp and cold. "
     },
 
@@ -54,13 +56,27 @@ std::vector<std::vector<std::string>> roomDescriptions{
     }
 };
 
+RoomGenerator::RoomGenerator(MobGenerator &mobGenerator) :
+    mMobGenerator(mobGenerator) {
+
+}
+
 dc::model::Room *RoomGenerator::generate(unsigned int seed, unsigned int level) {
     srand(seed);
 
     int roomLevel = Random::nextInt(level - VARIANCE, level + VARIANCE);
 
+    // create room
     dc::model::Room *room = new dc::model::Room(Point(0, 0), StringGenerator::generateString(roomDescriptions, seed));
 
+    // populate room
+    generateTraps(room, seed, level);
+    generateMobs(room, seed, level);
+
+    return room;
+}
+
+void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int seed, unsigned int level) {
     if(rand() % 100 < 25) {
         int trapNum = rand() % 5;
         switch(trapNum) {
@@ -82,6 +98,14 @@ dc::model::Room *RoomGenerator::generate(unsigned int seed, unsigned int level) 
             default:break;
         }
     }
+}
 
-    return room;
+void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int seed, unsigned int level) {
+    if(rand() % 100 < 40) {
+        int numEnemies = Random::nextInt(1, 4);
+        for(int i = 0; i < numEnemies; ++i) {
+            dc::model::Mob *mob = mMobGenerator.generate(seed, level);
+            room->addMob(mob);
+        }
+    }
 }

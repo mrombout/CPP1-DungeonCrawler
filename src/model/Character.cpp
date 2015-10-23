@@ -2,16 +2,31 @@
 #include "Equipable.h"
 
 dc::model::Character::Character() :
+    mMaxHealth(100),
+    mHealth(mMaxHealth),
+    mLevel(1),
+    mExperience(0),
+    mAttack(1),
+    mDefence(1),
+    mPerception(1),
     mWeapon(0) {
 
 }
 
-int dc::model::Character::name() const {
+const std::string &dc::model::Character::name() const {
     return mName;
 }
 
-void dc::model::Character::setName(int pName) {
+void dc::model::Character::setName(std::string pName) {
     mName = pName;
+}
+
+int dc::model::Character::maxHealth() const {
+    return mMaxHealth;
+}
+
+void dc::model::Character::setMaxHealth(int pMaxHealth) {
+    mMaxHealth = pMaxHealth;
 }
 
 int dc::model::Character::health() const {
@@ -96,4 +111,8 @@ dc::model::Equipable &dc::model::Character::weapon() const {
 
 void dc::model::Character::setWeapon(dc::model::Equipable *pWeapon) {
     mWeapon = pWeapon;
+}
+
+void dc::model::Character::damage(unsigned int pDamage) {
+    decreaseHealth(pDamage);
 }

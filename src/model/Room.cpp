@@ -51,30 +51,30 @@ namespace dc {
             mWest = passage;
         }
 
-	    bool Room::isVisited() const {
-			return mVisited;
-	    }
+        bool Room::isVisited() const {
+            return mVisited;
+        }
 
         const Point &Room::position() const {
             return mPosition;
         }
 
-	    std::string Room::description() const {
+        std::string Room::description() const {
             return mDescription;
         }
 
-	    std::vector<Passage*> Room::adjacantPassages() const {
-			std::vector<Passage*> passages;
+        std::vector<Passage*> Room::adjacantPassages() const {
+            std::vector<Passage*> passages;
 
             passages.push_back(north());
             passages.push_back(east());
             passages.push_back(south());
             passages.push_back(west());
 
-			return passages;
-	    }
+            return passages;
+        }
 
-	    void Room::setVisited(bool visited) {
+        void Room::setVisited(bool visited) {
             mVisited = visited;
         }
 
@@ -112,6 +112,14 @@ namespace dc {
 
         void Room::addTrap(Trap *trap) {
             mTraps.push_back(trap);
+        }
+
+        const std::vector<Mob*> &Room::mobs() const {
+            return mMobs;
+        }
+
+        void Room::addMob(Mob *mob) {
+            mMobs.push_back(mob);
         }
     }
 }

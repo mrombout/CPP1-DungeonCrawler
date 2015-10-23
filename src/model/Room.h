@@ -10,6 +10,7 @@ namespace dc {
         class Passage;
         class Trap;
         class Floor;
+        class Mob;
     }
 }
 
@@ -48,6 +49,9 @@ namespace dc {
             std::vector<Trap*> traps() const;
             void addTrap(Trap* trap);
 
+            const std::vector<Mob*> &mobs() const;
+            void addMob(Mob* mob);
+
         private:
             Point mPosition;
             std::string mDescription;
@@ -61,6 +65,7 @@ namespace dc {
             Floor *mFloor;
 
             std::vector<Trap*> mTraps;
+            std::vector<Mob*> mMobs;
         };
     }
 }
