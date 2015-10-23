@@ -1,5 +1,6 @@
-#include <Sword.h>
+#include <iostream>
 #include "generator/MobGenerator.h"
+#include "Sword.h"
 #include "generator/SimpleFloorGenerator.h"
 #include "generator/DungeonGenerator.h"
 #include "GameplayState.h"
@@ -46,9 +47,14 @@ namespace dc {
         }
 
         std::string GameplayState::onRead() {
-            std::string input;
-            std::cin >> input;
-            return input;
+            std::string command;
+            std::string argument;
+
+            std::cout << ">";
+
+            std::cin >> command >> argument;
+
+            return command + " " + argument;
         }
 
         engine::Command *GameplayState::onEval(std::string input) {
