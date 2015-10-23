@@ -102,7 +102,10 @@ void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int seed, unsi
 
 void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int seed, unsigned int level) {
     if(rand() % 100 < 40) {
-        dc::model::Mob *mob = mMobGenerator.generate(seed, level);
-        room->addMob(mob);
+        int numEnemies = Random::nextInt(1, 4);
+        for(int i = 0; i < numEnemies; ++i) {
+            dc::model::Mob *mob = mMobGenerator.generate(seed, level);
+            room->addMob(mob);
+        }
     }
 }
