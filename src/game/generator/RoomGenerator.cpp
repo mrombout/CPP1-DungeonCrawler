@@ -26,7 +26,7 @@ std::vector<std::vector<std::string>> roomDescriptions{
         "its walls laid out of big gray stone, that once must have been even bigger rocks living their humble lives in the steppes plains. ",
         "the walls are of humble brick. ",
         "its prominently boring stone bricks are decorated with intriguing paintings. One of them appears to look like Barack Obama, a person coincidentally of no importance in the world of Rhovanar. ",
-        "a cold breeze caresses your face lightly when you suddenly feel its icy cold fingers trace the back on your spine. You feel betrayed. ",
+        "a cold breeze caresses your face lightly when you suddenly feel its icy cold fingers trace the back of your spine. You feel betrayed. ",
         "you feel a strong presence of magic in the air. It's probably nothing. ",
         "a foul stench enters your nostrils, partying with you turbinate and hitting on your oropharynx. It makes you slightly nauseous. ",
         "its really just that. ",
