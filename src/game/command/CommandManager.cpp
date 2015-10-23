@@ -19,8 +19,11 @@ namespace dc {
                 parameters.push_back(s.c_str());
             }
 
+            if(parameters.empty())
+                return nullptr;
+
             std::string commandName;
-            commandName =  (parameters.size() > 0) ? name : parameters[0];
+            commandName =  (parameters.size() > 0) ? parameters[0] : name;
 
             if (parameters.size() > 0) {
                 // Remove first element from vector (the command name)
