@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <limits.h>
 #include "Number.h"
 
 long Number::toLong(std::string &str) {

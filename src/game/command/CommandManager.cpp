@@ -5,6 +5,7 @@
 #include "LookCommand.h"
 #include "InventoryCommand.h"
 #include "MapCommand.h"
+#include "GoToCommand.h"
 
 namespace dc {
     namespace game {
@@ -20,7 +21,7 @@ namespace dc {
             }
 
             std::string commandName;
-            commandName =  (parameters.size() > 0) ? name : parameters[0];
+            commandName =  (parameters.size() > 0) ? parameters[0] : name;
 
             if (parameters.size() > 0) {
                 // Remove first element from vector (the command name)
@@ -33,6 +34,8 @@ namespace dc {
 				return new MapCommand();
             } else if (commandName == "use") {
                 return new InventoryCommand();
+            } else if (commandName == "goto") {
+                return new GoToCommand(parameters);
             }
 
             return nullptr;
