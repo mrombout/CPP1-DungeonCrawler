@@ -2,7 +2,13 @@
 #include "Equipable.h"
 
 dc::model::Character::Character() :
-    mWeapon(0) {
+    mWeapon(0),
+    mHealth(0),
+    mLevel(0),
+    mExperience(0),
+    mAttack(0),
+    mDefence(0),
+    mPerception(0) {
 
 }
 

@@ -5,6 +5,7 @@
 #include "LookCommand.h"
 #include "InventoryCommand.h"
 #include "MapCommand.h"
+#include "StatsCommand.h"
 
 namespace dc {
     namespace game {
@@ -33,6 +34,8 @@ namespace dc {
 				return new MapCommand();
             } else if (commandName == "use") {
                 return new InventoryCommand();
+            } else if(commandName == "stats") {
+                return new StatsCommand();
             }
 
             return nullptr;
