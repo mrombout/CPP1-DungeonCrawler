@@ -13,6 +13,7 @@ namespace dc {
 
             Room &room() const;
             Inventory &inventory() const;
+            void setRoom(Room &room);
 
         private:
             Inventory *mInventory;

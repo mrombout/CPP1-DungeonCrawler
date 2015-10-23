@@ -15,5 +15,9 @@ namespace dc {
         Inventory &dc::model::Player::inventory() const {
             return *mInventory;
         }
+
+        void Player::setRoom(Room &room) {
+            mRoom = room;
+        }
     }
 }

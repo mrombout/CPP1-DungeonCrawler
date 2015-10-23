@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include "AttackCommand.h"
 #include "Equipable.h"
 #include "Mob.h"
