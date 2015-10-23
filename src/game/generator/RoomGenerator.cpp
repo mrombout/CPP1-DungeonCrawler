@@ -101,9 +101,8 @@ void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int seed, unsi
 }
 
 void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int seed, unsigned int level) {
-    dc::model::Mob *mob = mMobGenerator.generate(seed, level);
-
-    // TODO: Fancy algoritme toepassen, om te bepalen of hier een mob moet komen
-
-    room->addMob(mob);
+    if(rand() % 100 < 40) {
+        dc::model::Mob *mob = mMobGenerator.generate(seed, level);
+        room->addMob(mob);
+    }
 }
