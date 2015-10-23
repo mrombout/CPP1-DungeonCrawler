@@ -5,6 +5,7 @@
 #include "LookCommand.h"
 #include "InventoryCommand.h"
 #include "MapCommand.h"
+#include "UseCommand.h"
 
 namespace dc {
     namespace game {
@@ -34,8 +35,10 @@ namespace dc {
                 return new LookCommand();
             } else if(commandName == "map") {
 				return new MapCommand();
-            } else if (commandName == "use") {
+            } else if (commandName == "inv") {
                 return new InventoryCommand();
+            } else if(commandName == "use") {
+                return new UseCommand(parameters[0]);
             }
 
             return nullptr;

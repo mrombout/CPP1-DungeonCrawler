@@ -10,6 +10,9 @@ namespace dc {
         public:
             Inventory(std::vector<Item*> items);
             ~Inventory();
+
+            Item *findItem(const std::string &itemName) const;
+
             std::string description() const;
         private:
             std::vector<Item*> mItems;
