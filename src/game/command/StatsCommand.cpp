@@ -8,7 +8,7 @@ void StatsCommand::execute(dc::engine::CommandParameters &parameters) const {
     std::cout << "Level: " << player.level() << "\n";
     std::cout << "Experience: " << player.experience() << "\n\n";
     std::cout << "----------------\n\n";
-    std::cout << "Health: " << player.health() << "\n";
+    std::cout << "Health: " << player.health() << "/" << player.maxHealth() << "\n";
     std::cout << "Attack: " << player.attack() << "\n";
     std::cout << "Defence: " << player.defence() << "\n";
     std::cout << "Perception: " << player.perception() << "\n\n";
