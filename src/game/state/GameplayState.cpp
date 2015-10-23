@@ -47,14 +47,11 @@ namespace dc {
         }
 
         std::string GameplayState::onRead() {
-            std::string command;
-            std::string argument;
+            std::string input;
 
-            std::cout << ">";
+            std::getline(std::cin, input);
 
-            std::cin >> command >> argument;
-
-            return command + " " + argument;
+            return input;
         }
 
         engine::Command *GameplayState::onEval(std::string input) {
