@@ -33,6 +33,7 @@ namespace game {
 
         std::string input;
         std::cin >> input;
+        std::cin.ignore(1000, '\n');
 
         return input;
     }

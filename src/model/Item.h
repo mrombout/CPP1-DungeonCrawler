@@ -7,11 +7,13 @@ namespace dc {
     namespace model {
         class Item {
         public:
-            Item(std::string description);
+            Item(std::string name, std::string description);
             virtual ~Item() { }
 
+            std::string name() const;
             std::string description() const;
         private:
+            std::string mName;
             std::string mDescription;
         };
     }

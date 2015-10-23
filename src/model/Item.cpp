@@ -6,7 +6,14 @@
 namespace dc {
     namespace model {
 
-        Item::Item(std::string description) : mDescription(description) {
+        Item::Item(std::string name, std::string description) :
+                mName(name),
+                mDescription(description) {
+
+        }
+
+        std::string Item::name() const {
+            return mName;
         }
 
         std::string Item::description() const {

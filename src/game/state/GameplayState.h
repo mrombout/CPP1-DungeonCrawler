@@ -24,8 +24,9 @@ namespace dc {
             void onEnter(engine::GameLoop *game) override;
             std::string onRead() override;
             engine::Command *onEval(std::string input) override;
-
             void onPrint(engine::GameLoop &game, engine::Command *command) override;
+
+            void updateEnemies(engine::GameLoop &game) const;
 
         private:
             const CommandManager mCommandManager;

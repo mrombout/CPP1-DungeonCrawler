@@ -1,18 +1,13 @@
 #include <iostream>
+#include "generator/MobGenerator.h"
 #include "Sword.h"
 #include "generator/SimpleFloorGenerator.h"
 #include "generator/DungeonGenerator.h"
 #include "GameplayState.h"
-#include "CommandParameters.h"
 #include "Game.h"
-#include "Player.h"
-#include "Dungeon.h"
-#include "Floor.h"
-#include "Room.h"
-#include "Passage.h"
 #include "Trap.h"
 #include "command/NullCommand.h"
-#include <Item.h>
+#include "CombatState.h"
 
 namespace dc {
     namespace game {
@@ -30,13 +25,14 @@ namespace dc {
             // generate random dungeon
             unsigned int seed = 1;
 
-            RoomGenerator roomGenerator = RoomGenerator();
+            MobGenerator mobGenerator;
+            RoomGenerator roomGenerator(mobGenerator);
             SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
             DungeonGenerator dungeonGenerator(floorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
             std::vector<model::Item*> items = std::vector<model::Item*>();
-            model::Item *item = new model::Sword("A Sword");
+            model::Item *item = new model::Sword("Sword", "A Sword");
             items.push_back(item);
 
             model::Inventory *inventory = new model::Inventory(items);
@@ -51,14 +47,11 @@ namespace dc {
         }
 
         std::string GameplayState::onRead() {
-            std::string command;
-            std::string argument;
+            std::string input;
 
-            std::cout << ">";
+            std::getline(std::cin, input);
 
-            std::cin >> command >> argument;
-
-            return command + " " + argument;
+            return input;
         }
 
         engine::Command *GameplayState::onEval(std::string input) {
@@ -76,6 +69,15 @@ namespace dc {
         void GameplayState::onPrint(engine::GameLoop &game, engine::Command *command) {
             engine::CommandParameters cp(game, mGame->player(), *this);
             command->execute(cp);
+
+            updateEnemies(game);
+        }
+
+        void GameplayState::updateEnemies(engine::GameLoop &game) const {
+            const std::vector<dc::model::Mob*> &mobs = mGame->player().room().mobs();
+            if(!mobs.empty()) {
+                game.pushState(new CombatState(*mGame, mobs));
+        }
         }
     }
 }
