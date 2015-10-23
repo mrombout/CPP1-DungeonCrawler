@@ -5,12 +5,12 @@
 std::vector<std::vector<std::string>> mobNames {
         // adjective
         std::vector<std::string> {
-                "Deluded",
-                "Intimidating",
-                "Ignored",
-                "Beautiful",
-                "Divine",
-                "Hellish"
+                "Deluded ",
+                "Intimidating ",
+                "Ignored ",
+                "Beautiful ",
+                "Divine ",
+                "Hellish "
         },
 
         // TODO: Names should be base monsters name read from file
