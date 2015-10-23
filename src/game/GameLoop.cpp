@@ -22,7 +22,6 @@ namespace engine {
             Command *command;
             do {
                 std::string input = read();
-                std::cin.ignore(1000, '\n');
                 command = eval(input);
             } while(!command);
 
