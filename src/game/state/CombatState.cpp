@@ -25,10 +25,14 @@ void CombatState::onInitialize(dc::engine::GameLoop *game) {
 }
 
 void CombatState::onEnter(dc::engine::GameLoop *game) {
-    std::cout << "You prepare for battle" << std::endl;
+    std::cout << "\n A group of enemies storm towards you.\nYou prepare for battle." << std::endl;
 }
 
 std::string CombatState::onRead() {
+    std::cout << "You are in combat!\n\n" << "In front of you stand:" << std::endl;
+
+    // TODO: Show all enemies
+
     std::cout << "(" << "0" << "/" << "100" << ") ";
 
     std::string input;
