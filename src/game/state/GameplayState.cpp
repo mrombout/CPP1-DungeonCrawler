@@ -1,6 +1,7 @@
 #include <iostream>
 #include "generator/MobGenerator.h"
 #include "Sword.h"
+#include "generator/BSPFloorGenerator.h"
 #include "generator/SimpleFloorGenerator.h"
 #include "generator/DungeonGenerator.h"
 #include "GameplayState.h"
@@ -27,8 +28,9 @@ namespace dc {
 
             MobGenerator mobGenerator;
             RoomGenerator roomGenerator(mobGenerator);
+            BSPFloorGenerator bspFloorGenerator = BSPFloorGenerator();
             SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
-            DungeonGenerator dungeonGenerator(floorGenerator);
+            DungeonGenerator dungeonGenerator(bspFloorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
             std::vector<model::Item*> items = std::vector<model::Item*>();
