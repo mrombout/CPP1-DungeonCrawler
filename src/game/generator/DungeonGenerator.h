@@ -14,8 +14,8 @@ public:
     dc::model::Dungeon *generate(unsigned int seed) const;
 
 private:
-    std::string generateDungeonName(unsigned int seed) const;
-    dc::model::Floor *generateDungeonFloor(unsigned int seed, int level) const;
+    std::string generateDungeonName() const;
+    dc::model::Floor *generateDungeonFloor(int level) const;
 
     FloorGenerator &mFloorGenerator;
 };

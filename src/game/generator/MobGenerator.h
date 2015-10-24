@@ -5,7 +5,7 @@
 
 class MobGenerator {
 public:
-    static dc::model::Mob *generate(unsigned int seed, unsigned int level);
+    static dc::model::Mob *generate(unsigned int level);
 };
 
 #endif //DUNGEONCRAWLER_MOBGENERATOR_H

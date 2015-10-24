@@ -28,7 +28,7 @@ namespace dc {
 
             MobGenerator mobGenerator;
             RoomGenerator roomGenerator(mobGenerator);
-            BSPFloorGenerator bspFloorGenerator = BSPFloorGenerator();
+            BSPFloorGenerator bspFloorGenerator = BSPFloorGenerator(roomGenerator);
             SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
             DungeonGenerator dungeonGenerator(bspFloorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);

@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "StringGenerator.h"
 
-std::vector<std::string> StringGenerator::generate(std::vector<std::vector<std::string>> &sources, unsigned int seed) {
+std::vector<std::string> StringGenerator::generate(std::vector<std::vector<std::string>> &sources) {
     std::vector<std::string> result;
 
     for(std::vector<std::string> source : sources) {
@@ -11,8 +11,8 @@ std::vector<std::string> StringGenerator::generate(std::vector<std::vector<std::
     return result;
 }
 
-std::string StringGenerator::generateString(std::vector<std::vector<std::string>> &sources, unsigned int seed) {
-    std::vector<std::string> result = generate(sources, seed);
+std::string StringGenerator::generateString(std::vector<std::vector<std::string>> &sources) {
+    std::vector<std::string> result = generate(sources);
     std::string stringResult = "";
     for(int i = 0; i < result.size(); i++) {
         stringResult.append(result[i]);

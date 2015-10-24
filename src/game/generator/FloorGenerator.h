@@ -7,7 +7,7 @@ class FloorGenerator {
 public:
 	virtual ~FloorGenerator();
 
-	virtual dc::model::Floor *generate(unsigned int seed, unsigned int level) = 0;
+	virtual dc::model::Floor *generate(unsigned int level) = 0;
 };
 
 

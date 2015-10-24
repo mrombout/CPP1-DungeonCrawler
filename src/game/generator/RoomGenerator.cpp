@@ -61,20 +61,20 @@ RoomGenerator::RoomGenerator(MobGenerator &mobGenerator) :
 
 }
 
-dc::model::Room *RoomGenerator::generate(unsigned int seed, unsigned int level) {
+dc::model::Room *RoomGenerator::generate(unsigned int level) {
     int roomLevel = Random::nextInt(level - VARIANCE, level + VARIANCE);
 
     // create room
-    dc::model::Room *room = new dc::model::Room(Point(0, 0), StringGenerator::generateString(roomDescriptions, seed));
+    dc::model::Room *room = new dc::model::Room(Point(0, 0), StringGenerator::generateString(roomDescriptions));
 
     // populate room
-    generateTraps(room, seed, level);
-    generateMobs(room, seed, level);
+    generateTraps(room, level);
+    generateMobs(room, level);
 
     return room;
 }
 
-void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int seed, unsigned int level) {
+void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
     if(rand() % 100 < 25) {
         int trapNum = rand() % 5;
         switch(trapNum) {
@@ -98,11 +98,11 @@ void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int seed, unsi
     }
 }
 
-void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int seed, unsigned int level) {
+void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int level) {
     if(rand() % 100 < 40) {
         int numEnemies = Random::nextInt(1, 4);
         for(int i = 0; i < numEnemies; ++i) {
-            dc::model::Mob *mob = mMobGenerator.generate(seed, level);
+            dc::model::Mob *mob = mMobGenerator.generate(level);
             room->addMob(mob);
         }
     }

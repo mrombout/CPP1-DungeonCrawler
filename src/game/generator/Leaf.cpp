@@ -22,7 +22,7 @@ Leaf::~Leaf() {
     delete mRightChild;
 }
 
-bool Leaf::split(unsigned int seed) {
+bool Leaf::split() {
     if(mLeftChild && mRightChild)
         return false; // already split
 
@@ -48,17 +48,17 @@ bool Leaf::split(unsigned int seed) {
     return true;
 }
 
-void Leaf::createRooms(unsigned int seed) {
+void Leaf::createRooms() {
     if(mLeftChild != nullptr || mRightChild != nullptr) {
         if(mLeftChild != nullptr) {
-            mLeftChild->createRooms(seed);
+            mLeftChild->createRooms();
         }
         if(mRightChild != nullptr) {
-            mRightChild->createRooms(seed);
+            mRightChild->createRooms();
         }
 
         if(leftChild() != nullptr && rightChild() != nullptr) {
-            createHall(seed, mLeftChild->room(), mRightChild->room());
+            createHall(mLeftChild->room(), mRightChild->room());
         }
     } else {
         int roomWidth;
@@ -77,7 +77,7 @@ void Leaf::createRooms(unsigned int seed) {
     }
 }
 
-void Leaf::createHall(unsigned int seed, Rectangle *l, Rectangle *r) {
+void Leaf::createHall(Rectangle *l, Rectangle *r) {
     Point lPoint(l->center());
     Point rPoint(r->center());
 

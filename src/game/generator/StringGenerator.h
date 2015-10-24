@@ -6,8 +6,8 @@
 
 class StringGenerator {
 public:
-    static std::vector<std::string> generate(std::vector<std::vector<std::string>> &sources, unsigned int seed);
-    static std::string generateString(std::vector<std::vector<std::string>> &sources, unsigned int seed);
+    static std::vector<std::string> generate(std::vector<std::vector<std::string>> &sources);
+    static std::string generateString(std::vector<std::vector<std::string>> &sources);
 };
 
 
