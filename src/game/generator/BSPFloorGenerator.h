@@ -23,12 +23,12 @@ public:
     /**
      * Create dungeon rooms for the rooms and halls in the given Leaf.
      */
-    void createRooms(std::vector<std::vector<dc::model::Room *>> &vector, Leaf *leaf, unsigned int &level);
+    void createRooms(std::vector<std::vector<dc::model::Room*>> &vector, Leaf *leaf, unsigned int &level);
 
     /**
      * Create dungeon rooms for the given rectangle.
      */
-    void createRectangle(std::vector<std::vector<dc::model::Room *>> &vector, Rectangle *rectangle, unsigned int &level);
+    void createRectangle(std::vector<std::vector<dc::model::Room*>> &vector, Rectangle *rectangle, unsigned int &level);
 
     /**
      * Create a tree that is divided up using binary space partitioning.
@@ -39,6 +39,11 @@ private:
     static int MAX_LEAF_SIZE;
 
     RoomGenerator &mRoomGenerator;
+
+    void connectRooms(std::vector<std::vector<dc::model::Room *>> vector);
+
+    dc::model::Room *determineStaircaseUp(std::vector<std::vector<dc::model::Room*>> &vector, Leaf *root);
+    dc::model::Room *determineStaircaseDown(std::vector<std::vector<dc::model::Room*>> &vector, Leaf *root);
 };
 
 #endif //DUNGEONCRAWLER_DFSFLOORGENERATOR_H

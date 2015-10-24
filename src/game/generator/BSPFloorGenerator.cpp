@@ -7,6 +7,7 @@
 #include "Leaf.h"
 #include "Floor.h"
 #include "Room.h"
+#include "Passage.h"
 
 int BSPFloorGenerator::MAX_LEAF_SIZE = 20;
 
@@ -44,8 +45,13 @@ dc::model::Floor *BSPFloorGenerator::generate(unsigned int level) {
     }
 
     // connect all rooms
+    connectRooms(rooms);
 
-    return new dc::model::Floor(1, std::vector<std::vector<dc::model::Room*>>(), nullptr, nullptr);
+    // determine optimal staircases
+    dc::model::Room *staircaseUp = determineStaircaseUp(rooms, root);
+    dc::model::Room *staircaseDown = determineStaircaseDown(rooms, root);
+
+    return new dc::model::Floor(level, rooms, staircaseUp, staircaseDown);
 }
 
 void BSPFloorGenerator::createRooms(std::vector<std::vector<dc::model::Room*>> &vector, Leaf *leaf, unsigned int &level) {
@@ -72,6 +78,7 @@ void BSPFloorGenerator::createRectangle(std::vector<std::vector<dc::model::Room*
     for(int y = top; y < bottom; ++y) {
         for(int x = left; x < right; ++x) {
             vector[y][x] = mRoomGenerator.generate(level);
+            vector[y][x]->setPosition(Point(x, y));
         }
     }
 }
@@ -104,4 +111,52 @@ Leaf *BSPFloorGenerator::createTree() {
     root->createRooms();
 
     return root;
+}
+
+void BSPFloorGenerator::connectRooms(std::vector<std::vector<dc::model::Room *>> vector) {
+    // connect horizontally
+    for(int y = 0; y < vector.size() - 1; ++y) {
+        for(int x = 0; x < vector[y].size() - 1; ++x) {
+            // connect horizontally
+            dc::model::Room *roomA = vector[y][x];
+            dc::model::Room *roomB = vector[y][x + 1];
+            if(roomA && roomB) {
+                dc::model::Passage *passage = new dc::model::Passage(*roomA, *roomB);
+                roomA->setEast(passage);
+                roomB->setWest(passage);
+            }
+
+            dc::model::Room *roomC = vector[y + 1][x];
+            // connect vertically
+            if(roomA && roomC) {
+                dc::model::Passage *passage = new dc::model::Passage(*roomA, *roomC);
+                roomA->setSouth(passage);
+                roomC->setNorth(passage);
+            }
+        }
+    }
+}
+
+dc::model::Room *BSPFloorGenerator::determineStaircaseUp(std::vector<std::vector<dc::model::Room*>> &vector, Leaf *root) {
+    // find smallest leaf on the top left
+    Leaf *topLeftRoom = root;
+    while(topLeftRoom->leftChild() && topLeftRoom->leftChild()->room()) {
+        topLeftRoom = topLeftRoom->leftChild();
+    }
+
+    // find room
+    Rectangle *rect = topLeftRoom->room();
+    return vector[rect->top()][rect->left()];
+}
+
+dc::model::Room *BSPFloorGenerator::determineStaircaseDown(std::vector<std::vector<dc::model::Room*>> &vector, Leaf *root) {
+    // Find smallest leaf on the top left
+    Leaf *bottomRightRoom = root;
+    while(bottomRightRoom->rightChild() && bottomRightRoom->rightChild()->room()) {
+        bottomRightRoom = bottomRightRoom->rightChild();
+    }
+
+    // find room
+    Rectangle *rect = bottomRightRoom->room();
+    return vector[rect->bottom()][rect->right()];
 }
