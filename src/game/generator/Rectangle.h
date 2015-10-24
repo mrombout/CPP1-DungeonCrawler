@@ -1,9 +1,13 @@
 #ifndef DUNGEONCRAWLER_RECTANGLE_H
 #define DUNGEONCRAWLER_RECTANGLE_H
 
+#include "Point.h"
+
 class Rectangle {
 public:
     Rectangle(int x, int y, int width, int height);
+
+    Point center() const;
 
     int left() const;
     int top() const;

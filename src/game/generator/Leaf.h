@@ -24,6 +24,7 @@ public:
     Leaf *rightChild() const;
 
     Rectangle *room() const;
+    const std::vector<Rectangle*> &halls() const;
 
 private:
     int mX;
@@ -35,7 +36,7 @@ private:
     Leaf *mRightChild;
 
     Rectangle *mRoom;
-    std::vector<Rectangle*> *mHalls;
+    std::vector<Rectangle*> mHalls;
     // TODO: Halls
 };
 
