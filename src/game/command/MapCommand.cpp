@@ -42,22 +42,22 @@ namespace dc {
 				if(!passage)
 					continue;
 
-				model::Room &otherRoom = passage->sideB();
+				model::Room &otherRoom = passage->otherSide(currentRoom);
 
 				drawPassage(mGrid, passage);
 
-				if(markedRooms.count(&otherRoom) == 0 && otherRoom.isVisited()) {
+				if(markedRooms.count(&otherRoom) == 0 /*&& otherRoom.isVisited()*/) {
 					markedRooms[&otherRoom] = true;
 					queue.push(&otherRoom);
 
 					Point position = otherRoom.position();
-					mGrid[(position.x() + 1) * 2][(position.y() + 1) * 2] = 'R';
+					mGrid[(position.y() + 1) * 2][(position.x() + 1) * 2] = '#';
 					i++;
 				}
 			}
 		}
 
-		mGrid[(room.position().x() + 1) * 2][(room.position().y() + 1) * 2] = '@';
+		mGrid[(room.position().y() + 1) * 2][(room.position().x() + 1) * 2] = '@';
 
 		std::cout << "Drawn" << i << "Rooms" << std::endl;
 

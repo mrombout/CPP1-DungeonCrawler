@@ -103,7 +103,7 @@ void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int level) {
         int numEnemies = Random::nextInt(1, 4);
         for(int i = 0; i < numEnemies; ++i) {
             dc::model::Mob *mob = mMobGenerator.generate(level);
-            room->addMob(mob);
+            //room->addMob(mob);
         }
     }
 }

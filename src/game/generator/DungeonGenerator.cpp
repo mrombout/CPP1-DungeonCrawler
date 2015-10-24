@@ -55,7 +55,7 @@ Dungeon *DungeonGenerator::generate(unsigned int seed) const {
     std::vector<Floor*> dFloors = std::vector<Floor*>();
 
     //int numFloors = rand() % 10 + 1;
-    int numFloors = 10;
+    int numFloors = 1;
     for(int i = 1; i <= numFloors; ++i) {
         dFloors.push_back(generateDungeonFloor(i));
     }
