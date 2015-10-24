@@ -49,6 +49,8 @@ DungeonGenerator::DungeonGenerator(FloorGenerator &floorGenerator) :
 }
 
 Dungeon *DungeonGenerator::generate(unsigned int seed) const {
+    srand(seed);
+
     std::string dName = generateDungeonName(seed);
     std::vector<Floor*> dFloors = std::vector<Floor*>();
 

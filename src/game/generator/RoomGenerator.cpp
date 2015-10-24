@@ -62,8 +62,6 @@ RoomGenerator::RoomGenerator(MobGenerator &mobGenerator) :
 }
 
 dc::model::Room *RoomGenerator::generate(unsigned int seed, unsigned int level) {
-    srand(seed);
-
     int roomLevel = Random::nextInt(level - VARIANCE, level + VARIANCE);
 
     // create room
