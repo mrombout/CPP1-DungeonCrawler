@@ -43,7 +43,7 @@ std::vector<std::string> dungeonNoun {
     "Order"
 };
 
-DungeonGenerator::DungeonGenerator(SimpleFloorGenerator &floorGenerator) :
+DungeonGenerator::DungeonGenerator(FloorGenerator &floorGenerator) :
         mFloorGenerator(floorGenerator) {
 
 }
