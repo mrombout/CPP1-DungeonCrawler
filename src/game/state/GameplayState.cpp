@@ -82,6 +82,7 @@ namespace dc {
             command->execute(cp);
 
             updateEnemies(game);
+            springTraps(game);
         }
 
         void GameplayState::updateEnemies(engine::GameLoop &game) const {
@@ -99,7 +100,7 @@ namespace dc {
                 for(dc::model::Trap *trap : traps) {
                     if(trap->isSprung())
                         continue;
-
+                    
                     std::cout << "You sprung a " << trap->name() << " trap!" << "\n";
                     trap->spring(mGame->player());
                 }

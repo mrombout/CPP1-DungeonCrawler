@@ -31,6 +31,8 @@ namespace dc {
         private:
             const CommandManager mCommandManager;
             model::Game *mGame;
+
+            void springTraps(engine::GameLoop &loop);
         };
     }
 }

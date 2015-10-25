@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Room.h"
 #include "Trap.h"
 
@@ -111,7 +112,7 @@ namespace dc {
             mPosition = point;
         }
 
-        std::vector<Trap*> Room::traps() const {
+        const std::vector<Trap*> &Room::traps() const {
             return mTraps;
         }
 
@@ -125,6 +126,10 @@ namespace dc {
 
         void Room::addMob(Mob *mob) {
             mMobs.push_back(mob);
+        }
+
+        void Room::removeMob(Mob *mob) {
+            mMobs.erase(std::remove(mMobs.begin(), mMobs.end(), mob), mMobs.end());
         }
     }
 }

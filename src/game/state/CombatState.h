@@ -14,7 +14,7 @@ namespace dc {
 
 class CombatState : public dc::engine::State {
 public:
-    CombatState(dc::model::Game game, const std::vector<dc::model::Mob*> &mobs);
+    CombatState(dc::model::Game &game, const std::vector<dc::model::Mob*> &mobs);
 
     ~CombatState();
 

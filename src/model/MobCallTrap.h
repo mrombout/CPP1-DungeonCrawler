@@ -11,8 +11,12 @@ namespace dc {
 
 namespace dc {
     namespace model {
-        class EvilSummonTrap : public Trap {
-            void spring(dc::model::Player &player) override;
+        class MobCallTrap : public Trap {
+
+        public:
+            virtual const std::string name();
+
+            virtual void onSpring(dc::model::Player &player) override;
         };
     }
 }
