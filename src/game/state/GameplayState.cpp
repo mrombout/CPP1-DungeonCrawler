@@ -10,6 +10,7 @@
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "item/Iconograph.h"
+#include "util/ServiceLocator.h"
 
 namespace dc {
     namespace game {
@@ -76,7 +77,7 @@ namespace dc {
 
         // TODO: Duplicate code in WelcomeState
         void GameplayState::onPrint(engine::GameLoop &game, engine::Command *command) {
-            engine::CommandParameters cp(game, mGame->player(), *this);
+            engine::CommandParameters cp(ServiceLocator::getInstance().resolve<dc::engine::GameLoop>(), mGame->player(), *this);
             command->execute(cp);
 
             updateEnemies(game);
@@ -87,6 +88,21 @@ namespace dc {
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room().mobs();
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame, mobs));
+            }
+        }
+
+        void GameplayState::springTraps(engine::GameLoop &game) {
+            const std::vector<dc::model::Trap*> &traps = mGame->player().room().traps();
+            if(!traps.empty()) {
+                std::cout << "You hear a sudden click, ever so lightly echo through the room...\n";
+                for(dc::model::Trap *trap : traps) {
+                    if(trap->isSprung())
+                        continue;
+
+                    std::cout << "You sprung a " << trap->name() << " trap!" << "\n";
+                    trap->spring(mGame->player());
+                }
+                std::cout << std::endl;
             }
         }
     }

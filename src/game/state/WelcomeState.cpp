@@ -3,6 +3,7 @@
 #include <string>
 #include "command/NewGameCommand.h"
 #include "WelcomeState.h"
+#include "util/ServiceLocator.h"
 
 namespace dc {
 namespace game {
@@ -41,12 +42,12 @@ namespace game {
     engine::Command *WelcomeState::onEval(std::string input)
     {
         if(input == "n") {
-            return new NewGameCommand();
+            return ServiceLocator::getInstance().create<NewGameCommand>();
         }
     }
 
     void WelcomeState::onPrint(engine::GameLoop &game, engine::Command *command) {
-        command->execute(game);
+        command->execute(ServiceLocator::getInstance().resolve<dc::engine::GameLoop>());
     }
 
 }

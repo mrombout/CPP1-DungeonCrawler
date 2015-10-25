@@ -4,7 +4,7 @@
 #include "RoomGenerator.h"
 #include "StringGenerator.h"
 #include "BearTrap.h"
-#include "EvilSummonTrap.h"
+#include "MobCallTrap.h"
 #include "NearDeathTrap.h"
 #include "RatTrap.h"
 #include "TeleportTrap.h"
@@ -75,14 +75,15 @@ dc::model::Room *RoomGenerator::generate(unsigned int level) {
 }
 
 void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
-    if(rand() % 100 < 25) {
+    if(rand() % 100 < 25 || true) {
         int trapNum = rand() % 5;
+        trapNum = 1;
         switch(trapNum) {
             case 0:
                 room->addTrap(new dc::model::BearTrap());
                 break;
             case 1:
-                room->addTrap(new dc::model::EvilSummonTrap());
+                room->addTrap(new dc::model::MobCallTrap());
                 break;
             case 2:
                 room->addTrap(new dc::model::NearDeathTrap());
@@ -103,7 +104,7 @@ void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int level) {
         int numEnemies = Random::nextInt(1, 4);
         for(int i = 0; i < numEnemies; ++i) {
             dc::model::Mob *mob = mMobGenerator.generate(level);
-            //room->addMob(mob);
+            room->addMob(mob);
         }
     }
 }

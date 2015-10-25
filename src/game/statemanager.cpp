@@ -76,11 +76,7 @@ namespace dc {
 
         void StateManager::onPrint(GameLoop &game, Command *command) {
             if(currentState()) {
-                if(game::GameplayState *state = dynamic_cast<game::GameplayState*>(currentState())) {
-                    state->onPrint(game, command);
-                } else {
-                    currentState()->onPrint(game, command);
-                }
+                currentState()->onPrint(game, command);
             }
         }
 
