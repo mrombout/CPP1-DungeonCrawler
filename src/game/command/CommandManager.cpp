@@ -1,6 +1,5 @@
 #include <sstream>
 #include <vector>
-#include <util/ServiceLocator.h>
 #include "CommandManager.h"
 #include "command.h"
 #include "LookCommand.h"
@@ -11,6 +10,8 @@
 #include "StatsCommand.h"
 #include "InspectCommand.h"
 #include "NullCommand.h"
+#include "AttackCommand.h"
+#include "util/ServiceLocator.h"
 
 namespace dc {
     namespace game {
@@ -33,6 +34,8 @@ namespace dc {
                 command = StatsCommand::create(parameters);
             } else if(commandName == "inspect") {
                 command = InspectCommand::create(parameters);
+            } else if (commandName == "attack") {
+                command = AttackCommand::create(parameters);
             }
 
             if(!command)
