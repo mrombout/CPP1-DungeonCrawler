@@ -17,7 +17,7 @@ namespace dc {
 
         private:
             Inventory *mInventory;
-            Room &mRoom;
+            Room *mRoom;
         };
     }
 }

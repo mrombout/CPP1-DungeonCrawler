@@ -16,7 +16,7 @@ void dc::model::MobCallTrap::onSpring(dc::model::Player &player) {
         if(passage == nullptr)
             continue;
 
-        dc::model::Room &otherRoom = passage->otherSide(&room);
+        dc::model::Room &otherRoom = passage->otherSide(room);
         const std::vector<dc::model::Mob*> otherMobs = otherRoom.mobs();
         for(dc::model::Mob* otherMob : otherMobs) {
             mobs.push_back(otherMob);

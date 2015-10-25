@@ -28,3 +28,11 @@ const std::string &Parameters::commandName() const {
 const std::vector<std::string> Parameters::parameters() const {
     return mParameters;
 }
+
+unsigned int Parameters::num() const {
+    return mParameters.size();
+}
+
+const std::string &Parameters::param(unsigned int paramNum) const {
+    return mParameters[paramNum];
+}

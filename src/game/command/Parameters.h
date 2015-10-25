@@ -11,6 +11,9 @@ public:
     const std::string &commandName() const;
     const std::vector<std::string> parameters() const;
 
+    unsigned int num() const;
+    const std::string &param(unsigned int paramNum) const;
+
 private:
     std::string mCommandName;
     std::vector<std::string> mParameters;

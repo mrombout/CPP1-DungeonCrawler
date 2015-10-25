@@ -24,7 +24,7 @@ namespace dc {
 			Room &sideA() const;
 			Room &sideB() const;
 
-            Room &otherSide(Room *room);
+            Room &otherSide(const Room &room) const;
 
         private:
             Room &mSideA;

@@ -74,7 +74,7 @@ dc::model::Room *RoomGenerator::generate(unsigned int level) {
 }
 
 void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
-    if(rand() % 100 < 25) {
+    if(rand() % 100 < 25 && false) {
         int trapNum = rand() % 5;
         switch(trapNum) {
             case 0:
@@ -102,7 +102,7 @@ void RoomGenerator::generateMobs(dc::model::Room *room, unsigned int level) {
         int numEnemies = Random::nextInt(1, 4);
         for(int i = 0; i < numEnemies; ++i) {
             dc::model::Mob *mob = mMobGenerator.generate(level);
-            room->addMob(mob);
+            //room->addMob(mob);
         }
     }
 }

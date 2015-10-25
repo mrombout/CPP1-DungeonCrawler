@@ -1,60 +1,60 @@
+#include <iostream>
+#include "util/ServiceLocator.h"
+#include "Game.h"
+#include "Room.h"
+#include "Player.h"
 #include "GoToCommand.h"
+#include "Parameters.h"
+#include "Passage.h"
 
 namespace dc {
     namespace game {
+        GoToCommand::GoToCommand(std::string heading, dc::model::Player &player, dc::model::Passage &passage) :
+                mHeading(heading),
+                mPlayer(player),
+                mPassage(passage) {
+
+        }
+
         void game::GoToCommand::execute() const {
-            /*
-            if (this->params.size() > 0) {
-                std::string heading = params[0];
+            //dc::model::Room &otherRoom = mPassage.otherSide(&mPlayer.room());
+            //mPlayer.setRoom(otherRoom);
+            dc::model::Room &otherRoom = mPassage.otherSide(mPlayer.room());
+            mPlayer.setRoom(otherRoom);
 
-                model::Room *currentRoom = &parameters.player().room();
-                model::Passage *passage = nullptr;
-
-                bool _continue = true;
-                if (heading == "north") {
-                    passage = parameters.player().room().north();
-                    if (passage == nullptr) {
-                        std::cout << "You cannot move to the North" << std::endl;
-                        _continue = false;
-                    }
-                } else if (heading == "east") {
-                    passage = parameters.player().room().east();
-                    if (passage == nullptr) {
-                        std::cout << "You cannot move to the East" << std::endl;
-                        _continue = false;
-                    }
-                } else if (heading == "south") {
-                    passage = parameters.player().room().south();
-                    if (passage == nullptr) {
-                        std::cout << "You cannot move to the South" << std::endl;
-                        _continue = false;
-                    }
-                } else if (heading == "west") {
-                    passage = parameters.player().room().west();
-                    if (passage == nullptr) {
-                        std::cout << "You cannot move to the West" << std::endl;
-                        _continue = false;
-                    }
-                } else {
-                    std::cout << "Invalid direction, either use north, east, south or west" << std::endl;
-                }
-
-                if (_continue) {
-                    model::Room *sideA = &passage->sideA();
-                    model::Room *sideB = &passage->sideB();
-                    parameters.player().setRoom((sideA == currentRoom) ? *sideB : *sideA);
-                    std::cout << "You went to the next Room (" << heading << ")" << std::endl;
-                }
-
-                return;
-            } else {
-                std::cout << "Could not determine the way to go without direction!" << std::endl;
-            }
-            */
+            std::cout << "You went " << mHeading << " into the next room." << std::endl;
         }
 
         GoToCommand *GoToCommand::create(Parameters parameters) {
-            return new dc::game::GoToCommand();
+            if(parameters.num() != 1) {
+                std::cout << "Could not determine the way to go without direction!" << std::endl;
+                return nullptr;
+            }
+
+            std::string heading = parameters.param(0);
+
+            dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
+            dc::model::Player &player = game.player();
+
+            dc::model::Room &currentRoom = player.room();
+            dc::model::Passage *passage = nullptr;
+
+            if (heading == "north") {
+                passage = currentRoom.north();
+            } else if (heading == "east") {
+                passage = currentRoom.east();
+            } else if (heading == "south") {
+                passage = currentRoom.south();
+            } else if (heading == "west") {
+                passage = currentRoom.west();
+            }
+
+            if(passage == nullptr) {
+                std::cout << "Invalid direction, either use north, east, south or west" << std::endl;
+                return nullptr;
+            }
+
+            return new dc::game::GoToCommand(heading, player, *passage);
         }
     }
 }

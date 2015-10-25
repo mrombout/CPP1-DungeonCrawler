@@ -16,8 +16,8 @@ namespace dc {
 			return mSideB;
 	    }
 
-        Room &Passage::otherSide(Room *room) {
-            return &mSideA == room ? mSideB : mSideA;
+        Room &Passage::otherSide(const Room &room) const {
+            return &mSideA == &room ? mSideB : mSideA;
         }
     }
 }

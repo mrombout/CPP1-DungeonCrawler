@@ -50,7 +50,7 @@ namespace dc {
 				if(!passage)
 					continue;
 
-				model::Room &otherRoom = passage->otherSide(currentRoom);
+				model::Room &otherRoom = passage->otherSide(*currentRoom);
 
 				drawPassage(mGrid, passage);
 
