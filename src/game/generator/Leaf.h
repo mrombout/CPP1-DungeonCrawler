@@ -11,9 +11,9 @@ public:
     Leaf(int x, int y, int width, int height);
     ~Leaf();
 
-    bool split(unsigned int seed);
-    void createRooms(unsigned int seed);
-    void createHall(unsigned int seed, Rectangle *l, Rectangle *r);
+    bool split();
+    void createRooms();
+    void createHall(Rectangle *l, Rectangle *r);
 
     int x() const;
     int y() const;
@@ -24,6 +24,7 @@ public:
     Leaf *rightChild() const;
 
     Rectangle *room() const;
+    const std::vector<Rectangle*> &halls() const;
 
 private:
     int mX;
@@ -35,7 +36,7 @@ private:
     Leaf *mRightChild;
 
     Rectangle *mRoom;
-    std::vector<Rectangle*> *mHalls;
+    std::vector<Rectangle*> mHalls;
     // TODO: Halls
 };
 

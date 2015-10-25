@@ -1,15 +1,19 @@
+#include <iostream>
 #include <stdlib.h>
 #include "util/Random.h"
 #include "Leaf.h"
 #include "Point.h"
 
-int Leaf::MIN_LEAF_SIZE = 0;
+int Leaf::MIN_LEAF_SIZE = 6;
 
 Leaf::Leaf(int x, int y, int width, int height) :
     mX(x),
     mY(y),
     mWidth(width),
-    mHeight(height) {
+    mHeight(height),
+    mLeftChild(nullptr),
+    mRightChild(nullptr),
+    mRoom(nullptr) {
 
 }
 
@@ -18,16 +22,14 @@ Leaf::~Leaf() {
     delete mRightChild;
 }
 
-bool Leaf::split(unsigned int seed) {
-    srand(seed);
-
+bool Leaf::split() {
     if(mLeftChild && mRightChild)
         return false; // already split
 
-    bool splitH{rand() > .5};
-    if(mWidth > mHeight && mWidth / mHeight >= 1.25)
+    bool splitH{rand() % 100 > 50};
+    if(mWidth > mHeight && (float) mWidth / (float) mHeight >= 1.25)
         splitH = false;
-    else if(mHeight > mWidth && mHeight / mWidth >= 1.25)
+    else if(mHeight > mWidth && (float) mHeight / (float) mWidth >= 1.25)
         splitH = true;
 
     int max = (splitH ? mHeight : mWidth) - MIN_LEAF_SIZE;
@@ -40,23 +42,23 @@ bool Leaf::split(unsigned int seed) {
         mRightChild = new Leaf(mX, mY + split, mWidth, mHeight - split);
     } else {
         mLeftChild = new Leaf(mX, mY, split, mHeight);
-        mRightChild = new Leaf(mY + split, mY, mWidth - split, mHeight - split);
+        mRightChild = new Leaf(mX + split, mY, mWidth - split, mHeight);
     }
 
     return true;
 }
 
-void Leaf::createRooms(unsigned int seed) {
+void Leaf::createRooms() {
     if(mLeftChild != nullptr || mRightChild != nullptr) {
         if(mLeftChild != nullptr) {
-            mLeftChild->createRooms(seed);
+            mLeftChild->createRooms();
         }
         if(mRightChild != nullptr) {
-            mRightChild->createRooms(seed);
+            mRightChild->createRooms();
         }
 
         if(leftChild() != nullptr && rightChild() != nullptr) {
-            createHall(seed, mLeftChild->room(), mRightChild->room());
+            createHall(mLeftChild->room(), mRightChild->room());
         }
     } else {
         int roomWidth;
@@ -64,72 +66,76 @@ void Leaf::createRooms(unsigned int seed) {
         int roomX;
         int roomY;
 
-        roomWidth = Random::nextInt(3, width() - 2);
-        roomHeight = Random::nextInt(3, height() - 2);
+        //Point roomSize(Random::nextInt(3, width() - 2), Random::nextInt(3, height() - 2));
+        Point roomSize(Random::nextInt(3, width() - 2), Random::nextInt(3, height() - 2));
+        Point roomPos(Random::nextInt(mX, mX + mWidth - roomSize.x()), Random::nextInt(mY, mY + mHeight - roomSize.y()));
 
-        roomX = Random::nextInt(1, width() - roomWidth - 1);
-        roomY = Random::nextInt(1, height() - roomHeight - 1);
+        //mRoom = new Rectangle(mX + roomPos.x(), mY + roomPos.y(), roomSize.x(), roomSize.y());
+        mRoom = new Rectangle(roomPos.x(), roomPos.y(), roomSize.x(), roomSize.y());
 
-        mRoom = new Rectangle(mX + roomX, mY + roomY, roomWidth, roomHeight);
+        std::cout << "create room(" << mRoom->left() << ", " << mRoom->top() << ", " << mRoom->right() <<", " << mRoom->bottom() << ")" << std::endl;
     }
 }
 
-void Leaf::createHall(unsigned int seed, Rectangle *l, Rectangle *r) {
-    mHalls = new std::vector<Rectangle*>();
+void Leaf::createHall(Rectangle *l, Rectangle *r) {
+    Point lPoint(l->center());
+    Point rPoint(r->center());
 
-    Point *point1 = new Point(Random::nextInt(l->left() + 1, l->right() - 2), Random::nextInt(l->top() + 1, l->bottom() - 2));
-    Point *point2 = new Point(Random::nextInt(r->left() + 1, r->right() - 2), Random::nextInt(r->top() + 1, r->bottom() - 2));
+    int xDiff = rPoint.x() - lPoint.x();
+    int yDiff = rPoint.y() - lPoint.y();
 
-    int w = point2->x() - point1->x();
-    int h = point2->y() - point1->y();
-
-    if(w < 0) {
-        if(h < 0) {
-            if(rand() < .5) {
-                mHalls->push_back(new Rectangle(point2->x(), point1->y(), abs(w), 1));
-                mHalls->push_back(new Rectangle(point2->x(), point2->y(), 1, abs(h)));
-            } else {
-                mHalls->push_back(new Rectangle(point2->x(), point2->y(), abs(w), 1));
-                mHalls->push_back(new Rectangle(point1->x(), point1->y(), 1, abs(h)));
-            }
-        } else if(h > 0) {
-            if(rand() < .5) {
-                mHalls->push_back(new Rectangle(point2->x(), point1->y(), abs(w), 1));
-                mHalls->push_back(new Rectangle(point2->x(), point2->y(), 1, abs(h)));
-            } else {
-                mHalls->push_back(new Rectangle(point2->x(), point2->y(), abs(w), 1));
-                mHalls->push_back(new Rectangle(point1->x(), point1->y(), 1, abs(h)));
-            }
-        } else if(h == 0) {
-            mHalls->push_back(new Rectangle(point2->x(), point2->y(), abs(w), 1));
-        }
-    } else if(w > 0) {
-        if(h < 0) {
-            if(rand() < .5) {
-                mHalls->push_back(new Rectangle(point1->x(), point2->y(), abs(w), 1));
-                mHalls->push_back(new Rectangle(point1->x(), point2->y(), 1, abs(h)));
-            } else {
-                mHalls->push_back(new Rectangle(point1->x(), point1->y(), abs(w), 1));
-                mHalls->push_back(new Rectangle(point2->x(), point2->y(), 1, abs(h)));
-            }
-        } else if(h > 0) {
-            if(rand() < .5) {
-                mHalls->push_back(new Rectangle(point1->x(), point1->y(), abs(w), 1));
-                mHalls->push_back(new Rectangle(point2->x(), point1->y(), 1, abs(h)));
-            } else {
-                mHalls->push_back(new Rectangle(point1->x(), point2->y(), abs(w), 1));
-                mHalls->push_back(new Rectangle(point2->x(), point1->y(), 1, abs(h)));
-            }
-        } else if(h == 1) {
-            mHalls->push_back(new Rectangle(point1->x(), point1->y(), abs(w), 1));
+    if(xDiff == 0 || yDiff == 0) {
+        if(yDiff == 0) {
+            // just make a horizontal hallway
+            mHalls.push_back(new Rectangle(lPoint.x(), lPoint.y(), xDiff, 1));
+        } else {
+            // just make a vertical hallway
+            mHalls.push_back(new Rectangle(lPoint.x(), lPoint.y(), 1, yDiff));
         }
     } else {
-        if(h < 0) {
-            mHalls->push_back(new Rectangle(point2->x(), point2->y(), 1, abs(w)));
-        } else if(h > 0) {
-            mHalls->push_back(new Rectangle(point1->x(), point1->y(), 1, abs(h)));
+        // right-angled hallway
+        if(rand() % 100 > 50) {
+            // horizontal first
+            if(xDiff > 0) {
+                // go right
+                mHalls.push_back(new Rectangle(lPoint.x(), lPoint.y(), xDiff + 1, 1));
+                if(yDiff > 0) {
+                    mHalls.push_back(new Rectangle(lPoint.x() + xDiff, lPoint.y(), 1, abs(yDiff)));
+                } else {
+                    mHalls.push_back(new Rectangle(lPoint.x() + xDiff, lPoint.y() + yDiff, 1, abs(yDiff)));
+                }
+            } else {
+                // go left
+                mHalls.push_back(new Rectangle(lPoint.x() + xDiff, lPoint.y(), xDiff, 1));
+                if(yDiff > 0) {
+                    mHalls.push_back(new Rectangle(lPoint.x() + xDiff, lPoint.y(), 1, abs(yDiff)));
+                } else {
+                    mHalls.push_back(new Rectangle(lPoint.x() + xDiff, lPoint.y() + yDiff, 1, abs(yDiff)));
+                }
+            }
+        } else {
+            // vertical first
+            if(yDiff < 0) {
+                // go up
+                mHalls.push_back(new Rectangle(lPoint.x(), lPoint.y() + yDiff, 1, abs(yDiff)));
+                if(xDiff > 0) {
+                    mHalls.push_back(new Rectangle(lPoint.x(), lPoint.y() + yDiff, xDiff, 1));
+                } else {
+                    mHalls.push_back(new Rectangle(lPoint.x() + xDiff, lPoint.y() + yDiff, abs(xDiff), 1));
+                }
+            } else {
+                // go down
+                mHalls.push_back(new Rectangle(lPoint.x(), lPoint.y(), 1, yDiff));
+                if(xDiff > 0) {
+                    mHalls.push_back(new Rectangle(lPoint.x(), lPoint.y() + yDiff, xDiff, 1));
+                } else {
+                    mHalls.push_back(new Rectangle(lPoint.x() + xDiff, lPoint.y() + yDiff, abs(xDiff), 1));
+                }
+            }
         }
     }
+
+    std::cout << "Trying to connect (" << lPoint.x() << ", " << lPoint.y() << ") and (" << rPoint.x() << ", " << rPoint.y() << ")" << std::endl;
 }
 
 int Leaf::x() const {
@@ -174,9 +180,13 @@ Rectangle *Leaf::room() const {
             return leftRoom;
         else if(leftRoom == nullptr)
             return rightRoom;
-        else if(rand() > .5)
+        else if(rand() % 100 > 50)
             return leftRoom;
         else
             return rightRoom;
     }
+}
+
+const std::vector<Rectangle*> &Leaf::halls() const {
+    return mHalls;
 }

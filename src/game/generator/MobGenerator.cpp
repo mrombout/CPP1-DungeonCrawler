@@ -27,11 +27,11 @@ std::vector<std::vector<std::string>> mobNames {
         }
 };
 
-dc::model::Mob *MobGenerator::generate(unsigned int seed, unsigned int level) {
+dc::model::Mob *MobGenerator::generate(unsigned int level) {
     dc::model::Mob *mob = new dc::model::Mob();
 
     // TODO: Load mob from files, with base levels
-    mob->setName(StringGenerator::generateString(mobNames, seed));
+    mob->setName(StringGenerator::generateString(mobNames));
     mob->setMaxHealth(level * 2);
     mob->setHealth(level * 2);
     mob->setLevel(level);

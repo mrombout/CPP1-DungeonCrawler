@@ -15,7 +15,8 @@ namespace dc {
 
             for(std::vector<Room*> row : rooms) {
                 for(Room* room : row) {
-                    room->setFloor(this);
+                    if(room)
+                        room->setFloor(this);
                 }
             }
         }

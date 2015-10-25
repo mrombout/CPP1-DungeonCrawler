@@ -14,11 +14,11 @@ class MobGenerator;
 class RoomGenerator {
 public:
     RoomGenerator(MobGenerator &mobGenerator);
-    dc::model::Room *generate(unsigned int seed, unsigned int level);
+    dc::model::Room *generate(unsigned int level);
 
 private:
-    void generateTraps(dc::model::Room *seed, unsigned int level, unsigned int i);
-    void generateMobs(dc::model::Room *room, unsigned int seed, unsigned int level);
+    void generateTraps(dc::model::Room *seed, unsigned int level);
+    void generateMobs(dc::model::Room *room, unsigned int level);
 
     MobGenerator &mMobGenerator;
 public:

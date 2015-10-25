@@ -43,24 +43,27 @@ std::vector<std::string> dungeonNoun {
     "Order"
 };
 
-DungeonGenerator::DungeonGenerator(SimpleFloorGenerator &floorGenerator) :
+DungeonGenerator::DungeonGenerator(FloorGenerator &floorGenerator) :
         mFloorGenerator(floorGenerator) {
 
 }
 
 Dungeon *DungeonGenerator::generate(unsigned int seed) const {
-    std::string dName = generateDungeonName(seed);
+    srand(seed);
+
+    std::string dName = generateDungeonName();
     std::vector<Floor*> dFloors = std::vector<Floor*>();
 
-    int numFloors = rand() % 10 + 1;
+    //int numFloors = rand() % 10 + 1;
+    int numFloors = 1;
     for(int i = 1; i <= numFloors; ++i) {
-        dFloors.push_back(generateDungeonFloor(seed, i));
+        dFloors.push_back(generateDungeonFloor(i));
     }
 
     return new Dungeon(seed, dName, dFloors);
 }
 
-std::string DungeonGenerator::generateDungeonName(unsigned int seed) const {
+std::string DungeonGenerator::generateDungeonName() const {
     std::string dungeonName;
 
     if(rand() % 100 > 50) {
@@ -69,7 +72,7 @@ std::string DungeonGenerator::generateDungeonName(unsigned int seed) const {
             dungeonAdjective,
             dungeonNoun
         };
-        std::vector<std::string> words = StringGenerator::generate(source, seed);
+        std::vector<std::string> words = StringGenerator::generate(source);
 
         dungeonName.append(words[0]);
         dungeonName.append(" of the ");
@@ -80,7 +83,7 @@ std::string DungeonGenerator::generateDungeonName(unsigned int seed) const {
                 dungeonAdjective,
                 dungeonTypes
         };
-        std::vector<std::string> words = StringGenerator::generate(source, seed);
+        std::vector<std::string> words = StringGenerator::generate(source);
 
         dungeonName.append("The ");
         dungeonName.append(words[0]);
@@ -90,6 +93,6 @@ std::string DungeonGenerator::generateDungeonName(unsigned int seed) const {
     return dungeonName;
 }
 
-Floor *DungeonGenerator::generateDungeonFloor(unsigned int seed, int level) const {
-    return mFloorGenerator.generate(seed, level);
+Floor *DungeonGenerator::generateDungeonFloor(int level) const {
+    return mFloorGenerator.generate(level);
 }
