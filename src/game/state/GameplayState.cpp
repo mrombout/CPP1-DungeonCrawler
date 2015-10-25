@@ -10,6 +10,7 @@
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "item/Iconograph.h"
+#include "util/console.h"
 
 namespace dc {
     namespace game {
@@ -54,7 +55,7 @@ namespace dc {
         }
 
         std::string GameplayState::onRead() {
-            std::cout << "> ";
+            std::cout << csl::color(csl::GREY) << "> ";
 
             std::string input;
 
