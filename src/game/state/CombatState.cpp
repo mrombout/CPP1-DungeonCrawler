@@ -1,11 +1,15 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "Player.h"
 #include "command/AttackCommand.h"
 #include "command/InventoryCommand.h"
+#include "command/LookCommand.h"
 #include "GameplayState.h"
 #include "CombatState.h"
 #include "util/console.h"
+#include "util/ServiceLocator.h"
+#include "util/Render.h"
 
 CombatState::CombatState(dc::model::Game &game) :
         mCommandManager(*this),
@@ -28,7 +32,9 @@ void CombatState::onEnter(dc::engine::GameLoop *game) {
 std::string CombatState::onRead() {
     std::cout << csl::color(csl::RED) << "You are in combat!\n\n" << csl::color(csl::WHITE) << "In front of you stand:" << std::endl;
 
-    // TODO: Show all enemies
+    dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
+    Render::mobList(game.player().room().mobs());
+    std::cout << "\n";
 
     std::cout << csl::color(csl::GREEN) << "(" << "0" << "/" << "100" << ")" << csl::color(csl::GREY) << ">";
 

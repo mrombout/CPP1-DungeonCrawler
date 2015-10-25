@@ -16,7 +16,7 @@ namespace dc {
             LookCommand(dc::model::Player &player);
             virtual void execute() const override;
 
-            static LookCommand *create(Parameters parameters);
+            static LookCommand *create();
 
         private:
             dc::model::Player &mPlayer;

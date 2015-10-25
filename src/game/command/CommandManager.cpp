@@ -20,7 +20,7 @@ namespace dc {
             dc::engine::Command *command = nullptr;
             const std::string &commandName = parameters.commandName();
             if(commandName == "look") {
-                command = dc::game::LookCommand::create(parameters);
+                command = dc::game::LookCommand::create();
             } else if(commandName == "map") {
                 command = dc::game::MapCommand::create(parameters);
             } else if (commandName == "inv") {

@@ -3,11 +3,11 @@
 #include <iterator>
 #include "LookCommand.h"
 #include "Game.h"
-#include "Mob.h"
 #include "Room.h"
 #include "Player.h"
 #include "util/console.h"
 #include "util/ServiceLocator.h"
+#include "util/Render.h"
 
 namespace dc {
     game::LookCommand::LookCommand(dc::model::Player &player) :
@@ -22,10 +22,10 @@ namespace dc {
         std::cout << csl::color(csl::YELLOW) << room.name() << "\n";
 
         // describe room
-        std::cout << csl::color(csl::WHITE) << mPlayer.room().description() << "\n";
+        std::cout << csl::color(csl::WHITE) << mPlayer.room().description() << "\n\n";
 
         // list exits
-        std::cout << "You can go: ";
+        std::cout << csl::color(csl::GREY) << "You can go: ";
 
         std::vector<std::string> exits;
         if(room.north())
@@ -46,19 +46,13 @@ namespace dc {
         if(!room.mobs().empty()) {
             std::cout << "\n\n" << csl::color(csl::RED) << "In the darkness of the rooms lurk:" << "\n";
             const std::vector<dc::model::Mob*> &mobs = room.mobs();
-            for(auto it = mobs.cbegin(); it != mobs.cend(); ++it) {
-                int index = std::distance(mobs.cbegin(), it);
-                dc::model::Mob* mob = (*it);
-
-                // loop through colors 2 to 8
-                std::cout << csl::color(index % 7 + 2) << "[" << index + 1 << "] a " << mob->name() << "(" << mob->health() << "/" << mob->maxHealth() << ")" << "\n";
-            }
+            Render::mobList(mobs);
         }
 
         std::cout << std::endl;
     }
 
-    dc::game::LookCommand *game::LookCommand::create(Parameters parameters) {
+    dc::game::LookCommand *game::LookCommand::create() {
         return new dc::game::LookCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
     }
 }
