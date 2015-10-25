@@ -8,6 +8,7 @@
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "Game.h"
+#include "util/console.h"
 
 CombatState::CombatState(dc::model::Game game, const std::vector<dc::model::Mob *> &mobs) :
         mCommandManager(*this),
@@ -25,15 +26,15 @@ void CombatState::onInitialize(dc::engine::GameLoop *game) {
 }
 
 void CombatState::onEnter(dc::engine::GameLoop *game) {
-    std::cout << "\n A group of enemies storm towards you.\nYou prepare for battle." << std::endl;
+    std::cout << csl::color(csl::LIGHTRED) << "\nA group of enemies storm towards you." << csl::color(csl::GREY) << "\nYou prepare for battle." << std::endl;
 }
 
 std::string CombatState::onRead() {
-    std::cout << "You are in combat!\n\n" << "In front of you stand:" << std::endl;
+    std::cout << csl::color(csl::RED) << "You are in combat!\n\n" << csl::color(csl::WHITE) << "In front of you stand:" << std::endl;
 
     // TODO: Show all enemies
 
-    std::cout << "(" << "0" << "/" << "100" << ") ";
+    std::cout << csl::color(csl::GREEN) << "(" << "0" << "/" << "100" << ")" << csl::color(csl::GREY) << ">";
 
     std::string input;
 
