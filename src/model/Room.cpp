@@ -3,20 +3,21 @@
 
 namespace dc {
     namespace model {
-        Room::Room(std::string description) : Room(Point(0, 0), description) {
+        Room::Room(std::string name, std::string description) : Room(Point(0, 0), name, description) {
 
         }
 
-        Room::Room(Point position, std::string description) : Room(position, description, false) {
+        Room::Room(Point position, std::string name, std::string description) : Room(position, name, description, false) {
 
         }
 
-        Room::Room(Point position, std::string description, bool visited) : Room(position, description, visited, std::vector<Trap*>()) {
+        Room::Room(Point position, std::string name, std::string description, bool visited) : Room(position, name, description, visited, std::vector<Trap*>()) {
 
         }
 
-        Room::Room(Point position, std::string description, bool visited, std::vector<Trap*> traps) :
+        Room::Room(Point position, std::string name, std::string description, bool visited, std::vector<Trap*> traps) :
                 mPosition(position),
+                mName(name),
                 mDescription(description),
                 mVisited(visited),
                 mTraps(traps),
@@ -57,6 +58,10 @@ namespace dc {
 
         const Point &Room::position() const {
             return mPosition;
+        }
+
+        const std::string &Room::name() const {
+            return mName;
         }
 
         std::string Room::description() const {

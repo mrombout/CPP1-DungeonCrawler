@@ -65,7 +65,7 @@ dc::model::Room *RoomGenerator::generate(unsigned int level) {
     int roomLevel = Random::nextInt(level - VARIANCE, level + VARIANCE);
 
     // create room
-    dc::model::Room *room = new dc::model::Room(Point(0, 0), StringGenerator::generateString(roomDescriptions));
+    dc::model::Room *room = new dc::model::Room(Point(0, 0), "Some Room", StringGenerator::generateString(roomDescriptions));
 
     // populate room
     generateTraps(room, level);
