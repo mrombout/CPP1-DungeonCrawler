@@ -36,7 +36,7 @@ AttackCommand *AttackCommand::create(Parameters parameters) {
         return nullptr;
     }
 
-    unsigned int monsterNum = (unsigned int) Number::toLong(parameters.param(0)) - 1;
+    int monsterNum = (int) Number::toLong(parameters.param(0)) - 1;
     if(monsterNum < 0) {
         std::cout << "You think to yourself, '" << parameters.param(0) << "? That's not a number!'." << std::endl;
         return nullptr;
