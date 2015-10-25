@@ -1,7 +1,14 @@
-#include "command.h"
-
 #ifndef DUNGEONCRAWLER_GOTOCOMMAND_H
 #define DUNGEONCRAWLER_GOTOCOMMAND_H
+
+#include "command.h"
+
+namespace dc {
+    namespace model {
+        class Player;
+        class Passage;
+    }
+}
 
 namespace dc {
     namespace game {
