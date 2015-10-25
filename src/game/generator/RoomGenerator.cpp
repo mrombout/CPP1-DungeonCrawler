@@ -74,9 +74,8 @@ dc::model::Room *RoomGenerator::generate(unsigned int level) {
 }
 
 void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
-    if(rand() % 100 < 25 || true) {
+    if(rand() % 100 < 25) {
         int trapNum = rand() % 5;
-        trapNum = 1;
         switch(trapNum) {
             case 0:
                 room->addTrap(new dc::model::BearTrap());

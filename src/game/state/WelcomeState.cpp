@@ -46,6 +46,8 @@ namespace game {
         if(input == "n") {
             return ServiceLocator::getInstance().create<NewGameCommand>();
         }
+
+        return nullptr;
     }
 
     void WelcomeState::onPrint(engine::GameLoop &game, engine::Command *command) {
