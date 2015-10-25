@@ -6,6 +6,7 @@
 #include "InventoryCommand.h"
 #include "MapCommand.h"
 #include "GoToCommand.h"
+#include "UseCommand.h"
 
 namespace dc {
     namespace game {
@@ -20,6 +21,9 @@ namespace dc {
                 parameters.push_back(s.c_str());
             }
 
+            if(parameters.empty())
+                return nullptr;
+
             std::string commandName;
             commandName =  (parameters.size() > 0) ? parameters[0] : name;
 
@@ -32,10 +36,12 @@ namespace dc {
                 return new LookCommand();
             } else if(commandName == "map") {
 				return new MapCommand();
-            } else if (commandName == "use") {
+            } else if (commandName == "inv") {
                 return new InventoryCommand();
             } else if (commandName == "goto") {
                 return new GoToCommand(parameters);
+            } else if(commandName == "use") {
+                return new UseCommand(parameters[0]);
             }
 
             return nullptr;

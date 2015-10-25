@@ -9,6 +9,7 @@
 #include "Trap.h"
 #include "command/NullCommand.h"
 #include "CombatState.h"
+#include "item/Iconograph.h"
 
 namespace dc {
     namespace game {
@@ -34,8 +35,12 @@ namespace dc {
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
             std::vector<model::Item*> items = std::vector<model::Item*>();
+
             model::Item *item = new model::Sword("Sword", "A Sword");
             items.push_back(item);
+
+            model::Item *iconograph = new Iconograph();
+            items.push_back(iconograph);
 
             model::Inventory *inventory = new model::Inventory(items);
             
@@ -45,10 +50,12 @@ namespace dc {
         }
 
         void GameplayState::onEnter(engine::GameLoop *game) {
-            std::cout << mGame->player().room().description() << std::endl;
+
         }
 
         std::string GameplayState::onRead() {
+            std::cout << "> ";
+
             std::string input;
 
             std::getline(std::cin, input);
@@ -76,10 +83,11 @@ namespace dc {
         }
 
         void GameplayState::updateEnemies(engine::GameLoop &game) const {
+            std::cout << "The enemies scuffle about." << std::endl;
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room().mobs();
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame, mobs));
-        }
+            }
         }
     }
 }

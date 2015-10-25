@@ -10,6 +10,10 @@ namespace dc {
             Item(std::string name, std::string description);
             virtual ~Item() { }
 
+            virtual void use();
+
+            bool partialMatch(const std::string &name) const;
+
             std::string name() const;
             std::string description() const;
         private:
