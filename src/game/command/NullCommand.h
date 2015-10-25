@@ -8,6 +8,8 @@ namespace dc {
         class NullCommand : public engine::Command {
         public:
             virtual void execute() const;
+
+            static NullCommand *create(Parameters parameters);
         };
     }
 }

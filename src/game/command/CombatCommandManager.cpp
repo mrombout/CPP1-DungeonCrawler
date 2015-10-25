@@ -1,32 +1,39 @@
 #include <iostream>
-#include <util/ServiceLocator.h>
-#include "util/Number.h"
 #include "state/CombatState.h"
 #include "CombatCommandManager.h"
 #include "AttackCommand.h"
 #include "FleeCommand.h"
 #include "InventoryCommand.h"
 #include "NullCommand.h"
+#include "UseCommand.h"
+#include "command.h"
+#include "util/ServiceLocator.h"
+#include "util/Number.h"
 
 CombatCommandManager::CombatCommandManager(CombatState &combatState) :
     mCombatState(combatState) {
 
 }
 
-dc::engine::Command *CombatCommandManager::create(std::vector<std::string> &inputs) const {
-    const std::string &commandName = inputs.size() > 0 ? inputs[0] : "";
+dc::engine::Command *CombatCommandManager::create(std::string input) const {
+    Parameters parameters(input);
+
+    dc::engine::Command *command = nullptr;
+    const std::string commandName = parameters.commandName();
     if(commandName == "attack") {
-        return createAttackCommand(inputs);
+        command = AttackCommand::create(parameters);
     } else if(commandName == "flee") {
-        return new FleeCommand();
+        command = FleeCommand::create(parameters);
     } else if(commandName == "inv") {
-        return ServiceLocator::getInstance().create<dc::game::InventoryCommand>();
+        command = dc::game::InventoryCommand::create(parameters);
     } else if(commandName == "use") {
-        // TODO: Use command
-    } else {
-        std::cout << "What are you doing?! Fight!" << std::endl;
-        return new dc::game::NullCommand();
+        command = UseCommand::create(parameters);
     }
+
+    if(!command)
+        command = dc::game::NullCommand::create(parameters);
+
+    return command;
 }
 
 dc::engine::Command *CombatCommandManager::createAttackCommand(std::vector<std::string> &inputs) const {

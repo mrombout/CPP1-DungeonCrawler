@@ -16,6 +16,8 @@ namespace dc {
         public:
             GoToCommand() { }
             virtual void execute() const override;
+
+            static GoToCommand *create(Parameters parameters);
         };
     }
 }

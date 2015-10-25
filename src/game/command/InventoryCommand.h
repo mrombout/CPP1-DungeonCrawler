@@ -20,6 +20,8 @@ namespace dc {
             InventoryCommand(dc::model::Player &player);
             virtual void execute() const override;
 
+            static InventoryCommand *create(Parameters parameters);
+
         private:
             dc::model::Player &mPlayer;
         };

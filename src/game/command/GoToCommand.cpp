@@ -59,5 +59,9 @@ namespace dc {
             }
             */
         }
+
+        GoToCommand *GoToCommand::create(Parameters parameters) {
+            return new dc::game::GoToCommand();
+        }
     }
 }

@@ -7,10 +7,6 @@ namespace dc {
         Command::Command() {
 
         }
-
-        Command::~Command() {
-            delete mParameters;
-        }
     }
 }
 

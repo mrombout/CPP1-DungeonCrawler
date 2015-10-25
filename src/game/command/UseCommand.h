@@ -15,6 +15,8 @@ public:
     UseCommand(dc::model::Player &player);
     virtual void execute() const override;
 
+    static UseCommand *create(Parameters parameters);
+
 private:
     dc::model::Player &mPlayer;
 };

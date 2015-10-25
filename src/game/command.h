@@ -16,12 +16,9 @@ namespace engine {
     {
     public:
         Command();
-        virtual ~Command();
+        virtual ~Command() { };
 
         virtual void execute() const = 0;
-
-    private:
-        Parameters *mParameters;
     };
 
 }

@@ -1,8 +1,10 @@
 #include <iostream>
 #include <stdlib.h>
 #include "AttackCommand.h"
+#include "Game.h"
 #include "Equipable.h"
 #include "Mob.h"
+#include "util/ServiceLocator.h"
 
 AttackCommand::AttackCommand(dc::model::Player &player) :
         mPlayer(player) {
@@ -21,4 +23,8 @@ void AttackCommand::execute() const {
         std::cout << "miss." << std::endl;
     }
     */
+}
+
+AttackCommand *AttackCommand::create(Parameters parameters) {
+    return new AttackCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
 }

@@ -16,6 +16,8 @@ public:
 
     virtual void execute() const override;
 
+    static AttackCommand *create(Parameters parameters);
+
 private:
     dc::model::Player &mPlayer;
 };

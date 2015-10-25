@@ -11,7 +11,9 @@ namespace dc {
 			MapCommand(dc::model::Player &player);
 			virtual void execute() const override;
 
-		private:
+            static MapCommand *create(Parameters parameters);
+
+        private:
 			dc::model::Player &mPlayer;
 
 			void render(model::Room &room) const;

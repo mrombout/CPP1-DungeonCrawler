@@ -2,6 +2,7 @@
 #include "InspectCommand.h"
 #include "Trap.h"
 #include "Player.h"
+#include "util/ServiceLocator.h"
 
 InspectCommand::InspectCommand(dc::model::Game &game) :
     mGame(game) {
@@ -20,4 +21,8 @@ void InspectCommand::execute() const {
             trap->discover();
         }
     }
+}
+
+InspectCommand *InspectCommand::create(Parameters parameters) {
+    return new InspectCommand(ServiceLocator::getInstance().resolve<dc::model::Game>());
 }

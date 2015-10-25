@@ -14,6 +14,8 @@ public:
     StatsCommand(dc::model::Player &player);
     virtual void execute() const override;
 
+    static StatsCommand *create(Parameters parameters);
+
 private:
     dc::model::Player &mPlayer;
 };

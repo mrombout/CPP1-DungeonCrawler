@@ -43,15 +43,8 @@ std::string CombatState::onRead() {
 }
 
 dc::engine::Command *CombatState::onEval(std::string input) {
-    // read inputs
-    std::vector<std::string> inputs;
-    std::stringstream ss(input);
-    std::string item;
-    while(ss >> item)
-        inputs.push_back(item);
-
     // determine command
-    dc::engine::Command *command = mCommandManager.create(inputs);
+    dc::engine::Command *command = mCommandManager.create(input);
 
     return command;
 }

@@ -1,6 +1,8 @@
 #include "UseCommand.h"
+#include "Game.h"
 #include "Item.h"
 #include "Player.h"
+#include "util/ServiceLocator.h"
 
 UseCommand::UseCommand(dc::model::Player &player) :
     mPlayer(player) {
@@ -17,4 +19,8 @@ void UseCommand::execute() const {
 
     // TODO: Use items in room? e.g. staircase?
     */
+}
+
+UseCommand *UseCommand::create(Parameters parameters) {
+    return new UseCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
 }

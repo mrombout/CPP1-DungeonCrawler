@@ -36,30 +36,6 @@ int main(int argc, char *argv[])
     sl.addFactory<dc::game::NewGameCommand>([](ServiceLocator &sl) {
         return new dc::game::NewGameCommand(sl.resolve<dc::engine::GameLoop>());
     });
-    sl.addFactory<InspectCommand>([](ServiceLocator &sl) {
-        return new InspectCommand(sl.resolve<dc::model::Game>());
-    });
-    sl.addFactory<dc::game::InventoryCommand>([](ServiceLocator &sl) {
-        return new dc::game::InventoryCommand(sl.resolve<dc::model::Game>().player());
-    });
-    sl.addFactory<dc::game::LookCommand>([](ServiceLocator &sl) {
-        return new dc::game::LookCommand(sl.resolve<dc::model::Game>().player());
-    });
-    sl.addFactory<dc::game::MapCommand>([](ServiceLocator &sl) {
-        return new dc::game::MapCommand(sl.resolve<dc::model::Game>().player());
-    });
-    sl.addFactory<StatsCommand>([](ServiceLocator &sl) {
-        return new StatsCommand(sl.resolve<dc::model::Game>().player());
-    });
-    sl.addFactory<UseCommand>([](ServiceLocator &sl) {
-        return new UseCommand(sl.resolve<dc::model::Game>().player());
-    });
-    sl.addFactory<AttackCommand>([](ServiceLocator &sl) {
-        return new AttackCommand(sl.resolve<dc::model::Game>().player());
-    });
-    sl.addFactory<dc::game::GoToCommand>([](ServiceLocator &sl) {
-        return new dc::game::GoToCommand();
-    });
 
     // start game
     gameLoop.setState(new dc::game::WelcomeState());

@@ -2,9 +2,11 @@
 #include <unordered_map>
 #include <iostream>
 #include "MapCommand.h"
+#include "Game.h"
 #include "Room.h"
 #include "Floor.h"
 #include "Passage.h"
+#include "util/ServiceLocator.h"
 #include "util/console.h"
 
 namespace dc {
@@ -102,4 +104,8 @@ namespace dc {
 			grid[(aPosition.y() + 1) * 2][(aPosition.x() + 1) * 2 - 1] = '-';
 		}
 	}
+
+    game::MapCommand *game::MapCommand::create(Parameters parameters) {
+        return new dc::game::MapCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
+    }
 }

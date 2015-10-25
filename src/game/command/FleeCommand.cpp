@@ -6,3 +6,7 @@ void FleeCommand::execute() const {
         // just go that route, man
     // notify that player that route is not the way
 }
+
+FleeCommand *FleeCommand::create(Parameters parameters) {
+    return new FleeCommand();
+}

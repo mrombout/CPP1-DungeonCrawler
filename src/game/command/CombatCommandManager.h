@@ -18,7 +18,7 @@ class CombatCommandManager {
 public:
     CombatCommandManager(CombatState &combatState);
 
-    dc::engine::Command *create(std::vector<std::string> &inputs) const;
+    dc::engine::Command *create(std::string input) const;
 
 private:
     dc::engine::Command *createAttackCommand(std::vector<std::string> &vector) const;

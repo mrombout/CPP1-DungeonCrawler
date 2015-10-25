@@ -6,6 +6,8 @@
 class FleeCommand : public dc::engine::Command {
 public:
     virtual void execute() const override;
+
+    static FleeCommand *create(Parameters parameters);
 };
 
 #endif //DUNGEONCRAWLER_FLEECOMMAND_H

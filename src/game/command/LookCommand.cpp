@@ -1,7 +1,9 @@
 #include <iostream>
 #include "LookCommand.h"
+#include "Game.h"
 #include "Mob.h"
 #include "util/console.h"
+#include "util/ServiceLocator.h"
 
 namespace dc {
     game::LookCommand::LookCommand(dc::model::Player &player) :
@@ -32,5 +34,9 @@ namespace dc {
         }
 
         std::cout << std::endl;
+    }
+
+    dc::game::LookCommand *game::LookCommand::create(Parameters parameters) {
+        return new dc::game::LookCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
     }
 }

@@ -9,6 +9,8 @@ public:
     InspectCommand(dc::model::Game &game);
     virtual void execute() const override;
 
+    static InspectCommand *create(Parameters parameters);
+
 private:
     dc::model::Game &mGame;
 };

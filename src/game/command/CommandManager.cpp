@@ -21,24 +21,25 @@ namespace dc {
             dc::engine::Command *command = nullptr;
             const std::string &commandName = parameters.commandName();
             if(commandName == "look") {
-                command = ServiceLocator::getInstance().create<dc::game::LookCommand>();
+                command = dc::game::LookCommand::create(parameters);
             } else if(commandName == "map") {
-                command = ServiceLocator::getInstance().create<dc::game::MapCommand>();
+                command = dc::game::MapCommand::create(parameters);
             } else if (commandName == "inv") {
-                command = ServiceLocator::getInstance().create<dc::game::InventoryCommand>();
+                command = dc::game::InventoryCommand::create(parameters);
             } else if (commandName == "goto") {
-                command = ServiceLocator::getInstance().create<dc::game::GoToCommand>();
+                command = dc::game::GoToCommand::create(parameters);
             } else if(commandName == "use") {
-                command = ServiceLocator::getInstance().create<UseCommand>();
+                command = UseCommand::create(parameters);
             } else if(commandName == "stats") {
-                command = ServiceLocator::getInstance().create<StatsCommand>();
+                command = StatsCommand::create(parameters);
             } else if(commandName == "inspect") {
-                command = ServiceLocator::getInstance().create<InspectCommand>();
-            } else {
-                command = new NullCommand();
+                command = InspectCommand::create(parameters);
             }
 
-            return nullptr;
+            if(!command)
+                command = new NullCommand();
+
+            return command;
         }
     }
 }
