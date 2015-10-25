@@ -1,11 +1,7 @@
-//
-// Created by Robin de Mug on 10/12/15.
-//
-
 #ifndef DUNGEONCRAWLER_INVENTORYCOMMAND_H
 #define DUNGEONCRAWLER_INVENTORYCOMMAND_H
 
-#include <command.h>
+#include "command.h"
 
 namespace dc {
     namespace model {

@@ -1,6 +1,7 @@
-#include <string.h>
 #include <stdlib.h>
 #include "DungeonGenerator.h"
+#include "Dungeon.h"
+#include "FloorGenerator.h"
 #include "StringGenerator.h"
 
 using namespace dc::model;

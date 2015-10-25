@@ -1,10 +1,3 @@
-//
-// Created by Robin on 10/23/2015.
-//
-
-#include <iostream>
-#include <Passage.h>
-#include <Room.h>
 #include "GoToCommand.h"
 
 namespace dc {

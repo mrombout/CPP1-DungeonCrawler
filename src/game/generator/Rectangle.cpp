@@ -1,6 +1,5 @@
 #include "Rectangle.h"
 
-
 namespace dc {
     Rectangle::Rectangle(int x, int y, int width, int height) :
             mX(x),

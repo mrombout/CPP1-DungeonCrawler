@@ -1,5 +1,3 @@
-#include <iostream>
-#include <stdlib.h>
 #include "AttackCommand.h"
 #include "Game.h"
 #include "Equipable.h"

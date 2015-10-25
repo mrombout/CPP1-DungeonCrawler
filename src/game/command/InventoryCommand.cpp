@@ -1,7 +1,3 @@
-//
-// Created by Robin de Mug on 10/12/15.
-//
-
 #include <iostream>
 #include "InventoryCommand.h"
 #include "Game.h"

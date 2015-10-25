@@ -11,5 +11,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_MOB_H

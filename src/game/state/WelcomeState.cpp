@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <util/console.h>
 #include "command/NewGameCommand.h"
 #include "WelcomeState.h"
 #include "util/ServiceLocator.h"
+#include "util/console.h"
 
 namespace dc {
 namespace game {

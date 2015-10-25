@@ -1,18 +1,7 @@
-#include <Game.h>
-#include <command/LookCommand.h>
-#include <command/AttackCommand.h>
 #include "GameLoop.h"
-#include "statemanager.h"
 #include "state/WelcomeState.h"
 #include "util/ServiceLocator.h"
 #include "command/NewGameCommand.h"
-#include "command/InspectCommand.h"
-#include "command/InventoryCommand.h"
-#include "command/MapCommand.h"
-#include "command/LookCommand.h"
-#include "command/StatsCommand.h"
-#include "command/UseCommand.h"
-#include "command/GoToCommand.h"
 #include "generator/MobGenerator.h"
 #include "generator/RoomGenerator.h"
 

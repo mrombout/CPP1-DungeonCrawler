@@ -1,12 +1,7 @@
-//
-// Created by Robin on 10/23/2015.
-//
-
-#include <command.h>
+#include "command.h"
 
 #ifndef DUNGEONCRAWLER_GOTOCOMMAND_H
 #define DUNGEONCRAWLER_GOTOCOMMAND_H
-
 
 namespace dc {
     namespace game {
@@ -21,6 +16,5 @@ namespace dc {
         };
     }
 }
-
 
 #endif //DUNGEONCRAWLER_GOTOCOMMAND_H

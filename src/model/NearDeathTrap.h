@@ -19,5 +19,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_NEARDEATHTRAP_H

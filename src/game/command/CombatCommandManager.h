@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <string>
-#include <command.h>
 
 namespace dc {
     namespace engine {

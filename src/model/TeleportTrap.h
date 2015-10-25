@@ -21,5 +21,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_TELEPORTTRAP_H

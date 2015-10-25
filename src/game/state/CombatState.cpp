@@ -2,12 +2,9 @@
 #include <sstream>
 #include <vector>
 #include "command/AttackCommand.h"
-#include "command/FleeCommand.h"
 #include "command/InventoryCommand.h"
 #include "GameplayState.h"
-#include "command/NullCommand.h"
 #include "CombatState.h"
-#include "Game.h"
 #include "util/console.h"
 
 CombatState::CombatState(dc::model::Game &game) :

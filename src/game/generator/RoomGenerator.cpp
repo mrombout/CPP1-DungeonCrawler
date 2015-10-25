@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <util/Random.h>
+#include "util/Random.h"
 #include "MobGenerator.h"
 #include "RoomGenerator.h"
 #include "StringGenerator.h"
@@ -8,7 +8,6 @@
 #include "NearDeathTrap.h"
 #include "RatTrap.h"
 #include "TeleportTrap.h"
-#include "Mob.h"
 
 std::vector<std::vector<std::string>> roomDescriptions{
     // room shape/size

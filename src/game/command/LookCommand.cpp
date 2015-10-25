@@ -2,6 +2,8 @@
 #include "LookCommand.h"
 #include "Game.h"
 #include "Mob.h"
+#include "Room.h"
+#include "Player.h"
 #include "util/console.h"
 #include "util/ServiceLocator.h"
 

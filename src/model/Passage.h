@@ -33,5 +33,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_PASSAGE_H

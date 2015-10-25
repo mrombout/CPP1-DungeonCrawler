@@ -22,5 +22,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_PLAYER_H

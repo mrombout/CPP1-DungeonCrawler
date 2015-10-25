@@ -1,7 +1,6 @@
 #include <iostream>
 #include "MobCallTrap.h"
 #include "Player.h"
-#include "Room.h"
 #include "Passage.h"
 
 void dc::model::MobCallTrap::onSpring(dc::model::Player &player) {

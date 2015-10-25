@@ -23,5 +23,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_ITEM_H

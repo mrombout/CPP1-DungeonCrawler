@@ -9,6 +9,7 @@
 #include "Game.h"
 #include "Trap.h"
 #include "Player.h"
+#include "Dungeon.h"
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "item/Iconograph.h"

@@ -1,8 +1,13 @@
 #ifndef DUNGEONCRAWLER_INSPECTCOMMAND_H
 #define DUNGEONCRAWLER_INSPECTCOMMAND_H
 
-#include <Game.h>
 #include "command.h"
+
+namespace dc {
+    namespace model {
+        class Game;
+    }
+}
 
 class InspectCommand : public dc::engine::Command {
 public:

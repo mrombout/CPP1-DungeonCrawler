@@ -1,8 +1,5 @@
-//
-// Created by Mike Rombout on 5/10/2015.
-//
-
 #include "Inventory.h"
+
 namespace dc {
     namespace model {
         Inventory::Inventory(std::vector<Item*> items) :

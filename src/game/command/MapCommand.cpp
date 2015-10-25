@@ -3,9 +3,9 @@
 #include <iostream>
 #include "MapCommand.h"
 #include "Game.h"
-#include "Room.h"
 #include "Floor.h"
 #include "Passage.h"
+#include "Player.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
 

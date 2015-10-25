@@ -15,5 +15,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_SWORD_H

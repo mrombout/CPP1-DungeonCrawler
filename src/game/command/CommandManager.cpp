@@ -11,7 +11,6 @@
 #include "StatsCommand.h"
 #include "InspectCommand.h"
 #include "NullCommand.h"
-#include "Parameters.h"
 
 namespace dc {
     namespace game {

@@ -1,9 +1,13 @@
 #ifndef DUNGEONCRAWLER_NEWGAMECOMMAND_H
 #define DUNGEONCRAWLER_NEWGAMECOMMAND_H
 
-#include <GameLoop.h>
-#include "CommandParameters.h"
 #include "command.h"
+
+namespace dc {
+    namespace engine {
+        class GameLoop;
+    }
+}
 
 namespace dc {
     namespace game {

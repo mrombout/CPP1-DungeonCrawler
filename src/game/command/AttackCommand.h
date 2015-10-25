@@ -1,12 +1,12 @@
 #ifndef DUNGEONCRAWLER_ATTACKCOMMAND_H
 #define DUNGEONCRAWLER_ATTACKCOMMAND_H
 
-#include <Player.h>
 #include "command.h"
 
 namespace dc {
     namespace model {
         class Mob;
+        class Player;
     }
 }
 

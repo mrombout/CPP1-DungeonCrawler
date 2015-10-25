@@ -1,8 +1,15 @@
 #ifndef DUNGEONCRAWLER_MAPCOMMAND_H
 #define DUNGEONCRAWLER_MAPCOMMAND_H
 
-#include "CommandParameters.h"
 #include "command.h"
+
+namespace dc {
+    namespace model {
+        class Player;
+        class Room;
+        class Passage;
+    }
+}
 
 namespace dc {
 	namespace game {

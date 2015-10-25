@@ -1,8 +1,16 @@
 #ifndef DUNGEONCRAWLER_DUNGEONGENERATOR_H
 #define DUNGEONCRAWLER_DUNGEONGENERATOR_H
 
-#include <Dungeon.h>
-#include "FloorGenerator.h"
+#include <string>
+
+namespace dc {
+    namespace model {
+        class Dungeon;
+        class Floor;
+    }
+}
+
+class FloorGenerator;
 
 /**
  * Generates a new dungeon consisting of a random number of floors.

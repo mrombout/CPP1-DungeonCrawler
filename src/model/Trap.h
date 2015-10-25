@@ -32,5 +32,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_TRAP_H

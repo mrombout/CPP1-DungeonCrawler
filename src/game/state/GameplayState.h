@@ -1,7 +1,7 @@
 #ifndef DUNGEONCRAWLER_GAMEPLAYSTATE_H
 #define DUNGEONCRAWLER_GAMEPLAYSTATE_H
 
-#include <command/CommandManager.h>
+#include "command/CommandManager.h"
 #include "state.h"
 
 namespace dc {

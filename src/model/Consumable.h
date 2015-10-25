@@ -13,5 +13,4 @@ namespace dc {
     }
 }
 
-
 #endif //DUNGEONCRAWLER_CONSUMABLE_H

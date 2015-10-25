@@ -1,14 +1,11 @@
 #include <iostream>
 #include "state/CombatState.h"
-#include "CombatCommandManager.h"
 #include "AttackCommand.h"
 #include "FleeCommand.h"
 #include "InventoryCommand.h"
 #include "NullCommand.h"
 #include "UseCommand.h"
-#include "command.h"
 #include "util/ServiceLocator.h"
-#include "util/Number.h"
 
 CombatCommandManager::CombatCommandManager(CombatState &combatState) :
     mCombatState(combatState) {

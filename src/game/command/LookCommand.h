@@ -1,8 +1,13 @@
 #ifndef DUNGEONCRAWLER_LOOKCOMMAND_H
 #define DUNGEONCRAWLER_LOOKCOMMAND_H
 
-#include "CommandParameters.h"
 #include "command.h"
+
+namespace dc {
+    namespace model {
+        class Player;
+    }
+}
 
 namespace dc {
     namespace game {

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "InspectCommand.h"
+#include "Game.h"
 #include "Trap.h"
 #include "Player.h"
 #include "util/ServiceLocator.h"

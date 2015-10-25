@@ -1,7 +1,7 @@
 #ifndef DUNGEONCRAWLER_NULLCOMMAND_H
 #define DUNGEONCRAWLER_NULLCOMMAND_H
 
-#include <command.h>
+#include "command.h"
 
 namespace dc {
     namespace game {
@@ -13,6 +13,5 @@ namespace dc {
         };
     }
 }
-
 
 #endif //DUNGEONCRAWLER_NULLCOMMAND_H
