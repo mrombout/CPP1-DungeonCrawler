@@ -49,7 +49,8 @@ namespace csl {
         LIGHTRED,
         LIGHTMAGENTA,
         YELLOW,
-        WHITE
+        WHITE,
+        COLOR_COUNT
     };
 
     const char * getANSIColor(const int c);
