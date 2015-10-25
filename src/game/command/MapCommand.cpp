@@ -5,6 +5,7 @@
 #include "Room.h"
 #include "Floor.h"
 #include "Passage.h"
+#include "util/console.h"
 
 namespace dc {
 	void game::MapCommand::execute(engine::CommandParameters &parameters) const {
@@ -64,6 +65,11 @@ namespace dc {
 		// render to screen
 		for(int y = 0; y < height; ++y) {
 			for(int x = 0; x < width; ++x) {
+				char c = mGrid[y][x];
+				if(c == '@')
+					std::cout << csl::color(csl::LIGHTRED);
+                else
+                    std::cout << csl::color(csl::WHITE);
 				std::cout << mGrid[y][x];
 			}
 			std::cout << std::endl;

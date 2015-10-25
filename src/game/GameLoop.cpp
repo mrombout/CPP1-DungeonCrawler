@@ -1,5 +1,6 @@
 #include <iostream>
 #include "GameLoop.h"
+#include "util/console.h"
 
 namespace dc {
 namespace engine {
@@ -13,7 +14,7 @@ namespace engine {
     }
 
     void GameLoop::start() {
-		std::cout << "START - GameLoop" << std::endl;
+        csl::log() << "START - GameLoop" << std::endl;
 
         if(currentState())
             mLoop = true;
@@ -31,7 +32,7 @@ namespace engine {
     }
 
     void GameLoop::stop() {
-        std::cout << "STOP - GameLoop";
+        csl::log() << "STOP - GameLoop";
 
         mLoop = false;
         quit();

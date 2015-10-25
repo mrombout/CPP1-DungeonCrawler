@@ -13,7 +13,7 @@ public:
 
     bool split();
     void createRooms();
-    void createHall(Rectangle *l, Rectangle *r);
+    void createHall(dc::Rectangle *l, dc::Rectangle *r);
 
     int x() const;
     int y() const;
@@ -23,8 +23,8 @@ public:
     Leaf *leftChild() const;
     Leaf *rightChild() const;
 
-    Rectangle *room() const;
-    const std::vector<Rectangle*> &halls() const;
+    dc::Rectangle *room() const;
+    const std::vector<dc::Rectangle*> &halls() const;
 
 private:
     int mX;
@@ -35,8 +35,8 @@ private:
     Leaf *mLeftChild;
     Leaf *mRightChild;
 
-    Rectangle *mRoom;
-    std::vector<Rectangle*> mHalls;
+    dc::Rectangle *mRoom;
+    std::vector<dc::Rectangle*> mHalls;
     // TODO: Halls
 };
 

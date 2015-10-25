@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <util/console.h>
 #include "command/NewGameCommand.h"
 #include "WelcomeState.h"
 #include "util/ServiceLocator.h"
@@ -17,7 +18,8 @@ namespace game {
     {
         std::ifstream file("assets/intro.txt");
         std::string line;
-        
+
+        std::cout << csl::color(csl::GREY);
         while(getline(file, line)) {
             std::cout << line << std::endl;
         }
@@ -30,7 +32,7 @@ namespace game {
 
     std::string WelcomeState::onRead()
     {
-        std::cout << "\t(N)ew GameLoop \n\t(L)oad GameLoop \n\t(E)xit" << std::endl;
+        std::cout << csl::color(csl::GREEN) << "\t(N)ew GameLoop \n\t(L)oad GameLoop \n\t(E)xit" << std::endl;
 
         std::string input;
         std::cin >> input;

@@ -8,6 +8,8 @@
 #include "Floor.h"
 #include "Room.h"
 #include "Passage.h"
+#include "util/console.h"
+#include "Rectangle.h"
 
 int BSPFloorGenerator::MAX_LEAF_SIZE = 20;
 
@@ -34,14 +36,14 @@ dc::model::Floor *BSPFloorGenerator::generate(unsigned int level) {
 
     for(int y = 0; y < root->height(); ++y) {
         for(int x = 0; x < root->width(); ++x) {
-            if(rooms[y][x] == nullptr)
-                std::cout << ".";
-            else {
+            if (rooms[y][x] == nullptr) {
+                csl::log() << ".";
+            } else {
                 testRooms.push_back(rooms[y][x]);
-                std::cout << "#";
+                csl::log() << "#";
             }
         }
-        std::cout << std::endl;
+        csl::log() << std::endl;
     }
 
     // connect all rooms
@@ -58,7 +60,7 @@ void BSPFloorGenerator::createRooms(std::vector<std::vector<dc::model::Room*>> &
     if(leaf->room() != nullptr)
         createRectangle(vector, leaf->room(), level);
     if(!leaf->halls().empty()) {
-        for(Rectangle* hall : leaf->halls()) {
+        for(dc::Rectangle* hall : leaf->halls()) {
             createRectangle(vector, hall, level);
         }
     }
@@ -69,7 +71,7 @@ void BSPFloorGenerator::createRooms(std::vector<std::vector<dc::model::Room*>> &
         createRooms(vector, leaf->rightChild(), level);
 }
 
-void BSPFloorGenerator::createRectangle(std::vector<std::vector<dc::model::Room*>> &vector, Rectangle *rectangle, unsigned int &level) {
+void BSPFloorGenerator::createRectangle(std::vector<std::vector<dc::model::Room*>> &vector, dc::Rectangle *rectangle, unsigned int &level) {
     int left = rectangle->left();
     int top = rectangle->top();
     int bottom = rectangle->bottom();
@@ -145,7 +147,7 @@ dc::model::Room *BSPFloorGenerator::determineStaircaseUp(std::vector<std::vector
     }
 
     // find room
-    Rectangle *rect = topLeftRoom->room();
+    dc::Rectangle *rect = topLeftRoom->room();
     return vector[rect->top()][rect->left()];
 }
 
@@ -157,6 +159,6 @@ dc::model::Room *BSPFloorGenerator::determineStaircaseDown(std::vector<std::vect
     }
 
     // find room
-    Rectangle *rect = bottomRightRoom->room();
+    dc::Rectangle *rect = bottomRightRoom->room();
     return vector[rect->bottom()][rect->right()];
 }

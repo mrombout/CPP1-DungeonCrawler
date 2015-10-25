@@ -18,15 +18,16 @@ namespace dc {
     namespace model {
         class Room {
         public:
-            Room(std::string description);
-            Room(Point position, std::string description);
-            Room(Point position, std::string description, bool visited);
-            Room(Point position, std::string description, bool visited, std::vector<Trap*> traps);
+            Room(std::string name, std::string description);
+            Room(Point position, std::string name, std::string description);
+            Room(Point position, std::string name, std::string description, bool visited);
+            Room(Point position, std::string name, std::string description, bool visited, std::vector<Trap*> traps);
             ~Room();
 
             void setPosition(Point point);
             const Point &position() const;
 
+            const std::string &name() const;
             std::string description() const;
 
 			std::vector<Passage*> adjacantPassages() const;
@@ -54,6 +55,8 @@ namespace dc {
 
         private:
             Point mPosition;
+
+            std::string mName;
             std::string mDescription;
             bool mVisited;
 
