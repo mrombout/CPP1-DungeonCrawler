@@ -20,8 +20,6 @@ public:
     dc::engine::Command *create(std::string input) const;
 
 private:
-    dc::engine::Command *createAttackCommand(std::vector<std::string> &vector) const;
-
     CombatState &mCombatState;
 };
 
