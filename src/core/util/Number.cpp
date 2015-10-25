@@ -2,7 +2,7 @@
 #include <limits.h>
 #include "Number.h"
 
-long Number::toLong(std::string &str) {
+long Number::toLong(const std::string &str) {
     char *endptr;
     errno = 0;
     long result = strtol(str.c_str(), &endptr, 10);
