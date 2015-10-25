@@ -46,7 +46,7 @@ public:
     }
 
     virtual void onPrint(GameLoop &game, Command *command) {
-        command->execute(game);
+
     }
 
     bool isInitialized() const {

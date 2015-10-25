@@ -13,6 +13,17 @@ public:
         return instance;
     }
 
+    template<class T> void removeInstance(const T &object) {
+        removeInstance<T>("default", object);
+    }
+
+    template<class T> void removeInstance(const std::string &name, const T &object) {
+        typeInstanceMap[typeid(T).name()].erase(name);
+        if(typeInstanceMap[typeid(T).name()].empty()) {
+            typeInstanceMap.erase(typeid(T).name());
+        }
+    }
+
     template<class T> void addInstance(const T &object) {
         addInstance<T>("default", object);
     }

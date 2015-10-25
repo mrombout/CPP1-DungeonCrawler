@@ -4,14 +4,19 @@
 #include "util/console.h"
 
 namespace dc {
-    void game::LookCommand::execute(engine::CommandParameters &parameters) const {
-        dc::model::Room& room = parameters.player().room();
+    game::LookCommand::LookCommand(dc::model::Player &player) :
+        mPlayer(player) {
+
+    }
+
+    void game::LookCommand::execute() const {
+        dc::model::Room& room = mPlayer.room();
 
         // name room
         std::cout << csl::color(csl::YELLOW) << room.name() << "\n";
 
         // describe room
-        std::cout << csl::color(csl::WHITE) << parameters.player().room().description();
+        std::cout << csl::color(csl::WHITE) << mPlayer.room().description();
 
         // list monsters
         if(!room.mobs().empty()) {

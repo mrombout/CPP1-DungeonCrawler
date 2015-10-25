@@ -1,5 +1,6 @@
 #include <sstream>
 #include <vector>
+#include <util/ServiceLocator.h>
 #include "CommandManager.h"
 #include "command.h"
 #include "LookCommand.h"
@@ -9,45 +10,32 @@
 #include "UseCommand.h"
 #include "StatsCommand.h"
 #include "InspectCommand.h"
+#include "NullCommand.h"
+#include "Parameters.h"
 
 namespace dc {
     namespace game {
-        engine::Command *CommandManager::create(std::string name) const {
+        engine::Command *CommandManager::create(std::string input) const {
+            Parameters parameters(input);
 
-            // Split input by spaces
-            std::stringstream input(name);
-            std::string s;
-            std::vector<std::string> parameters;
-
-            while (getline(input, s, ' ')) {
-                parameters.push_back(s.c_str());
-            }
-
-            if(parameters.empty())
-                return nullptr;
-
-            std::string commandName;
-            commandName =  (parameters.size() > 0) ? parameters[0] : name;
-
-            if (parameters.size() > 0) {
-                // Remove first element from vector (the command name)
-                parameters.erase(parameters.begin());
-            }
-
+            dc::engine::Command *command = nullptr;
+            const std::string &commandName = parameters.commandName();
             if(commandName == "look") {
-                return new LookCommand();
+                command = ServiceLocator::getInstance().create<dc::game::LookCommand>();
             } else if(commandName == "map") {
-				return new MapCommand();
+                command = ServiceLocator::getInstance().create<dc::game::MapCommand>();
             } else if (commandName == "inv") {
-                return new InventoryCommand();
+                command = ServiceLocator::getInstance().create<dc::game::InventoryCommand>();
             } else if (commandName == "goto") {
-                return new GoToCommand(parameters);
+                command = ServiceLocator::getInstance().create<dc::game::GoToCommand>();
             } else if(commandName == "use") {
-                return new UseCommand(parameters[0]);
+                command = ServiceLocator::getInstance().create<UseCommand>();
             } else if(commandName == "stats") {
-                return new StatsCommand();
+                command = ServiceLocator::getInstance().create<StatsCommand>();
             } else if(commandName == "inspect") {
-                return new InspectCommand();
+                command = ServiceLocator::getInstance().create<InspectCommand>();
+            } else {
+                command = new NullCommand();
             }
 
             return nullptr;

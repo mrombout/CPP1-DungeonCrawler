@@ -1,7 +1,7 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include "CommandParameters.h"
+#include "command/Parameters.h"
 
 namespace dc {
     namespace engine {
@@ -16,9 +16,12 @@ namespace engine {
     {
     public:
         Command();
+        virtual ~Command();
 
-        virtual void execute(CommandParameters &parameters) const;
-        virtual void execute(engine::GameLoop &game) const;
+        virtual void execute() const = 0;
+
+    private:
+        Parameters *mParameters;
     };
 
 }

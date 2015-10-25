@@ -14,7 +14,7 @@ namespace dc {
 
 class CombatState : public dc::engine::State {
 public:
-    CombatState(dc::model::Game &game, const std::vector<dc::model::Mob*> &mobs);
+    CombatState(dc::model::Game &game);
 
     ~CombatState();
 
@@ -24,12 +24,9 @@ public:
     dc::engine::Command *onEval(std::string input) override;
     void onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) override;
 
-    dc::model::Mob *mob(unsigned int num) const;
-
 private:
     const CombatCommandManager mCommandManager;
     dc::model::Game &mGame;
-    std::vector<dc::model::Mob*> mMobs;
 };
 
 #endif //DUNGEONCRAWLER_COMBATSTATE_H

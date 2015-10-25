@@ -2,20 +2,15 @@
 #include "command.h"
 
 namespace dc {
-namespace engine {
+    namespace engine {
 
-    Command::Command()
-    {
+        Command::Command() {
 
+        }
+
+        Command::~Command() {
+            delete mParameters;
+        }
     }
-
-    void Command::execute(engine::GameLoop &game) const {
-        throw NotImplementedException();
-    }
-
-    void Command::execute(CommandParameters &parameters) const {
-
-    }
-}
 }
 

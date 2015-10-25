@@ -4,14 +4,19 @@
 #include <string>
 #include "command.h"
 
+namespace dc {
+    namespace model {
+        class Player;
+    }
+}
+
 class UseCommand : public dc::engine::Command {
 public:
-    UseCommand(std::string item);
-
-    virtual void execute(dc::engine::CommandParameters &parameters) const override;
+    UseCommand(dc::model::Player &player);
+    virtual void execute() const override;
 
 private:
-    std::string mItemName;
+    dc::model::Player &mPlayer;
 };
 
 #endif //DUNGEONCRAWLER_USECOMMAND_H

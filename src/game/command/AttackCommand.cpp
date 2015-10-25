@@ -4,12 +4,13 @@
 #include "Equipable.h"
 #include "Mob.h"
 
-AttackCommand::AttackCommand(dc::model::Mob &mob) :
-    mMob(mob) {
+AttackCommand::AttackCommand(dc::model::Player &player) :
+        mPlayer(player) {
 
 }
 
-void AttackCommand::execute(dc::engine::CommandParameters &parameters) const {
+void AttackCommand::execute() const {
+    /*
     std::cout << "You attack the " << mMob.name() << " and, ";
     if(rand() % 100 > 50) {
         int damage = 1;
@@ -19,4 +20,5 @@ void AttackCommand::execute(dc::engine::CommandParameters &parameters) const {
     } else {
         std::cout << "miss." << std::endl;
     }
+    */
 }

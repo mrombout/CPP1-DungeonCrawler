@@ -49,7 +49,7 @@ namespace game {
     }
 
     void WelcomeState::onPrint(engine::GameLoop &game, engine::Command *command) {
-        command->execute(ServiceLocator::getInstance().resolve<dc::engine::GameLoop>());
+        command->execute();
     }
 
 }

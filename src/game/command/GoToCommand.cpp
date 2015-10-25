@@ -9,7 +9,8 @@
 
 namespace dc {
     namespace game {
-        void game::GoToCommand::execute(engine::CommandParameters &parameters) const {
+        void game::GoToCommand::execute() const {
+            /*
             if (this->params.size() > 0) {
                 std::string heading = params[0];
 
@@ -56,6 +57,7 @@ namespace dc {
             } else {
                 std::cout << "Could not determine the way to go without direction!" << std::endl;
             }
+            */
         }
     }
 }

@@ -1,12 +1,14 @@
 #include <iostream>
-#include "generator/MobGenerator.h"
+#include "Inventory.h"
 #include "Sword.h"
+#include "generator/MobGenerator.h"
 #include "generator/BSPFloorGenerator.h"
 #include "generator/SimpleFloorGenerator.h"
 #include "generator/DungeonGenerator.h"
 #include "GameplayState.h"
 #include "Game.h"
 #include "Trap.h"
+#include "Player.h"
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "item/Iconograph.h"
@@ -21,6 +23,7 @@ namespace dc {
         }
 
         GameplayState::~GameplayState() {
+            ServiceLocator::getInstance().removeInstance<dc::model::Game>(*mGame);
             delete mGame;
         }
 
@@ -49,6 +52,7 @@ namespace dc {
             model::Player *player = new model::Player(dungeon->floor(0).startRoom(), inventory);
 
             mGame = new model::Game(dungeon, player);
+            ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);
         }
 
         void GameplayState::onEnter(engine::GameLoop *game) {
@@ -78,8 +82,8 @@ namespace dc {
 
         // TODO: Duplicate code in WelcomeState
         void GameplayState::onPrint(engine::GameLoop &game, engine::Command *command) {
-            engine::CommandParameters cp(ServiceLocator::getInstance().resolve<dc::engine::GameLoop>(), mGame->player(), *this);
-            command->execute(cp);
+            //engine::CommandParameters cp(ServiceLocator::getInstance().resolve<dc::engine::GameLoop>(), mGame->player(), *this);
+            command->execute();
 
             updateEnemies(game);
             springTraps(game);
@@ -89,7 +93,7 @@ namespace dc {
             std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room().mobs();
             if(!mobs.empty()) {
-                game.pushState(new CombatState(*mGame, mobs));
+                game.pushState(new CombatState(*mGame));
             }
         }
 

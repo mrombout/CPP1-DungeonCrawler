@@ -8,8 +8,13 @@
 #include "util/console.h"
 
 namespace dc {
-	void game::MapCommand::execute(engine::CommandParameters &parameters) const {
-		model::Room &room = parameters.player().room();
+	game::MapCommand::MapCommand(dc::model::Player &player) :
+		mPlayer(player) {
+
+	}
+
+	void game::MapCommand::execute() const {
+		model::Room &room = mPlayer.room();
 
 		render(room);
 	}

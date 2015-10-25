@@ -3,10 +3,16 @@
 //
 
 #include <iostream>
+#include "Player.h"
 #include "InventoryCommand.h"
 
 namespace dc {
-    void game::InventoryCommand::execute(engine::CommandParameters &parameters) const {
-        std::cout << parameters.player().inventory().description() << std::endl;
+    game::InventoryCommand::InventoryCommand(model::Player &player) :
+        mPlayer(player) {
+
+    }
+
+    void game::InventoryCommand::execute() const {
+        std::cout << mPlayer.inventory().description() << std::endl;
     }
 }

@@ -7,7 +7,12 @@
 namespace dc {
     namespace game {
         class LookCommand : public engine::Command {
-            virtual void execute(engine::CommandParameters &parameters) const override;
+        public:
+            LookCommand(dc::model::Player &player);
+            virtual void execute() const override;
+
+        private:
+            dc::model::Player &mPlayer;
         };
     }
 }

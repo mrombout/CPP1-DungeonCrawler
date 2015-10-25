@@ -9,7 +9,12 @@ namespace dc {
     namespace game {
         class NewGameCommand : public engine::Command {
         public:
-            virtual void execute(engine::GameLoop &game) const override;
+            NewGameCommand(dc::engine::GameLoop &gameLoop);
+
+            virtual void execute() const override;
+
+        private:
+            dc::engine::GameLoop &mGameLoop;
         };
     }
 }

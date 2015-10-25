@@ -6,9 +6,14 @@
 
 namespace dc {
     namespace game {
-        void NewGameCommand::execute(engine::GameLoop &game) const {
+        NewGameCommand::NewGameCommand(dc::engine::GameLoop &gameLoop) :
+                mGameLoop(gameLoop) {
+
+        }
+
+        void NewGameCommand::execute() const {
             csl::log() << "Executing NewGameCommand" << std::endl;
-            game.pushState(new GameplayState());
+            mGameLoop.pushState(new GameplayState());
         }
     }
 }

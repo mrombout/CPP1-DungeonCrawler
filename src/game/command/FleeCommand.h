@@ -4,7 +4,8 @@
 #include "command.h"
 
 class FleeCommand : public dc::engine::Command {
-    virtual void execute(dc::engine::CommandParameters &parameters) const override;
+public:
+    virtual void execute() const override;
 };
 
 #endif //DUNGEONCRAWLER_FLEECOMMAND_H

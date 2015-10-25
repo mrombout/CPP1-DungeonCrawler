@@ -8,9 +8,20 @@
 #include <command.h>
 
 namespace dc {
+    namespace model {
+        class Player;
+    }
+}
+
+namespace dc {
     namespace game {
         class InventoryCommand : public engine::Command {
-            virtual void execute(engine::CommandParameters &parameters) const override;
+        public:
+            InventoryCommand(dc::model::Player &player);
+            virtual void execute() const override;
+
+        private:
+            dc::model::Player &mPlayer;
         };
     }
 }

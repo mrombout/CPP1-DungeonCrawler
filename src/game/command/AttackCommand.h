@@ -1,6 +1,7 @@
 #ifndef DUNGEONCRAWLER_ATTACKCOMMAND_H
 #define DUNGEONCRAWLER_ATTACKCOMMAND_H
 
+#include <Player.h>
 #include "command.h"
 
 namespace dc {
@@ -11,12 +12,12 @@ namespace dc {
 
 class AttackCommand : public dc::engine::Command {
 public:
-    AttackCommand(dc::model::Mob &mob);
+    AttackCommand(dc::model::Player &player);
 
-    virtual void execute(dc::engine::CommandParameters &parameters) const override;
+    virtual void execute() const override;
 
 private:
-    dc::model::Mob &mMob;
+    dc::model::Player &mPlayer;
 };
 
 #endif //DUNGEONCRAWLER_ATTACKCOMMAND_H

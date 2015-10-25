@@ -1,4 +1,5 @@
 #include <iostream>
+#include <util/ServiceLocator.h>
 #include "util/Number.h"
 #include "state/CombatState.h"
 #include "CombatCommandManager.h"
@@ -19,7 +20,7 @@ dc::engine::Command *CombatCommandManager::create(std::vector<std::string> &inpu
     } else if(commandName == "flee") {
         return new FleeCommand();
     } else if(commandName == "inv") {
-        return new dc::game::InventoryCommand();
+        return ServiceLocator::getInstance().create<dc::game::InventoryCommand>();
     } else if(commandName == "use") {
         // TODO: Use command
     } else {
@@ -29,6 +30,7 @@ dc::engine::Command *CombatCommandManager::create(std::vector<std::string> &inpu
 }
 
 dc::engine::Command *CombatCommandManager::createAttackCommand(std::vector<std::string> &inputs) const {
+    /*
     if(inputs.size() != 2) {
         std::cout << "Not enough arguments" << std::endl;
         return new dc::game::NullCommand();
@@ -47,4 +49,5 @@ dc::engine::Command *CombatCommandManager::createAttackCommand(std::vector<std::
     }
 
     return new AttackCommand(*mob);
+    */
 }

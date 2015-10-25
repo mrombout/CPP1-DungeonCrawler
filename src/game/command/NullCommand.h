@@ -6,7 +6,8 @@
 namespace dc {
     namespace game {
         class NullCommand : public engine::Command {
-
+        public:
+            virtual void execute() const;
         };
     }
 }

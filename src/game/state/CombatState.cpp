@@ -10,10 +10,9 @@
 #include "Game.h"
 #include "util/console.h"
 
-CombatState::CombatState(dc::model::Game &game, const std::vector<dc::model::Mob *> &mobs) :
+CombatState::CombatState(dc::model::Game &game) :
         mCommandManager(*this),
-        mGame(game),
-        mMobs(mobs) {
+        mGame(game) {
 
 }
 
@@ -59,13 +58,7 @@ dc::engine::Command *CombatState::onEval(std::string input) {
 
 void CombatState::onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) {
     // execute player turn
-    dc::engine::CommandParameters cp(game, mGame.player(), *this);
-    command->execute(cp);
+    command->execute();
 
     // execute enemies turn
-
-}
-
-dc::model::Mob *CombatState::mob(unsigned int num) const {
-    return mMobs[num];
 }

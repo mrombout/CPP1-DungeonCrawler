@@ -14,8 +14,8 @@ namespace dc {
         private:
             std::vector<std::string> params;
         public:
-            GoToCommand(std::vector<std::string> &parameters) { this->params = parameters; }
-            virtual void execute(engine::CommandParameters &parameters) const override;
+            GoToCommand() { }
+            virtual void execute() const override;
         };
     }
 }
