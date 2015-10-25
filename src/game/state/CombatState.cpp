@@ -33,10 +33,20 @@ std::string CombatState::onRead() {
     std::cout << csl::color(csl::RED) << "You are in combat!\n\n" << csl::color(csl::WHITE) << "In front of you stand:" << std::endl;
 
     dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
-    Render::mobList(game.player().room().mobs());
+    dc::model::Player &player = game.player();
+    Render::mobList(player.room().mobs());
     std::cout << "\n";
 
-    std::cout << csl::color(csl::GREEN) << "(" << "0" << "/" << "100" << ")" << csl::color(csl::GREY) << ">";
+    int health = player.health();
+    unsigned int maxHealth = player.maxHealth();
+
+    std::cout << csl::color(csl::GREEN) << "(";
+    if(health < maxHealth / 2) {
+        std::cout << csl::color(csl::RED);
+    } else {
+        std::cout << csl::color(csl::GREEN);
+    }
+    std::cout << player.health() << csl::color(csl::GREEN) << "/" << player.maxHealth() << ")" << csl::color(csl::GREY) << ">";
 
     std::string input;
 
