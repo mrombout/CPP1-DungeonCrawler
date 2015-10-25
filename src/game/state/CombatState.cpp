@@ -9,7 +9,7 @@
 #include "CombatState.h"
 #include "Game.h"
 
-CombatState::CombatState(dc::model::Game game, const std::vector<dc::model::Mob *> &mobs) :
+CombatState::CombatState(dc::model::Game &game, const std::vector<dc::model::Mob *> &mobs) :
         mCommandManager(*this),
         mGame(game),
         mMobs(mobs) {

@@ -6,7 +6,10 @@
 namespace dc {
     namespace model {
         class BearTrap : public Trap {
-            void spring(dc::model::Player &player) override;
+        public:
+            virtual const std::string name();
+
+            void onSpring(dc::model::Player &player) override;
         };
     }
 }

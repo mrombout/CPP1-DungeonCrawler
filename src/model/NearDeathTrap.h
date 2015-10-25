@@ -12,7 +12,9 @@ namespace dc {
 namespace dc {
     namespace model {
         class NearDeathTrap : public Trap {
-            void spring(dc::model::Player &player) override;
+        public:
+            virtual const std::string name();
+            virtual void onSpring(dc::model::Player &player) override;
         };
     }
 }

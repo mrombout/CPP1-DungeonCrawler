@@ -8,6 +8,7 @@
 #include "GoToCommand.h"
 #include "UseCommand.h"
 #include "StatsCommand.h"
+#include "InspectCommand.h"
 
 namespace dc {
     namespace game {
@@ -45,6 +46,8 @@ namespace dc {
                 return new UseCommand(parameters[0]);
             } else if(commandName == "stats") {
                 return new StatsCommand();
+            } else if(commandName == "inspect") {
+                return new InspectCommand();
             }
 
             return nullptr;

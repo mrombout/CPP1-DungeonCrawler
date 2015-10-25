@@ -12,7 +12,11 @@ namespace dc {
 namespace dc {
     namespace model {
         class RatTrap  : public Trap {
-            void spring(dc::model::Player &player) override;
+
+        public:
+            virtual const std::string name();
+
+            void onSpring(dc::model::Player &player) override;
         };
     }
 }

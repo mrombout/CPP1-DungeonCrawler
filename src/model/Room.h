@@ -46,11 +46,12 @@ namespace dc {
             Floor *floor() const;
             void setFloor(Floor* floor);
 
-            std::vector<Trap*> traps() const;
+            const std::vector<Trap*> &traps() const;
             void addTrap(Trap* trap);
 
             const std::vector<Mob*> &mobs() const;
             void addMob(Mob* mob);
+            void removeMob(Mob* mob);
 
         private:
             Point mPosition;
