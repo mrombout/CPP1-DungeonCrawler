@@ -7,6 +7,7 @@
 #include "MapCommand.h"
 #include "GoToCommand.h"
 #include "UseCommand.h"
+#include "StatsCommand.h"
 
 namespace dc {
     namespace game {
@@ -42,6 +43,8 @@ namespace dc {
                 return new GoToCommand(parameters);
             } else if(commandName == "use") {
                 return new UseCommand(parameters[0]);
+            } else if(commandName == "stats") {
+                return new StatsCommand();
             }
 
             return nullptr;
