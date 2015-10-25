@@ -1,29 +1,32 @@
 #include "Rectangle.h"
 
-Rectangle::Rectangle(int x, int y, int width, int height) :
-    mX(x),
-    mY(y),
-    mWidth(width),
-    mHeight(height) {
 
-}
+namespace dc {
+    Rectangle::Rectangle(int x, int y, int width, int height) :
+            mX(x),
+            mY(y),
+            mWidth(width),
+            mHeight(height) {
 
-int Rectangle::left() const {
-    return mX;
-}
+    }
 
-int Rectangle::top() const {
-    return mY;
-}
+    int Rectangle::left() const {
+        return mX;
+    }
 
-int Rectangle::right() const {
-    return mX + mWidth;
-}
+    int Rectangle::top() const {
+        return mY;
+    }
 
-int Rectangle::bottom() const {
-    return mY + mHeight;
-}
+    int Rectangle::right() const {
+        return mX + mWidth;
+    }
 
-Point Rectangle::center() const {
-    return Point(mX + mWidth / 2, mY + mHeight / 2);
+    int Rectangle::bottom() const {
+        return mY + mHeight;
+    }
+
+    Point Rectangle::center() const {
+        return Point(mX + mWidth / 2, mY + mHeight / 2);
+    }
 }

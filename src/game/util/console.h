@@ -72,6 +72,10 @@ namespace csl {
     std::ios_base &setColorUnix(std::ostream &os, int c);
 
     ColorManipulator color(int c);
+
+    inline std::ostream &log() {
+        return std::clog << color(GREY);
+    }
 }
 
 #endif //DUNGEONCRAWLER_CONSOLE_H

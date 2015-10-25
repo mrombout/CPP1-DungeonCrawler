@@ -28,7 +28,7 @@ public:
     /**
      * Create dungeon rooms for the given rectangle.
      */
-    void createRectangle(std::vector<std::vector<dc::model::Room*>> &vector, Rectangle *rectangle, unsigned int &level);
+    void createRectangle(std::vector<std::vector<dc::model::Room*>> &vector, dc::Rectangle *rectangle, unsigned int &level);
 
     /**
      * Create a tree that is divided up using binary space partitioning.

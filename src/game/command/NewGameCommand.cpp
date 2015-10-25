@@ -2,11 +2,12 @@
 #include "NewGameCommand.h"
 #include "GameLoop.h"
 #include "state/GameplayState.h"
+#include "util/console.h"
 
 namespace dc {
     namespace game {
         void NewGameCommand::execute(engine::GameLoop &game) const {
-            std::cout << "Executing NewGameCommand" << std::endl;
+            csl::log() << "Executing NewGameCommand" << std::endl;
             game.pushState(new GameplayState());
         }
     }

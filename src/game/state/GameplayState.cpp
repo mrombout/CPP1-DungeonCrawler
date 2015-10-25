@@ -67,7 +67,7 @@ namespace dc {
         engine::Command *GameplayState::onEval(std::string input) {
             engine::Command *command = mCommandManager.create(input);
             if(!command) {
-                std::cout << "Command not recognized" << std::endl;
+                std::cout << csl::color(csl::RED) << "Command not recognized" << std::endl;
                 // TODO: Cache this NullCommand
                 return new NullCommand();
             }
@@ -84,7 +84,7 @@ namespace dc {
         }
 
         void GameplayState::updateEnemies(engine::GameLoop &game) const {
-            std::cout << "The enemies scuffle about." << std::endl;
+            std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room().mobs();
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame, mobs));

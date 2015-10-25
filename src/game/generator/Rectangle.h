@@ -3,23 +3,25 @@
 
 #include "Point.h"
 
-class Rectangle {
-public:
-    Rectangle(int x, int y, int width, int height);
+namespace dc {
+    class Rectangle {
+    public:
+        Rectangle(int x, int y, int width, int height);
 
-    Point center() const;
+        Point center() const;
 
-    int left() const;
-    int top() const;
+        int left() const;
+        int top() const;
 
-    int right() const;
-    int bottom() const;
+        int right() const;
+        int bottom() const;
 
-private:
-    int mX;
-    int mY;
-    int mWidth;
-    int mHeight;
-};
+    private:
+        int mX;
+        int mY;
+        int mWidth;
+        int mHeight;
+    };
+}
 
 #endif //DUNGEONCRAWLER_RECTANGLE_H
