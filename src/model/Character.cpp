@@ -21,7 +21,7 @@ void dc::model::Character::setName(std::string pName) {
     mName = pName;
 }
 
-int dc::model::Character::maxHealth() const {
+unsigned int dc::model::Character::maxHealth() const {
     return mMaxHealth;
 }
 

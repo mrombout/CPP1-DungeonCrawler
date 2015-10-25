@@ -18,7 +18,7 @@ namespace dc {
             const std::string &name() const;
             void setName(std::string pName);
 
-            int maxHealth() const;
+            unsigned int maxHealth() const;
             void setMaxHealth(int pMaxHealth);
 
             int health() const;
@@ -53,15 +53,15 @@ namespace dc {
         private:
             std::string mName;
 
-            int mMaxHealth;
+            unsigned int mMaxHealth;
             int mHealth;
 
-            int mLevel;
-            int mExperience;
+            unsigned int mLevel;
+            unsigned int mExperience;
 
-            int mAttack;
-            int mDefence;
-            int mPerception;
+            unsigned int mAttack;
+            unsigned int mDefence;
+            unsigned int mPerception;
 
             Equipable *mWeapon;
         };
