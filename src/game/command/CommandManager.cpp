@@ -14,10 +14,10 @@
 #include "util/ServiceLocator.h"
 
 namespace dc {
-    engine::Command *CommandManager::create(std::string input) const {
+    game::Command *CommandManager::create(std::string input) const {
         dc::game::Parameters parameters(input);
 
-        dc::engine::Command *command = nullptr;
+        dc::game::Command *command = nullptr;
         const std::string &commandName = parameters.commandName();
         if(commandName == "look") {
             command = dc::game::LookCommand::create();

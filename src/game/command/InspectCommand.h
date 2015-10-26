@@ -11,7 +11,7 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class InspectCommand : public dc::engine::Command {
+        class InspectCommand : public dc::game::Command {
         public:
             InspectCommand(dc::model::Game &game);
             virtual void execute() const override;

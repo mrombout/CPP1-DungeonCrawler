@@ -11,7 +11,7 @@ namespace dc {
 namespace dc {
     class CommandManager {
     public:
-        dc::engine::Command *create(std::string name) const;
+        dc::game::Command *create(std::string name) const;
     };
 }
 

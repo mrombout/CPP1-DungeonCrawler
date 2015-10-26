@@ -2,8 +2,7 @@
 #include "command.h"
 
 namespace dc {
-    namespace engine {
-
+    namespace game {
         Command::Command() {
 
         }

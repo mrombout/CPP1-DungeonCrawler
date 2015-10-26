@@ -6,7 +6,7 @@
 
 namespace dc {
     namespace game {
-        NewGameCommand::NewGameCommand(dc::engine::GameLoop &gameLoop) :
+        NewGameCommand::NewGameCommand(dc::game::GameLoop &gameLoop) :
                 mGameLoop(gameLoop) {
 
         }

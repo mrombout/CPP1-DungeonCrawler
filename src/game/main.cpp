@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
     // create game
-    dc::engine::GameLoop gameLoop;
+    dc::game::GameLoop gameLoop;
 
     // register services
     ServiceLocator &sl = ServiceLocator::getInstance();
@@ -17,13 +17,13 @@ int main(int argc, char *argv[])
     dc::game::RoomGenerator roomGenerator = dc::game::RoomGenerator(mobGenerator);
 
     // add instances
-    sl.addInstance<dc::engine::GameLoop>(gameLoop);
+    sl.addInstance<dc::game::GameLoop>(gameLoop);
     sl.addInstance<dc::game::MobGenerator>(mobGenerator);
     sl.addInstance<dc::game::RoomGenerator>(roomGenerator);
 
     // add factories
     sl.addFactory<dc::game::NewGameCommand>([](ServiceLocator &sl) {
-        return new dc::game::NewGameCommand(sl.resolve<dc::engine::GameLoop>());
+        return new dc::game::NewGameCommand(sl.resolve<dc::game::GameLoop>());
     });
 
     // start game

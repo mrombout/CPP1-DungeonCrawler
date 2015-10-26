@@ -5,10 +5,8 @@
 #include <string>
 
 namespace dc {
-    namespace engine {
-        class Command;
-    }
     namespace game {
+        class Command;
         class CombatState;
         class AttackCommand;
     }
@@ -20,7 +18,7 @@ namespace dc {
         public:
             CombatCommandManager(CombatState &combatState);
 
-            dc::engine::Command *create(std::string input) const;
+            dc::game::Command *create(std::string input) const;
 
         private:
             CombatState &mCombatState;

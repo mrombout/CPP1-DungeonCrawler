@@ -9,55 +9,52 @@
 #include "Room.h"
 
 namespace dc {
-namespace engine {
+    namespace game {
+        class State {
+        public:
+            State() :
+                    mIsInitialized(false) {
 
-class State
-{
-public:
-    State() :
-        mIsInitialized(false) {
+            }
 
+            virtual ~State() {
+
+            }
+
+            virtual void onInitialize(GameLoop *game) {
+
+            }
+
+            virtual void onEnter(GameLoop *game) {
+
+            }
+
+            virtual void onLeave(GameLoop *game) {
+
+            }
+
+            virtual std::string onRead() {
+                std::string input;
+                std::cin >> input;
+                return input;
+            }
+
+            virtual Command *onEval(std::string input) {
+                return 0;
+            }
+
+            virtual void onPrint(GameLoop &game, Command *command) {
+
+            }
+
+            bool isInitialized() const {
+                return mIsInitialized;
+            }
+
+        private:
+            bool mIsInitialized;
+        };
     }
-
-    virtual ~State() {
-
-    }
-
-    virtual void onInitialize(GameLoop * game) {
-
-    }
-
-    virtual void onEnter(GameLoop * game) {
-
-    }
-
-    virtual void onLeave(GameLoop * game) {
-
-    }
-
-    virtual std::string onRead() {
-        std::string input;
-        std::cin >> input;
-        return input;
-    }
-
-    virtual Command* onEval(std::string input) {
-        return 0;
-    }
-
-    virtual void onPrint(GameLoop &game, Command *command) {
-
-    }
-
-    bool isInitialized() const {
-        return mIsInitialized;
-    }
-
-private:
-    bool mIsInitialized;
-};
-
-}
 }
 
 #endif // STATE_H

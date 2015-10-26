@@ -14,17 +14,17 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class CombatState : public dc::engine::State {
+        class CombatState : public dc::game::State {
         public:
             CombatState(dc::model::Game &game);
 
             ~CombatState();
 
-            void onInitialize(dc::engine::GameLoop *game) override;
-            void onEnter(dc::engine::GameLoop *game) override;
+            void onInitialize(dc::game::GameLoop *game) override;
+            void onEnter(dc::game::GameLoop *game) override;
             std::string onRead() override;
-            dc::engine::Command *onEval(std::string input) override;
-            void onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) override;
+            dc::game::Command *onEval(std::string input) override;
+            void onPrint(dc::game::GameLoop &game, dc::game::Command *command) override;
 
         private:
             const dc::game::CombatCommandManager mCommandManager;

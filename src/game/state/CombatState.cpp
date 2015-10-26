@@ -23,11 +23,11 @@ namespace dc {
 
         }
 
-        void CombatState::onInitialize(dc::engine::GameLoop *game) {
+        void CombatState::onInitialize(dc::game::GameLoop *game) {
 
         }
 
-        void CombatState::onEnter(dc::engine::GameLoop *game) {
+        void CombatState::onEnter(dc::game::GameLoop *game) {
             std::cout << csl::color(csl::LIGHTRED) << "\nA group of enemies storm towards you." << csl::color(csl::GREY) << "\nYou prepare for battle." << std::endl;
         }
 
@@ -57,14 +57,14 @@ namespace dc {
             return input;
         }
 
-        dc::engine::Command *CombatState::onEval(std::string input) {
+        dc::game::Command *CombatState::onEval(std::string input) {
             // determine command
-            dc::engine::Command *command = mCommandManager.create(input);
+            dc::game::Command *command = mCommandManager.create(input);
 
             return command;
         }
 
-        void CombatState::onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) {
+        void CombatState::onPrint(dc::game::GameLoop &game, dc::game::Command *command) {
             // execute player turn
             command->execute();
 

@@ -3,44 +3,42 @@
 #include "util/console.h"
 
 namespace dc {
-namespace engine {
+    namespace game {
+        GameLoop::GameLoop() : StateManager(this) {
 
-    GameLoop::GameLoop() : StateManager(this) {
-        
-    }
+        }
 
-    GameLoop::~GameLoop() {
+        GameLoop::~GameLoop() {
 
-    }
+        }
 
-    void GameLoop::start() {
-        csl::log() << "START - GameLoop" << std::endl;
+        void GameLoop::start() {
+            csl::log() << "START - GameLoop" << std::endl;
 
-        if(currentState())
-            mLoop = true;
+            if(currentState())
+                mLoop = true;
 
-        do {
-            Command *command;
             do {
-                std::string input = read();
-                command = eval(input);
-            } while(!command);
+                Command *command;
+                do {
+                    std::string input = read();
+                    command = eval(input);
+                } while(!command);
 
-            onPrint(*this, command);
-            delete command;
-        } while(mLoop);
+                onPrint(*this, command);
+                delete command;
+            } while(mLoop);
+        }
+
+        void GameLoop::stop() {
+            csl::log() << "STOP - GameLoop";
+
+            mLoop = false;
+            quit();
+        }
+
+        void GameLoop::quit() {
+
+        }
     }
-
-    void GameLoop::stop() {
-        csl::log() << "STOP - GameLoop";
-
-        mLoop = false;
-        quit();
-    }
-
-    void GameLoop::quit() {
-        
-    }
-
-}
 }

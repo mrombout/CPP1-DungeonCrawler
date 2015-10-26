@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace dc {
-    namespace engine {
+    namespace game {
         class GameLoop;
         class State;
         class Command;
@@ -13,37 +13,35 @@ namespace dc {
 }
 
 namespace dc {
-namespace engine {
+    namespace game {
+        class StateManager
+        {
+        public:
+            StateManager(GameLoop *owner);
+            virtual ~StateManager() { }
 
-    class StateManager
-    {
-    public:
-        StateManager(GameLoop *owner);
-        virtual ~StateManager() { }
+            State * currentState() const;
 
-        State * currentState() const;
+            void pushState(State *state);
 
-        void pushState(State *state);
+            void setState(State *state);
 
-        void setState(State *state);
+            State * popState();
 
-        State * popState();
+            std::string read();
 
-        std::string read();
+            Command * eval(std::string input);
 
-        Command * eval(std::string input);
+            void onPrint(GameLoop &game, Command *command);
 
-        void onPrint(GameLoop &game, Command *command);
+            bool isInState(const State *state) const;
 
-        bool isInState(const State *state) const;
+        private:
+            GameLoop * mOwner;
 
-    private:
-        GameLoop * mOwner;
-
-        std::vector<State*> mStates;
-    };
-
-}
+            std::vector<State*> mStates;
+        };
+    }
 }
 
 #endif // STATEMANAGER_H

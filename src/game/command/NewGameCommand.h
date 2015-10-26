@@ -4,21 +4,21 @@
 #include "command.h"
 
 namespace dc {
-    namespace engine {
+    namespace game {
         class GameLoop;
     }
 }
 
 namespace dc {
     namespace game {
-        class NewGameCommand : public engine::Command {
+        class NewGameCommand : public game::Command {
         public:
-            NewGameCommand(dc::engine::GameLoop &gameLoop);
+            NewGameCommand(dc::game::GameLoop &gameLoop);
 
             virtual void execute() const override;
 
         private:
-            dc::engine::GameLoop &mGameLoop;
+            dc::game::GameLoop &mGameLoop;
         };
     }
 }

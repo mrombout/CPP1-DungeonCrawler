@@ -12,7 +12,7 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class GoToCommand: public engine::Command {
+        class GoToCommand: public game::Command {
         public:
             GoToCommand(std::string heading, dc::model::Player &player, dc::model::Passage &passage);
             virtual void execute() const override;

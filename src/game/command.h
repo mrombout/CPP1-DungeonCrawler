@@ -4,24 +4,22 @@
 #include "command/Parameters.h"
 
 namespace dc {
-    namespace engine {
+    namespace game {
         class GameLoop;
     }
 }
 
 namespace dc {
-namespace engine {
+    namespace game {
+        class Command {
+        public:
+            Command();
 
-    class Command
-    {
-    public:
-        Command();
-        virtual ~Command() { };
+            virtual ~Command() { };
 
-        virtual void execute() const = 0;
-    };
-
-}
+            virtual void execute() const = 0;
+        };
+    }
 }
 
 #endif // COMMAND_H

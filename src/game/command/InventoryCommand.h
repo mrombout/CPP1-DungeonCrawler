@@ -11,7 +11,7 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class InventoryCommand : public engine::Command {
+        class InventoryCommand : public game::Command {
         public:
             InventoryCommand(dc::model::Player &player);
             virtual void execute() const override;

@@ -3,7 +3,7 @@
 #include "state/GameplayState.h"
 
 namespace dc {
-    namespace engine {
+    namespace game {
         StateManager::StateManager(GameLoop *owner) : mOwner(owner),
                                                       mStates() { }
 

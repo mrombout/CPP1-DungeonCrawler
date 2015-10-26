@@ -14,10 +14,10 @@ namespace dc {
 
         }
 
-        dc::engine::Command *CombatCommandManager::create(std::string input) const {
+        dc::game::Command *CombatCommandManager::create(std::string input) const {
             Parameters parameters(input);
 
-            dc::engine::Command *command = nullptr;
+            dc::game::Command *command = nullptr;
             const std::string commandName = parameters.commandName();
             if(commandName == "attack") {
                 command = AttackCommand::create(parameters);

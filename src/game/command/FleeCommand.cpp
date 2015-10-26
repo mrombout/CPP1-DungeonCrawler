@@ -7,7 +7,7 @@
 
 namespace dc {
     namespace game {
-        FleeCommand::FleeCommand(dc::engine::GameLoop &gameLoop, dc::game::GoToCommand *command) :
+        FleeCommand::FleeCommand(dc::game::GameLoop &gameLoop, dc::game::GoToCommand *command) :
                 mGameLoop(gameLoop),
                 mGoToCommand(command) {
 
@@ -34,7 +34,7 @@ namespace dc {
             if(!goToCommand)
                 return nullptr;
 
-            dc::engine::GameLoop &gameLoop = ServiceLocator::getInstance().resolve<dc::engine::GameLoop>();
+            dc::game::GameLoop &gameLoop = ServiceLocator::getInstance().resolve<dc::game::GameLoop>();
 
             return new FleeCommand(gameLoop, goToCommand);
         }

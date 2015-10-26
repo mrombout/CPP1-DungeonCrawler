@@ -12,7 +12,7 @@ namespace dc {
 
         }
 
-        void WelcomeState::onInitialize(engine::GameLoop *game) {
+        void WelcomeState::onInitialize(game::GameLoop *game) {
             std::ifstream file("assets/intro.txt");
             std::string line;
 
@@ -22,7 +22,7 @@ namespace dc {
             }
         }
 
-        void WelcomeState::onEnter(engine::GameLoop *game) {
+        void WelcomeState::onEnter(game::GameLoop *game) {
             std::cout << mWelcomeMsg << std::endl;
         }
 
@@ -36,7 +36,7 @@ namespace dc {
             return input;
         }
 
-        engine::Command *WelcomeState::onEval(std::string input) {
+        dc::game::Command *WelcomeState::onEval(std::string input) {
             if (input == "n") {
                 return ServiceLocator::getInstance().create<NewGameCommand>();
             }
@@ -44,7 +44,7 @@ namespace dc {
             return nullptr;
         }
 
-        void WelcomeState::onPrint(engine::GameLoop &game, engine::Command *command) {
+        void WelcomeState::onPrint(game::GameLoop &game, game::Command *command) {
             command->execute();
         }
     }

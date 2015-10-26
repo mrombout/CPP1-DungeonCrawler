@@ -13,7 +13,7 @@ namespace dc {
 
 namespace dc {
 	namespace game {
-		class MapCommand : public engine::Command {
+		class MapCommand : public game::Command {
 		public:
 			MapCommand(dc::model::Player &player);
 			virtual void execute() const override;

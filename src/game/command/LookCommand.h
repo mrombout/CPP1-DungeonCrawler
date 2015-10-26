@@ -11,7 +11,7 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class LookCommand : public engine::Command {
+        class LookCommand : public game::Command {
         public:
             LookCommand(dc::model::Player &player);
             virtual void execute() const override;

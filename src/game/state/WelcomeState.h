@@ -7,19 +7,19 @@
 
 namespace dc {
     namespace game {
-        class WelcomeState : public engine::State {
+        class WelcomeState : public game::State {
         public:
             WelcomeState();
 
-            void onInitialize(engine::GameLoop *game) override;
+            void onInitialize(game::GameLoop *game) override;
 
-            void onEnter(engine::GameLoop *game) override;
+            void onEnter(game::GameLoop *game) override;
 
             std::string onRead() override;
 
-            engine::Command *onEval(std::string input) override;
+            game::Command *onEval(std::string input) override;
 
-            void onPrint(engine::GameLoop &game, engine::Command *command) override;
+            void onPrint(game::GameLoop &game, game::Command *command) override;
 
         private:
             std::string mWelcomeMsg;

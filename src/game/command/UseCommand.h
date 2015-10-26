@@ -12,7 +12,7 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class UseCommand : public dc::engine::Command {
+        class UseCommand : public dc::game::Command {
         public:
             UseCommand(dc::model::Player &player);
             virtual void execute() const override;

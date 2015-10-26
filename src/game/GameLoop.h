@@ -6,8 +6,7 @@
 #include "statemanager.h"
 
 namespace dc {
-    namespace engine {
-
+    namespace game {
         class GameLoop : public StateManager {
         public:
             explicit GameLoop();

@@ -15,24 +15,24 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class GameplayState : public engine::State {
+        class GameplayState : public game::State {
         public:
             GameplayState();
             ~GameplayState();
 
-            void onInitialize(engine::GameLoop *game) override;
-            void onEnter(engine::GameLoop *game) override;
+            void onInitialize(game::GameLoop *game) override;
+            void onEnter(game::GameLoop *game) override;
             std::string onRead() override;
-            engine::Command *onEval(std::string input) override;
-            void onPrint(engine::GameLoop &game, engine::Command *command) override;
+            game::Command *onEval(std::string input) override;
+            void onPrint(game::GameLoop &game, game::Command *command) override;
 
-            void updateEnemies(engine::GameLoop &game) const;
+            void updateEnemies(game::GameLoop &game) const;
 
         private:
             const CommandManager mCommandManager;
             model::Game *mGame;
 
-            void springTraps(engine::GameLoop &loop);
+            void springTraps(game::GameLoop &loop);
         };
     }
 }

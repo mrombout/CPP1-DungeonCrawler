@@ -11,7 +11,7 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class StatsCommand : public dc::engine::Command {
+        class StatsCommand : public dc::game::Command {
         public:
             StatsCommand(dc::model::Player &player);
             virtual void execute() const override;

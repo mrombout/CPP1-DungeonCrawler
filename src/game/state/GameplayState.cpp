@@ -29,7 +29,7 @@ namespace dc {
         }
 
 
-        void GameplayState::onInitialize(engine::GameLoop *game) {
+        void GameplayState::onInitialize(game::GameLoop *game) {
             // generate random dungeon
             unsigned int seed = 1;
 
@@ -56,7 +56,7 @@ namespace dc {
             ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);
         }
 
-        void GameplayState::onEnter(engine::GameLoop *game) {
+        void GameplayState::onEnter(game::GameLoop *game) {
 
         }
 
@@ -70,8 +70,8 @@ namespace dc {
             return input;
         }
 
-        engine::Command *GameplayState::onEval(std::string input) {
-            engine::Command *command = mCommandManager.create(input);
+        game::Command *GameplayState::onEval(std::string input) {
+            game::Command *command = mCommandManager.create(input);
             if(!command) {
                 std::cout << csl::color(csl::RED) << "Command not recognized" << std::endl;
                 // TODO: Cache this NullCommand
@@ -82,15 +82,15 @@ namespace dc {
         }
 
         // TODO: Duplicate code in WelcomeState
-        void GameplayState::onPrint(engine::GameLoop &game, engine::Command *command) {
-            //engine::CommandParameters cp(ServiceLocator::getInstance().resolve<dc::engine::GameLoop>(), mGame->player(), *this);
+        void GameplayState::onPrint(game::GameLoop &game, game::Command *command) {
+            //game::CommandParameters cp(ServiceLocator::getInstance().resolve<dc::game::GameLoop>(), mGame->player(), *this);
             command->execute();
 
             updateEnemies(game);
             springTraps(game);
         }
 
-        void GameplayState::updateEnemies(engine::GameLoop &game) const {
+        void GameplayState::updateEnemies(game::GameLoop &game) const {
             std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room().mobs();
             if(!mobs.empty()) {
@@ -98,7 +98,7 @@ namespace dc {
             }
         }
 
-        void GameplayState::springTraps(engine::GameLoop &game) {
+        void GameplayState::springTraps(game::GameLoop &game) {
             const std::vector<dc::model::Trap*> &traps = mGame->player().room().traps();
             if(!traps.empty()) {
                 std::cout << "You hear a sudden click, ever so lightly echo through the room...\n";

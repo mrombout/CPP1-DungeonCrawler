@@ -13,7 +13,7 @@ namespace dc {
 
 namespace dc {
     namespace game {
-        class AttackCommand : public dc::engine::Command {
+        class AttackCommand : public dc::game::Command {
         public:
             AttackCommand(dc::model::Player &player, dc::model::Mob &mob);
 
