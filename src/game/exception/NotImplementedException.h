@@ -3,12 +3,16 @@
 
 #include <stdexcept>
 
-class NotImplementedException : public std::logic_error {
-public:
-    NotImplementedException() :
-            std::logic_error("Test") {
+namespace dc {
+    namespace game {
+        class NotImplementedException : public std::logic_error {
+        public:
+            NotImplementedException() :
+                    std::logic_error("Test") {
 
+            }
+        };
     }
-};
+}
 
 #endif //DUNGEONCRAWLER_NOTIMPLEMENTEDEXCEPTION_H
