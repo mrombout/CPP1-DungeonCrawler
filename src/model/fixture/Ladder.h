@@ -11,7 +11,7 @@ namespace dc {
 
 namespace dc {
     namespace model {
-        class Ladder : Fixture {
+        class Ladder : public Fixture {
         public:
             Ladder(Room &toRoom);
 

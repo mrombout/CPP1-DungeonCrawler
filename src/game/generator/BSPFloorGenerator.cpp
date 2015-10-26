@@ -55,8 +55,6 @@ namespace dc {
             dc::model::Room *staircaseUp = determineStaircaseUp(rooms, root);
             dc::model::Room *staircaseDown = determineStaircaseDown(rooms, root);
 
-
-
             return new dc::model::Floor(level, rooms, staircaseUp, staircaseDown);
         }
 
@@ -158,13 +156,13 @@ namespace dc {
         dc::model::Room *BSPFloorGenerator::determineStaircaseDown(std::vector<std::vector<dc::model::Room*>> &vector, Leaf *root) {
             // Find smallest leaf on the top left
             Leaf *bottomRightRoom = root;
-            while(bottomRightRoom->rightChild() && bottomRightRoom->rightChild()->room()) {
+            while(bottomRightRoom->rightChild()) {
                 bottomRightRoom = bottomRightRoom->rightChild();
             }
 
             // find room
             dc::game::Rectangle *rect = bottomRightRoom->room();
-            return vector[rect->bottom()][rect->right()];
+            return vector[rect->top()][rect->left()];
         }
     }
 }

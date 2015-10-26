@@ -50,7 +50,7 @@ namespace dc {
 
             model::Inventory *inventory = new model::Inventory(items);
             
-            model::Player *player = new model::Player(&dungeon->floor(0).startRoom(), inventory);
+            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom(), inventory);
 
             mGame = new model::Game(dungeon, player);
             ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);

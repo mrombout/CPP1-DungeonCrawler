@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Room.h"
 #include "Player.h"
+#include "item/Item.h"
 #include "util/console.h"
 #include "util/ServiceLocator.h"
 #include "util/Render.h"
@@ -44,9 +45,18 @@ namespace dc {
 
         // list monsters
         if(!room->mobs().empty()) {
-            std::cout << "\n\n" << csl::color(csl::RED) << "In the darkness of the rooms lurk:" << "\n";
+            std::cout << csl::color(csl::RED) << "\n\nIn the darkness of the rooms lurk: \n";
             const std::vector<dc::model::Mob*> &mobs = room->mobs();
             Render::mobList(mobs);
+        }
+
+        // items
+        if(!room->inventory().items().empty()) {
+            std::cout << "\nIn the room you see:\n";
+            for(dc::model::Item *item : room->inventory().items()) {
+                std::cout << "- a " << item->name() << "\n";
+                std::cout << "\t" << csl::color(csl::DARKGREY) << item->description() << "\n";
+            }
         }
 
         std::cout << std::endl;

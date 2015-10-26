@@ -14,6 +14,7 @@ namespace dc {
     namespace model {
         class Inventory {
         public:
+            Inventory();
             Inventory(std::vector<Item*> items);
             ~Inventory();
 
@@ -22,6 +23,10 @@ namespace dc {
             void add(Item &item);
 
             std::string description() const;
+
+            const std::vector<Item*> &items() const;
+            void addItem(Item &item);
+            bool removeItem(Item &item);
         private:
             std::vector<Item*> mItems;
         };

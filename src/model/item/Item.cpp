@@ -23,7 +23,7 @@ namespace dc {
         }
 
         void Item::pickUp(Player &player) {
-            if(!player.room()->removeItem(this)) {
+            if(!player.room()->inventory().removeItem(*this)) {
                 std::cout << "You can't pick that up!" << std::endl;
             }
 

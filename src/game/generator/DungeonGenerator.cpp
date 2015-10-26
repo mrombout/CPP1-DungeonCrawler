@@ -1,8 +1,12 @@
 #include <stdlib.h>
+#include "fixture/Ladder.h"
+#include "factory/ItemFactory.h"
 #include "DungeonGenerator.h"
 #include "Dungeon.h"
 #include "FloorGenerator.h"
 #include "StringGenerator.h"
+#include "Floor.h"
+#include "Room.h"
 
 using namespace dc::model;
 
@@ -58,9 +62,27 @@ namespace dc {
             std::vector<Floor*> dFloors = std::vector<Floor*>();
 
             //int numFloors = rand() % 10 + 1;
-            int numFloors = 1;
+            Floor *previousFloor = nullptr;
+            Floor *currentFloor = nullptr;
+            int numFloors = 2;
             for(int i = 1; i <= numFloors; ++i) {
-                dFloors.push_back(generateDungeonFloor(i));
+                previousFloor = currentFloor;
+                currentFloor = generateDungeonFloor(i);
+                dFloors.push_back(currentFloor);
+
+                if(previousFloor) {
+                    Room &previousStart = previousFloor->startRoom();
+                    Room &previousEnd = previousFloor->exitRoom();
+                    Room &currentStart = currentFloor->startRoom();
+                    Room &currentExit = currentFloor->exitRoom();
+
+                    // connect currentStart to previousEnd
+                    Ladder *ladderToCurrentStart = ItemFactory::createLadder(currentStart);
+                    Ladder *ladderToPreviousEnd = ItemFactory::createLadder(previousEnd);
+
+                    currentStart.inventory().addItem(*ladderToPreviousEnd);
+                    previousEnd.inventory().addItem(*ladderToCurrentStart);
+                }
             }
 
             return new Dungeon(seed, dName, dFloors);

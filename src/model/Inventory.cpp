@@ -1,8 +1,13 @@
+#include <algorithm>
 #include "Inventory.h"
 #include "item/Item.h"
 
 namespace dc {
     namespace model {
+        Inventory::Inventory() {
+
+        }
+
         Inventory::Inventory(std::vector<Item*> items) :
                 mItems(items) {
 
@@ -40,6 +45,18 @@ namespace dc {
             }
 
             return listing;
+        }
+
+        const std::vector<Item *> &Inventory::items() const {
+            return mItems;
+        }
+
+        void Inventory::addItem(Item &item) {
+            mItems.push_back(&item);
+        }
+
+        bool Inventory::removeItem(Item &item) {
+            mItems.erase(std::remove(mItems.begin(), mItems.end(), &item), mItems.end());
         }
     }
 }
