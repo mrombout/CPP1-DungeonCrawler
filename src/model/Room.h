@@ -11,6 +11,7 @@ namespace dc {
         class Trap;
         class Floor;
         class Mob;
+        class Item;
     }
 }
 
@@ -47,6 +48,10 @@ namespace dc {
             Floor *floor() const;
             void setFloor(Floor* floor);
 
+            const std::vector<Item*> &items() const;
+            void addItem(Item* item);
+            bool removeItem(Item* item);
+
             const std::vector<Trap*> &traps() const;
             void addTrap(Trap* trap);
 
@@ -68,6 +73,7 @@ namespace dc {
 
             Floor *mFloor;
 
+            std::vector<Item*> mItems;
             std::vector<Trap*> mTraps;
             std::vector<Mob*> mMobs;
         };

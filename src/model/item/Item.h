@@ -2,6 +2,13 @@
 #define DUNGEONCRAWLER_ITEM_H
 
 #include <string>
+#include <Character.h>
+
+namespace dc {
+    namespace model {
+        class Player;
+    }
+}
 
 namespace dc {
     namespace model {
@@ -10,7 +17,8 @@ namespace dc {
             Item(std::string name, std::string description);
             virtual ~Item() { }
 
-            virtual void use();
+            virtual void pickUp(Player &player);
+            virtual void use(Character &character);
 
             bool partialMatch(const std::string &name) const;
 

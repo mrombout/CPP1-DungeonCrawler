@@ -36,7 +36,7 @@ namespace dc {
 
             dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
             dc::model::Player &player = game.player();
-            Render::mobList(player.room().mobs());
+            Render::mobList(player.room()->mobs());
             std::cout << "\n";
 
             int health = player.health();

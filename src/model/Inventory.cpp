@@ -1,4 +1,5 @@
 #include "Inventory.h"
+#include "item/Item.h"
 
 namespace dc {
     namespace model {
@@ -13,6 +14,20 @@ namespace dc {
             }
         }
 
+        Item *Inventory::findItem(const std::string &itemName) const {
+            for(Item *item : mItems) {
+                if(item->partialMatch(itemName)) {
+                    return item;
+                }
+            }
+
+            return nullptr;
+        }
+
+        void Inventory::add(Item &item) {
+            mItems.push_back(&item);
+        }
+
         std::string Inventory::description() const {
             std::string listing ("");
 
@@ -25,16 +40,6 @@ namespace dc {
             }
 
             return listing;
-        }
-
-        Item *Inventory::findItem(const std::string &itemName) const {
-            for(Item *item : mItems) {
-                if(item->partialMatch(itemName)) {
-                    return item;
-                }
-            }
-
-            return nullptr;
         }
     }
 }

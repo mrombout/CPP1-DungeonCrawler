@@ -10,10 +10,10 @@ void dc::model::TeleportTrap::onSpring(dc::model::Player &player) {
     std::cout << "Poof!\n";
     std::cout << "You suddenly find yourself in a different room, though it's almost like you've been here before.\n";
 
-    dc::model::Room &room = player.room();
-    dc::model::Floor &floor = *room.floor();
+    dc::model::Room *room = player.room();
+    dc::model::Floor &floor = *room->floor();
 
-    player.setRoom(floor.startRoom());
+    player.setRoom(&floor.startRoom());
 
     std::cout << "You have been teleported to the start room." << std::endl;
 }

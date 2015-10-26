@@ -9,15 +9,12 @@ namespace dc {
     namespace model {
         class Player : public Character {
         public:
-            Player(Room &room, Inventory *inventory);
+            Player(Room *room, Inventory *inventory);
 
-            Room &room() const;
             Inventory &inventory() const;
-            void setRoom(Room &room);
 
         private:
             Inventory *mInventory;
-            Room *mRoom;
         };
     }
 }

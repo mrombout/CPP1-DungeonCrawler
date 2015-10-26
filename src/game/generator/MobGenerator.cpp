@@ -1,4 +1,5 @@
 #include <vector>
+#include "Mob.h"
 #include "MobGenerator.h"
 #include "StringGenerator.h"
 

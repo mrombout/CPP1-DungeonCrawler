@@ -112,6 +112,20 @@ namespace dc {
             mPosition = point;
         }
 
+        const std::vector<Item *> &Room::items() const {
+            return mItems;
+        }
+
+        void Room::addItem(Item *item) {
+            mItems.push_back(item);
+        }
+
+        bool Room::removeItem(Item *item) {
+            auto it = mItems.erase(std::remove(mItems.begin(), mItems.end(), item), mItems.end());
+
+            return mItems.end() != it;
+        }
+
         const std::vector<Trap*> &Room::traps() const {
             return mTraps;
         }

@@ -55,6 +55,8 @@ namespace dc {
             dc::model::Room *staircaseUp = determineStaircaseUp(rooms, root);
             dc::model::Room *staircaseDown = determineStaircaseDown(rooms, root);
 
+
+
             return new dc::model::Floor(level, rooms, staircaseUp, staircaseDown);
         }
 
