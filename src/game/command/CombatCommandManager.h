@@ -8,10 +8,11 @@ namespace dc {
     namespace engine {
         class Command;
     }
+    namespace game {
+        class CombatState;
+        class AttackCommand;
+    }
 }
-
-class CombatState;
-class AttackCommand;
 
 namespace dc {
     namespace game {

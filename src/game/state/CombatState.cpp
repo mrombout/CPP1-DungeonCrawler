@@ -11,60 +11,64 @@
 #include "util/ServiceLocator.h"
 #include "util/Render.h"
 
-CombatState::CombatState(dc::model::Game &game) :
-        mCommandManager(*this),
-        mGame(game) {
+namespace dc {
+    namespace game {
+        CombatState::CombatState(dc::model::Game &game) :
+                mCommandManager(*this),
+                mGame(game) {
 
-}
+        }
 
-CombatState::~CombatState() {
+        CombatState::~CombatState() {
 
-}
+        }
 
-void CombatState::onInitialize(dc::engine::GameLoop *game) {
+        void CombatState::onInitialize(dc::engine::GameLoop *game) {
 
-}
+        }
 
-void CombatState::onEnter(dc::engine::GameLoop *game) {
-    std::cout << csl::color(csl::LIGHTRED) << "\nA group of enemies storm towards you." << csl::color(csl::GREY) << "\nYou prepare for battle." << std::endl;
-}
+        void CombatState::onEnter(dc::engine::GameLoop *game) {
+            std::cout << csl::color(csl::LIGHTRED) << "\nA group of enemies storm towards you." << csl::color(csl::GREY) << "\nYou prepare for battle." << std::endl;
+        }
 
-std::string CombatState::onRead() {
-    std::cout << csl::color(csl::RED) << "You are in combat!\n\n" << csl::color(csl::WHITE) << "In front of you stand:" << std::endl;
+        std::string CombatState::onRead() {
+            std::cout << csl::color(csl::RED) << "You are in combat!\n\n" << csl::color(csl::WHITE) << "In front of you stand:" << std::endl;
 
-    dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
-    dc::model::Player &player = game.player();
-    Render::mobList(player.room().mobs());
-    std::cout << "\n";
+            dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
+            dc::model::Player &player = game.player();
+            Render::mobList(player.room().mobs());
+            std::cout << "\n";
 
-    int health = player.health();
-    unsigned int maxHealth = player.maxHealth();
+            int health = player.health();
+            unsigned int maxHealth = player.maxHealth();
 
-    std::cout << csl::color(csl::GREEN) << "(";
-    if(health < maxHealth / 2) {
-        std::cout << csl::color(csl::RED);
-    } else {
-        std::cout << csl::color(csl::GREEN);
+            std::cout << csl::color(csl::GREEN) << "(";
+            if(health < maxHealth / 2) {
+                std::cout << csl::color(csl::RED);
+            } else {
+                std::cout << csl::color(csl::GREEN);
+            }
+            std::cout << player.health() << csl::color(csl::GREEN) << "/" << player.maxHealth() << ")" << csl::color(csl::GREY) << ">";
+
+            std::string input;
+
+            std::getline(std::cin, input);
+
+            return input;
+        }
+
+        dc::engine::Command *CombatState::onEval(std::string input) {
+            // determine command
+            dc::engine::Command *command = mCommandManager.create(input);
+
+            return command;
+        }
+
+        void CombatState::onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) {
+            // execute player turn
+            command->execute();
+
+            // execute enemies turn
+        }
     }
-    std::cout << player.health() << csl::color(csl::GREEN) << "/" << player.maxHealth() << ")" << csl::color(csl::GREY) << ">";
-
-    std::string input;
-
-    std::getline(std::cin, input);
-
-    return input;
-}
-
-dc::engine::Command *CombatState::onEval(std::string input) {
-    // determine command
-    dc::engine::Command *command = mCommandManager.create(input);
-
-    return command;
-}
-
-void CombatState::onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) {
-    // execute player turn
-    command->execute();
-
-    // execute enemies turn
 }

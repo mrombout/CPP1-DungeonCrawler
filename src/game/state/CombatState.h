@@ -12,21 +12,25 @@ namespace dc {
     }
 }
 
-class CombatState : public dc::engine::State {
-public:
-    CombatState(dc::model::Game &game);
+namespace dc {
+    namespace game {
+        class CombatState : public dc::engine::State {
+        public:
+            CombatState(dc::model::Game &game);
 
-    ~CombatState();
+            ~CombatState();
 
-    void onInitialize(dc::engine::GameLoop *game) override;
-    void onEnter(dc::engine::GameLoop *game) override;
-    std::string onRead() override;
-    dc::engine::Command *onEval(std::string input) override;
-    void onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) override;
+            void onInitialize(dc::engine::GameLoop *game) override;
+            void onEnter(dc::engine::GameLoop *game) override;
+            std::string onRead() override;
+            dc::engine::Command *onEval(std::string input) override;
+            void onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) override;
 
-private:
-    const dc::game::CombatCommandManager mCommandManager;
-    dc::model::Game &mGame;
-};
+        private:
+            const dc::game::CombatCommandManager mCommandManager;
+            dc::model::Game &mGame;
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_COMBATSTATE_H
