@@ -58,6 +58,8 @@ namespace dc {
             void addMob(Mob* mob);
             void removeMob(Mob* mob);
 
+            char repr() const;
+
         private:
             Point mPosition;
 

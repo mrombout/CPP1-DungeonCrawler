@@ -59,7 +59,7 @@ namespace dc {
 					queue.push(&otherRoom);
 
 					Point position = otherRoom.position();
-					mGrid[(position.y() + 1) * 2][(position.x() + 1) * 2] = '#';
+					mGrid[(position.y() + 1) * 2][(position.x() + 1) * 2] = otherRoom.repr();
 					i++;
 				}
 			}
