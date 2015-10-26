@@ -1,5 +1,9 @@
 #include "FloorGenerator.h"
 
-FloorGenerator::~FloorGenerator() {
+namespace dc {
+    namespace game {
+        FloorGenerator::~FloorGenerator() {
 
+        }
+    }
 }

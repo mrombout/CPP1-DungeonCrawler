@@ -3,9 +3,13 @@
 
 #include "Mob.h"
 
-class MobGenerator {
-public:
-    static dc::model::Mob *generate(unsigned int level);
-};
+namespace dc {
+    namespace game {
+        class MobGenerator {
+        public:
+            static dc::model::Mob *generate(unsigned int level);
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_MOBGENERATOR_H

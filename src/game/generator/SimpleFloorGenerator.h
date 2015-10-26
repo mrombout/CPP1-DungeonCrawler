@@ -14,33 +14,36 @@ namespace dc {
     }
 }
 
-/**
- * Generates a random floor consisting of a random number of rooms in a random
- * layout using a simple algorithm inspired by the depth-first search
- * algorithm.
- */
-class SimpleFloorGenerator : public FloorGenerator {
-public:
-    explicit SimpleFloorGenerator(RoomGenerator &roomGenerator);
+namespace dc {
+    namespace game {
+        /**
+         * Generates a random floor consisting of a random number of rooms in a random
+         * layout using a simple algorithm inspired by the depth-first search
+         * algorithm.
+         */
+        class SimpleFloorGenerator : public FloorGenerator {
+        public:
+            explicit SimpleFloorGenerator(RoomGenerator &roomGenerator);
 
-	dc::model::Floor *generate(unsigned int level) override;
+            dc::model::Floor *generate(unsigned int level) override;
 
-private:
-    unsigned int mWidth;
-    unsigned int mHeight;
+        private:
+            unsigned int mWidth;
+            unsigned int mHeight;
 
-    std::vector<std::vector<dc::model::Room*>> mGrid;
+            std::vector<std::vector<dc::model::Room*>> mGrid;
 
-	RoomGenerator &mRoomGenerator;
+            RoomGenerator &mRoomGenerator;
 
-    void dig(dc::model::Room *room, Point point, unsigned int &level);
-	void reset();
+            void dig(dc::model::Room *room, Point point, unsigned int &level);
+            void reset();
 
-	dc::model::Room *createRoom(unsigned int &level);
+            dc::model::Room *createRoom(unsigned int &level);
 
-    dc::model::Passage::Direction getRandomNeighbour(const dc::model::Room &room, const Point &point) const;
-    bool isVisited(int x, int y) const;
-};
-
+            dc::model::Passage::Direction getRandomNeighbour(const dc::model::Room &room, const Point &point) const;
+            bool isVisited(int x, int y) const;
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_BSPFLOORGENERATOR_H

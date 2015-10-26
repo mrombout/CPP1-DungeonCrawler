@@ -4,40 +4,44 @@
 #include <vector>
 #include "Rectangle.h"
 
-class Leaf {
-public:
-    static int MIN_LEAF_SIZE;
+namespace dc {
+    namespace game {
+        class Leaf {
+        public:
+            static int MIN_LEAF_SIZE;
 
-    Leaf(int x, int y, int width, int height);
-    ~Leaf();
+            Leaf(int x, int y, int width, int height);
+            ~Leaf();
 
-    bool split();
-    void createRooms();
-    void createHall(dc::Rectangle *l, dc::Rectangle *r);
+            bool split();
+            void createRooms();
+            void createHall(dc::game::Rectangle *l, dc::game::Rectangle *r);
 
-    int x() const;
-    int y() const;
-    int width() const;
-    int height() const;
+            int x() const;
+            int y() const;
+            int width() const;
+            int height() const;
 
-    Leaf *leftChild() const;
-    Leaf *rightChild() const;
+            Leaf *leftChild() const;
+            Leaf *rightChild() const;
 
-    dc::Rectangle *room() const;
-    const std::vector<dc::Rectangle*> &halls() const;
+            dc::game::Rectangle *room() const;
+            const std::vector<dc::game::Rectangle*> &halls() const;
 
-private:
-    int mX;
-    int mY;
-    int mWidth;
-    int mHeight;
+        private:
+            int mX;
+            int mY;
+            int mWidth;
+            int mHeight;
 
-    Leaf *mLeftChild;
-    Leaf *mRightChild;
+            Leaf *mLeftChild;
+            Leaf *mRightChild;
 
-    dc::Rectangle *mRoom;
-    std::vector<dc::Rectangle*> mHalls;
-    // TODO: Halls
-};
+            dc::game::Rectangle *mRoom;
+            std::vector<dc::game::Rectangle*> mHalls;
+            // TODO: Halls
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_LEAF_H

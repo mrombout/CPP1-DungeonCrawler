@@ -10,23 +10,30 @@ namespace dc {
     }
 }
 
-class FloorGenerator;
+namespace dc {
+    namespace game {
+        class FloorGenerator;
+    }
+}
 
-/**
- * Generates a new dungeon consisting of a random number of floors.
- */
-class DungeonGenerator {
-public:
-    DungeonGenerator(FloorGenerator &floorGenerator);
+namespace dc {
+    namespace game {
+        /**
+         * Generates a new dungeon consisting of a random number of floors.
+         */
+        class DungeonGenerator {
+        public:
+            DungeonGenerator(FloorGenerator &floorGenerator);
 
-    dc::model::Dungeon *generate(unsigned int seed) const;
+            dc::model::Dungeon *generate(unsigned int seed) const;
 
-private:
-    std::string generateDungeonName() const;
-    dc::model::Floor *generateDungeonFloor(int level) const;
+        private:
+            std::string generateDungeonName() const;
+            dc::model::Floor *generateDungeonFloor(int level) const;
 
-    FloorGenerator &mFloorGenerator;
-};
-
+            FloorGenerator &mFloorGenerator;
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_DUNGEONGENERATOR_H

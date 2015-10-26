@@ -3,12 +3,15 @@
 
 #include "Floor.h"
 
-class FloorGenerator {
-public:
-	virtual ~FloorGenerator();
+namespace dc {
+	namespace game {
+		class FloorGenerator {
+		public:
+			virtual ~FloorGenerator();
 
-	virtual dc::model::Floor *generate(unsigned int level) = 0;
-};
-
+			virtual dc::model::Floor *generate(unsigned int level) = 0;
+		};
+	}
+}
 
 #endif //DUNGEONCRAWLER_FLOORGENERATOR_H

@@ -44,56 +44,60 @@ std::vector<std::string> dungeonNoun {
     "Order"
 };
 
-DungeonGenerator::DungeonGenerator(FloorGenerator &floorGenerator) :
-        mFloorGenerator(floorGenerator) {
+namespace dc {
+    namespace game {
+        DungeonGenerator::DungeonGenerator(FloorGenerator &floorGenerator) :
+                mFloorGenerator(floorGenerator) {
 
-}
+        }
 
-Dungeon *DungeonGenerator::generate(unsigned int seed) const {
-    srand(seed);
+        model::Dungeon *DungeonGenerator::generate(unsigned int seed) const {
+            srand(seed);
 
-    std::string dName = generateDungeonName();
-    std::vector<Floor*> dFloors = std::vector<Floor*>();
+            std::string dName = generateDungeonName();
+            std::vector<Floor*> dFloors = std::vector<Floor*>();
 
-    //int numFloors = rand() % 10 + 1;
-    int numFloors = 1;
-    for(int i = 1; i <= numFloors; ++i) {
-        dFloors.push_back(generateDungeonFloor(i));
+            //int numFloors = rand() % 10 + 1;
+            int numFloors = 1;
+            for(int i = 1; i <= numFloors; ++i) {
+                dFloors.push_back(generateDungeonFloor(i));
+            }
+
+            return new Dungeon(seed, dName, dFloors);
+        }
+
+        std::string DungeonGenerator::generateDungeonName() const {
+            std::string dungeonName;
+
+            if(rand() % 100 > 50) {
+                std::vector<std::vector<std::string>> source{
+                        dungeonTypes,
+                        dungeonAdjective,
+                        dungeonNoun
+                };
+                std::vector<std::string> words = StringGenerator::generate(source);
+
+                dungeonName.append(words[0]);
+                dungeonName.append(" of the ");
+                dungeonName.append(words[1] + " ");
+                dungeonName.append(words[2]);
+            } else {
+                std::vector<std::vector<std::string>> source{
+                        dungeonAdjective,
+                        dungeonTypes
+                };
+                std::vector<std::string> words = StringGenerator::generate(source);
+
+                dungeonName.append("The ");
+                dungeonName.append(words[0]);
+                dungeonName.append(words[1]);
+            }
+
+            return dungeonName;
+        }
+
+        Floor *DungeonGenerator::generateDungeonFloor(int level) const {
+            return mFloorGenerator.generate(level);
+        }
     }
-
-    return new Dungeon(seed, dName, dFloors);
-}
-
-std::string DungeonGenerator::generateDungeonName() const {
-    std::string dungeonName;
-
-    if(rand() % 100 > 50) {
-        std::vector<std::vector<std::string>> source{
-            dungeonTypes,
-            dungeonAdjective,
-            dungeonNoun
-        };
-        std::vector<std::string> words = StringGenerator::generate(source);
-
-        dungeonName.append(words[0]);
-        dungeonName.append(" of the ");
-        dungeonName.append(words[1] + " ");
-        dungeonName.append(words[2]);
-    } else {
-        std::vector<std::vector<std::string>> source{
-                dungeonAdjective,
-                dungeonTypes
-        };
-        std::vector<std::string> words = StringGenerator::generate(source);
-
-        dungeonName.append("The ");
-        dungeonName.append(words[0]);
-        dungeonName.append(words[1]);
-    }
-
-    return dungeonName;
-}
-
-Floor *DungeonGenerator::generateDungeonFloor(int level) const {
-    return mFloorGenerator.generate(level);
 }
