@@ -2,20 +2,17 @@
 #define DUNGEONCRAWLER_COMMANDMANAGER_H
 
 #include <string>
+#include "command.h"
 
 namespace dc {
-    namespace engine {
-        class Command;
-    }
+    class Command;
 }
 
 namespace dc {
-    namespace game {
-        class CommandManager {
-        public:
-            engine::Command *create(std::string name) const;
-        };
-    }
+    class CommandManager {
+    public:
+        dc::engine::Command *create(std::string name) const;
+    };
 }
 
 #endif //DUNGEONCRAWLER_COMMANDMANAGER_H

@@ -9,15 +9,19 @@ namespace dc {
     }
 }
 
-class StatsCommand : public dc::engine::Command {
-public:
-    StatsCommand(dc::model::Player &player);
-    virtual void execute() const override;
+namespace dc {
+    namespace game {
+        class StatsCommand : public dc::engine::Command {
+        public:
+            StatsCommand(dc::model::Player &player);
+            virtual void execute() const override;
 
-    static StatsCommand *create(Parameters parameters);
+            static StatsCommand *create(Parameters parameters);
 
-private:
-    dc::model::Player &mPlayer;
-};
+        private:
+            dc::model::Player &mPlayer;
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_STATSCOMMAND_H

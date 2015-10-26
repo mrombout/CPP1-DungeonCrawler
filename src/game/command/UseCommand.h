@@ -10,15 +10,19 @@ namespace dc {
     }
 }
 
-class UseCommand : public dc::engine::Command {
-public:
-    UseCommand(dc::model::Player &player);
-    virtual void execute() const override;
+namespace dc {
+    namespace game {
+        class UseCommand : public dc::engine::Command {
+        public:
+            UseCommand(dc::model::Player &player);
+            virtual void execute() const override;
 
-    static UseCommand *create(Parameters parameters);
+            static UseCommand *create(Parameters parameters);
 
-private:
-    dc::model::Player &mPlayer;
-};
+        private:
+            dc::model::Player &mPlayer;
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_USECOMMAND_H

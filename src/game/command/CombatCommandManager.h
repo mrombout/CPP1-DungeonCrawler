@@ -13,14 +13,18 @@ namespace dc {
 class CombatState;
 class AttackCommand;
 
-class CombatCommandManager {
-public:
-    CombatCommandManager(CombatState &combatState);
+namespace dc {
+    namespace game {
+        class CombatCommandManager {
+        public:
+            CombatCommandManager(CombatState &combatState);
 
-    dc::engine::Command *create(std::string input) const;
+            dc::engine::Command *create(std::string input) const;
 
-private:
-    CombatState &mCombatState;
-};
+        private:
+            CombatState &mCombatState;
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_COMBATCOMMANDMANAGER_H

@@ -14,34 +14,32 @@
 #include "util/ServiceLocator.h"
 
 namespace dc {
-    namespace game {
-        engine::Command *CommandManager::create(std::string input) const {
-            Parameters parameters(input);
+    engine::Command *CommandManager::create(std::string input) const {
+        dc::game::Parameters parameters(input);
 
-            dc::engine::Command *command = nullptr;
-            const std::string &commandName = parameters.commandName();
-            if(commandName == "look") {
-                command = dc::game::LookCommand::create();
-            } else if(commandName == "map") {
-                command = dc::game::MapCommand::create(parameters);
-            } else if (commandName == "inv") {
-                command = dc::game::InventoryCommand::create(parameters);
-            } else if (commandName == "goto") {
-                command = dc::game::GoToCommand::create(parameters);
-            } else if(commandName == "use") {
-                command = UseCommand::create(parameters);
-            } else if(commandName == "stats") {
-                command = StatsCommand::create(parameters);
-            } else if(commandName == "inspect") {
-                command = InspectCommand::create(parameters);
-            } else if (commandName == "attack") {
-                command = AttackCommand::create(parameters);
-            }
-
-            if(!command)
-                command = new NullCommand();
-
-            return command;
+        dc::engine::Command *command = nullptr;
+        const std::string &commandName = parameters.commandName();
+        if(commandName == "look") {
+            command = dc::game::LookCommand::create();
+        } else if(commandName == "map") {
+            command = dc::game::MapCommand::create(parameters);
+        } else if (commandName == "inv") {
+            command = dc::game::InventoryCommand::create(parameters);
+        } else if (commandName == "goto") {
+            command = dc::game::GoToCommand::create(parameters);
+        } else if(commandName == "use") {
+            command = dc::game::UseCommand::create(parameters);
+        } else if(commandName == "stats") {
+            command = dc::game::StatsCommand::create(parameters);
+        } else if(commandName == "inspect") {
+            command = dc::game::InspectCommand::create(parameters);
+        } else if (commandName == "attack") {
+            command = dc::game::AttackCommand::create(parameters);
         }
+
+        if(!command)
+            command = new dc::game::NullCommand();
+
+        return command;
     }
 }

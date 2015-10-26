@@ -11,17 +11,21 @@ namespace dc {
     }
 }
 
-class AttackCommand : public dc::engine::Command {
-public:
-    AttackCommand(dc::model::Player &player, dc::model::Mob &mob);
+namespace dc {
+    namespace game {
+        class AttackCommand : public dc::engine::Command {
+        public:
+            AttackCommand(dc::model::Player &player, dc::model::Mob &mob);
 
-    virtual void execute() const override;
+            virtual void execute() const override;
 
-    static AttackCommand *create(Parameters parameters);
+            static AttackCommand *create(Parameters parameters);
 
-private:
-    dc::model::Player &mPlayer;
-    dc::model::Mob &mMob;
-};
+        private:
+            dc::model::Player &mPlayer;
+            dc::model::Mob &mMob;
+        };
+    }
+}
 
 #endif //DUNGEONCRAWLER_ATTACKCOMMAND_H

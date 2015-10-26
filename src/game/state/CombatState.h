@@ -25,7 +25,7 @@ public:
     void onPrint(dc::engine::GameLoop &game, dc::engine::Command *command) override;
 
 private:
-    const CombatCommandManager mCommandManager;
+    const dc::game::CombatCommandManager mCommandManager;
     dc::model::Game &mGame;
 };
 
