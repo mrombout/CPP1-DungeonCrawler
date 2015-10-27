@@ -46,7 +46,7 @@ namespace dc {
             }
 
             dc::model::Player &player = ServiceLocator::getInstance().resolve<dc::model::Game>().player();
-            std::vector<dc::model::Mob*> mobs = player.room().mobs();
+            std::vector<dc::model::Mob*> mobs = player.room()->mobs();
 
             if(monsterNum > mobs.size()) {
                 std::cout << "There not even " << monsterNum << "in this room!" << std::endl;

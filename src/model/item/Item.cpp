@@ -1,6 +1,8 @@
 #include <cstring>
 #include <iostream>
 #include "Item.h"
+#include "Player.h"
+#include "util/console.h"
 #include "util/String.h"
 
 namespace dc {
@@ -20,7 +22,16 @@ namespace dc {
             return mDescription;
         }
 
-        void Item::use() {
+        void Item::pickUp(Player &player) {
+            if(!player.room()->inventory().removeItem(*this)) {
+                std::cout << "You can't pick that up!" << std::endl;
+            }
+
+            std::cout << "You pick up the " << csl::color(csl::BLUE) << mName << "." << std::endl;
+            player.inventory().add(*this);
+        }
+
+        void Item::use(Character &character) {
             std::cout << "You try to use the " << mName << ". You hurt your finger as you fail tremendously." << std::endl;
         }
 

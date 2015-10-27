@@ -8,15 +8,15 @@ void dc::model::MobCallTrap::onSpring(dc::model::Player &player) {
               << "the floor. You manage to escape, but you might not be the only one that heard that massive bang."
               << std::endl;
 
-    dc::model::Room &room = player.room();
+    dc::model::Room *room = player.room();
     std::vector<dc::model::Mob*> mobs;
 
     // retrieve all mobs from neighbouring rooms
-    for(dc::model::Passage *passage : room.adjacantPassages()) {
+    for(dc::model::Passage *passage : room->adjacantPassages()) {
         if(passage == nullptr)
             continue;
 
-        dc::model::Room &otherRoom = passage->otherSide(room);
+        dc::model::Room &otherRoom = passage->otherSide(*room);
         const std::vector<dc::model::Mob*> otherMobs = otherRoom.mobs();
         for(dc::model::Mob* otherMob : otherMobs) {
             mobs.push_back(otherMob);
@@ -28,7 +28,7 @@ void dc::model::MobCallTrap::onSpring(dc::model::Player &player) {
     if(!mobs.empty()) {
         std::cout << "You hear steps coming your way..." << std::endl;
         for(dc::model::Mob* mob : mobs) {
-            room.addMob(mob);
+            room->addMob(mob);
         }
     }
 }

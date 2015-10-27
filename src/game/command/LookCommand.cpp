@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Room.h"
 #include "Player.h"
+#include "item/Item.h"
 #include "util/console.h"
 #include "util/ServiceLocator.h"
 #include "util/Render.h"
@@ -16,25 +17,25 @@ namespace dc {
     }
 
     void game::LookCommand::execute() const {
-        dc::model::Room& room = mPlayer.room();
+        dc::model::Room *room = mPlayer.room();
 
         // name room
-        std::cout << csl::color(csl::YELLOW) << room.name() << "\n";
+        std::cout << csl::color(csl::YELLOW) << room->name() << "\n";
 
         // describe room
-        std::cout << csl::color(csl::WHITE) << mPlayer.room().description() << "\n\n";
+        std::cout << csl::color(csl::WHITE) << room->description() << "\n\n";
 
         // list exits
         std::cout << csl::color(csl::GREY) << "You can go: ";
 
         std::vector<std::string> exits;
-        if(room.north())
+        if(room->north())
             exits.push_back("north");
-        if(room.east())
+        if(room->east())
             exits.push_back("east");
-        if(room.south())
+        if(room->south())
             exits.push_back("south");
-        if(room.west())
+        if(room->west())
             exits.push_back("west");
         std::ostringstream ss;
         std::copy(exits.begin(), exits.end() - 1, std::ostream_iterator<std::string>(ss, ", "));
@@ -43,10 +44,19 @@ namespace dc {
         std::cout << ss.str() << "\n";
 
         // list monsters
-        if(!room.mobs().empty()) {
-            std::cout << "\n\n" << csl::color(csl::RED) << "In the darkness of the rooms lurk:" << "\n";
-            const std::vector<dc::model::Mob*> &mobs = room.mobs();
+        if(!room->mobs().empty()) {
+            std::cout << csl::color(csl::RED) << "\n\nIn the darkness of the rooms lurk: \n";
+            const std::vector<dc::model::Mob*> &mobs = room->mobs();
             Render::mobList(mobs);
+        }
+
+        // items
+        if(!room->inventory().items().empty()) {
+            std::cout << "\nIn the room you see:\n";
+            for(dc::model::Item *item : room->inventory().items()) {
+                std::cout << "- a " << item->name() << "\n";
+                std::cout << "\t" << csl::color(csl::DARKGREY) << item->description() << "\n";
+            }
         }
 
         std::cout << std::endl;

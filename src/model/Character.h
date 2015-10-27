@@ -6,6 +6,7 @@
 namespace dc {
     namespace model {
         class Equipable;
+        class Room;
     }
 }
 
@@ -14,12 +15,13 @@ namespace dc {
         class Character {
         public:
             Character();
+            Character(Room *room);
 
             const std::string &name() const;
             void setName(std::string pName);
 
             unsigned int maxHealth() const;
-            void setMaxHealth(int pMaxHealth);
+            void setMaxHealth(unsigned int pMaxHealth);
 
             int health() const;
             void setHealth(int pHealth);
@@ -27,30 +29,33 @@ namespace dc {
             void increaseHealth(int pHealth);
             void damage(unsigned int pDamage);
 
-            int level() const;
-            void setLevel(int pLevel);
-            void increaseLevel(int pLevel);
-            void decreaseLevel(int pLevel);
+            unsigned int level() const;
+            void setLevel(unsigned int pLevel);
+            void increaseLevel(unsigned int pLevel);
+            void decreaseLevel(unsigned int pLevel);
             void levelUp();
 
-            int experience() const;
-            void setExperience(int pExperience);
-            void increaseExperience(int pExperience);
-            void decreaseExperience(int pExperience);
+            unsigned int experience() const;
+            void setExperience(unsigned int pExperience);
+            void increaseExperience(unsigned int pExperience);
+            void decreaseExperience(unsigned int pExperience);
 
-            int attack() const;
-            void setAttack(int pAttack);
+            unsigned int attack() const;
+            void setAttack(unsigned int pAttack);
 
-            int defence() const;
-            void setDefence(int pDefence);
+            unsigned int defence() const;
+            void setDefence(unsigned int pDefence);
 
-            int perception() const;
-            void setPerception(int pPerception);
+            unsigned int perception() const;
+            void setPerception(unsigned int pPerception);
 
             Equipable &weapon() const;
             void setWeapon(Equipable *pWeapon);
 
-        private:
+            Room *room() const;
+            void setRoom(Room *room);
+
+        protected:
             std::string mName;
 
             unsigned int mMaxHealth;
@@ -64,6 +69,8 @@ namespace dc {
             unsigned int mPerception;
 
             Equipable *mWeapon;
+
+            Room *mRoom;
         };
     }
 }

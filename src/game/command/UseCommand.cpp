@@ -1,6 +1,6 @@
 #include "UseCommand.h"
 #include "Game.h"
-#include "Item.h"
+#include "item/Item.h"
 #include "Player.h"
 #include "util/ServiceLocator.h"
 

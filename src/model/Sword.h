@@ -1,7 +1,8 @@
 #ifndef DUNGEONCRAWLER_SWORD_H
 #define DUNGEONCRAWLER_SWORD_H
 
-#include "Item.h"
+#include <string>
+#include "item/Item.h"
 
 namespace dc {
     namespace model {

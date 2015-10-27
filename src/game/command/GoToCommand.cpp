@@ -19,8 +19,8 @@ namespace dc {
         void game::GoToCommand::execute() const {
             //dc::model::Room &otherRoom = mPassage.otherSide(&mPlayer.room());
             //mPlayer.setRoom(otherRoom);
-            dc::model::Room &otherRoom = mPassage.otherSide(mPlayer.room());
-            mPlayer.setRoom(otherRoom);
+            dc::model::Room &otherRoom = mPassage.otherSide(*mPlayer.room());
+            mPlayer.setRoom(&otherRoom);
 
             std::cout << "You went " << mHeading << " into the next room." << std::endl;
         }
@@ -36,17 +36,17 @@ namespace dc {
             dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
             dc::model::Player &player = game.player();
 
-            dc::model::Room &currentRoom = player.room();
+            dc::model::Room *currentRoom = player.room();
             dc::model::Passage *passage = nullptr;
 
             if (heading == "north") {
-                passage = currentRoom.north();
+                passage = currentRoom->north();
             } else if (heading == "east") {
-                passage = currentRoom.east();
+                passage = currentRoom->east();
             } else if (heading == "south") {
-                passage = currentRoom.south();
+                passage = currentRoom->south();
             } else if (heading == "west") {
-                passage = currentRoom.west();
+                passage = currentRoom->west();
             }
 
             if(passage == nullptr) {
