@@ -13,6 +13,7 @@
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "item/Iconograph.h"
+#include "item/Talisman.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
 
@@ -48,9 +49,14 @@ namespace dc {
             model::Item *iconograph = new Iconograph();
             items.push_back(iconograph);
 
+            model::Item *talisman = new model::Talisman();
+            items.push_back(talisman);
+
             model::Inventory *inventory = new model::Inventory(items);
             
             model::Player *player = new model::Player(&dungeon->floor(0).exitRoom(), inventory);
+
+            talisman->use(*player);
 
             mGame = new model::Game(dungeon, player);
             ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);

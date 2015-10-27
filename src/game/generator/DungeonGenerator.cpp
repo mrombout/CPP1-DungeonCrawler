@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include "fixture/Ladder.h"
-#include "factory/ItemFactory.h"
 #include "DungeonGenerator.h"
 #include "Dungeon.h"
 #include "FloorGenerator.h"
@@ -77,8 +76,8 @@ namespace dc {
                     Room &currentExit = currentFloor->exitRoom();
 
                     // connect currentStart to previousEnd
-                    Ladder *ladderToCurrentStart = ItemFactory::createLadder(currentStart);
-                    Ladder *ladderToPreviousEnd = ItemFactory::createLadder(previousEnd);
+                    Ladder *ladderToCurrentStart = new dc::model::Ladder(dc::model::Ladder::Direction::DOWN, currentStart);
+                    Ladder *ladderToPreviousEnd = new dc::model::Ladder(dc::model::Ladder::Direction::UP, previousEnd);
 
                     currentStart.inventory().addItem(*ladderToPreviousEnd);
                     previousEnd.inventory().addItem(*ladderToCurrentStart);

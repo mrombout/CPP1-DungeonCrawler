@@ -13,11 +13,19 @@ namespace dc {
     namespace model {
         class Ladder : public Fixture {
         public:
-            Ladder(Room &toRoom);
+            enum Direction {
+                UP,
+                DOWN
+            };
+
+            Ladder(Direction direction, Room &toRoom);
 
             virtual void use(Character &character) override;
 
+            Direction direction() const;
+
         private:
+            Direction mDirection;
             Room &mToRoom;
         };
     }
