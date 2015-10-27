@@ -14,13 +14,14 @@ namespace dc {
     namespace game {
         class UseCommand : public dc::game::Command {
         public:
-            UseCommand(dc::model::Player &player);
+            UseCommand(model::Player &player, const std::string itemName);
             virtual void execute() const override;
 
             static UseCommand *create(Parameters parameters);
 
         private:
             dc::model::Player &mPlayer;
+            std::string mItemName;
         };
     }
 }
