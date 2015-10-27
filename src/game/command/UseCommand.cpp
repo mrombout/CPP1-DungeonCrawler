@@ -18,9 +18,9 @@ namespace dc {
             if(item != nullptr) {
                 item->use();
             }
+            */
 
             // TODO: Use items in room? e.g. staircase?
-            */
         }
 
         UseCommand *UseCommand::create(Parameters parameters) {

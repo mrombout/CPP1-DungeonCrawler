@@ -56,6 +56,8 @@ namespace dc {
             
             model::Player *player = new model::Player(&dungeon->floor(0).exitRoom(), inventory);
 
+            talisman->use(*player);
+
             mGame = new model::Game(dungeon, player);
             ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);
         }
