@@ -62,12 +62,14 @@ namespace csl {
         }
     }
 
+#if defined(__WIN32__)
     std::ios_base &setColorWindows(std::ostream &os, int c) {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, (WORD) c);
 
         return os;
     }
+#endif
 
     std::ios_base &setColorUnix(std::ostream &os, int c) {
         os << getANSIColor(c);

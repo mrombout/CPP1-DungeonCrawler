@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <limits.h>
+#include <sys/errno.h>
 #include "Number.h"
 
 long Number::toLong(const std::string &str) {
