@@ -13,6 +13,7 @@
 #include "AttackCommand.h"
 #include "util/ServiceLocator.h"
 #include "ClearCommand.h"
+#include "RestCommand.h"
 
 namespace dc {
     game::Command *CommandManager::create(std::string input) const {
@@ -38,6 +39,8 @@ namespace dc {
             command = dc::game::AttackCommand::create(parameters);
         } else if (commandName == "clear") {
             command = dc::game::ClearCommand::create(parameters);
+        } else if (commandName == "rest") {
+            command = dc::game::RestCommand::create(parameters);
         }
 
         if(!command)
