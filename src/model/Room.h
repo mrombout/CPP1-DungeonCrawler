@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Point.h"
+#include "Inventory.h"
 
 namespace dc {
     namespace model {
@@ -11,6 +12,7 @@ namespace dc {
         class Trap;
         class Floor;
         class Mob;
+        class Item;
     }
 }
 
@@ -47,12 +49,16 @@ namespace dc {
             Floor *floor() const;
             void setFloor(Floor* floor);
 
+            Inventory &inventory();
+
             const std::vector<Trap*> &traps() const;
             void addTrap(Trap* trap);
 
             const std::vector<Mob*> &mobs() const;
             void addMob(Mob* mob);
             void removeMob(Mob* mob);
+
+            char repr() const;
 
         private:
             Point mPosition;
@@ -68,6 +74,7 @@ namespace dc {
 
             Floor *mFloor;
 
+            Inventory mInventory;
             std::vector<Trap*> mTraps;
             std::vector<Mob*> mMobs;
         };

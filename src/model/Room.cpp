@@ -112,6 +112,10 @@ namespace dc {
             mPosition = point;
         }
 
+        Inventory &Room::inventory() {
+            return mInventory;
+        }
+
         const std::vector<Trap*> &Room::traps() const {
             return mTraps;
         }
@@ -130,6 +134,13 @@ namespace dc {
 
         void Room::removeMob(Mob *mob) {
             mMobs.erase(std::remove(mMobs.begin(), mMobs.end(), mob), mMobs.end());
+        }
+
+        char Room::repr() const {
+            if(mInventory.findItem("Ladder") != nullptr) {
+                return '?';
+            }
+            return '#';
         }
     }
 }

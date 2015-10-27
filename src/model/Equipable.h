@@ -1,7 +1,7 @@
 #ifndef DUNGEONCRAWLER_EQUIPABLE_H
 #define DUNGEONCRAWLER_EQUIPABLE_H
 
-#include "Item.h"
+#include "item/Item.h"
 
 namespace dc {
     namespace model {

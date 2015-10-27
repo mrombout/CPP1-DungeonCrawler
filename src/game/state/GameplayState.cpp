@@ -54,7 +54,7 @@ namespace dc {
 
             model::Inventory *inventory = new model::Inventory(items);
             
-            model::Player *player = new model::Player(dungeon->floor(0).startRoom(), inventory);
+            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom(), inventory);
 
             mGame = new model::Game(dungeon, player);
             ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);
@@ -96,14 +96,14 @@ namespace dc {
 
         void GameplayState::updateEnemies(game::GameLoop &game) const {
             std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
-            const std::vector<dc::model::Mob*> &mobs = mGame->player().room().mobs();
+            const std::vector<dc::model::Mob*> &mobs = mGame->player().room()->mobs();
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame));
             }
         }
 
         void GameplayState::springTraps(game::GameLoop &game) {
-            const std::vector<dc::model::Trap*> &traps = mGame->player().room().traps();
+            const std::vector<dc::model::Trap*> &traps = mGame->player().room()->traps();
             if(!traps.empty()) {
                 std::cout << "You hear a sudden click, ever so lightly echo through the room...\n";
                 for(dc::model::Trap *trap : traps) {
