@@ -2,6 +2,7 @@
 #define DUNGEONCRAWLER_CHARACTER_H
 
 #include <string>
+#include "Inventory.h"
 
 namespace dc {
     namespace model {
@@ -55,6 +56,8 @@ namespace dc {
             Room *room() const;
             void setRoom(Room *room);
 
+            Inventory &inventory() const;
+
         protected:
             std::string mName;
 
@@ -71,6 +74,8 @@ namespace dc {
             Equipable *mWeapon;
 
             Room *mRoom;
+
+            Inventory *mInventory;
         };
     }
 }

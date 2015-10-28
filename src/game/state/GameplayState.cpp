@@ -42,23 +42,19 @@ namespace dc {
             DungeonGenerator dungeonGenerator(bspFloorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
-            std::vector<model::Item*> items = std::vector<model::Item*>();
+            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom());
 
             model::Item *item = new model::Sword("Sword", "A Sword");
-            items.push_back(item);
+            player->inventory().addItem(*item);
 
             model::Item *iconograph = new Iconograph();
-            items.push_back(iconograph);
+            player->inventory().addItem(*iconograph);
 
             model::Item *grenade = new model::Grenade();
-            items.push_back(grenade);
+            player->inventory().addItem(*grenade);
 
             model::Item *talisman = new model::Talisman();
-            items.push_back(talisman);
-
-            model::Inventory *inventory = new model::Inventory(items);
-            
-            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom(), inventory);
+            player->inventory().addItem(*talisman);
 
             talisman->use(*player);
 

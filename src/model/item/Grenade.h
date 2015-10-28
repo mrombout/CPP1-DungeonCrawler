@@ -10,6 +10,8 @@ namespace dc {
             Grenade();
 
             virtual void use(Character &character) override;
+
+            void explode(Floor *pFloor);
         };
     }
 }

@@ -4,11 +4,12 @@
 #include <map>
 #include <algorithm>
 #include <queue>
-#include <DisjointNode.h>
+#include "DisjointNode.h"
 #include "Room.h"
 #include "Grenade.h"
 #include "Floor.h"
 #include "Passage.h"
+#include "Mob.h"
 
 namespace dc {
     namespace model {
@@ -18,6 +19,19 @@ namespace dc {
             Room *startRoom = character.room();
             Floor *floor = startRoom->floor();
 
+            // explode
+            explode(floor);
+
+            // kill mobs
+            for(Mob *mob : startRoom->mobs()) {
+                mob->kill();
+            }
+
+            // remove grenade
+            character.inventory().removeItem(*this);
+        }
+
+        void Grenade::explode(Floor *floor) {
             // initialize
             std::vector<Passage*> A;
             std::vector<Passage*> S;
