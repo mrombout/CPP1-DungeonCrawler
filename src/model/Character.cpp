@@ -136,5 +136,9 @@ namespace dc {
         Inventory &Character::inventory() const {
             return *mInventory;
         }
+
+        bool Character::isDead() const {
+            return mHealth <= 0;
+        }
     }
 }

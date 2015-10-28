@@ -24,6 +24,8 @@ namespace dc {
             unsigned int maxHealth() const;
             void setMaxHealth(unsigned int pMaxHealth);
 
+            bool isDead() const;
+
             int health() const;
             void setHealth(int pHealth);
             void decreaseHealth(int pHealth);

@@ -99,6 +99,12 @@ namespace dc {
         void GameplayState::updateEnemies(game::GameLoop &game) const {
             std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room()->mobs();
+            for(dc::model::Mob *mob : mobs) {
+                if(mob->isDead()) {
+                    mGame->player().room()->removeMob(mob);
+                }
+            }
+
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame));
             }
