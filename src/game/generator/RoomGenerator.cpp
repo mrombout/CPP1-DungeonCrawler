@@ -76,6 +76,8 @@ namespace dc {
         }
 
         void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
+            // TODO Onderstaande regel weer verwijderen, nodig voor testen dismantle functionaliteit bij "inspect" command
+            room->addTrap(new dc::model::RatTrap());
             if(rand() % 100 < 25 && false) {
                 int trapNum = rand() % 5;
                 switch(trapNum) {
