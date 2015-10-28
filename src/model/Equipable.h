@@ -8,7 +8,7 @@ namespace dc {
         class Equipable : public Item {
         public:
             Equipable(std::string name, std::string description);
-            virtual ~Equipable() = 0;
+            virtual ~Equipable();
         };
     }
 }
