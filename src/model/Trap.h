@@ -22,12 +22,16 @@ namespace dc {
             bool isSprung();
             void spring(dc::model::Player &player);
 
+            bool isDismantled();
+            void dismantle();
+
             virtual const std::string name() = 0;
             virtual void onSpring(dc::model::Player &player) = 0;
 
         private:
             bool mDiscovered;
             bool mSprung;
+            bool mDismantled;
         };
     }
 }
