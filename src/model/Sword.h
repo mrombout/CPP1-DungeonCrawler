@@ -2,14 +2,14 @@
 #define DUNGEONCRAWLER_SWORD_H
 
 #include <string>
-#include "item/Item.h"
+#include "Equipable.h"
 
 namespace dc {
     namespace model {
-        class Sword : public Item {
+        class Sword : public Equipable {
 
         public:
-            Sword(const std::string &name, const std::string &description) : Item(name, description) { }
+            Sword(const std::string &name, const std::string &description) : Equipable(name, description) { }
 
             virtual ~Sword();
         };

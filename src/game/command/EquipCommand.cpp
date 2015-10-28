@@ -21,9 +21,14 @@ namespace dc {
             // look up item in inventory
             dc::model::Item *item = mPlayer.inventory().findItem(mItemName);
             if(item != nullptr) {
-                std::cout << "Equipping " << item->name() << "..." << std::endl;
-                mPlayer.setWeapon((dc::model::Equipable*) item);
-                std::cout << "Equiped!" << std::endl;
+                dc::model::Equipable *equipable = dynamic_cast<dc::model::Equipable*>(item);
+                if (equipable != nullptr) {
+                    std::cout << "Equipping " << item->name() << "..." << std::endl;
+                    mPlayer.setWeapon((dc::model::Equipable *) item);
+                    std::cout << "Equiped!" << std::endl;
+                } else {
+                    std::cout << item->name() << " is not equipable" << std::endl;
+                }
             } else {
                 std::cout << "I don't know what " << mItemName << " is" << std::endl;
             }
