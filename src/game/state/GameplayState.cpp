@@ -14,6 +14,7 @@
 #include "CombatState.h"
 #include "item/Iconograph.h"
 #include "item/Talisman.h"
+#include "item/Grenade.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
 
@@ -41,20 +42,19 @@ namespace dc {
             DungeonGenerator dungeonGenerator(bspFloorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
-            std::vector<model::Item*> items = std::vector<model::Item*>();
+            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom());
 
             model::Item *item = new model::Sword("Sword", "A Sword");
-            items.push_back(item);
+            player->inventory().addItem(*item);
 
             model::Item *iconograph = new Iconograph();
-            items.push_back(iconograph);
+            player->inventory().addItem(*iconograph);
+
+            model::Item *grenade = new model::Grenade();
+            player->inventory().addItem(*grenade);
 
             model::Item *talisman = new model::Talisman();
-            items.push_back(talisman);
-
-            model::Inventory *inventory = new model::Inventory(items);
-            
-            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom(), inventory);
+            player->inventory().addItem(*talisman);
 
             talisman->use(*player);
 
@@ -99,6 +99,12 @@ namespace dc {
         void GameplayState::updateEnemies(game::GameLoop &game) const {
             std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room()->mobs();
+            for(dc::model::Mob *mob : mobs) {
+                if(mob->isDead()) {
+                    mGame->player().room()->removeMob(mob);
+                }
+            }
+
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame));
             }

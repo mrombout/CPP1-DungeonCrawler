@@ -6,7 +6,8 @@
 namespace dc {
     namespace model {
         class Mob : public Character {
-
+        public:
+            void kill();
         };
     }
 }

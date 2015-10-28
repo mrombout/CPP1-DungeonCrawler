@@ -18,7 +18,7 @@ namespace dc {
             mPerception(1),
             mWeapon(0),
             mRoom(room) {
-
+            mInventory = new Inventory();
         }
 
         const std::string &Character::name() const {
@@ -131,6 +131,14 @@ namespace dc {
 
         void Character::setRoom(Room *room) {
             mRoom = room;
+        }
+
+        Inventory &Character::inventory() const {
+            return *mInventory;
+        }
+
+        bool Character::isDead() const {
+            return mHealth <= 0;
         }
     }
 }

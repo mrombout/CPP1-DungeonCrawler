@@ -26,9 +26,16 @@ namespace dc {
 
             Room &otherSide(const Room &room) const;
 
+            int weight() const;
+
+            bool isCollapsed() const;
+            void setCollapsed(bool isCollapsed);
+
         private:
             Room &mSideA;
             Room &mSideB;
+
+            bool mCollapsed;
         };
     }
 }

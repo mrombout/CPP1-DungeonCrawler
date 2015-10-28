@@ -2,14 +2,9 @@
 
 namespace dc {
     namespace model {
-        Player::Player(Room *room, Inventory *inventory) :
-            Character(room),
-            mInventory(inventory) {
+        Player::Player(Room *room) :
+            Character(room) {
 
-        }
-
-        Inventory &dc::model::Player::inventory() const {
-            return *mInventory;
         }
     }
 }
