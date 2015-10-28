@@ -4,6 +4,7 @@
 #include <map>
 #include <algorithm>
 #include <queue>
+#include <util/console.h>
 #include "DisjointNode.h"
 #include "Room.h"
 #include "Grenade.h"
@@ -20,7 +21,13 @@ namespace dc {
             Floor *floor = startRoom->floor();
 
             // explode
-            explode(floor);
+            if(!explode(floor)) {
+                std::cout << "You don't think that's a good idea right now." << std::endl;
+                return;
+            }
+
+            std::cout << csl::color(csl::WHITE)
+            << "The massive explosion is followed by a bright flash of octarine. When your vision finally returns you see that all the baddies are gone." << std::endl;
 
             // kill mobs
             for(Mob *mob : startRoom->mobs()) {
@@ -31,7 +38,7 @@ namespace dc {
             character.inventory().removeItem(*this);
         }
 
-        void Grenade::explode(Floor *floor) {
+        bool Grenade::explode(Floor *floor) {
             // initialize
             std::vector<Passage*> A;
             std::vector<Passage*> S;
@@ -51,7 +58,7 @@ namespace dc {
                         if(!passage)
                             continue;
 
-                        if(std::find(S.begin(), S.end(), passage) == S.end())
+                        if(std::find(S.begin(), S.end(), passage) == S.end() && !passage->isCollapsed())
                             S.push_back(passage);
                     }
                 }
@@ -68,6 +75,7 @@ namespace dc {
             }
 
             // collapse passages
+            bool hasExploded = false;
             for(std::vector<Room*> row : floor->rooms()) {
                 for(Room* room : row) {
                     if(!room)
@@ -77,12 +85,15 @@ namespace dc {
                         if(!passage)
                             continue;
 
-                        if(std::find(A.begin(), A.end(), passage) == A.end()) {
+                        if(std::find(A.begin(), A.end(), passage) == A.end() && !passage->isCollapsed()) {
+                            hasExploded = true;
                             passage->setCollapsed(true);
                         }
                     }
                 }
             }
+
+            return hasExploded;
         }
     }
 }

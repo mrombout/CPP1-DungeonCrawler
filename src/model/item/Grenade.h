@@ -11,7 +11,7 @@ namespace dc {
 
             virtual void use(Character &character) override;
 
-            void explode(Floor *pFloor);
+            bool explode(Floor *pFloor);
         };
     }
 }

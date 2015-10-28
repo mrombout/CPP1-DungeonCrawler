@@ -18,8 +18,10 @@ namespace dc {
             dc::model::Item *item = mPlayer.inventory().findItem(mItemName);
             if(item != nullptr) {
                 item->use(mPlayer);
+                return;
             }
 
+            std::cout << "I don't seem to have such an item, just my luck!" << std::endl;
             // TODO: Use items in room? e.g. staircase?
         }
 
