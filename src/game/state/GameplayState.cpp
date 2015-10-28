@@ -14,6 +14,7 @@
 #include "CombatState.h"
 #include "item/Iconograph.h"
 #include "item/Talisman.h"
+#include "item/Grenade.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
 
@@ -48,6 +49,9 @@ namespace dc {
 
             model::Item *iconograph = new Iconograph();
             items.push_back(iconograph);
+
+            model::Item *grenade = new model::Grenade();
+            items.push_back(grenade);
 
             model::Item *talisman = new model::Talisman();
             items.push_back(talisman);

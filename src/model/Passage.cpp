@@ -4,7 +4,8 @@ namespace dc {
     namespace model {
         Passage::Passage(Room &sideA, Room &sideB) :
             mSideA(sideA),
-            mSideB(sideB) {
+            mSideB(sideB),
+            mCollapsed(false) {
 
         }
 
@@ -18,6 +19,18 @@ namespace dc {
 
         Room &Passage::otherSide(const Room &room) const {
             return &mSideA == &room ? mSideB : mSideA;
+        }
+
+        int Passage::weight() const {
+            return 0;
+        }
+
+        bool Passage::isCollapsed() const {
+            return mCollapsed;
+        }
+
+        void Passage::setCollapsed(bool isCollapsed) {
+            mCollapsed = isCollapsed;
         }
     }
 }

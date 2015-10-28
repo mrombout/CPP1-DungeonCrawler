@@ -92,16 +92,16 @@ namespace dc {
 
 		if(bPosition.y() < aPosition.y()) {
 			// north
-			grid[(aPosition.y() + 1) * 2 - 1][(aPosition.x() + 1) * 2] = '|';
+			grid[(aPosition.y() + 1) * 2 - 1][(aPosition.x() + 1) * 2] = !passage->isCollapsed() ? '|' : '.';
 		} else if(bPosition.y() > aPosition.y()) {
 			// south
-			grid[(aPosition.y() + 1) * 2 + 1] [(aPosition.x() + 1) * 2] = '|';
+			grid[(aPosition.y() + 1) * 2 + 1] [(aPosition.x() + 1) * 2] = !passage->isCollapsed() ? '|' : '.';
 		} else if(bPosition.x() > aPosition.x()) {
 			// east
-			grid[(aPosition.y() + 1) * 2][(aPosition.x() + 1) * 2 + 1] = '-';
+			grid[(aPosition.y() + 1) * 2][(aPosition.x() + 1) * 2 + 1] = !passage->isCollapsed() ? '-' : '.';
 		} else if(bPosition.x() < aPosition.x()) {
 			// west
-			grid[(aPosition.y() + 1) * 2][(aPosition.x() + 1) * 2 - 1] = '-';
+			grid[(aPosition.y() + 1) * 2][(aPosition.x() + 1) * 2 - 1] = !passage->isCollapsed() ? '-' : '.';
 		}
 	}
 
