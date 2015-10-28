@@ -14,6 +14,7 @@
 #include "util/ServiceLocator.h"
 #include "ClearCommand.h"
 #include "RestCommand.h"
+#include "EquipCommand.h"
 
 namespace dc {
     game::Command *CommandManager::create(std::string input) const {
@@ -41,6 +42,8 @@ namespace dc {
             command = dc::game::ClearCommand::create(parameters);
         } else if (commandName == "rest") {
             command = dc::game::RestCommand::create(parameters);
+        } else if(commandName == "equip") {
+            command = dc::game::EquipCommand::create(parameters);
         }
 
         if(!command)

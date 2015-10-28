@@ -6,6 +6,7 @@
 #include "NullCommand.h"
 #include "UseCommand.h"
 #include "util/ServiceLocator.h"
+#include "EquipCommand.h"
 
 namespace dc {
     namespace game {
@@ -27,6 +28,8 @@ namespace dc {
                 command = dc::game::InventoryCommand::create(parameters);
             } else if(commandName == "use") {
                 command = UseCommand::create(parameters);
+            } else if(commandName == "equip") {
+                command = EquipCommand::create(parameters);
             }
 
             if(!command)
