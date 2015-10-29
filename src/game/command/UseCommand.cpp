@@ -16,13 +16,16 @@ namespace dc {
         void UseCommand::execute() const {
             // look up item in inventory
             dc::model::Item *item = mPlayer.inventory().findItem(mItemName);
+            if(!item)
+                item = mPlayer.room()->inventory().findItem(mItemName);
+
+            // use item if found
             if(item != nullptr) {
                 item->use(mPlayer);
                 return;
             }
 
             std::cout << "I don't seem to have such an item, just my luck!" << std::endl;
-            // TODO: Use items in room? e.g. staircase?
         }
 
         UseCommand *UseCommand::create(Parameters parameters) {
