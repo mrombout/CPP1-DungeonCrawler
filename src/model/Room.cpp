@@ -1,4 +1,5 @@
 #include <algorithm>
+#include "fixture/Ladder.h"
 #include "Room.h"
 #include "Trap.h"
 
@@ -137,10 +138,16 @@ namespace dc {
         }
 
         char Room::repr() const {
-            if(mInventory.findItem("Ladder") != nullptr) {
-                return '?';
+            Ladder *ladder = dynamic_cast<Ladder*>(mInventory.findItem("Ladder"));
+            if(ladder) {
+                return ladder->direction() == Ladder::UP ? 'H' : 'L';
             }
-            return '#';
+
+            Item *breadcrumb = mInventory.findItem("Breadcrumb");
+            if(breadcrumb)
+                return 'S';
+
+            return isVisited() ? 'N' : '.';
         }
     }
 }

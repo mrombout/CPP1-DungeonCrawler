@@ -26,6 +26,7 @@ namespace dc {
 
             const std::vector<Item*> &items() const;
             void addItem(Item &item);
+            void addItem(Item *item);
             bool removeItem(Item &item);
         private:
             std::vector<Item*> mItems;

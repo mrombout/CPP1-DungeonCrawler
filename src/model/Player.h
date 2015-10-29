@@ -10,6 +10,8 @@ namespace dc {
         class Player : public Character {
         public:
             Player(Room *room);
+
+            virtual void setRoom(Room *room) override;
         };
     }
 }

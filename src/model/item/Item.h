@@ -20,7 +20,7 @@ namespace dc {
             virtual void pickUp(Player &player);
             virtual void use(Character &character);
 
-            bool partialMatch(const std::string &name) const;
+            virtual bool partialMatch(const std::string &name) const;
 
             std::string name() const;
             std::string description() const;

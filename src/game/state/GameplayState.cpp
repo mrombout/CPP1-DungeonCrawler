@@ -42,7 +42,7 @@ namespace dc {
             DungeonGenerator dungeonGenerator(bspFloorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
-            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom());
+            model::Player *player = new model::Player(&dungeon->floor(0).startRoom());
 
             model::Item *item = new model::Sword();
             player->inventory().addItem(*item);

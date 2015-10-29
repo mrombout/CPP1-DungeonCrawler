@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "item/Prop.h"
 #include "fixture/Ladder.h"
 #include "DungeonGenerator.h"
 #include "Dungeon.h"
@@ -81,6 +82,8 @@ namespace dc {
 
                     currentStart.inventory().addItem(*ladderToPreviousEnd);
                     previousEnd.inventory().addItem(*ladderToCurrentStart);
+                } else {
+                    currentFloor->startRoom().inventory().addItem(new Prop("Breadcrumb", "Oh! It's that breadcrumb I left here so I can find my way back!"));
                 }
             }
 

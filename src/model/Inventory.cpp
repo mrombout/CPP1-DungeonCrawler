@@ -52,7 +52,11 @@ namespace dc {
         }
 
         void Inventory::addItem(Item &item) {
-            mItems.push_back(&item);
+            addItem(&item);
+        }
+
+        void Inventory::addItem(Item *item) {
+            mItems.push_back(item);
         }
 
         bool Inventory::removeItem(Item &item) {

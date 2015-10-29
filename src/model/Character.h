@@ -56,7 +56,8 @@ namespace dc {
             void setWeapon(Equipable *pWeapon);
 
             Room *room() const;
-            void setRoom(Room *room);
+
+            virtual void setRoom(Room *room);
 
             Inventory &inventory() const;
 
