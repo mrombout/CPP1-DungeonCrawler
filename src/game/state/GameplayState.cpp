@@ -40,7 +40,7 @@ namespace dc {
             RoomGenerator roomGenerator(mobGenerator);
             BSPFloorGenerator bspFloorGenerator = BSPFloorGenerator(roomGenerator);
             SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
-            DungeonGenerator dungeonGenerator(floorGenerator);
+            DungeonGenerator dungeonGenerator(bspFloorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
             model::Player *player = new model::Player(&dungeon->floor(0).startRoom());
