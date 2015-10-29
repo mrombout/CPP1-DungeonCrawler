@@ -3,44 +3,21 @@
 #include "MobGenerator.h"
 #include "StringGenerator.h"
 
-std::vector<std::vector<std::string>> mobNames {
-        // adjective
-        std::vector<std::string> {
-                "Deluded ",
-                "Intimidating ",
-                "Ignored ",
-                "Beautiful ",
-                "Divine ",
-                "Hellish "
-        },
-
-        // TODO: Names should be base monsters name read from file
-        // names
-        std::vector<std::string> {
-                "Goblin",
-                "Skeleton",
-                "Ghoul",
-                "Slime",
-                "Vampire",
-                "Ghost",
-                "Werewolf",
-                "Troll"
-        }
-};
-
 namespace dc {
     namespace game {
         dc::model::Mob *MobGenerator::generate(unsigned int level) {
             dc::model::Mob *mob = new dc::model::Mob();
 
+			std::unordered_map<std::string, std::string> mobProps = FileLoader::getInstance()->getRandomMob();
+
             // TODO: Load mob from files, with base levels
-            mob->setName(StringGenerator::generateString(mobNames));
-            mob->setMaxHealth(level * 2);
-            mob->setHealth(level * 2);
-            mob->setLevel(level);
-            mob->setAttack(level);     // TODO: Set (base attack * level)
-            mob->setDefence(level);    // TODO: Set (base defence * level)
-            mob->setPerception(level); // TODO: Set (base perception * level)
+			mob->setName(mobProps["name"]);
+			mob->setMaxHealth(std::stoi(mobProps["maxhealth"]));
+			mob->setHealth(std::stoi(mobProps["health"]));
+			mob->setLevel(std::stoi(mobProps["level"]));
+			mob->setAttack(std::stoi(mobProps["attack"]));     // TODO: Set (base attack * level)
+			mob->setDefence(std::stoi(mobProps["defence"]));    // TODO: Set (base defence * level)
+			mob->setPerception(std::stoi(mobProps["perception"])); // TODO: Set (base perception * level)
 
             return mob;
         }

@@ -57,6 +57,9 @@ namespace dc {
 
         bool Inventory::removeItem(Item &item) {
             mItems.erase(std::remove(mItems.begin(), mItems.end(), &item), mItems.end());
+
+			// Toegevoegd, kan anders niet runnen. Graag naar kijken!
+			return true;
         }
     }
 }

@@ -1,0 +1,29 @@
+*****************************************************************
+*	Example adjectives:					*
+*		Deluded						*
+*		Intimidating					*
+*		Ignored						*
+*		Beautiful					*
+*		Divine						*
+*		Hellish						*
+*								*
+*	Example names:						*
+*		Goblin						*
+*		Skeleton					*
+*		Ghoul						*
+*		Slime						*
+*		Vampire						*
+*		Ghost						*
+*		Werewolf					*
+*		Troll						*
+*****************************************************************
+* Every new line contains a new mob 				*
+*								*
+* Format:							*
+* Name; Max Health; Health; Level; Attack; Defence; Perception 	*
+*****************************************************************
+
+Deluded Skeleton; 10; 5; 2; 4; 5; 6
+Divine Slime; 10; 5; 2; 4; 5; 6
+Hellish Vampire; 10; 5; 2; 4; 5; 6
+Intimidating Ghoul; 10; 5; 2; 4; 5; 7
