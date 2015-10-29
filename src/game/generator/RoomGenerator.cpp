@@ -20,7 +20,7 @@ namespace dc {
             int roomLevel = Random::nextInt(level - VARIANCE, level + VARIANCE);
 
             // create room
-            dc::model::Room *room = new dc::model::Room(Point(0, 0), "Some Room", FileLoader::getInstance()->getRandomRoom());
+            dc::model::Room *room = new dc::model::Room(Point(0, 0), "Some Room", FileLoader::getInstance()->getRoomDescriptionLoader().getRandomRoom());
 
             // populate room
             generateTraps(room, level);
@@ -34,7 +34,7 @@ namespace dc {
             room->addTrap(new dc::model::RatTrap());
             if(rand() % 100 < 25 && false) {
 
-				std::string trapType = FileLoader::getInstance()->getRandomTrap();
+				std::string trapType = FileLoader::getInstance()->getTrapLoader().getRandomTrap();
 				if (trapType == "BEARTRAP"){
 					room->addTrap(new dc::model::BearTrap());
 				}

@@ -10,6 +10,11 @@
 #include <util/Random.h>
 #include <sstream>
 
+#include "MobLoader.h"
+#include "InventoryLoader.h"
+#include "TrapLoader.h"
+#include "RoomDescriptionLoader.h"
+
 namespace dc {
 	namespace game {
 		class FileLoader
@@ -18,38 +23,31 @@ namespace dc {
 				static bool instanceFlag;
 				static FileLoader *single;
 
-				static bool mobsLoaded;
-				static bool roomsLoaded;
-				static bool trapsLoaded;
-				static bool inventoryLoaded;
-
-				std::unordered_map<int, std::unordered_map<std::string, std::string>> loadedMobs;
-				std::vector<std::string> loadedRooms;
-				std::vector<std::string> loadedTraps;
-				std::vector<std::string> loadedInventory;
-
-				std::vector<std::string> split(const std::string &text, char sep);
-				std::string trim(std::string &s);
-				std::string FileLoader::StrToUpper(const std::string & Text);
-
 				FileLoader(){}
-				void loadMobs();
-				void loadTraps();
-				void loadRoomDescriptions();
-				void loadInventory();
+
+				MobLoader *mobLoader;
+				InventoryLoader *inventoryLoader;
+				TrapLoader *trapLoader;
+				RoomDescriptionLoader *roomDescriptionLoader;
+
+				void FileLoader::initialize();
 				
 			public:
 				static FileLoader* getInstance();
-				std::unordered_map<std::string, std::string> getRandomMob();
-				std::string getRandomRoom();
-				std::string getRandomTrap();
-				std::vector<std::string> getInventory();
 
 				~FileLoader()
 				{
 					instanceFlag = false;
-					mobsLoaded = false;
+					delete mobLoader;
+					delete inventoryLoader;
+					delete trapLoader;
+					delete roomDescriptionLoader;
 				}
+
+				MobLoader FileLoader::getMobLoader();
+				InventoryLoader FileLoader::getInventoryLoader();
+				TrapLoader FileLoader::getTrapLoader();
+				RoomDescriptionLoader FileLoader::getRoomDescriptionLoader();
 		};
 	}
 }

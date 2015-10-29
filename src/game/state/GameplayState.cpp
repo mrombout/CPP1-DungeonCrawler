@@ -47,7 +47,7 @@ namespace dc {
 
 			// Begin vullen van de inventory
 
-			std::vector<std::string> inventory = FileLoader::getInstance()->getInventory();
+			std::vector<std::string> inventory = FileLoader::getInstance()->getInventoryLoader().getInventory();
 
 			for (std::string item : inventory)
 			{

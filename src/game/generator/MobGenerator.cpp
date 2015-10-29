@@ -8,7 +8,7 @@ namespace dc {
         dc::model::Mob *MobGenerator::generate(unsigned int level) {
             dc::model::Mob *mob = new dc::model::Mob();
 
-			std::unordered_map<std::string, std::string> mobProps = FileLoader::getInstance()->getRandomMob();
+			std::unordered_map<std::string, std::string> mobProps = FileLoader::getInstance()->getMobLoader().getRandomMob();
 
             // TODO: Load mob from files, with base levels
 			mob->setName(mobProps["name"]);
