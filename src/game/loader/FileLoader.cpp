@@ -8,6 +8,7 @@ namespace dc {
 		bool FileLoader::instanceFlag = false;
 		bool FileLoader::mobsLoaded = false;
 		bool FileLoader::roomsLoaded = false;
+		bool FileLoader::trapsLoaded = false;
 		FileLoader* FileLoader::single = NULL;
 		FileLoader* FileLoader::getInstance()
 		{
@@ -98,7 +99,7 @@ namespace dc {
 				file.close();
 			}
 			else{
-				std::cout << "Unable to open mobs.txt file." << std::endl;
+				std::cout << "Unable to open rooms.txt file." << std::endl;
 			}
 
 			roomsLoaded = true;
@@ -111,7 +112,52 @@ namespace dc {
 			}
 
 			int randomRoom = Random::nextInt(0, loadedRooms.size() - 1);
-			return loadedRooms[randomRoom];
+
+			if (loadedRooms.size() != 0){
+				return loadedRooms[randomRoom];
+			}
+			else {
+				return "";
+			}
+		}
+
+		void FileLoader::loadTraps()
+		{
+			std::string line;
+
+			std::ifstream file("E:/School/Software Architectuur/CPP1/Eindopdracht/CPP/src/textfiles/traps.txt");
+			if (file.is_open())
+			{
+				while (!file.eof())
+				{
+					getline(file, line);
+					if (line[0] != '*' && !line.empty()){ // Mag niet starten met een * en mag niet leeg zijn
+						loadedTraps.push_back(StrToUpper(line));
+					}
+				}
+				file.close();
+			}
+			else{
+				std::cout << "Unable to open traps.txt file." << std::endl;
+			}
+
+			trapsLoaded = true;
+		}
+
+		std::string FileLoader::getRandomTrap()
+		{
+			if (!trapsLoaded){
+				loadTraps();
+			}
+
+			int randomTrap = Random::nextInt(0, loadedTraps.size() - 1);
+
+			if (loadedTraps.size() != 0){
+				return loadedTraps[randomTrap];
+			}
+			else {
+				return "TrapType";
+			}
 		}
 
 		std::vector<std::string> FileLoader::split(const std::string &text, char sep) {
@@ -132,6 +178,17 @@ namespace dc {
 				s.erase(s.end() - 1); // remove trailing whitespaces
 
 			return s;
+		}
+
+		std::string FileLoader::StrToUpper(const std::string & Text)
+		{
+			std::string UppperCaseString;
+			UppperCaseString.reserve(Text.size());
+			for (std::string::const_iterator it = Text.begin(); it<Text.end(); ++it)
+			{
+				UppperCaseString.push_back(((0x60 < *it) && (*it < 0x7B)) ? (*it - static_cast<char>(0x20)) : *it);
+			}
+			return UppperCaseString;
 		}
 	}
 }
