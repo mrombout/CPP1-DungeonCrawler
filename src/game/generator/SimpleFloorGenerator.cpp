@@ -46,8 +46,10 @@ namespace dc {
             mWidth = 5;
             mHeight = 5;
 
+            mGrid.clear();
             mGrid.resize(mHeight);
             for(int i = 0; i < mHeight; ++i) {
+                mGrid[i].clear();
                 mGrid[i].resize(mWidth, nullptr);
             }
         }
