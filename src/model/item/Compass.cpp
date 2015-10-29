@@ -65,15 +65,17 @@ namespace dc {
             }
 
             // announce total monsters
-            std::cout << "\"\n\n" << mobsOnPath.size() << " monster" << (mobsOnPath.size() > 1 ? "s" : "") << " (";
-
-            for(dc::model::Mob* mob : mobsOnPath) {
-                std::cout << mob->level() << " hp, ";
+            std::cout << "\"\n\n" << mobsOnPath.size() << " monster" << (mobsOnPath.size() > 1 ? "s" : "");
+            if(mobsOnPath.size() > 0) {
+                std::cout << " (";
+                for(dc::model::Mob* mob : mobsOnPath) {
+                    std::cout << mob->level() << " hp, ";
+                }
+                std::cout << mobsOnPath.back()->level() << " hp)\n";
             }
-            std::cout << mobsOnPath.back()->level() << " hp)\n";
 
             // announce total traps
-            std::cout << numTraps << " traps" << (numTraps > 1 ? "s" : "") << "\n\n" << std::endl;
+            std::cout << numTraps << " trap" << (numTraps > 1 ? "s" : "") << "\n\n" << std::endl;
         }
     }
 }
