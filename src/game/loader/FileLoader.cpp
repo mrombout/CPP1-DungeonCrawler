@@ -9,6 +9,7 @@ namespace dc {
 		bool FileLoader::mobsLoaded = false;
 		bool FileLoader::roomsLoaded = false;
 		bool FileLoader::trapsLoaded = false;
+		bool FileLoader::inventoryLoaded = false;
 		FileLoader* FileLoader::single = NULL;
 		FileLoader* FileLoader::getInstance()
 		{
@@ -158,6 +159,37 @@ namespace dc {
 			else {
 				return "TrapType";
 			}
+		}
+
+		void FileLoader::loadInventory()
+		{
+			std::string line;
+
+			std::ifstream file("E:/School/Software Architectuur/CPP1/Eindopdracht/CPP/src/textfiles/inventory.txt");
+			if (file.is_open())
+			{
+				while (!file.eof())
+				{
+					getline(file, line);
+					if (line[0] != '*' && !line.empty()){ // Mag niet starten met een * en mag niet leeg zijn
+						loadedInventory.push_back(StrToUpper(line));
+					}
+				}
+				file.close();
+			}
+			else{
+				std::cout << "Unable to open inventory.txt file." << std::endl;
+			}
+
+			inventoryLoaded = true;
+		}
+
+		std::vector<std::string> FileLoader::getInventory(){
+			if (!inventoryLoaded){
+				loadInventory();
+			}
+
+			return loadedInventory;
 		}
 
 		std::vector<std::string> FileLoader::split(const std::string &text, char sep) {

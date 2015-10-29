@@ -1,0 +1,14 @@
+*****************************************************************
+*	All possible items:					*
+*		Sword						*
+*		Talisman					*
+*		Iconograph					*
+*		Grenade						*
+*****************************************************************
+* Every new line contains a new item.				*
+*****************************************************************
+
+Talisman
+Sword
+Grenade
+Iconograph

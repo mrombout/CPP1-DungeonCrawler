@@ -17,6 +17,7 @@
 #include "item/Grenade.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
+#include <vector>
 
 namespace dc {
     namespace game {
@@ -44,19 +45,33 @@ namespace dc {
 
             model::Player *player = new model::Player(&dungeon->floor(0).exitRoom());
 
-            model::Item *item = new model::Sword("Sword", "A Sword");
-            player->inventory().addItem(*item);
+			// Begin vullen van de inventory
 
-            model::Item *iconograph = new Iconograph();
-            player->inventory().addItem(*iconograph);
+			std::vector<std::string> inventory = FileLoader::getInstance()->getInventory();
 
-            model::Item *grenade = new model::Grenade();
-            player->inventory().addItem(*grenade);
+			for (std::string item : inventory)
+			{
+				if (item == "SWORD"){
+					player->inventory().addItem(*new model::Sword("Sword", "A Sword"));
+				}
+				else if (item == "ICONOGRAPH") {
+					player->inventory().addItem(*new Iconograph());
+				}
+				else if (item == "GRENADE"){
+					player->inventory().addItem(*new model::Grenade());
+				}
+				else if (item == "TALISMAN"){
+					player->inventory().addItem(*new model::Talisman());
+				}
+				else {
+					std::cout << "Sorry, we can't recognize the " + item + "." << std::endl;
+				}
+			}
 
-            model::Item *talisman = new model::Talisman();
-            player->inventory().addItem(*talisman);
+			// Item gebruiken kan dus nu op de volgende manier:
+            player->inventory().findItem("TALISMAN")->use(*player);
 
-            talisman->use(*player);
+			// Einde vullen van de inventory
 
             mGame = new model::Game(dungeon, player);
             ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);

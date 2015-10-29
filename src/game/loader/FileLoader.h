@@ -17,27 +17,34 @@ namespace dc {
 			private:
 				static bool instanceFlag;
 				static FileLoader *single;
+
 				static bool mobsLoaded;
 				static bool roomsLoaded;
 				static bool trapsLoaded;
+				static bool inventoryLoaded;
+
 				std::unordered_map<int, std::unordered_map<std::string, std::string>> loadedMobs;
 				std::vector<std::string> loadedRooms;
 				std::vector<std::string> loadedTraps;
+				std::vector<std::string> loadedInventory;
+
 				std::vector<std::string> split(const std::string &text, char sep);
 				std::string trim(std::string &s);
-				FileLoader(){
+				std::string FileLoader::StrToUpper(const std::string & Text);
 
-				}
+				FileLoader(){}
 				void loadMobs();
 				void loadTraps();
 				void loadRoomDescriptions();
-				std::string FileLoader::StrToUpper(const std::string & Text);
-
+				void loadInventory();
+				
 			public:
 				static FileLoader* getInstance();
 				std::unordered_map<std::string, std::string> getRandomMob();
 				std::string getRandomRoom();
 				std::string getRandomTrap();
+				std::vector<std::string> getInventory();
+
 				~FileLoader()
 				{
 					instanceFlag = false;
