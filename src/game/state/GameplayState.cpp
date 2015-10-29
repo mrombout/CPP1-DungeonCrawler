@@ -2,6 +2,7 @@
 #include <item/HealthPotion.h>
 #include "Inventory.h"
 #include "Sword.h"
+#include "generator/FloorGenerator.h"
 #include "generator/MobGenerator.h"
 #include "generator/BSPFloorGenerator.h"
 #include "generator/SimpleFloorGenerator.h"
@@ -11,6 +12,7 @@
 #include "Trap.h"
 #include "Player.h"
 #include "Dungeon.h"
+#include "Options.h"
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "item/Iconograph.h"
@@ -36,12 +38,13 @@ namespace dc {
             // generate random dungeon
             unsigned int seed = 1;
 
-            MobGenerator mobGenerator;
-            RoomGenerator roomGenerator(mobGenerator);
-            BSPFloorGenerator bspFloorGenerator = BSPFloorGenerator(roomGenerator);
-            SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
-            DungeonGenerator dungeonGenerator(bspFloorGenerator);
-            model::Dungeon* dungeon = dungeonGenerator.generate(seed);
+            dc::model::Options &options = ServiceLocator::getInstance().resolve<dc::model::Options>();
+
+            // TODO: Delete floorGenerator somewhere (cheat and make service locator delete? inb4 not a smartpointer)
+            dc::game::FloorGenerator *floorGenerator = ServiceLocator::getInstance().create<dc::game::FloorGenerator>();
+            DungeonGenerator dungeonGenerator(*floorGenerator);
+
+            model::Dungeon* dungeon = dungeonGenerator.generate(seed, options.getInt("dungeon.width"), options.getInt("dungeon.height"));
 
             model::Player *player = new model::Player(&dungeon->floor(0).startRoom());
 
