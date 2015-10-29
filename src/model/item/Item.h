@@ -27,6 +27,7 @@ namespace dc {
         private:
             std::string mName;
             std::string mDescription;
+            int mDamage;
         };
     }
 }

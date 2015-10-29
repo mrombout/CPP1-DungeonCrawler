@@ -44,7 +44,7 @@ namespace dc {
 
             model::Player *player = new model::Player(&dungeon->floor(0).exitRoom());
 
-            model::Item *item = new model::Sword("Sword", "A Sword");
+            model::Item *item = new model::Sword();
             player->inventory().addItem(*item);
 
             model::Item *iconograph = new Iconograph();
