@@ -30,7 +30,7 @@ namespace dc {
             void setHealth(int pHealth);
             void decreaseHealth(int pHealth);
             void increaseHealth(int pHealth);
-            void damage(unsigned int pDamage);
+            virtual void damage(unsigned int pDamage);
 
             unsigned int level() const;
             void setLevel(unsigned int pLevel);

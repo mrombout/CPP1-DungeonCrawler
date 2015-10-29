@@ -19,17 +19,22 @@ namespace dc {
         }
 
         void AttackCommand::execute() const {
-            std::cout << csl::color(csl::WHITE) << "You attack the " << mMob.name() << " and, ";
-
-            // Reduction bonus (increases chance of a hit) based on player attack level
-            int reductionFactor = 0.1 * mPlayer.attack();
-            if(rand() % 100 > (50 - reductionFactor)) {
-                int damage = mPlayer.weapon().damage();
-                std::cout << csl::color(csl::LIGHTGREEN) << "hit.\nYou do " << damage << " damage!";
-
-                mMob.damage(damage);
+            dc::model::Equipable *weapon = &mPlayer.weapon();
+            if (weapon == nullptr) {
+                std::cout << "Well, that's a bummer, you haven't equipped a weapon yet!" << std::endl;
             } else {
-                std::cout << csl::color(csl::LIGHTRED) << "miss.";
+                std::cout << csl::color(csl::WHITE) << "You attack the " << mMob.name() << " and, ";
+
+                // Reduction bonus (increases chance of a hit) based on player attack level
+                double reductionFactor = 0.1 * mPlayer.attack();
+                if (rand() % 100 > (50 - reductionFactor)) {
+                    int damage = mPlayer.weapon().damage();
+                    std::cout << csl::color(csl::LIGHTGREEN) << "hit.\nYou do " << damage << " damage!";
+
+                    mMob.damage(damage);
+                } else {
+                    std::cout << csl::color(csl::LIGHTRED) << "miss.";
+                }
             }
 
             std::cout << "\n" << std::endl;
