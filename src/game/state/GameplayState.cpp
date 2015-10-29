@@ -1,4 +1,5 @@
 #include <iostream>
+#include <item/HealthPotion.h>
 #include "Inventory.h"
 #include "Sword.h"
 #include "generator/MobGenerator.h"
@@ -55,6 +56,9 @@ namespace dc {
 
             model::Item *talisman = new model::Talisman();
             player->inventory().addItem(*talisman);
+
+            model::HealthPotion *healthPotion = new model::HealthPotion("Potion", "Test Potion Description", 50);
+            player->inventory().addItem(healthPotion);
 
             talisman->use(*player);
 

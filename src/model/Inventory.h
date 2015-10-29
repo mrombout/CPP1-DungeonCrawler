@@ -22,8 +22,6 @@ namespace dc {
 
             void add(Item &item);
 
-            std::string description() const;
-
             const std::vector<Item*> &items() const;
             void addItem(Item &item);
             void addItem(Item *item);

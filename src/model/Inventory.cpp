@@ -33,20 +33,6 @@ namespace dc {
             mItems.push_back(&item);
         }
 
-        std::string Inventory::description() const {
-            std::string listing ("");
-
-            if (mItems.empty()) {
-                listing += "\r\nEmpty inventory";
-            } else {
-                for (std::vector<int>::size_type i = 0; i != mItems.size(); ++i) {
-                    listing += "\r\n" + mItems[i]->description();
-                }
-            }
-
-            return listing;
-        }
-
         const std::vector<Item *> &Inventory::items() const {
             return mItems;
         }
