@@ -15,6 +15,7 @@
 #include "item/Iconograph.h"
 #include "item/Talisman.h"
 #include "item/Grenade.h"
+#include "item/Compass.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
 
@@ -39,10 +40,10 @@ namespace dc {
             RoomGenerator roomGenerator(mobGenerator);
             BSPFloorGenerator bspFloorGenerator = BSPFloorGenerator(roomGenerator);
             SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
-            DungeonGenerator dungeonGenerator(bspFloorGenerator);
+            DungeonGenerator dungeonGenerator(floorGenerator);
             model::Dungeon* dungeon = dungeonGenerator.generate(seed);
 
-            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom());
+            model::Player *player = new model::Player(&dungeon->floor(0).startRoom());
 
             model::Item *item = new model::Sword("Sword", "A Sword");
             player->inventory().addItem(*item);

@@ -9,9 +9,10 @@
 #include "Floor.h"
 #include "Passage.h"
 
-std::list<dc::model::Room*> DijkstraPathfinder::findPath(dc::model::Floor &floor, dc::model::Room &startRoom, dc::model::Room &endRoom) {
+std::list<dc::model::Passage*> DijkstraPathfinder::findPath(dc::model::Floor &floor, dc::model::Room &startRoom, dc::model::Room &endRoom) {
     // create vertex set Q
     std::map<dc::model::Room*, dc::model::Room*> prev;
+    std::map<dc::model::Room*, dc::model::Passage*> prevTest;
     std::map<dc::model::Room*, unsigned int> dist;
 
     /*
@@ -57,15 +58,17 @@ std::list<dc::model::Room*> DijkstraPathfinder::findPath(dc::model::Floor &floor
             if(alt < dist[&v]) {
                 dist[&v] = alt;
                 prev[&v] = u;
+                prevTest[&v] = e;
             }
         }
     }
 
     // find shortest path
-    std::list<dc::model::Room*> path;
+    std::list<dc::model::Passage*> path;
     dc::model::Room* u = &endRoom;
     while(prev.find(u) != prev.end()) {
-        path.push_front(u);
+        if(prevTest[u])
+            path.push_front(prevTest[u]);
         u = prev[u];
     }
 
