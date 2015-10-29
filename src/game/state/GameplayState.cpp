@@ -56,6 +56,9 @@ namespace dc {
             model::Item *talisman = new model::Talisman();
             player->inventory().addItem(*talisman);
 
+            model::Item *compass = new model::Compass();
+            player->inventory().addItem(*compass);
+
             talisman->use(*player);
 
             mGame = new model::Game(dungeon, player);
