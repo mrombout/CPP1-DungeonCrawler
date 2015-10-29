@@ -14,7 +14,7 @@ namespace dc {
     namespace model {
         class Item {
         public:
-            Item(std::string name, std::string description);
+            Item(std::string name, std::string description, int damage);
             virtual ~Item() { }
 
             virtual void pickUp(Player &player);
@@ -24,9 +24,13 @@ namespace dc {
 
             std::string name() const;
             std::string description() const;
+
+            int damage() const;
+            void setDamage(int damage);
         private:
             std::string mName;
             std::string mDescription;
+            int mDamage;
         };
     }
 }

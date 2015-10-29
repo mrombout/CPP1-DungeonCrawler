@@ -7,7 +7,7 @@ namespace dc {
     namespace model {
         class Equipable : public Item {
         public:
-            Equipable(std::string name, std::string description);
+            Equipable(std::string name, std::string description, int damage);
             virtual ~Equipable();
         };
     }
