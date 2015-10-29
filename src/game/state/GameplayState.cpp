@@ -1,7 +1,7 @@
 #include <iostream>
 #include <item/HealthPotion.h>
 #include "Inventory.h"
-#include "Sword.h"
+#include "item/Sword.h"
 #include "generator/FloorGenerator.h"
 #include "generator/MobGenerator.h"
 #include "generator/BSPFloorGenerator.h"
@@ -18,6 +18,7 @@
 #include "item/Iconograph.h"
 #include "item/Talisman.h"
 #include "item/Grenade.h"
+#include "item/Compass.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
 
@@ -62,6 +63,9 @@ namespace dc {
 
             model::HealthPotion *healthPotion = new model::HealthPotion("Potion", "Test Potion Description", 50);
             player->inventory().addItem(healthPotion);
+            
+            model::Item *compass = new model::Compass();
+            player->inventory().addItem(*compass);
 
             talisman->use(*player);
 

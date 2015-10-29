@@ -1,7 +1,7 @@
 #include <iostream>
 #include "AttackCommand.h"
 #include "Game.h"
-#include "Equipable.h"
+#include "item/Equipable.h"
 #include "Mob.h"
 #include "Player.h"
 #include "Room.h"

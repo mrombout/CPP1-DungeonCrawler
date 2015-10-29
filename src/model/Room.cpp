@@ -2,6 +2,7 @@
 #include "fixture/Ladder.h"
 #include "Room.h"
 #include "Trap.h"
+#include "Mob.h"
 
 namespace dc {
     namespace model {
@@ -148,6 +149,16 @@ namespace dc {
                 return 'S';
 
             return isVisited() ? 'N' : '.';
+        }
+
+        int Room::weight() const {
+            int weight = 0;
+
+            for(dc::model::Mob *mob : mobs()) {
+                weight += mob->level();
+            }
+
+            return weight;
         }
     }
 }

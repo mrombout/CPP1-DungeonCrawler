@@ -1,5 +1,5 @@
 #include "Character.h"
-#include "Equipable.h"
+#include "item/Equipable.h"
 
 namespace dc {
     namespace model {

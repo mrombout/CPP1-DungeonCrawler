@@ -7,7 +7,7 @@
 #include <Game.h>
 #include "EquipCommand.h"
 #include <item/Item.h>
-#include "Equipable.h"
+#include "item/Equipable.h"
 
 namespace dc {
     namespace game {
