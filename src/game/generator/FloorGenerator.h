@@ -9,7 +9,7 @@ namespace dc {
 		public:
 			virtual ~FloorGenerator();
 
-			virtual dc::model::Floor *generate(unsigned int level) = 0;
+			virtual model::Floor *generate(unsigned int level, unsigned int width, unsigned int height) = 0;
 		};
 	}
 }

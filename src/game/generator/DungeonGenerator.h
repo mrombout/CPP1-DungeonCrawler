@@ -25,11 +25,11 @@ namespace dc {
         public:
             DungeonGenerator(FloorGenerator &floorGenerator);
 
-            dc::model::Dungeon *generate(unsigned int seed) const;
+            dc::model::Dungeon *generate(unsigned int seed, unsigned int width, unsigned int height) const;
 
         private:
             std::string generateDungeonName() const;
-            dc::model::Floor *generateDungeonFloor(int level) const;
+            dc::model::Floor *generateDungeonFloor(int level, unsigned int width, unsigned int height) const;
 
             FloorGenerator &mFloorGenerator;
         };

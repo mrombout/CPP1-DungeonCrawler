@@ -20,9 +20,9 @@ namespace dc {
 
         }
 
-        dc::model::Floor *BSPFloorGenerator::generate(unsigned int level) {
+        model::Floor *BSPFloorGenerator::generate(unsigned int level, unsigned int width, unsigned int height) {
             // perform bsp
-            Leaf *root = createTree();
+            Leaf *root = createTree(width, height);
 
             // generate rooms
             std::vector<std::vector<dc::model::Room*>> rooms;
@@ -87,9 +87,9 @@ namespace dc {
             }
         }
 
-        Leaf *BSPFloorGenerator::createTree() {
+        Leaf *BSPFloorGenerator::createTree(unsigned int width, unsigned int height) {
             std::stack<Leaf*> leafs;
-            Leaf *root = new Leaf(0, 0, 30, 30);
+            Leaf *root = new Leaf(0, 0, width, height);
             leafs.push(root);
 
             bool didSplit = true;

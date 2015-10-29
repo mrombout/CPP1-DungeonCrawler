@@ -25,7 +25,7 @@ namespace dc {
         public:
             explicit SimpleFloorGenerator(RoomGenerator &roomGenerator);
 
-            dc::model::Floor *generate(unsigned int level) override;
+            model::Floor *generate(unsigned int level, unsigned int width, unsigned int height) override;
 
         private:
             unsigned int mWidth;
@@ -36,7 +36,7 @@ namespace dc {
             RoomGenerator &mRoomGenerator;
 
             void dig(dc::model::Room *room, Point point, unsigned int &level);
-            void reset();
+            void reset(unsigned int width, unsigned int height);
 
             dc::model::Room *createRoom(unsigned int &level);
 

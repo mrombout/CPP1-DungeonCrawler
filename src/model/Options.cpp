@@ -3,7 +3,7 @@
 namespace dc {
     namespace model {
         Options::Options() :
-            mMap{{"dungeon.width", "25"}, {"dungeon.height", "25"}} {
+            mMap{{"dungeon.width", "25"}, {"dungeon.height", "25"}, {"dungeon.type", "bsp"}} {
 
         }
 
@@ -17,6 +17,10 @@ namespace dc {
 
         const std::map<std::string, std::string> Options::all() const {
             return mMap;
+        }
+
+        int Options::getInt(const std::string &name) {
+            return std::stoi(mMap[name]);
         }
     }
 }

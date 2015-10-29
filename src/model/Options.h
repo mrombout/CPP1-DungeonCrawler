@@ -10,7 +10,10 @@ namespace dc {
             Options();
 
             void set(std::string name, std::string value);
+
             std::string get(const std::string &name);
+            int getInt(const std::string &name);
+
             const std::map<std::string, std::string> all() const;
 
         private:

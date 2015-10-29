@@ -1,3 +1,4 @@
+#include <generator/FloorGenerator.h>
 #include "Options.h"
 #include "GameLoop.h"
 #include "state/WelcomeState.h"
@@ -5,6 +6,8 @@
 #include "command/NewGameCommand.h"
 #include "generator/MobGenerator.h"
 #include "generator/RoomGenerator.h"
+#include "generator/BSPFloorGenerator.h"
+#include "generator/SimpleFloorGenerator.h"
 
 int main(int argc, char *argv[])
 {
@@ -27,6 +30,17 @@ int main(int argc, char *argv[])
     // add factories
     sl.addFactory<dc::game::NewGameCommand>([](ServiceLocator &sl) {
         return new dc::game::NewGameCommand(sl.resolve<dc::game::GameLoop>());
+    });
+    sl.addFactory<dc::game::FloorGenerator>([](ServiceLocator &sl) -> dc::game::FloorGenerator* {
+        dc::model::Options &options = sl.resolve<dc::model::Options>();
+        dc::game::RoomGenerator &roomGenerator = sl.resolve<dc::game::RoomGenerator>();
+
+        std::string generator = options.get("dungeon.type");
+        if(generator == "dfs") {
+            return new dc::game::SimpleFloorGenerator(roomGenerator);
+        } else {
+            return new dc::game::BSPFloorGenerator(roomGenerator);
+        }
     });
 
     // start game

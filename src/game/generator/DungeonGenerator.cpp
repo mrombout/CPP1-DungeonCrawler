@@ -54,7 +54,7 @@ namespace dc {
 
         }
 
-        model::Dungeon *DungeonGenerator::generate(unsigned int seed) const {
+        model::Dungeon *DungeonGenerator::generate(unsigned int seed, unsigned int width, unsigned int height) const {
             srand(seed);
 
             std::string dName = generateDungeonName();
@@ -66,7 +66,7 @@ namespace dc {
             int numFloors = 2;
             for(int i = 1; i <= numFloors; ++i) {
                 previousFloor = currentFloor;
-                currentFloor = generateDungeonFloor(i);
+                currentFloor = generateDungeonFloor(i, width, height);
                 dFloors.push_back(currentFloor);
 
                 if(previousFloor) {
@@ -117,8 +117,8 @@ namespace dc {
             return dungeonName;
         }
 
-        Floor *DungeonGenerator::generateDungeonFloor(int level) const {
-            return mFloorGenerator.generate(level);
+        Floor *DungeonGenerator::generateDungeonFloor(int level, unsigned int width, unsigned int height) const {
+            return mFloorGenerator.generate(level, width, height);
         }
     }
 }
