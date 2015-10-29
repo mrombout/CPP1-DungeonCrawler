@@ -14,7 +14,7 @@
 
 namespace dc {
     namespace model {
-        Grenade::Grenade() : Item("Grenade", "A hand grenade, this will kill everything in the room and destroy half of the dungeon, except you.", 0) { }
+        Grenade::Grenade() : Item("Grenade", "A hand grenade, this will kill everything in the room and destroy half of the dungeon, except you.") { }
 
         void Grenade::use(Character &character) {
             Room *startRoom = character.room();

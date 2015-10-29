@@ -8,10 +8,9 @@
 namespace dc {
     namespace model {
 
-        Item::Item(std::string name, std::string description, int damage) :
+        Item::Item(std::string name, std::string description) :
                 mName(name),
-                mDescription(description),
-                mDamage(damage) {
+                mDescription(description) {
 
         }
 
@@ -21,14 +20,6 @@ namespace dc {
 
         std::string Item::description() const {
             return mDescription;
-        }
-
-        int Item::damage() const {
-            return mDamage;
-        }
-
-        void Item::setDamage(int damage) {
-            mDamage = damage;
         }
 
         void Item::pickUp(Player &player) {

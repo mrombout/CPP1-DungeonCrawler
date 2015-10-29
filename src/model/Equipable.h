@@ -9,6 +9,12 @@ namespace dc {
         public:
             Equipable(std::string name, std::string description, int damage);
             virtual ~Equipable();
+
+            int damage() const;
+            void setDamage(int damage);
+
+        private:
+            int mDamage;
         };
     }
 }
