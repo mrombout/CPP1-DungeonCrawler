@@ -1,3 +1,4 @@
+#include "Options.h"
 #include "GameLoop.h"
 #include "state/WelcomeState.h"
 #include "util/ServiceLocator.h"
@@ -15,11 +16,13 @@ int main(int argc, char *argv[])
 
     dc::game::MobGenerator mobGenerator = dc::game::MobGenerator();
     dc::game::RoomGenerator roomGenerator = dc::game::RoomGenerator(mobGenerator);
+    dc::model::Options options;
 
     // add instances
     sl.addInstance<dc::game::GameLoop>(gameLoop);
     sl.addInstance<dc::game::MobGenerator>(mobGenerator);
     sl.addInstance<dc::game::RoomGenerator>(roomGenerator);
+    sl.addInstance<dc::model::Options>(options);
 
     // add factories
     sl.addFactory<dc::game::NewGameCommand>([](ServiceLocator &sl) {

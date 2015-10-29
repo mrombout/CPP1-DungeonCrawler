@@ -2,7 +2,9 @@
 #include <fstream>
 #include <string>
 #include "command/NewGameCommand.h"
+#include "command/ChangeStateCommand.h"
 #include "WelcomeState.h"
+#include "OptionsState.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
 
@@ -27,7 +29,7 @@ namespace dc {
         }
 
         std::string WelcomeState::onRead() {
-            std::cout << csl::color(csl::GREEN) << "\t(N)ew GameLoop \n\t(L)oad GameLoop \n\t(E)xit" << std::endl;
+            std::cout << csl::color(csl::GREEN) << "\t(N)ew GameLoop\n\t(L)oad GameLoop\n\t(O)ptions\n\t(E)xit" << std::endl;
 
             std::string input;
             std::cin >> input;
@@ -38,7 +40,11 @@ namespace dc {
 
         dc::game::Command *WelcomeState::onEval(std::string input) {
             if (input == "n") {
+                // TODO: Replace with ChangeStateCommand
                 return ServiceLocator::getInstance().create<NewGameCommand>();
+            } else if(input == "o") {
+                // TODO: Delete that state somewhere
+                return dc::game::ChangeStateCommand::create(new dc::game::OptionsState());
             }
 
             return nullptr;
