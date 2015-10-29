@@ -42,6 +42,7 @@ namespace dc {
             if(mobs.empty()) {
                 std::cout << "Victorious!" << std::endl;
                 gameLoop.popState();
+                return "";
             }
 
             Render::mobList(player.room()->mobs());
@@ -49,6 +50,13 @@ namespace dc {
 
             int health = player.health();
             unsigned int maxHealth = player.maxHealth();
+
+            if(player.isDead()) {
+                std::cout << csl::color(csl::LIGHTRED) << "You are dead, you loser." << std::endl;
+                gameLoop.popState();
+                gameLoop.popState();
+                return "";
+            }
 
             std::cout << csl::color(csl::GREEN) << "(";
             if(health < maxHealth / 2) {
