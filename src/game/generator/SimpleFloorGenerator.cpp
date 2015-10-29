@@ -33,9 +33,8 @@ namespace dc {
             Room* startRoom = mGrid[0][0];
             Room* exitRoom = mGrid[mWidth - 1][mHeight - 1];
             if(level % 2 == 0) {
-                Room* tmp = startRoom;
-                startRoom = exitRoom;
-                exitRoom = tmp;
+                startRoom = mGrid[mWidth - 1][mHeight - 1];
+                exitRoom = mGrid[0][0];
             }
 
             std::cout << "Done generating dungeon" << std::endl;
