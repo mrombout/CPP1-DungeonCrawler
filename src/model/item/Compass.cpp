@@ -21,15 +21,16 @@ namespace dc {
             dc::model::Room *startRoom = character.room();
             dc::model::Floor *floor = startRoom->floor();
             dc::model::Room *endRoom = &floor->exitRoom();
+            std::vector<dc::model::Mob*> mobsOnPath;
+            int numTraps = 0;
 
             std::cout << csl::color(csl::WHITE) << "You take the compass out of your pocket. It vibrates in yours hands as it starts speaking to you: ";
             std::cout << "\n\n\"After 500 meters, turn ";
 
+            // find path using dijkstra's algorithm
             std::list<dc::model::Passage*> path = DijkstraPathfinder::findPath(*floor, *startRoom, *endRoom);
 
-            std::vector<dc::model::Mob*> mobsOnPath;
-            int numTraps = 0;
-
+            // announce directions
             dc::model::Room *currentRoom = startRoom;
             while(currentRoom != endRoom) {
                 for(dc::model::Passage *passage : path) {
@@ -63,6 +64,7 @@ namespace dc {
                 }
             }
 
+            // announce total monsters
             std::cout << "\"\n\n" << mobsOnPath.size() << " monster" << (mobsOnPath.size() > 1 ? "s" : "") << " (";
 
             for(dc::model::Mob* mob : mobsOnPath) {
@@ -70,6 +72,7 @@ namespace dc {
             }
             std::cout << mobsOnPath.back()->level() << " hp)\n";
 
+            // announce total traps
             std::cout << numTraps << " traps" << (numTraps > 1 ? "s" : "") << "\n\n" << std::endl;
         }
     }

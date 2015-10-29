@@ -12,7 +12,7 @@
 std::list<dc::model::Passage*> DijkstraPathfinder::findPath(dc::model::Floor &floor, dc::model::Room &startRoom, dc::model::Room &endRoom) {
     // create vertex set Q
     std::map<dc::model::Room*, dc::model::Room*> prev;
-    std::map<dc::model::Room*, dc::model::Passage*> prevTest;
+    std::map<dc::model::Room*, dc::model::Passage*> prevEdges;
     std::map<dc::model::Room*, unsigned int> dist;
 
     /*
@@ -58,7 +58,7 @@ std::list<dc::model::Passage*> DijkstraPathfinder::findPath(dc::model::Floor &fl
             if(alt < dist[&v]) {
                 dist[&v] = alt;
                 prev[&v] = u;
-                prevTest[&v] = e;
+                prevEdges[&v] = e;
             }
         }
     }
@@ -67,8 +67,8 @@ std::list<dc::model::Passage*> DijkstraPathfinder::findPath(dc::model::Floor &fl
     std::list<dc::model::Passage*> path;
     dc::model::Room* u = &endRoom;
     while(prev.find(u) != prev.end()) {
-        if(prevTest[u])
-            path.push_front(prevTest[u]);
+        if(prevEdges[u])
+            path.push_front(prevEdges[u]);
         u = prev[u];
     }
 
