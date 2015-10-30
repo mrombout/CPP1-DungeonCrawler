@@ -31,29 +31,9 @@ namespace dc {
 
         void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
             // TODO Onderstaande regel weer verwijderen, nodig voor testen dismantle functionaliteit bij "inspect" command
-            room->addTrap(new dc::model::RatTrap());
-            if(rand() % 100 < 25 && false) {
-
-				std::string trapType = FileLoader::getInstance()->getTrapLoader().getRandomTrap();
-				if (trapType == "BEARTRAP"){
-					room->addTrap(new dc::model::BearTrap());
-				}
-				else if (trapType == "MOBCALLTRAP") {
-					room->addTrap(new dc::model::MobCallTrap());
-				}
-				else if (trapType == "NEARDEATHTRAP"){
-					room->addTrap(new dc::model::NearDeathTrap());
-				}
-				else if (trapType == "RATTRAP"){
-					room->addTrap(new dc::model::RatTrap());
-				}
-				else if (trapType == "TELEPORTTRAP"){
-					room->addTrap(new dc::model::TeleportTrap());
-				}
-				else {
-					std::cout << "Sorry, we can't recognize the " + trapType + "." << std::endl;
-				}
-			
+            if(rand() % 100 < 25) {
+                dc::model::Trap *trap = FileLoader::getInstance()->getTrapLoader().getRandomTrap();
+                room->addTrap(trap);
             }
         }
 

@@ -3,33 +3,32 @@
 
 #include <iostream>
 #include <fstream>
-#include <string.h>
+#include <string>
+#include <sstream>
 #include <list>
 #include <vector>
 #include <unordered_map>
-#include <util/Random.h>
-#include <sstream>
+#include "util/Random.h"
+#include "Trap.h"
 
 namespace dc {
-	namespace game {
-		class TrapLoader
-		{
-			private:
-				static bool trapsLoaded;
-				std::vector<std::string> loadedTraps;
+    namespace game {
+        class TrapLoader {
+        public:
+            TrapLoader();
+            ~TrapLoader();
 
-				void loadTraps();
-				
-			public:
-				std::string getRandomTrap();
+            dc::model::Trap *getRandomTrap();
 
-				TrapLoader(){}
-				~TrapLoader()
-				{
-					trapsLoaded = false;
-				}
-		};
-	}
+        private:
+            void loadTraps();
+            dc::model::Trap *createTrap(const std::string &trapName);
+
+        private:
+            static bool trapsLoaded;
+            std::vector<std::string> loadedTraps;
+        };
+    }
 }
 
 #endif //DUNGEONCRAWLER_TRAPLOADER_H

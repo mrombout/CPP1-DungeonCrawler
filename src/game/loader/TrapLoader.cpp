@@ -1,50 +1,65 @@
 #include <stdlib.h>
 #include <util/String.h>
 #include "TrapLoader.h"
+#include "BearTrap.h"
+#include "NearDeathTrap.h"
+#include "RatTrap.h"
+#include "MobCallTrap.h"
+#include "TeleportTrap.h"
 
 using namespace dc::game;
 
 namespace dc {
 	namespace game {
-		bool TrapLoader::trapsLoaded = false;
+        TrapLoader::TrapLoader() {
 
-		void TrapLoader::loadTraps()
-		{
+        }
+
+        TrapLoader::~TrapLoader() {
+
+        }
+
+		void TrapLoader::loadTraps() {
 			std::string line;
 
-			if (file.is_open())
-			{
-				while (!file.eof())
-				{
 			std::ifstream file("assets/traps.txt");
+			if (file.is_open()) {
+				while (!file.eof()) {
 					getline(file, line);
-					if (line[0] != '*' && !line.empty()){ // Mag niet starten met een * en mag niet leeg zijn
+					if (line[0] != '*' && !line.empty()) {
 						loadedTraps.push_back(String::toUpper(line));
 					}
 				}
 				file.close();
-			}
-			else{
+			} else {
 				std::cout << "Unable to open traps.txt file." << std::endl;
 			}
-
-			trapsLoaded = true;
 		}
 
-		std::string TrapLoader::getRandomTrap()
-		{
-			if (!trapsLoaded){
+		dc::model::Trap *TrapLoader::getRandomTrap() {
+			if (loadedTraps.empty())
 				loadTraps();
-			}
 
 			int randomTrap = Random::nextInt(0, loadedTraps.size() - 1);
 
-			if (loadedTraps.size() != 0){
-				return loadedTraps[randomTrap];
-			}
-			else {
-				return "TrapType";
-			}
+			if (loadedTraps.size() != 0)
+				return createTrap(loadedTraps[randomTrap]);
+            return nullptr;
 		}
-	}
+
+        dc::model::Trap *TrapLoader::createTrap(const std::string &trapName) {
+            if (trapName == "BEARTRAP")
+                return new dc::model::BearTrap();
+            if (trapName == "MOBCALLTRAP")
+                return new dc::model::MobCallTrap();
+            if (trapName == "NEARDEATHTRAP")
+                return new dc::model::NearDeathTrap();
+            if (trapName == "RATTRAP")
+                return new dc::model::RatTrap();
+            if (trapName == "TELEPORTTRAP")
+                return new dc::model::TeleportTrap();
+
+            std::cout << "Sorry, we can't recognize the " + trapName + "." << std::endl;
+        }
+    }
 }
