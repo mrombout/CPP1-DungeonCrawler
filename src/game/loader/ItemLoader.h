@@ -17,10 +17,11 @@ namespace dc {
         class ItemLoader {
         public:
             ItemLoader();
+            ~ItemLoader();
 
-            dc::model::Item *createRandomItem();
-            dc::model::Potion *createRandomPotion();
-            dc::model::Equipable *createRandomEquipable();
+            dc::model::Item &createRandomItem();
+            dc::model::Potion &createRandomPotion();
+            dc::model::Equipable &createRandomEquipable();
 
         private:
             void lazyLoadItems();
