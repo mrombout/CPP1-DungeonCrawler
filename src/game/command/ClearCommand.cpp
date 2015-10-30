@@ -8,7 +8,7 @@
 namespace dc {
     namespace game {
         void game::ClearCommand::execute() const {
-#if defined(__WIN32__)
+#if defined(__WIN32__) || defined(WIN32)
             system("cls");
 #else
             system("clear");
