@@ -43,13 +43,13 @@ namespace dc {
 
             // TODO: Delete floorGenerator somewhere (cheat and make service locator delete? inb4 not a smartpointer)
             dc::game::FloorGenerator *floorGenerator = ServiceLocator::getInstance().create<dc::game::FloorGenerator>();
-            DungeonGenerator dungeonGenerator(*floorGenerator);
+            DungeonGenerator dungeonGenerator(*floorGenerator, ServiceLocator::getInstance().resolve<dc::game::MobGenerator>());
 
             model::Dungeon* dungeon = dungeonGenerator.generate(seed, options.getInt("dungeon.width"), options.getInt("dungeon.height"));
 
             model::Player *player = new model::Player(&dungeon->floor(0).startRoom());
 
-            model::Item *item = new model::Sword();
+            model::Item *item = new model::Sword("Test Sword", "Testing Sword", 1);
             player->inventory().addItem(*item);
 
             model::Item *iconograph = new Iconograph();

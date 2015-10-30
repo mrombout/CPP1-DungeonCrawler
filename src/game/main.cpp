@@ -1,17 +1,18 @@
-#include <generator/FloorGenerator.h>
-#include <loader/RoomDescriptionLoader.h>
-#include "Options.h"
-#include "GameLoop.h"
-#include "state/WelcomeState.h"
-#include "util/ServiceLocator.h"
-#include "command/NewGameCommand.h"
-#include "generator/MobGenerator.h"
-#include "generator/RoomGenerator.h"
-#include "generator/BSPFloorGenerator.h"
-#include "generator/SimpleFloorGenerator.h"
 #include "loader/MobLoader.h"
 #include "loader/InventoryLoader.h"
 #include "loader/TrapLoader.h"
+#include "loader/RoomDescriptionLoader.h"
+#include "loader/ItemLoader.h"
+#include "util/ServiceLocator.h"
+#include "generator/MobGenerator.h"
+#include "generator/RoomGenerator.h"
+#include "generator/FloorGenerator.h"
+#include "generator/SimpleFloorGenerator.h"
+#include "generator/BSPFloorGenerator.h"
+#include "state/WelcomeState.h"
+#include "command/NewGameCommand.h"
+#include "Options.h"
+#include "GameLoop.h"
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +31,7 @@ int main(int argc, char *argv[])
     dc::game::InventoryLoader inventoryLoader;
     dc::game::TrapLoader trapLoader;
     dc::game::RoomDescriptionLoader roomDescriptionLoader;
+    dc::game::ItemLoader itemLoader;
 
     sl.addInstance<dc::game::GameLoop>(gameLoop);
     sl.addInstance<dc::game::MobGenerator>(mobGenerator);
@@ -40,6 +42,7 @@ int main(int argc, char *argv[])
     sl.addInstance<dc::game::InventoryLoader>(inventoryLoader);
     sl.addInstance<dc::game::TrapLoader>(trapLoader);
     sl.addInstance<dc::game::RoomDescriptionLoader>(roomDescriptionLoader);
+    sl.addInstance<dc::game::ItemLoader>(itemLoader);
 
     // add factories
     sl.addFactory<dc::game::NewGameCommand>([](ServiceLocator &sl) {

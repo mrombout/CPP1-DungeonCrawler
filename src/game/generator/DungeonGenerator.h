@@ -2,6 +2,7 @@
 #define DUNGEONCRAWLER_DUNGEONGENERATOR_H
 
 #include <string>
+#include "MobGenerator.h"
 
 namespace dc {
     namespace model {
@@ -23,7 +24,7 @@ namespace dc {
          */
         class DungeonGenerator {
         public:
-            DungeonGenerator(FloorGenerator &floorGenerator);
+            DungeonGenerator(FloorGenerator &floorGenerator, MobGenerator &mobGenerator);
 
             dc::model::Dungeon *generate(unsigned int seed, unsigned int width, unsigned int height) const;
 
@@ -32,6 +33,7 @@ namespace dc {
             dc::model::Floor *generateDungeonFloor(int level, unsigned int width, unsigned int height) const;
 
             FloorGenerator &mFloorGenerator;
+            MobGenerator &mMobGenerator;
         };
     }
 }
