@@ -7,6 +7,7 @@
 #include "StringGenerator.h"
 #include "Floor.h"
 #include "Room.h"
+#include "generator/MobGenerator.h"
 
 using namespace dc::model;
 

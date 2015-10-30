@@ -9,5 +9,9 @@ namespace dc {
         void Prop::use(Character &character) {
             // nop
         }
+
+        Item *Prop::clone() const {
+            return new Prop(*this);
+        }
     }
 }

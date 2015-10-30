@@ -10,6 +10,8 @@ namespace dc {
             Compass();
 
             virtual void use(Character &character) override;
+
+            virtual Item *clone() const;
         };
     }
 }

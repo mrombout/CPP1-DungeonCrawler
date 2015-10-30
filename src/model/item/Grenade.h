@@ -1,6 +1,7 @@
 #ifndef DUNGEONCRAWLER_GRANATE_H
 #define DUNGEONCRAWLER_GRANATE_H
 
+#include "Floor.h"
 #include "Item.h"
 
 namespace dc {
@@ -10,6 +11,9 @@ namespace dc {
             Grenade();
 
             virtual void use(Character &character) override;
+
+
+            virtual Item *clone() const;
 
             bool explode(Floor *pFloor);
         };

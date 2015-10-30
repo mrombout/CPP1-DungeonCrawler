@@ -17,5 +17,9 @@ namespace dc {
         Ladder::Direction Ladder::direction() const {
             return mDirection;
         }
+
+        Item *Ladder::clone() const {
+            return new Ladder(*this);
+        }
     }
 }

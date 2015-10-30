@@ -11,6 +11,7 @@ public:
     Iconograph() : Item("Iconograph", "An iconograph is a wonderful device that allows you to make \"instantaneous paintings\".") { }
 
     virtual void use(dc::model::Character &character) override;
+    virtual dc::model::Item *clone() const;
 };
 
 

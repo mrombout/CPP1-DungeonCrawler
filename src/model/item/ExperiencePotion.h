@@ -10,6 +10,8 @@ namespace dc {
             ExperiencePotion(const std::string &name, const std::string &description, int effect);
 
             virtual void consume(Character &character) override;
+
+            virtual Item *clone() const;
         };
     }
 }

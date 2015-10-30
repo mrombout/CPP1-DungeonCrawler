@@ -17,6 +17,8 @@ namespace dc {
             Item(std::string name, std::string description);
             virtual ~Item() { }
 
+            virtual Item* clone() const = 0;
+
             virtual void pickUp(Player &player);
             virtual void use(Character &character);
 

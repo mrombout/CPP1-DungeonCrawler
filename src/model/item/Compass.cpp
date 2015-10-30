@@ -77,5 +77,9 @@ namespace dc {
             // announce total traps
             std::cout << numTraps << " trap" << (numTraps > 1 ? "s" : "") << "\n\n" << std::endl;
         }
+
+        Item *Compass::clone() const {
+            return new Compass(*this);
+        }
     }
 }
