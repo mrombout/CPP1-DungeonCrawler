@@ -1,46 +1,25 @@
 #include <vector>
+#include "util/Number.h"
+#include "util/ServiceLocator.h"
+#include "loader/MobLoader.h"
 #include "Mob.h"
 #include "MobGenerator.h"
 #include "StringGenerator.h"
-
-std::vector<std::vector<std::string>> mobNames {
-        // adjective
-        std::vector<std::string> {
-                "Deluded ",
-                "Intimidating ",
-                "Ignored ",
-                "Beautiful ",
-                "Divine ",
-                "Hellish "
-        },
-
-        // TODO: Names should be base monsters name read from file
-        // names
-        std::vector<std::string> {
-                "Goblin",
-                "Skeleton",
-                "Ghoul",
-                "Slime",
-                "Vampire",
-                "Ghost",
-                "Werewolf",
-                "Troll"
-        }
-};
 
 namespace dc {
     namespace game {
         dc::model::Mob *MobGenerator::generate(unsigned int level) {
             dc::model::Mob *mob = new dc::model::Mob();
 
-            // TODO: Load mob from files, with base levels
-            mob->setName(StringGenerator::generateString(mobNames));
-            mob->setMaxHealth(level * 2);
-            mob->setHealth(level * 2);
-            mob->setLevel(level);
-            mob->setAttack(level);     // TODO: Set (base attack * level)
-            mob->setDefence(level);    // TODO: Set (base defence * level)
-            mob->setPerception(level); // TODO: Set (base perception * level)
+			std::unordered_map<std::string, std::string> mobProps = ServiceLocator::getInstance().resolve<dc::game::MobLoader>().getRandomMob();
+			
+			mob->setName(mobProps["name"]);
+			mob->setMaxHealth(Number::toInt(mobProps["maxhealth"]) * level);
+			mob->setHealth(mob->maxHealth());
+			mob->setLevel(level);
+			mob->setAttack(Number::toInt(mobProps["attack"]) * level);
+			mob->setDefence(Number::toInt(mobProps["defence"]) * level);
+			mob->setPerception(Number::toInt(mobProps["perception"]) * level);
 
             return mob;
         }

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iomanip>
 
-#if defined(__WIN32__)
+#if defined(__WIN32__) || defined(WIN32)
     #include <windows.h>
     #include <winbase.h>
     #include <wincon.h>

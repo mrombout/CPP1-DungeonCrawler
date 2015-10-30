@@ -1,0 +1,8 @@
+*****************************************************************
+* Every new line contains a new trap
+*****************************************************************
+BearTrap
+MobCallTrap
+NearDeathTrap
+RatTrap
+TeleportTrap

@@ -62,7 +62,7 @@ namespace csl {
         }
     }
 
-#if defined(__WIN32__)
+#if defined(__WIN32__) || defined(WIN32)
     std::ios_base &setColorWindows(std::ostream &os, int c) {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, (WORD) c);

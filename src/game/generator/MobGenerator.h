@@ -2,6 +2,7 @@
 #define DUNGEONCRAWLER_MOBGENERATOR_H
 
 #include "Mob.h"
+#include <unordered_map>
 
 namespace dc {
     namespace game {
