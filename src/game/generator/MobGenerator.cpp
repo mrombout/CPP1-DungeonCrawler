@@ -1,4 +1,5 @@
 #include <vector>
+#include "util/Number.h"
 #include "util/ServiceLocator.h"
 #include "loader/MobLoader.h"
 #include "Mob.h"
@@ -14,12 +15,12 @@ namespace dc {
 
             // TODO: Load mob from files, with base levels
 			mob->setName(mobProps["name"]);
-			mob->setMaxHealth(std::stoi(mobProps["maxhealth"]));
-			mob->setHealth(std::stoi(mobProps["health"]));
-			mob->setLevel(std::stoi(mobProps["level"]));
-			mob->setAttack(std::stoi(mobProps["attack"]));     // TODO: Set (base attack * level)
-			mob->setDefence(std::stoi(mobProps["defence"]));    // TODO: Set (base defence * level)
-			mob->setPerception(std::stoi(mobProps["perception"])); // TODO: Set (base perception * level)
+			mob->setMaxHealth(Number::toInt(mobProps["maxhealth"]));
+			mob->setHealth(Number::toInt(mobProps["health"]));
+			mob->setLevel(Number::toInt(mobProps["level"]));
+			mob->setAttack(Number::toInt(mobProps["attack"]));     // TODO: Set (base attack * level)
+			mob->setDefence(Number::toInt(mobProps["defence"]));    // TODO: Set (base defence * level)
+			mob->setPerception(Number::toInt(mobProps["perception"])); // TODO: Set (base perception * level)
 
             return mob;
         }
