@@ -34,6 +34,7 @@ namespace dc {
         private:
             std::map<std::string, ItemFactoryMethod> mFactories;
 
+            std::vector<dc::model::Item*> mItems;
             std::vector<dc::model::Potion*> mPotions;
             std::vector<dc::model::Equipable*> mEquipables;
         };

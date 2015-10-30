@@ -2,8 +2,8 @@
 
 namespace dc {
     namespace model {
-        Potion::Potion(std::string name, std::string description, int effect) :
-                Consumable(name, description),
+        Potion::Potion(unsigned int id, std::string name, std::string description, int effect) :
+                Consumable(id, name, description),
                 mEffect(effect) {
 
         }

@@ -7,8 +7,8 @@
 
 namespace dc {
     namespace model {
-
-        Item::Item(std::string name, std::string description) :
+        Item::Item(unsigned int id, std::string name, std::string description) :
+                mId(id),
                 mName(name),
                 mDescription(description) {
 

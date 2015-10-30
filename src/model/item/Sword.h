@@ -9,7 +9,7 @@ namespace dc {
         class Sword : public Equipable {
 
         public:
-            Sword(std::string name, std::string description, int damage);
+            Sword(unsigned int id, std::string name, std::string description, int damage);
             virtual ~Sword();
 
             virtual Item *clone() const;

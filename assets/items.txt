@@ -1,50 +1,50 @@
-hp;"Potion of Minor Health";10
-hp;"Draught of Minor Health";20
-hp;"Solution of Minor Health";30
-hp;"Philter of Minor Health";40
-hp;"Elixer of Minor Health";50
-hp;"Potion of Health";55
-hp;"Draught of Health";65
-hp;"Solution of Health";75
-hp;"Philter of Health";85
-hp;"Elixer of Health";95
-hp;"Potion of Greater Health";120
-hp;"Draught of Greater Health";140
-hp;"Solution of Greater Health";160
-hp;"Philter of Greater Health";180
-hp;"Elixer of Greater Health";300
-hp;"Weak Poison";-15
-hp;"Poison";-25
-hp;"Potent Poison";-35
-hp;"Virulent Poison";-50
-hp;"Deadly Poison";-65
-xp;"Potion of Liquid Experience";10
-xp;"Potion of Plentiful Liquid Experience";15
-xp;"Potion of Vigorous Liquid Experience";25
-xp;"Potion of Extreme Liquid Experience";50
-xp;"Potion of Ultimate Liquid Experience";80
-sw;"Blade of Falkreath";5
-sw;"Blade of Haafingar";5
-sw;"Blade of Hjaalmarch";5
-sw;"Blade of the Pale";5
-sw;"Blade of the Reach";5
-sw;"Blade of the Rift";5
-sw;"Blade of Whiterun";5
-sw;"Chillrend";5
-sw;"Dragonbane";5
-sw;"Dwarven Sword";5
-sw;"Ebony Sword";5
-sw;"Elven Sword";5
-sw;"Falmer Sword";5
-sw;"Forsworn Sword";5
-sw;"Ghostblade";5
-sw;"Grimsever";5
-sw;"Hjalti's Sword";5
-sw;"Honed Falmer Sword";5
-sw;"Imperial Sword";5
-sw;"Lunar Iron Sword";5
-sw;"Orcisch Sword";5
-sw;"Scimitar";5
-sw;"Silver Sword";5
-sw;"Windshear";5
-sw;"Vilkas's Sword";5
+hp;1;Potion of Minor Health;10
+hp;2;Draught of Minor Health;20
+hp;3;Solution of Minor Health;30
+hp;4;Philter of Minor Health;40
+hp;5;Elixer of Minor Health;50
+hp;6;Potion of Health;55
+hp;7;Draught of Health;65
+hp;8;Solution of Health;75
+hp;9;Philter of Health;85
+hp;10;Elixer of Health;95
+hp;11;Potion of Greater Health;120
+hp;12;Draught of Greater Health;140
+hp;13;Solution of Greater Health;160
+hp;14;Philter of Greater Health;180
+hp;15;Elixer of Greater Health;300
+hp;16;Weak Poison;-15
+hp;17;Poison;-25
+hp;18;Potent Poison;-35
+hp;19;Virulent Poison;-50
+hp;20;Deadly Poison;-65
+xp;21;Potion of Liquid Experience;10
+xp;22;Potion of Plentiful Liquid Experience;15
+xp;23;Potion of Vigorous Liquid Experience;25
+xp;24;Potion of Extreme Liquid Experience;50
+xp;25;Potion of Ultimate Liquid Experience;80
+sw;26;Blade of Falkreath;5
+sw;27;Blade of Haafingar;5
+sw;28;Blade of Hjaalmarch;5
+sw;29;Blade of the Pale;5
+sw;30;Blade of the Reach;5
+sw;31;Blade of the Rift;5
+sw;32;Blade of Whiterun;5
+sw;33;Chillrend;5
+sw;34;Dragonbane;5
+sw;35;Dwarven Sword;5
+sw;36;Ebony Sword;5
+sw;37;Elven Sword;5
+sw;38;Falmer Sword;5
+sw;39;Forsworn Sword;5
+sw;40;Ghostblade;5
+sw;41;Grimsever;5
+sw;42;Hjalti's Sword;5
+sw;43;Honed Falmer Sword;5
+sw;44;Imperial Sword;5
+sw;45;Lunar Iron Sword;5
+sw;46;Orcisch Sword;5
+sw;47;Scimitar;5
+sw;48;Silver Sword;5
+sw;49;Windshear;5
+sw;50;Vilkas's Sword;5

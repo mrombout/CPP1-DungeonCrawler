@@ -48,8 +48,9 @@ namespace dc {
             model::Dungeon* dungeon = dungeonGenerator.generate(seed, options.getInt("dungeon.width"), options.getInt("dungeon.height"));
 
             model::Player *player = new model::Player(&dungeon->floor(0).startRoom());
+            player->setName("Player");
 
-            model::Item *item = new model::Sword("Test Sword", "Testing Sword", 1);
+            model::Item *item = new model::Sword(-1, "Test Sword", "Testing Sword", 1);
             player->inventory().addItem(*item);
 
             model::Item *iconograph = new Iconograph();
@@ -61,7 +62,7 @@ namespace dc {
             model::Item *talisman = new model::Talisman();
             player->inventory().addItem(*talisman);
 
-            model::HealthPotion *healthPotion = new model::HealthPotion("Potion", "Test Potion Description", 50);
+            model::HealthPotion *healthPotion = new model::HealthPotion(-1, "Potion", "Test Potion Description", 50);
             player->inventory().addItem(healthPotion);
             
             model::Item *compass = new model::Compass();

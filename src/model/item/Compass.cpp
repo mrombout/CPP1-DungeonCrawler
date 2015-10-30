@@ -13,7 +13,7 @@
 namespace dc {
     namespace model {
         Compass::Compass() :
-            Item("Compass", "This compass is so smart, it can make bends!") {
+            Item(-1, "Compass", "This compass is so smart, it can make bends!") {
 
         }
 

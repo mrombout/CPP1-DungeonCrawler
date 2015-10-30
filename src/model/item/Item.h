@@ -14,7 +14,7 @@ namespace dc {
     namespace model {
         class Item {
         public:
-            Item(std::string name, std::string description);
+            Item(unsigned int id, std::string name, std::string description);
             virtual ~Item() { }
 
             virtual Item* clone() const = 0;
@@ -27,9 +27,10 @@ namespace dc {
             std::string name() const;
             std::string description() const;
         private:
+            int mId;
+
             std::string mName;
             std::string mDescription;
-            int mDamage;
         };
     }
 }

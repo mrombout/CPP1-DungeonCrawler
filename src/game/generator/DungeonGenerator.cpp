@@ -73,7 +73,7 @@ namespace dc {
                 dFloors.push_back(currentFloor);
 
                 if(!previousFloor) {
-                    currentFloor->startRoom().inventory().addItem(new Prop("Breadcrumb", "Oh! It's that breadcrumb I left here so I can find my way back!"));
+                    currentFloor->startRoom().inventory().addItem(new Prop(-1, "Breadcrumb", "Oh! It's that breadcrumb I left here so I can find my way back!"));
                 } else {
                     Room &previousStart = previousFloor->startRoom();
                     Room &previousEnd = previousFloor->exitRoom();

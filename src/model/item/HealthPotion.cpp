@@ -3,8 +3,8 @@
 
 namespace dc {
     namespace model {
-        HealthPotion::HealthPotion(const std::string &name, const std::string &description, int effect) :
-                Potion(name, description, effect) {
+        HealthPotion::HealthPotion(unsigned int id, const std::string &name, const std::string &description, int effect) :
+                Potion(id, name, description, effect) {
 
         }
 

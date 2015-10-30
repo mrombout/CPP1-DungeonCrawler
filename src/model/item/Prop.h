@@ -7,7 +7,7 @@ namespace dc {
     namespace model {
         class Prop : public Item {
         public:
-            Prop(const std::string &name, const std::string &description) : Item(name, description) { }
+            Prop(unsigned int id, const std::string &name, const std::string &description) : Item(id, name, description) { }
 
             virtual void pickUp(Player &player) override;
             virtual void use(Character &character) override;

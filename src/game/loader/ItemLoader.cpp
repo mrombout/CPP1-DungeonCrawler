@@ -5,6 +5,7 @@
 #include "util/String.h"
 #include "ItemLoader.h"
 #include "item/HealthPotion.h"
+#include "item/ExperiencePotion.h"
 #include "item/Sword.h"
 
 namespace dc {
@@ -65,18 +66,24 @@ namespace dc {
 
         void ItemLoader::createHealthPotion(std::vector<std::string> &input) {
             std::string description = "Heals ";
-            description += Number::toInt(input[2]) + " health points";
-            mPotions.push_back(new dc::model::HealthPotion(input[1], description, Number::toInt(input[2])));
+            description += Number::toInt(input[3]) + " health points";
+
+            dc::model::HealthPotion *potion = new dc::model::HealthPotion(Number::toInt(input[1]), input[2], description, Number::toInt(input[3]));
+
+            mPotions.push_back(potion);
         }
 
         void ItemLoader::createExperiencePotion(std::vector<std::string> &input) {
             std::string description = "Adds ";
-            description += Number::toInt(input[2]) + " experience points";
-            mPotions.push_back(new dc::model::HealthPotion(input[1], description, Number::toInt(input[2])));
+            description += Number::toInt(input[3]) + " experience points";
+
+            dc::model::ExperiencePotion *potion = new dc::model::ExperiencePotion(Number::toInt(input[1]), input[2], description, Number::toInt(input[3]));
+
+            mPotions.push_back(potion);
         }
 
         void ItemLoader::createSword(std::vector<std::string> &input) {
-            dc::model::Sword *sword = new dc::model::Sword(input[1], input[1], Number::toInt(input[2]));
+            dc::model::Sword *sword = new dc::model::Sword(Number::toInt(input[1]), input[2], input[2], Number::toInt(input[3]));
             mEquipables.push_back(sword);
         }
     }

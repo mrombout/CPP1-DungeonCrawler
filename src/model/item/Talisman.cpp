@@ -9,7 +9,7 @@
 namespace dc {
     namespace model {
         Talisman::Talisman()
-                : Item("Talisman", "My grandmother gave this to me. She used it to find the bathroom.") {
+                : Item(-1, "Talisman", "My grandmother gave this to me. She used it to find the bathroom.") {
 
         }
 

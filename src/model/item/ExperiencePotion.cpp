@@ -3,8 +3,8 @@
 
 namespace dc {
     namespace model {
-        ExperiencePotion::ExperiencePotion(const std::string &name, const std::string &description, int effect) :
-                Potion(name, description, effect) {
+        ExperiencePotion::ExperiencePotion(unsigned int id, const std::string &name, const std::string &description, int effect) :
+                Potion(id, name, description, effect) {
 
         }
 

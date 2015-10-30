@@ -8,7 +8,7 @@ namespace dc {
     namespace model {
         class Potion : public Consumable {
         public:
-            Potion(std::string name, std::string description, int effect);
+            Potion(unsigned int, std::string name, std::string description, int effect);
 
         protected:
             int effect() const;
