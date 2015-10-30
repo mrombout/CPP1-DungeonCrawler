@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include "FileLoader.h"
-
-using namespace dc::game;
+#include "RoomDescriptionLoader.h"
 
 namespace dc {
 	namespace game {

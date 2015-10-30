@@ -23,7 +23,6 @@ namespace dc {
             void loadMobs();
 
         private:
-            static bool mobsLoaded;
             std::unordered_map<int, std::unordered_map<std::string, std::string>> loadedMobs;
         };
     }

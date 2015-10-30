@@ -1,4 +1,5 @@
 #include <generator/FloorGenerator.h>
+#include <loader/RoomDescriptionLoader.h>
 #include "Options.h"
 #include "GameLoop.h"
 #include "state/WelcomeState.h"
@@ -8,6 +9,9 @@
 #include "generator/RoomGenerator.h"
 #include "generator/BSPFloorGenerator.h"
 #include "generator/SimpleFloorGenerator.h"
+#include "loader/MobLoader.h"
+#include "loader/InventoryLoader.h"
+#include "loader/TrapLoader.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,15 +21,25 @@ int main(int argc, char *argv[])
     // register services
     ServiceLocator &sl = ServiceLocator::getInstance();
 
+    // add instances
     dc::game::MobGenerator mobGenerator = dc::game::MobGenerator();
     dc::game::RoomGenerator roomGenerator = dc::game::RoomGenerator(mobGenerator);
     dc::model::Options options;
 
-    // add instances
+    dc::game::MobLoader mobLoader;
+    dc::game::InventoryLoader inventoryLoader;
+    dc::game::TrapLoader trapLoader;
+    dc::game::RoomDescriptionLoader roomDescriptionLoader;
+
     sl.addInstance<dc::game::GameLoop>(gameLoop);
     sl.addInstance<dc::game::MobGenerator>(mobGenerator);
     sl.addInstance<dc::game::RoomGenerator>(roomGenerator);
     sl.addInstance<dc::model::Options>(options);
+
+    sl.addInstance<dc::game::MobLoader>(mobLoader);
+    sl.addInstance<dc::game::InventoryLoader>(inventoryLoader);
+    sl.addInstance<dc::game::TrapLoader>(trapLoader);
+    sl.addInstance<dc::game::RoomDescriptionLoader>(roomDescriptionLoader);
 
     // add factories
     sl.addFactory<dc::game::NewGameCommand>([](ServiceLocator &sl) {

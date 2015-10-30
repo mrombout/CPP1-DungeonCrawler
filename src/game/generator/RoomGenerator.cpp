@@ -1,4 +1,7 @@
 #include <stdlib.h>
+#include <loader/TrapLoader.h>
+#include "loader/RoomDescriptionLoader.h"
+#include "util/ServiceLocator.h"
 #include "util/Random.h"
 #include "MobGenerator.h"
 #include "RoomGenerator.h"
@@ -20,7 +23,7 @@ namespace dc {
             int roomLevel = Random::nextInt(level - VARIANCE, level + VARIANCE);
 
             // create room
-            dc::model::Room *room = new dc::model::Room(Point(0, 0), "Some Room", FileLoader::getInstance()->getRoomDescriptionLoader().getRandomRoom());
+            dc::model::Room *room = new dc::model::Room(Point(0, 0), "Some Room", ServiceLocator::getInstance().resolve<dc::game::RoomDescriptionLoader>().getRandomRoom());
 
             // populate room
             generateTraps(room, level);
@@ -32,7 +35,7 @@ namespace dc {
         void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
             // TODO Onderstaande regel weer verwijderen, nodig voor testen dismantle functionaliteit bij "inspect" command
             if(rand() % 100 < 25) {
-                dc::model::Trap *trap = FileLoader::getInstance()->getTrapLoader().getRandomTrap();
+                dc::model::Trap *trap = ServiceLocator::getInstance().resolve<dc::game::TrapLoader>().getRandomTrap();
                 room->addTrap(trap);
             }
         }

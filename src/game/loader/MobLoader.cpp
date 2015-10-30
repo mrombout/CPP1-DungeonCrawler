@@ -1,22 +1,26 @@
 #include <stdlib.h>
-#include <util/String.h>
+#include "util/console.h"
+#include "util/String.h"
+#include "exception/InvalidFormatException.h"
 #include "MobLoader.h"
 
 using namespace dc::game;
 
 namespace dc {
     namespace game {
-        bool MobLoader::mobsLoaded = false;
+        MobLoader::MobLoader() {
 
-        MobLoader::MobLoader() { }
+        }
 
         MobLoader::~MobLoader() {
-            mobsLoaded = false;
+
         }
 
         void MobLoader::loadMobs() {
             std::string line;
             int lineCount = 0;
+
+            csl::log() << "LOAD - Loading Mobs" << std::endl;
 
             std::ifstream file("assets/mobs.txt");
             if (file.is_open()) {
@@ -43,11 +47,10 @@ namespace dc {
 
                             loadedMobs.emplace(lineCount, tempMap);
                             lineCount++;
-                        }
-                        else {
-                            // Incorrect formaat
-                            std::cout << "Format of line " << lineCount + 1 << " in mobs.txt file is not correct." <<
-                            std::endl;
+                        } else {
+                            std::stringstream ss;
+                            ss << "Format of line '" << (lineCount + 1) << "' in mobs.txt file is not correct.";
+                            throw new InvalidFormatException(ss.str());
                         }
                     }
                 }
@@ -56,12 +59,10 @@ namespace dc {
             else {
                 std::cout << "Unable to open mobs.txt file." << std::endl;
             }
-
-            mobsLoaded = true;
         }
 
         std::unordered_map<std::string, std::string> MobLoader::getRandomMob() {
-            if (!mobsLoaded) {
+            if (loadedMobs.empty()) {
                 loadMobs();
             }
 

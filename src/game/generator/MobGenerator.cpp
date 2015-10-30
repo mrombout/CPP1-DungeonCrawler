@@ -1,4 +1,6 @@
 #include <vector>
+#include "util/ServiceLocator.h"
+#include "loader/MobLoader.h"
 #include "Mob.h"
 #include "MobGenerator.h"
 #include "StringGenerator.h"
@@ -8,7 +10,7 @@ namespace dc {
         dc::model::Mob *MobGenerator::generate(unsigned int level) {
             dc::model::Mob *mob = new dc::model::Mob();
 
-			std::unordered_map<std::string, std::string> mobProps = FileLoader::getInstance()->getMobLoader().getRandomMob();
+			std::unordered_map<std::string, std::string> mobProps = ServiceLocator::getInstance().resolve<dc::game::MobLoader>().getRandomMob();
 
             // TODO: Load mob from files, with base levels
 			mob->setName(mobProps["name"]);
