@@ -43,7 +43,7 @@ namespace dc {
             void increaseExperience(double pExperience);
             void decreaseExperience(double pExperience);
 
-            unsigned int attack() const;
+            virtual unsigned int attack() const;
             void setAttack(unsigned int pAttack);
 
             unsigned int defence() const;

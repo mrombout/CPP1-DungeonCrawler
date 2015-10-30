@@ -16,5 +16,9 @@ namespace dc {
         unsigned int Player::level() const {
             return 1 + floor(mExperience / 5);
         }
+
+        unsigned int Player::attack() const {
+            return 1 + ceil(mLevel / 2);
+        }
     }
 }
