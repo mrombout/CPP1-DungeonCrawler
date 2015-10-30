@@ -11,25 +11,21 @@
 #include "util/Random.h"
 
 namespace dc {
-	namespace game {
-		class RoomDescriptionLoader
-		{
-			private:
-				static bool roomsLoaded;
-				std::vector<std::string> loadedRooms;
-				
-				void loadRoomDescriptions();
-				
-			public:
-				std::string getRandomRoom();
+    namespace game {
+        class RoomDescriptionLoader {
+        public:
+            RoomDescriptionLoader();
+            ~RoomDescriptionLoader();
 
-				RoomDescriptionLoader(){}
-				~RoomDescriptionLoader()
-				{
-					roomsLoaded = false;
-				}
-		};
-	}
+            std::string getRandomRoom();
+
+        private:
+            void loadRoomDescriptions();
+
+        private:
+            std::vector<std::vector<std::string>> loadedRooms;
+        };
+    }
 }
 
 #endif //DUNGEONCRAWLER_ROOMDESCRIPTIONLOADER_H
