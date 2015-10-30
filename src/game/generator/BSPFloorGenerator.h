@@ -20,7 +20,7 @@ namespace dc {
             /**
              * Generates a dungeon floor using binary space partitioning to lay out the rooms.
              */
-            virtual dc::model::Floor *generate(unsigned int level) override;
+            virtual model::Floor *generate(unsigned int level, unsigned int width, unsigned int height) override;
 
             /**
              * Create dungeon rooms for the rooms and halls in the given Leaf.
@@ -35,7 +35,7 @@ namespace dc {
             /**
              * Create a tree that is divided up using binary space partitioning.
              */
-            Leaf *createTree();
+            Leaf *createTree(unsigned int width, unsigned int height);
 
         private:
             static int MAX_LEAF_SIZE;

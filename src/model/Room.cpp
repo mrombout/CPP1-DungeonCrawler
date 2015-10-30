@@ -1,6 +1,8 @@
 #include <algorithm>
+#include "fixture/Ladder.h"
 #include "Room.h"
 #include "Trap.h"
+#include "Mob.h"
 
 namespace dc {
     namespace model {
@@ -137,10 +139,26 @@ namespace dc {
         }
 
         char Room::repr() const {
-            if(mInventory.findItem("Ladder") != nullptr) {
-                return '?';
+            Ladder *ladder = dynamic_cast<Ladder*>(mInventory.findItem("Ladder"));
+            if(ladder) {
+                return ladder->direction() == Ladder::UP ? 'H' : 'L';
             }
-            return '#';
+
+            Item *breadcrumb = mInventory.findItem("Breadcrumb");
+            if(breadcrumb)
+                return 'S';
+
+            return isVisited() ? 'N' : '.';
+        }
+
+        int Room::weight() const {
+            int weight = 0;
+
+            for(dc::model::Mob *mob : mobs()) {
+                weight += mob->level();
+            }
+
+            return weight;
         }
     }
 }

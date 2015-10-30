@@ -1,4 +1,5 @@
 #include "Passage.h"
+#include "Room.h"
 
 namespace dc {
     namespace model {
@@ -22,7 +23,7 @@ namespace dc {
         }
 
         int Passage::weight() const {
-            return 0;
+            return mSideA.weight() + mSideB.weight();
         }
 
         bool Passage::isCollapsed() const {

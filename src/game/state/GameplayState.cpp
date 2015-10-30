@@ -1,6 +1,8 @@
 #include <iostream>
+#include <item/HealthPotion.h>
 #include "Inventory.h"
-#include "Sword.h"
+#include "item/Sword.h"
+#include "generator/FloorGenerator.h"
 #include "generator/MobGenerator.h"
 #include "generator/BSPFloorGenerator.h"
 #include "generator/SimpleFloorGenerator.h"
@@ -10,14 +12,15 @@
 #include "Trap.h"
 #include "Player.h"
 #include "Dungeon.h"
+#include "Options.h"
 #include "command/NullCommand.h"
 #include "CombatState.h"
 #include "item/Iconograph.h"
 #include "item/Talisman.h"
 #include "item/Grenade.h"
+#include "item/Compass.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
-#include <vector>
 
 namespace dc {
     namespace game {
@@ -36,42 +39,35 @@ namespace dc {
             // generate random dungeon
             unsigned int seed = 1;
 
-            MobGenerator mobGenerator;
-            RoomGenerator roomGenerator(mobGenerator);
-            BSPFloorGenerator bspFloorGenerator = BSPFloorGenerator(roomGenerator);
-            SimpleFloorGenerator floorGenerator = SimpleFloorGenerator(roomGenerator);
-            DungeonGenerator dungeonGenerator(bspFloorGenerator);
-            model::Dungeon* dungeon = dungeonGenerator.generate(seed);
+            dc::model::Options &options = ServiceLocator::getInstance().resolve<dc::model::Options>();
 
-            model::Player *player = new model::Player(&dungeon->floor(0).exitRoom());
+            // TODO: Delete floorGenerator somewhere (cheat and make service locator delete? inb4 not a smartpointer)
+            dc::game::FloorGenerator *floorGenerator = ServiceLocator::getInstance().create<dc::game::FloorGenerator>();
+            DungeonGenerator dungeonGenerator(*floorGenerator);
 
-			// Begin vullen van de inventory
+            model::Dungeon* dungeon = dungeonGenerator.generate(seed, options.getInt("dungeon.width"), options.getInt("dungeon.height"));
 
-			std::vector<std::string> inventory = FileLoader::getInstance()->getInventoryLoader().getInventory();
+            model::Player *player = new model::Player(&dungeon->floor(0).startRoom());
 
-			for (std::string item : inventory)
-			{
-				if (item == "SWORD"){
-					player->inventory().addItem(*new model::Sword("Sword", "A Sword"));
-				}
-				else if (item == "ICONOGRAPH") {
-					player->inventory().addItem(*new Iconograph());
-				}
-				else if (item == "GRENADE"){
-					player->inventory().addItem(*new model::Grenade());
-				}
-				else if (item == "TALISMAN"){
-					player->inventory().addItem(*new model::Talisman());
-				}
-				else {
-					std::cout << "Sorry, we can't recognize the " + item + "." << std::endl;
-				}
-			}
+            model::Item *item = new model::Sword();
+            player->inventory().addItem(*item);
 
-			// Item gebruiken kan dus nu op de volgende manier:
-            player->inventory().findItem("TALISMAN")->use(*player);
+            model::Item *iconograph = new Iconograph();
+            player->inventory().addItem(*iconograph);
 
-			// Einde vullen van de inventory
+            model::Item *grenade = new model::Grenade();
+            player->inventory().addItem(*grenade);
+
+            model::Item *talisman = new model::Talisman();
+            player->inventory().addItem(*talisman);
+
+            model::HealthPotion *healthPotion = new model::HealthPotion("Potion", "Test Potion Description", 50);
+            player->inventory().addItem(healthPotion);
+            
+            model::Item *compass = new model::Compass();
+            player->inventory().addItem(*compass);
+
+            talisman->use(*player);
 
             mGame = new model::Game(dungeon, player);
             ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);

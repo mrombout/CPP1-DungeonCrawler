@@ -13,9 +13,9 @@ namespace dc {
 
         }
 
-        Floor *SimpleFloorGenerator::generate(unsigned int level) {
+        model::Floor *SimpleFloorGenerator::generate(unsigned int level, unsigned int width, unsigned int height) {
             // reset state
-            reset();
+            reset(width, height);
 
             // determine start position
             Point startPosition(0, 0);
@@ -33,22 +33,23 @@ namespace dc {
             Room* startRoom = mGrid[0][0];
             Room* exitRoom = mGrid[mWidth - 1][mHeight - 1];
             if(level % 2 == 0) {
-                Room* tmp = startRoom;
-                startRoom = exitRoom;
-                exitRoom = tmp;
+                startRoom = mGrid[mWidth - 1][mHeight - 1];
+                exitRoom = mGrid[0][0];
             }
 
             std::cout << "Done generating dungeon" << std::endl;
             return new Floor(level, mGrid, startRoom, exitRoom);
         }
 
-        void SimpleFloorGenerator::reset() {
+        void SimpleFloorGenerator::reset(unsigned int width, unsigned int height) {
             // create a new array of a new size
-            mWidth = 5;
-            mHeight = 5;
+            mWidth = width;
+            mHeight = height;
 
+            mGrid.clear();
             mGrid.resize(mHeight);
             for(int i = 0; i < mHeight; ++i) {
+                mGrid[i].clear();
                 mGrid[i].resize(mWidth, nullptr);
             }
         }

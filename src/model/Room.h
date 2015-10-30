@@ -60,6 +60,8 @@ namespace dc {
 
             char repr() const;
 
+            int weight() const;
+
         private:
             Point mPosition;
 

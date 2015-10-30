@@ -8,6 +8,7 @@ namespace dc {
         class Mob : public Character {
         public:
             void kill();
+            virtual void damage(unsigned int pDamage) override;
         };
     }
 }

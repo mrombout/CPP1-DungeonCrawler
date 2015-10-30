@@ -52,9 +52,10 @@ namespace dc {
 
 				model::Room &otherRoom = passage->otherSide(*currentRoom);
 
-				drawPassage(mGrid, passage);
+				if(otherRoom.isVisited())
+					drawPassage(mGrid, passage);
 
-				if(markedRooms.count(&otherRoom) == 0 /*&& otherRoom.isVisited()*/) {
+				if(markedRooms.count(&otherRoom) == 0) {
 					markedRooms[&otherRoom] = true;
 					queue.push(&otherRoom);
 

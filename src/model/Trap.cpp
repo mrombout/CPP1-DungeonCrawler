@@ -18,7 +18,9 @@ void dc::model::Trap::discover() {
 
     if (willDismantle) {
         dismantle();
-        std::cout << "I found a trap, and dismantled it before it struck" << std::endl;
+        std::cout << "You found a trap, and dismantled it before it struck" << std::endl;
+    } else {
+        std::cout << "You found a trap, but failed to dismantle it." << std::endl;
     }
 }
 

@@ -8,7 +8,10 @@ namespace dc {
         class Consumable : public Item {
         public:
             Consumable(std::string name, std::string description);
-            virtual ~Consumable() = 0;
+            virtual ~Consumable();
+
+            virtual void use(Character &character) override;
+            virtual void consume(Character &character) = 0;
         };
     }
 }

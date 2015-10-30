@@ -1,0 +1,54 @@
+hp "Potion of Minor Health" 10
+hp "Draught of Minor Health" 20
+hp "Solution of Minor Health" 30
+hp "Philter of Minor Health" 40
+hp "Elixer of Minor Health" 50
+hp "Potion of Health" 55
+hp "Draught of Health" 65
+hp "Solution of Health" 75
+hp "Philter of Health" 85
+hp "Elixer of Health" 95
+hp "Potion of Greater Health" 120
+hp "Draught of Greater Health" 140
+hp "Solution of Greater Health" 160
+hp "Philter of Greater Health" 180
+hp "Elixer of Greater Health" 300
+hp "Weak Poison" -15
+hp "Poison" -25
+hp "Potent Poison" -35
+hp "Virulent Poison" -50
+hp "Deadly Poison" - 65
+xp "Potion of Liquid Experience" 10
+xp "Potion of Plentiful Liquid Experience" 15
+xp "Potion of Vigorous Liquid Experience" 25
+xp "Potion of Extreme Liquid Experience" 50
+xp "Potion of Ultimate Liquid Experience" 80
+sw "Blade of Falkreath" 5
+sw "Blade of Haafingar" 5
+sw "Blade of Hjaalmarch" 5
+sw "Blade of the Pale" 5
+sw "Blade of the Reach" 5
+sw "Blade of the Rift" 5
+sw "Blade of Whiterun" 5
+sw "Chillrend" 5
+sw "Dragonbane" 5
+sw "Dwarven Sword" 5
+sw "Ebony Sword" 5
+sw "Elven Sword" 5
+sw "Falmer Sword" 5
+sw "Forsworn Sword" 5
+sw "Ghostblade" 5
+sw "Grimsever" 5
+sw "Hjalti's Sword" 5
+sw "Honed Falmer Sword" 5
+sw "Imperial Sword" 5
+sw "Lunar Iron Sword" 5
+sw "Orcisch Sword" 5
+sw "Scimitar" 5
+sw "Silver Sword" 5
+sw "Windshear" 5
+sw "Vilkas's Sword" 5
+gr "Grenade" 5
+gr "Stielhandgranate" 10
+gr "Bomb" 15
+gr "Clock Scient Project" 25
