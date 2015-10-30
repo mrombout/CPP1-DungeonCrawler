@@ -10,8 +10,11 @@ namespace dc {
                 dc::model::Mob* mob = (*it);
 
                 // loop through colors 2 to 8
-                std::cout << csl::color(index % 7 + 2) << "[" << index + 1 << "] a " << mob->name() << "(" << mob->health() << "/" << mob->maxHealth() << ")" << "\n";
+                std::cout << csl::color(index % 7 + 2) << "[" << index + 1 << "] a " << mob->name() << " (" << mob->health() << "/" << mob->maxHealth() << ")";
+                std::cout << " LVL: " << mob->level() << "\n";
             }
+
+            std::cout.flush();
         }
     }
 }
