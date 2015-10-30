@@ -30,7 +30,7 @@ Glamorous Vampire; 10; 5; 2; 4; 5; 6
 Invisible Ghost; 10; 5; 2; 4; 5; 7
 Hairy Werewolf; 10; 5; 2; 4; 5; 7
 Intellectual Troll; 10; 5; 2; 4; 5; 7
-Wyrm; 10; 5; 2; 4; 5; 7
+Wyrm; 5; 5; 2; 4; 5; 7
 Air Elemental; 10; 5; 2; 4; 5; 7
 Ankheg; 10; 5; 2; 4; 5; 7
 Baretta; 10; 5; 2; 4; 5; 7
@@ -47,7 +47,7 @@ Clay Golem; 10; 5; 2; 4; 5; 7
 Cobra; 10; 5; 2; 4; 5; 7
 Cockatrice; 10; 5; 2; 4; 5; 7
 Crawler; 10; 5; 2; 4; 5; 7
-Crazy Horse; 10; 5; 2; 4; 5; 7
+Crazy Horse; 10; 7; 2; 4; 5; 7
 Crocodile; 10; 5; 2; 4; 5; 7
 Dark Elemental; 10; 5; 2; 4; 5; 7
 Dark Wizard; 10; 5; 2; 4; 5; 7
