@@ -13,7 +13,7 @@ namespace dc {
 			std::string line;
 			int lineCount = 0;
 
-			std::ifstream file("E:/School/Software Architectuur/CPP1/Eindopdracht/CPP/src/textfiles/mobs.txt");
+			std::ifstream file("assets/mobs.txt");
 			if (file.is_open())
 			{
 				while (!file.eof())

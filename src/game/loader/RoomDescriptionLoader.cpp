@@ -11,7 +11,7 @@ namespace dc {
 		{
 			std::string line;
 
-			std::ifstream file("E:/School/Software Architectuur/CPP1/Eindopdracht/CPP/src/textfiles/rooms.txt");
+			std::ifstream file("assets/rooms.txt");
 			if (file.is_open())
 			{
 				while (!file.eof())

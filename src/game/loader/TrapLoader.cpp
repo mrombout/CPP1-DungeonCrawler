@@ -12,11 +12,11 @@ namespace dc {
 		{
 			std::string line;
 
-			std::ifstream file("E:/School/Software Architectuur/CPP1/Eindopdracht/CPP/src/textfiles/traps.txt");
 			if (file.is_open())
 			{
 				while (!file.eof())
 				{
+			std::ifstream file("assets/traps.txt");
 					getline(file, line);
 					if (line[0] != '*' && !line.empty()){ // Mag niet starten met een * en mag niet leeg zijn
 						loadedTraps.push_back(String::toUpper(line));

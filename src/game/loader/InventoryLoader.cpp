@@ -12,7 +12,7 @@ namespace dc {
 		{
 			std::string line;
 
-			std::ifstream file("E:/School/Software Architectuur/CPP1/Eindopdracht/CPP/src/textfiles/inventory.txt");
+			std::ifstream file("assets/inventory.txt");
 			if (file.is_open())
 			{
 				while (!file.eof())
