@@ -30,7 +30,7 @@ namespace dc {
 				TrapLoader *trapLoader;
 				RoomDescriptionLoader *roomDescriptionLoader;
 
-				void FileLoader::initialize();
+				void initialize();
 				
 			public:
 				static FileLoader* getInstance();
@@ -44,10 +44,10 @@ namespace dc {
 					delete roomDescriptionLoader;
 				}
 
-				MobLoader FileLoader::getMobLoader();
-				InventoryLoader FileLoader::getInventoryLoader();
-				TrapLoader FileLoader::getTrapLoader();
-				RoomDescriptionLoader FileLoader::getRoomDescriptionLoader();
+				MobLoader getMobLoader();
+				InventoryLoader getInventoryLoader();
+				TrapLoader getTrapLoader();
+				RoomDescriptionLoader getRoomDescriptionLoader();
 		};
 	}
 }
