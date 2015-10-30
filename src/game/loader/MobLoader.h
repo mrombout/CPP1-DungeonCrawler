@@ -11,25 +11,22 @@
 #include <sstream>
 
 namespace dc {
-	namespace game {
-		class MobLoader
-		{
-			private:
-				static bool mobsLoaded;
-				std::unordered_map<int, std::unordered_map<std::string, std::string>> loadedMobs;
-				
-				void loadMobs();
-				
-			public:
-				std::unordered_map<std::string, std::string> getRandomMob();
+    namespace game {
+        class MobLoader {
+        public:
+            MobLoader();
+            ~MobLoader();
 
-				MobLoader(){}
-				~MobLoader()
-				{
-					mobsLoaded = false;
-				}
-		};
-	}
+            std::unordered_map<std::string, std::string> getRandomMob();
+
+        private:
+            void loadMobs();
+
+        private:
+            static bool mobsLoaded;
+            std::unordered_map<int, std::unordered_map<std::string, std::string>> loadedMobs;
+        };
+    }
 }
 
 #endif //DUNGEONCRAWLER_MOBLOADER_H
