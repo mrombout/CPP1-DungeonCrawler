@@ -50,8 +50,9 @@ std::vector<std::string> dungeonNoun {
 
 namespace dc {
     namespace game {
-        DungeonGenerator::DungeonGenerator(FloorGenerator &floorGenerator) :
-                mFloorGenerator(floorGenerator) {
+        DungeonGenerator::DungeonGenerator(FloorGenerator &floorGenerator, MobGenerator &mobGenerator) :
+                mFloorGenerator(floorGenerator),
+                mMobGenerator(mobGenerator) {
 
         }
 
@@ -70,7 +71,9 @@ namespace dc {
                 currentFloor = generateDungeonFloor(i, width, height);
                 dFloors.push_back(currentFloor);
 
-                if(previousFloor) {
+                if(!previousFloor) {
+                    currentFloor->startRoom().inventory().addItem(new Prop("Breadcrumb", "Oh! It's that breadcrumb I left here so I can find my way back!"));
+                } else {
                     Room &previousStart = previousFloor->startRoom();
                     Room &previousEnd = previousFloor->exitRoom();
                     Room &currentStart = currentFloor->startRoom();
@@ -82,8 +85,6 @@ namespace dc {
 
                     currentStart.inventory().addItem(*ladderToPreviousEnd);
                     previousEnd.inventory().addItem(*ladderToCurrentStart);
-                } else {
-                    currentFloor->startRoom().inventory().addItem(new Prop("Breadcrumb", "Oh! It's that breadcrumb I left here so I can find my way back!"));
                 }
             }
 
