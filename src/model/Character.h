@@ -2,6 +2,8 @@
 #define DUNGEONCRAWLER_CHARACTER_H
 
 #include <string>
+#include <iomanip>
+#include <iostream>
 #include "Inventory.h"
 
 namespace dc {
@@ -56,10 +58,15 @@ namespace dc {
             void setWeapon(Equipable *pWeapon);
 
             Room *room() const;
-
             virtual void setRoom(Room *room);
 
             Inventory &inventory() const;
+
+            friend std::ostream &operator<<(std::ostream &output, const Character &c) {
+                return output << std::fixed << std::setprecision(15) << c.mName << '\t' << c.mMaxHealth << "\t"
+                              << c.mHealth << "\t" << c.mLevel << "\t" << c.mExperience << "\t" << c.mAttack << "\t"
+                              << c.mDefence << "\t" << c.mPerception;
+            }
 
         protected:
             std::string mName;
@@ -75,9 +82,7 @@ namespace dc {
             unsigned int mPerception;
 
             Equipable *mWeapon;
-
             Room *mRoom;
-
             Inventory *mInventory;
         };
     }

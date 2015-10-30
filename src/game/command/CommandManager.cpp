@@ -15,6 +15,7 @@
 #include "ClearCommand.h"
 #include "RestCommand.h"
 #include "EquipCommand.h"
+#include "SaveCommand.h"
 
 namespace dc {
     game::Command *CommandManager::create(std::string input) const {
@@ -44,6 +45,8 @@ namespace dc {
             command = dc::game::RestCommand::create(parameters);
         } else if(commandName == "equip") {
             command = dc::game::EquipCommand::create(parameters);
+        } else if(commandName == "save") {
+            command = dc::game::SaveCommand::create(parameters);
         }
 
         if(!command)
