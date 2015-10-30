@@ -18,7 +18,7 @@ namespace dc {
         }
 
         unsigned int Player::attack() const {
-            return 1 + ceil(mLevel / 2);
+            return 1 + ceil(level() / 2);
         }
     }
 }
