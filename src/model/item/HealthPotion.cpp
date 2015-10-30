@@ -12,5 +12,9 @@ namespace dc {
             character.setHealth(character.health() + effect());
             std::cout << csl::color(csl::GREEN) << "You have been healed " << effect() << " health points." << std::endl;
         }
+
+        Item *HealthPotion::clone() const {
+            return new HealthPotion(*this);
+        }
     }
 }

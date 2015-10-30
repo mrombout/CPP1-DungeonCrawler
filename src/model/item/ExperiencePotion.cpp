@@ -12,5 +12,9 @@ namespace dc {
             character.increaseExperience(effect());
             std::cout << csl::color(csl::GREEN) << "You have earned " << effect() << " experience points." << std::endl;
         }
+
+        Item *ExperiencePotion::clone() const {
+            return new ExperiencePotion(*this);
+        }
     }
 }

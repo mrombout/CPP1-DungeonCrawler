@@ -21,6 +21,7 @@ namespace dc {
             Ladder(Direction direction, Room &toRoom);
 
             virtual void use(Character &character) override;
+            virtual Item *clone() const;
 
             Direction direction() const;
 

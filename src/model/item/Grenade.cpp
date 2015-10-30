@@ -95,5 +95,9 @@ namespace dc {
 
             return hasExploded;
         }
+
+        Item *Grenade::clone() const {
+            return new Grenade(*this);
+        }
     }
 }

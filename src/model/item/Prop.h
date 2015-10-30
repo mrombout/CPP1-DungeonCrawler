@@ -11,6 +11,7 @@ namespace dc {
 
             virtual void pickUp(Player &player) override;
             virtual void use(Character &character) override;
+            virtual Item *clone() const;
         };
     }
 }

@@ -19,13 +19,10 @@ namespace dc {
         }
 
         ItemLoader::~ItemLoader() {
-            for(auto it = mPotions.begin(); it != mPotions.end(); ++it)
-                delete *it;
-            for(auto it = mEquipables.begin(); it != mEquipables.end(); ++it)
-                delete *it;
+
         }
 
-        dc::model::Item &ItemLoader::createRandomItem() {
+        dc::model::Item *ItemLoader::createRandomItem() {
             lazyLoadItems();
 
             if(rand() % 100 > 50) {
@@ -35,16 +32,16 @@ namespace dc {
             }
         }
 
-        dc::model::Potion &ItemLoader::createRandomPotion() {
+        dc::model::Potion *ItemLoader::createRandomPotion() {
             lazyLoadItems();
 
-            return *mPotions[Random::nextInt(0, mPotions.size() - 1)];
+            return static_cast<dc::model::Potion*>(mPotions[Random::nextInt(0, mPotions.size() - 1)]->clone());
         }
 
-        dc::model::Equipable &ItemLoader::createRandomEquipable() {
+        dc::model::Equipable *ItemLoader::createRandomEquipable() {
             lazyLoadItems();
 
-            return *mEquipables[Random::nextInt(0, mEquipables.size() - 1)];
+            return static_cast<dc::model::Equipable*>(mEquipables[Random::nextInt(0, mEquipables.size() - 1)]->clone());
         }
 
         void ItemLoader::lazyLoadItems() {

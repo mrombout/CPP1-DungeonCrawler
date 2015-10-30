@@ -10,8 +10,9 @@ namespace dc {
 
         public:
             Sword(std::string name, std::string description, int damage);
-
             virtual ~Sword();
+
+            virtual Item *clone() const;
         };
     }
 }

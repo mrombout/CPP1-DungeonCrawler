@@ -12,6 +12,9 @@ namespace dc {
 
             virtual void use(Character &character) override;
 
+
+            virtual Item *clone() const;
+
             bool explode(Floor *pFloor);
         };
     }

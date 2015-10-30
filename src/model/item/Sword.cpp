@@ -6,5 +6,9 @@ namespace dc {
         Sword::~Sword() {
 
         }
+
+        Item *Sword::clone() const {
+            return new Sword(*this);
+        }
     }
 }

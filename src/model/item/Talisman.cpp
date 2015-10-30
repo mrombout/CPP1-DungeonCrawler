@@ -55,5 +55,9 @@ namespace dc {
 
             return false;
         }
+
+        Item *Talisman::clone() const {
+            return new Talisman(*this);
+        }
     }
 }

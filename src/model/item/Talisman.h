@@ -17,6 +17,7 @@ namespace dc {
             Talisman();
 
             virtual void use(Character& character) override;
+            virtual Item *clone() const;
 
             bool isLadderUp(std::map<Room*, int> &distances, Room &room);
         };
