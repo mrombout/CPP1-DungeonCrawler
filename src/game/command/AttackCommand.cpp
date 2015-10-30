@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "AttackCommand.h"
 #include "Game.h"
 #include "item/Equipable.h"
@@ -26,7 +27,7 @@ namespace dc {
                 std::cout << csl::color(csl::WHITE) << "You attack the " << mMob.name() << " and, ";
 
                 // Reduction bonus (increases chance of a hit) based on player attack level
-                double reductionFactor = 0.1 * mPlayer.attack();
+                double reductionFactor = mPlayer.attack();
                 if (rand() % 100 > (50 - reductionFactor)) {
                     int damage = mPlayer.weapon().damage();
                     std::cout << csl::color(csl::LIGHTGREEN) << "hit.\nYou do " << damage << " damage!";
@@ -55,8 +56,8 @@ namespace dc {
             dc::model::Player &player = ServiceLocator::getInstance().resolve<dc::model::Game>().player();
             std::vector<dc::model::Mob*> mobs = player.room()->mobs();
 
-            if(monsterNum > mobs.size()) {
-                std::cout << "There not even " << monsterNum << "in this room!" << std::endl;
+            if(monsterNum > mobs.size() || mobs.empty()) {
+                std::cout << "There not even " << monsterNum << " monsters in this room!" << std::endl;
                 return nullptr;
             }
 

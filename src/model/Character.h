@@ -32,18 +32,18 @@ namespace dc {
             void increaseHealth(int pHealth);
             virtual void damage(unsigned int pDamage);
 
-            unsigned int level() const;
+            virtual unsigned int level() const;
             void setLevel(unsigned int pLevel);
             void increaseLevel(unsigned int pLevel);
             void decreaseLevel(unsigned int pLevel);
             void levelUp();
 
-            unsigned int experience() const;
-            void setExperience(unsigned int pExperience);
-            void increaseExperience(unsigned int pExperience);
-            void decreaseExperience(unsigned int pExperience);
+            double experience() const;
+            void setExperience(double pExperience);
+            void increaseExperience(double pExperience);
+            void decreaseExperience(double pExperience);
 
-            unsigned int attack() const;
+            virtual unsigned int attack() const;
             void setAttack(unsigned int pAttack);
 
             unsigned int defence() const;
@@ -68,7 +68,7 @@ namespace dc {
             int mHealth;
 
             unsigned int mLevel;
-            unsigned int mExperience;
+            double mExperience;
 
             unsigned int mAttack;
             unsigned int mDefence;

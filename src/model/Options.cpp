@@ -1,4 +1,5 @@
 #include "Options.h"
+#include <string>
 
 namespace dc {
     namespace model {
