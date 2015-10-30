@@ -1,3 +1,4 @@
+#include <math.h>
 #include "Character.h"
 #include "item/Equipable.h"
 
@@ -73,19 +74,19 @@ namespace dc {
             ++mLevel;
         }
 
-        unsigned int Character::experience() const {
+        double Character::experience() const {
             return mExperience;
         }
 
-        void Character::setExperience(unsigned int pExperience) {
+        void Character::setExperience(double pExperience) {
             mExperience = pExperience;
         }
 
-        void Character::increaseExperience(unsigned int pExperience) {
+        void Character::increaseExperience(double pExperience) {
             mExperience += pExperience;
         }
 
-        void Character::decreaseExperience(unsigned int pExperience) {
+        void Character::decreaseExperience(double pExperience) {
             mExperience -= pExperience;
         }
 

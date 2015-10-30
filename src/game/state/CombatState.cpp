@@ -58,13 +58,16 @@ namespace dc {
                 return "";
             }
 
+            std::cout << csl::color(csl::GREY) << "HP: ";
             std::cout << csl::color(csl::GREEN) << "(";
             if(health < maxHealth / 2) {
                 std::cout << csl::color(csl::RED);
             } else {
                 std::cout << csl::color(csl::GREEN);
             }
-            std::cout << player.health() << csl::color(csl::GREEN) << "/" << player.maxHealth() << ")" << csl::color(csl::GREY) << ">";
+            std::cout << player.health() << csl::color(csl::GREEN) << "/" << player.maxHealth() << ")" << csl::color(csl::GREY);
+            std::cout << " Level: " << csl::color(csl::BLUE) << player.level() << csl::color(csl::GREY);
+            std::cout << " XP: " << csl::color(csl::MAGENTA) << player.experience() << csl::color(csl::GREY) << " > ";
 
             std::string input;
 

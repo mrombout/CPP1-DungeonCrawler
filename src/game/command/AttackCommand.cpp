@@ -27,7 +27,7 @@ namespace dc {
                 std::cout << csl::color(csl::WHITE) << "You attack the " << mMob.name() << " and, ";
 
                 // Reduction bonus (increases chance of a hit) based on player attack level
-                double reductionFactor = 0.1 * mPlayer.attack();
+                double reductionFactor = mPlayer.attack();
                 if (rand() % 100 > (50 - reductionFactor)) {
                     int damage = mPlayer.weapon().damage();
                     std::cout << csl::color(csl::LIGHTGREEN) << "hit.\nYou do " << damage << " damage!";
