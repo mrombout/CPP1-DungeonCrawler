@@ -22,8 +22,54 @@
 * Format:
 * Name; Max Health; Health; Level; Attack; Defence; Perception
 *****************************************************************
-
-Deluded Skeleton; 10; 5; 2; 4; 5; 6
-Divine Slime; 10; 5; 2; 4; 5; 6
-Hellish Vampire; 10; 5; 2; 4; 5; 6
-Intimidating Ghoul; 10; 5; 2; 4; 5; 7
+Intimidating Goblin; 10; 5; 2; 4; 5; 6
+Dusty Skeleton; 10; 5; 2; 4; 5; 6
+Rotting Ghoul; 10; 5; 2; 4; 5; 7
+Sticky Slime; 10; 5; 2; 4; 5; 6
+Glamorous Vampire; 10; 5; 2; 4; 5; 6
+Invisible Ghost; 10; 5; 2; 4; 5; 7
+Hairy Werewolf; 10; 5; 2; 4; 5; 7
+Intellectual Troll; 10; 5; 2; 4; 5; 7
+Wyrm; 10; 5; 2; 4; 5; 7
+Air Elemental; 10; 5; 2; 4; 5; 7
+Ankheg; 10; 5; 2; 4; 5; 7
+Baretta; 10; 5; 2; 4; 5; 7
+Basilisk; 10; 5; 2; 4; 5; 7
+Bigeyes; 10; 5; 2; 4; 5; 7
+Knight; 10; 5; 2; 4; 5; 7
+Black Widow; 10; 5; 2; 4; 5; 7
+Bonesnatch; 10; 5; 2; 4; 5; 7
+Bloody Eye; 10; 5; 2; 4; 5; 7
+Buccaneer; 10; 5; 2; 4; 5; 7
+Catoblepass; 10; 5; 2; 4; 5; 7
+Chimera; 10; 5; 2; 4; 5; 7
+Clay Golem; 10; 5; 2; 4; 5; 7
+Cobra; 10; 5; 2; 4; 5; 7
+Cockatrice; 10; 5; 2; 4; 5; 7
+Crawler; 10; 5; 2; 4; 5; 7
+Crazy Horse; 10; 5; 2; 4; 5; 7
+Crocodile; 10; 5; 2; 4; 5; 7
+Dark Elemental; 10; 5; 2; 4; 5; 7
+Dark Wizard; 10; 5; 2; 4; 5; 7
+Death Eye; 10; 5; 2; 4; 5; 7
+Desertpede; 10; 5; 2; 4; 5; 7
+Feral Hound; 10; 5; 2; 4; 5; 7
+Zombie; 10; 5; 2; 4; 5; 7
+Elm Gigas; 10; 5; 2; 4; 5; 7
+Gargoyle; 10; 5; 2; 4; 5; 7
+Ghast; 10; 5; 2; 4; 5; 7
+Golem; 10; 5; 2; 4; 5; 7
+Iron Golem; 10; 5; 2; 4; 5; 7
+Fire Golem; 10; 5; 2; 4; 5; 7
+Hill Giant; 10; 5; 2; 4; 5; 7
+Lava Worm; 10; 5; 2; 4; 5; 7
+Lizard; 10; 5; 2; 4; 5; 7
+Ogre; 10; 5; 2; 4; 5; 7
+Mummy; 10; 5; 2; 4; 5; 7
+Zombie; 10; 5; 2; 4; 5; 7
+Nightmare; 10; 5; 2; 4; 5; 7
+Neochu; 10; 5; 2; 4; 5; 7
+Jelly; 10; 5; 2; 4; 5; 7
+Pirate; 10; 5; 2; 4; 5; 7
+Eagle; 10; 5; 2; 4; 5; 7
+Robot; 10; 5; 2; 4; 5; 7
