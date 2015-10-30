@@ -1,3 +1,4 @@
+#include <math.h>
 #include "Player.h"
 
 namespace dc {
@@ -10,6 +11,10 @@ namespace dc {
         void Player::setRoom(Room *room) {
             Character::setRoom(room);
             room->setVisited(true);
+        }
+
+        unsigned int Player::level() const {
+            return 1 + floor(mExperience / 5);
         }
     }
 }
