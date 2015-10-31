@@ -33,7 +33,7 @@ namespace dc {
 
         void LoadGameCommand::execute() const {
             // ask for name
-            std::cout << "Which save do you want to load? ";
+            std::cout << csl::color(csl::GREY) << "Which save do you want to load? ";
             std::string name;
             std::cin >> name;
 
@@ -42,6 +42,10 @@ namespace dc {
             // load game.txt
             std::string gamePath{basePath + "/game.txt"};
             std::ifstream gameFile{gamePath};
+            if(!gameFile.is_open()) {
+                std::cout << "Sorry, that save game is not recognized.\n" << std::endl;
+                return;
+            }
 
             int seed;
             gameFile >> seed;
