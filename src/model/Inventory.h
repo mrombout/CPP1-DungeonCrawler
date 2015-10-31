@@ -33,8 +33,10 @@ namespace dc {
             friend std::ostream &operator<<(std::ostream &output, const Inventory &i) {
                 output << std::fixed << std::setprecision(15);
 
-                for(Item *item : i.mItems)
-                    output << item->id() << "\t";
+                for(Item *item : i.mItems) {
+                    if(item->id() != 0)
+                        output << item->id() << "\t";
+                }
 
                 return output;
             }

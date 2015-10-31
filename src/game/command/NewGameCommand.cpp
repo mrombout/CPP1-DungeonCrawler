@@ -61,7 +61,8 @@ namespace dc {
             model::Item *talisman = new model::Talisman();
             player->inventory().addItem(*talisman);
 
-            model::HealthPotion *healthPotion = new model::HealthPotion(-1, "Potion", "Test Potion Description", 50);
+            // TODO: Request valid HealthPotion from ItemManager
+            model::HealthPotion *healthPotion = new model::HealthPotion(0, "Potion", "Test Potion Description", 50);
             player->inventory().addItem(healthPotion);
 
             model::Item *compass = new model::Compass();

@@ -45,7 +45,7 @@ namespace dc {
             return static_cast<dc::model::Equipable*>(mEquipables[Random::nextInt(0, mEquipables.size() - 1)]->clone());
         }
 
-        dc::model::Item *ItemLoader::createItem(unsigned int &id) {
+        dc::model::Item *ItemLoader::createItem(unsigned int id) {
             lazyLoadItems();
 
             return mItems[id]->clone();

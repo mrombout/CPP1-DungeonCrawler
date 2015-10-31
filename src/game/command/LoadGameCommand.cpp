@@ -76,6 +76,15 @@ namespace dc {
             std::vector<std::vector<dc::model::Room*>> grid = dungeon->floor(floorLevel - 1).rooms();
             player->setRoom(grid[roomPosition.y()][roomPosition.x()]);
 
+            // load inventory.txt
+            std::string inventoryPath{basePath + "/inventory.txt"};
+            std::ifstream inventoryFile{inventoryPath};
+
+            unsigned int invItemId;
+            while(inventoryFile >> invItemId) {
+                player->inventory().add(*mItemLoader.createItem(invItemId));
+            }
+
             // add standard items
             model::Item *iconograph = new Iconograph();
             player->inventory().addItem(*iconograph);
@@ -85,9 +94,6 @@ namespace dc {
 
             model::Item *talisman = new model::Talisman();
             player->inventory().addItem(*talisman);
-
-            model::HealthPotion *healthPotion = new model::HealthPotion(-1, "Potion", "Test Potion Description", 50);
-            player->inventory().addItem(healthPotion);
 
             model::Item *compass = new model::Compass();
             player->inventory().addItem(*compass);

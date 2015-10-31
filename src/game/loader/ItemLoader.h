@@ -22,7 +22,7 @@ namespace dc {
             dc::model::Item *createRandomItem();
             dc::model::Potion *createRandomPotion();
             dc::model::Equipable *createRandomEquipable();
-            dc::model::Item * createItem(unsigned int &id);
+            dc::model::Item * createItem(unsigned int id);
 
         private:
             void lazyLoadItems();
