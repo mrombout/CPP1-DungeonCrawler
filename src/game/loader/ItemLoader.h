@@ -22,6 +22,7 @@ namespace dc {
             dc::model::Item *createRandomItem();
             dc::model::Potion *createRandomPotion();
             dc::model::Equipable *createRandomEquipable();
+            dc::model::Item * createItem(unsigned int &id);
 
         private:
             void lazyLoadItems();
@@ -34,7 +35,7 @@ namespace dc {
         private:
             std::map<std::string, ItemFactoryMethod> mFactories;
 
-            std::vector<dc::model::Item*> mItems;
+            std::map<unsigned int, dc::model::Item*> mItems;
             std::vector<dc::model::Potion*> mPotions;
             std::vector<dc::model::Equipable*> mEquipables;
         };

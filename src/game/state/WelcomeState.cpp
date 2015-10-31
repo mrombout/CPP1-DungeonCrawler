@@ -3,6 +3,7 @@
 #include <string>
 #include "command/NewGameCommand.h"
 #include "command/ChangeStateCommand.h"
+#include "command/LoadGameCommand.h"
 #include "WelcomeState.h"
 #include "OptionsState.h"
 #include "util/ServiceLocator.h"
@@ -42,6 +43,8 @@ namespace dc {
             if (input == "n") {
                 // TODO: Replace with ChangeStateCommand
                 return ServiceLocator::getInstance().create<NewGameCommand>();
+            } else if(input == "l") {
+                return dc::game::LoadGameCommand::create();
             } else if(input == "o") {
                 // TODO: Delete that state somewhere
                 return dc::game::ChangeStateCommand::create(new dc::game::OptionsState());

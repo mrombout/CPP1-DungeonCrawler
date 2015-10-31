@@ -45,6 +45,12 @@ namespace dc {
             return static_cast<dc::model::Equipable*>(mEquipables[Random::nextInt(0, mEquipables.size() - 1)]->clone());
         }
 
+        dc::model::Item *ItemLoader::createItem(unsigned int &id) {
+            lazyLoadItems();
+
+            return mItems[id]->clone();
+        }
+
         void ItemLoader::lazyLoadItems() {
             if(!mEquipables.empty() && !mPotions.empty())
                 return;
@@ -71,6 +77,7 @@ namespace dc {
             dc::model::HealthPotion *potion = new dc::model::HealthPotion(Number::toInt(input[1]), input[2], description, Number::toInt(input[3]));
 
             mPotions.push_back(potion);
+            mItems[potion->id()] = potion;
         }
 
         void ItemLoader::createExperiencePotion(std::vector<std::string> &input) {
@@ -80,11 +87,14 @@ namespace dc {
             dc::model::ExperiencePotion *potion = new dc::model::ExperiencePotion(Number::toInt(input[1]), input[2], description, Number::toInt(input[3]));
 
             mPotions.push_back(potion);
+            mItems[potion->id()] = potion;
         }
 
         void ItemLoader::createSword(std::vector<std::string> &input) {
             dc::model::Sword *sword = new dc::model::Sword(Number::toInt(input[1]), input[2], input[2], Number::toInt(input[3]));
+
             mEquipables.push_back(sword);
+            mItems[sword->id()] = sword;
         }
     }
 }

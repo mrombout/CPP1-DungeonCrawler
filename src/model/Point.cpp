@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "Point.h"
 
 Point::Point(int x, int y) :
@@ -36,4 +37,16 @@ void Point::left() {
 
 void Point::right() {
 	++mX;
+}
+
+std::ostream &operator<<(std::ostream &output, const Point &p) {
+    output << std::fixed << std::setprecision(15) << p.mX << "\t" << p.mY;
+
+    return output;
+}
+
+std::istream &operator>>(std::istream &input, Point &p) {
+    input >> p.mX >> p.mY;
+
+    return input;
 }

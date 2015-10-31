@@ -63,6 +63,7 @@ namespace dc {
             Inventory &inventory() const;
 
             friend std::ostream &operator<<(std::ostream &output, const Character &c);
+            friend std::istream &operator>>(std::istream &input, Character &c);
 
         protected:
             std::string mName;

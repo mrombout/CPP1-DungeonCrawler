@@ -3,6 +3,7 @@
 #include "Inventory.h"
 #include "item/Equipable.h"
 #include "Room.h"
+#include "Floor.h"
 
 namespace dc {
     namespace model {
@@ -148,13 +149,22 @@ namespace dc {
             output << std::fixed << std::setprecision(15) << c.mName << '\t' << c.mMaxHealth << "\t"
             << c.mHealth << "\t" << c.mLevel << "\t" << c.mExperience << "\t" << c.mAttack << "\t"
             << c.mDefence << "\t" << c.mPerception;
-            if (c.mWeapon)
-                output << "\t" << c.mWeapon->id();
+
+            output << "\t" << (c.mWeapon ? c.mWeapon->id() : 0);
 
             if (c.mRoom)
-                output << "\t" << c.mRoom->position().x() << "\t" << c.mRoom->position().y();
+                output << "\t" << c.room()->position() << "\t" << c.room()->floor()->level();
+            else
+                output << "\t" << -1 << "\t" << -1 << "\t" << 0;
 
             return output;
+        }
+
+        std::istream &operator>>(std::istream &input, Character &c) {
+            input >> c.mName >> c.mMaxHealth >> c.mHealth >> c.mLevel >> c.mExperience >> c.mAttack >> c.mDefence
+                  >> c.mPerception;
+
+            return input;
         }
     }
 }

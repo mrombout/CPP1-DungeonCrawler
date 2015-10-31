@@ -40,7 +40,7 @@ namespace dc {
         }
 
         bool Item::partialMatch(const std::string &string) const {
-            return std::strstr(String::toLower(string).c_str(), String::toLower(mName).c_str()) != nullptr;
+            return String::toLower(mName).find(String::toLower(string)) != std::string::npos;
         }
     }
 }
