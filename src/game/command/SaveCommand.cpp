@@ -9,34 +9,40 @@
 
 namespace dc {
     namespace game {
-        SaveCommand::SaveCommand(model::Player &player) :
-            mPlayer(player) {
+        SaveCommand::SaveCommand(model::Game &game) :
+            mGame(game) {
 
         }
 
         void SaveCommand::execute() const {
             std::cout << "Saving to disk... Please do not turn off your console." << std::endl;
 
-            std::string basePath = "sav/" + mPlayer.name();
+            std::string basePath = "sav/" + mGame.player().name();
             FileSystem::mkdir(basePath);
 
+            // save Game
+            std::string outputFile = basePath + "/game.txt";
+            std::ofstream gos{outputFile};
+
+            gos << mGame;
+
             // save Player
-            std::string outputFile = basePath + "/player.txt";
+            outputFile = basePath + "/player.txt";
             std::ofstream pos{outputFile};
 
-            pos << static_cast<dc::model::Character&>(mPlayer);
+            pos << static_cast<dc::model::Character&>(mGame.player());
 
             // save Inventory
             outputFile = basePath + "/inventory.txt";
             std::ofstream ios{outputFile};
 
-            ios << mPlayer.inventory();
+            ios << mGame.player().inventory();
 
             std::cout << "Done!" << std::endl;
         }
 
         SaveCommand *SaveCommand::create(Parameters parameters) {
-            return new SaveCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
+            return new SaveCommand(ServiceLocator::getInstance().resolve<dc::model::Game>());
         }
     }
 }

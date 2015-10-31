@@ -62,7 +62,7 @@ namespace dc {
             model::Item *compass = new model::Compass();
             player->inventory().addItem(*compass);
 
-            dc::model::Game *game = new dc::model::Game(dungeon, player);
+            dc::model::Game *game = new dc::model::Game(seed, dungeon, player);
             ServiceLocator::getInstance().addInstance<dc::model::Game>(*game);
 
             mGameLoop.pushState(new GameplayState(game));

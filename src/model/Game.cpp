@@ -4,7 +4,8 @@
 
 namespace dc {
     namespace model {
-        Game::Game(dc::model::Dungeon *dungeon, dc::model::Player *player) :
+        Game::Game(unsigned int seed, dc::model::Dungeon *dungeon, dc::model::Player *player) :
+            mSeed(seed),
             mDungeon(dungeon),
             mPlayer(player) {
 
@@ -21,6 +22,13 @@ namespace dc {
 
         Dungeon &Game::dungeon() const {
             return *mDungeon;
+        }
+
+
+        std::ostream &operator<<(std::ostream &output, const Game &c) {
+            output << c.mSeed;
+
+            return output;
         }
     }
 }

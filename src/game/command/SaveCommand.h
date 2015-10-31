@@ -8,14 +8,14 @@ namespace dc {
     namespace game {
         class SaveCommand : public dc::game::Command {
         public:
-            SaveCommand(model::Player &player);
+            SaveCommand(model::Game &game);
 
             virtual void execute() const;
 
             static SaveCommand *create(Parameters parameters);
 
         private:
-            model::Player &mPlayer;
+            model::Game &mGame;
         };
     }
 }
