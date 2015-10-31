@@ -19,10 +19,10 @@ namespace dc {
             ~TrapLoader();
 
             dc::model::Trap *getRandomTrap();
+            dc::model::Trap *createTrap(const std::string &trapName);
 
         private:
             void loadTraps();
-            dc::model::Trap *createTrap(const std::string &trapName);
 
         private:
             static bool trapsLoaded;

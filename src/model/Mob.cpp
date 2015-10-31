@@ -46,7 +46,7 @@ namespace dc {
         };
 
         std::ostream &operator<<(std::ostream &output, const dc::model::Mob &m) {
-            output << std::fixed << std::setprecision(15) << m.mId << "\t" << m.mHealth;
+            output << std::fixed << std::setprecision(15) << m.mId << "\t" << m.mLevel << "\t" << m.mHealth;
 
             return output;
         }

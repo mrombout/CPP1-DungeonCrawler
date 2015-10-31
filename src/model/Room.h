@@ -53,16 +53,16 @@ namespace dc {
 
             Inventory &inventory();
 
-            const std::vector<Trap*> &traps() const;
+            std::vector<Trap*> &traps();
             void addTrap(Trap* trap);
 
-            const std::vector<Mob*> &mobs() const;
+            std::vector<Mob*> &mobs();
             void addMob(Mob* mob);
             void removeMob(Mob* mob);
 
             char repr() const;
 
-            int weight() const;
+            int weight();
 
             friend std::ostream &operator<<(std::ostream &output, const Room &c);
             friend std::istream &operator>>(std::istream &input, Room &c);

@@ -19,12 +19,15 @@
 #include "Dungeon.h"
 #include "Game.h"
 #include "Floor.h"
+#include "Trap.h"
 
 namespace dc {
     namespace game {
-        LoadGameCommand::LoadGameCommand(dc::game::GameLoop &gameLoop, dc::game::ItemLoader &itemLoader) :
+        LoadGameCommand::LoadGameCommand(dc::game::GameLoop &gameLoop, dc::game::ItemLoader &itemLoader, dc::game::TrapLoader &trapLoader, dc::game::MobGenerator &mobGenerator) :
                 mGameLoop(gameLoop),
-                mItemLoader(itemLoader) {
+                mItemLoader(itemLoader),
+                mTrapLoader(trapLoader),
+                mMobGenerator(mobGenerator) {
 
         }
 
@@ -50,6 +53,54 @@ namespace dc {
 
             model::Dungeon* dungeon = dungeonGenerator->generate(seed, options.getInt("dungeon.width"), options.getInt("dungeon.height"));
 
+            // load dungeon.txt
+            std::string dungeonPath{basePath + "/dungeon.txt"};
+            std::ifstream dungeonFile{dungeonPath};
+
+            std::string cur;
+            int curFloor;
+            while(dungeonFile >> cur) {
+                if (cur == "F") {
+                    dungeonFile >> curFloor;
+                } else if(cur == "R") {
+                    Point roomPosition{0, 0};
+                    dungeonFile >> roomPosition;
+                    dungeonFile >> cur;
+
+                    dc::model::Room *room = dungeon->floor(curFloor - 1).rooms()[roomPosition.y()][roomPosition.x()];
+                    room->setVisited(true);
+
+                    // read traps
+                    room->traps().clear();
+                    while(dungeonFile >> cur) {
+                        if(cur == ";")
+                            break;
+
+                        dc::model::Trap *trap = mTrapLoader.createTrap(cur);
+                        dungeonFile >> *trap;
+                        room->traps().push_back(trap);
+                    }
+
+                    // read mobs
+                    room->mobs().clear();
+                    while(dungeonFile >> cur) {
+                        if(cur == ";")
+                            break;
+
+                        int mobId = Number::toInt(cur);
+                        int mobLevel;
+                        dungeonFile >> mobLevel;
+                        dc::model::Mob *mob = mMobGenerator.create(mobId, mobLevel);
+
+                        int mobHealth;
+                        dungeonFile >> mobHealth;
+                        mob->setHealth(mobHealth);
+
+                        room->mobs().push_back(mob);
+                    }
+                }
+            }
+
             // load player.txt
             std::string playerPath{basePath + "/player.txt"};
             std::ifstream playerFile{playerPath};
@@ -61,7 +112,7 @@ namespace dc {
             int itemId;
             playerFile >> itemId;
 
-            if(itemId != -1) {
+            if(itemId != 0) {
                 dc::model::Item *item = mItemLoader.createItem((unsigned int &) itemId);
                 player->setWeapon(dynamic_cast<dc::model::Equipable*>(item));
                 player->inventory().add(*item);
@@ -106,7 +157,13 @@ namespace dc {
 
         LoadGameCommand *LoadGameCommand::create() {
             ServiceLocator &sl = ServiceLocator::getInstance();
-            return new LoadGameCommand(sl.resolve<dc::game::GameLoop>(), sl.resolve<dc::game::ItemLoader>());
+
+            dc::game::GameLoop &gameLoop = sl.resolve<dc::game::GameLoop>();
+            dc::game::ItemLoader &itemLoader = sl.resolve<dc::game::ItemLoader>();
+            dc::game::TrapLoader &trapLoader = sl.resolve<dc::game::TrapLoader>();
+            dc::game::MobGenerator &mobGenerator = sl.resolve<dc::game::MobGenerator>();
+
+            return new LoadGameCommand(gameLoop, itemLoader, trapLoader, mobGenerator);
         }
     }
 }
