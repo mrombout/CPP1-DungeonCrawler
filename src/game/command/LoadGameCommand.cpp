@@ -37,7 +37,7 @@ namespace dc {
             std::string name;
             std::cin >> name;
 
-            std::string basePath{"sav/Mike"};
+            std::string basePath{"sav/" + name};
 
             // load game.txt
             std::string gamePath{basePath + "/game.txt"};
