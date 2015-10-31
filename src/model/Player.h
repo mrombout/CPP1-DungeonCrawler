@@ -9,7 +9,7 @@ namespace dc {
     namespace model {
         class Player : public Character {
         public:
-            Player(Room *room);
+            Player();
 
             virtual void setRoom(Room *room) override;
             virtual unsigned int level() const override;

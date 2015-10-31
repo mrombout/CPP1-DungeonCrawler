@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <util/FileSystem.h>
 #include "util/ServiceLocator.h"
 #include "Game.h"
 #include "Player.h"
@@ -16,14 +17,17 @@ namespace dc {
         void SaveCommand::execute() const {
             std::cout << "Saving to disk... Please do not turn off your console." << std::endl;
 
+            std::string basePath = "sav/" + mPlayer.name();
+            FileSystem::mkdir(basePath);
+
             // save Player
-            std::string outputFile = "sav/1/player.txt";
+            std::string outputFile = basePath + "/player.txt";
             std::ofstream pos{outputFile};
 
             pos << static_cast<dc::model::Character&>(mPlayer);
 
             // save Inventory
-            outputFile = "sav/1/inventory.txt";
+            outputFile = basePath + "/inventory.txt";
             std::ofstream ios{outputFile};
 
             ios << mPlayer.inventory();

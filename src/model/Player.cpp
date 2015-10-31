@@ -3,9 +3,9 @@
 
 namespace dc {
     namespace model {
-        Player::Player(Room *room) :
-            Character(room) {
-            room->setVisited(true);
+        Player::Player() :
+            Character() {
+
         }
 
         void Player::setRoom(Room *room) {

@@ -24,7 +24,8 @@ namespace dc {
          */
         class DungeonGenerator {
         public:
-            DungeonGenerator(FloorGenerator &floorGenerator, MobGenerator &mobGenerator);
+            DungeonGenerator(FloorGenerator *floorGenerator, MobGenerator &mobGenerator);
+            ~DungeonGenerator();
 
             dc::model::Dungeon *generate(unsigned int seed, unsigned int width, unsigned int height) const;
 
@@ -32,7 +33,7 @@ namespace dc {
             std::string generateDungeonName() const;
             dc::model::Floor *generateDungeonFloor(int level, unsigned int width, unsigned int height) const;
 
-            FloorGenerator &mFloorGenerator;
+            FloorGenerator *mFloorGenerator;
             MobGenerator &mMobGenerator;
         };
     }

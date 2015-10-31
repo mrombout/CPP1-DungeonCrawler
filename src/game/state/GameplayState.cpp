@@ -24,7 +24,8 @@
 
 namespace dc {
     namespace game {
-        GameplayState::GameplayState() :
+        GameplayState::GameplayState(dc::model::Game *game) :
+            mGame(game),
             mCommandManager() {
 
         }
@@ -36,42 +37,7 @@ namespace dc {
 
 
         void GameplayState::onInitialize(game::GameLoop *game) {
-            // generate random dungeon
-            unsigned int seed = 1;
 
-            dc::model::Options &options = ServiceLocator::getInstance().resolve<dc::model::Options>();
-
-            // TODO: Delete floorGenerator somewhere (cheat and make service locator delete? inb4 not a smartpointer)
-            dc::game::FloorGenerator *floorGenerator = ServiceLocator::getInstance().create<dc::game::FloorGenerator>();
-            DungeonGenerator dungeonGenerator(*floorGenerator, ServiceLocator::getInstance().resolve<dc::game::MobGenerator>());
-
-            model::Dungeon* dungeon = dungeonGenerator.generate(seed, options.getInt("dungeon.width"), options.getInt("dungeon.height"));
-
-            model::Player *player = new model::Player(&dungeon->floor(0).startRoom());
-            player->setName("Player");
-
-            model::Item *item = new model::Sword(-1, "Test Sword", "Testing Sword", 1);
-            player->inventory().addItem(*item);
-
-            model::Item *iconograph = new Iconograph();
-            player->inventory().addItem(*iconograph);
-
-            model::Item *grenade = new model::Grenade();
-            player->inventory().addItem(*grenade);
-
-            model::Item *talisman = new model::Talisman();
-            player->inventory().addItem(*talisman);
-
-            model::HealthPotion *healthPotion = new model::HealthPotion(-1, "Potion", "Test Potion Description", 50);
-            player->inventory().addItem(healthPotion);
-            
-            model::Item *compass = new model::Compass();
-            player->inventory().addItem(*compass);
-
-            talisman->use(*player);
-
-            mGame = new model::Game(dungeon, player);
-            ServiceLocator::getInstance().addInstance<dc::model::Game>(*mGame);
         }
 
         void GameplayState::onEnter(game::GameLoop *game) {
