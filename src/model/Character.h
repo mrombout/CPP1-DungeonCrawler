@@ -4,12 +4,12 @@
 #include <string>
 #include <iomanip>
 #include <iostream>
-#include "Inventory.h"
 
 namespace dc {
     namespace model {
         class Equipable;
         class Room;
+        class Inventory;
     }
 }
 
@@ -65,7 +65,7 @@ namespace dc {
             friend std::ostream &operator<<(std::ostream &output, const Character &c) {
                 return output << std::fixed << std::setprecision(15) << c.mName << '\t' << c.mMaxHealth << "\t"
                               << c.mHealth << "\t" << c.mLevel << "\t" << c.mExperience << "\t" << c.mAttack << "\t"
-                              << c.mDefence << "\t" << c.mPerception;
+                              << c.mDefence << "\t" << c.mPerception << "\t" << mWeapon->id();
             }
 
         protected:

@@ -1,6 +1,7 @@
 #include <math.h>
 #include "Character.h"
 #include "item/Equipable.h"
+#include "Inventory.h"
 
 namespace dc {
     namespace model {

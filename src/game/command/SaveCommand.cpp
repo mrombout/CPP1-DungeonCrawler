@@ -16,10 +16,17 @@ namespace dc {
         void SaveCommand::execute() const {
             std::cout << "Saving to disk... Please do not turn off your console." << std::endl;
 
-            const std::string outputFile = "sav/1/player.txt";
-            std::ofstream os{outputFile};
+            // save Player
+            std::string outputFile = "sav/1/player.txt";
+            std::ofstream pos{outputFile};
 
-            os << static_cast<dc::model::Character&>(mPlayer);
+            pos << static_cast<dc::model::Character&>(mPlayer);
+
+            // save Inventory
+            outputFile = "sav/1/inventory.txt";
+            std::ofstream ios{outputFile};
+
+            ios << mPlayer.inventory();
 
             std::cout << "Done!" << std::endl;
         }

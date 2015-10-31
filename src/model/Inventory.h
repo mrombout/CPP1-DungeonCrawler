@@ -1,8 +1,11 @@
 #ifndef DUNGEONCRAWLER_INVENTORY_H
 #define DUNGEONCRAWLER_INVENTORY_H
 
+#include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
+#include "item/Item.h"
 
 namespace dc {
     namespace model {
@@ -26,6 +29,16 @@ namespace dc {
             void addItem(Item &item);
             void addItem(Item *item);
             bool removeItem(Item &item);
+
+            friend std::ostream &operator<<(std::ostream &output, const Inventory &i) {
+                output << std::fixed << std::setprecision(15);
+
+                for(Item *item : i.mItems)
+                    output << item->id() << "\t";
+
+                return output;
+            }
+
         private:
             std::vector<Item*> mItems;
         };

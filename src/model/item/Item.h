@@ -24,10 +24,11 @@ namespace dc {
 
             virtual bool partialMatch(const std::string &name) const;
 
+            unsigned int id() const;
             std::string name() const;
             std::string description() const;
         private:
-            int mId;
+            unsigned int mId;
 
             std::string mName;
             std::string mDescription;

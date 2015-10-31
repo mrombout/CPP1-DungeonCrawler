@@ -14,6 +14,10 @@ namespace dc {
 
         }
 
+        unsigned int Item::id() const {
+            return mId;
+        }
+
         std::string Item::name() const {
             return mName;
         }
