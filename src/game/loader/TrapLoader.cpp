@@ -48,15 +48,15 @@ namespace dc {
 		}
 
         dc::model::Trap *TrapLoader::createTrap(const std::string &trapName) {
-            if (trapName == "BEARTRAP")
+            if (trapName == dc::model::BearTrap::ID)
                 return new dc::model::BearTrap();
-            if (trapName == "MOBCALLTRAP")
+            if (trapName == dc::model::MobCallTrap::ID)
                 return new dc::model::MobCallTrap();
-            if (trapName == "NEARDEATHTRAP")
+            if (trapName == dc::model::NearDeathTrap::ID)
                 return new dc::model::NearDeathTrap();
-            if (trapName == "RATTRAP")
+            if (trapName == dc::model::RatTrap::ID)
                 return new dc::model::RatTrap();
-            if (trapName == "TELEPORTTRAP")
+            if (trapName == dc::model::TeleportTrap::ID)
                 return new dc::model::TeleportTrap();
 
             std::cout << "Sorry, we can't recognize the " + trapName + "." << std::endl;

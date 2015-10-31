@@ -7,8 +7,16 @@ namespace dc {
     namespace model {
         class Mob : public Character {
         public:
+            Mob(unsigned int id);
+
             void kill();
             virtual void damage(unsigned int pDamage) override;
+
+            friend std::ostream &operator<<(std::ostream &output, const Mob &m);
+            friend std::istream &operator>>(std::istream &input, Mob &m);
+
+        private:
+            unsigned int mId;
         };
     }
 }

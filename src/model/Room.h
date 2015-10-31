@@ -43,6 +43,8 @@ namespace dc {
             void setSouth(Passage *passage);
             void setWest(Passage *passage);
 
+            bool isDirty() const;
+
 			bool isVisited() const;
             void setVisited(bool visited);
 
@@ -62,12 +64,16 @@ namespace dc {
 
             int weight() const;
 
+            friend std::ostream &operator<<(std::ostream &output, const Room &c);
+            friend std::istream &operator>>(std::istream &input, Room &c);
+
         private:
             Point mPosition;
 
             std::string mName;
             std::string mDescription;
             bool mVisited;
+            bool mIsDirty;
 
             Passage *mNorth;
             Passage *mEast;

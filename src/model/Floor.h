@@ -1,6 +1,7 @@
 #ifndef DUNGEONCRAWLER_FLOOR_H
 #define DUNGEONCRAWLER_FLOOR_H
 
+#include <iostream>
 #include <vector>
 
 namespace dc {
@@ -25,6 +26,9 @@ namespace dc {
             Room &exitRoom() const;
 
             const std::vector<std::vector<Room*>> &rooms() const;
+
+            friend std::ostream &operator<<(std::ostream &output, const Floor &f);
+            friend std::istream &operator>>(std::istream &input, Floor &f);
 
         private:
             int mLevel;

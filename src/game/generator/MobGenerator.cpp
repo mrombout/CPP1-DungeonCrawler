@@ -9,10 +9,9 @@
 namespace dc {
     namespace game {
         dc::model::Mob *MobGenerator::generate(unsigned int level) {
-            dc::model::Mob *mob = new dc::model::Mob();
-
 			std::unordered_map<std::string, std::string> mobProps = ServiceLocator::getInstance().resolve<dc::game::MobLoader>().getRandomMob();
-			
+
+			dc::model::Mob *mob = new dc::model::Mob(Number::toInt(mobProps["id"]));
 			mob->setName(mobProps["name"]);
 			mob->setMaxHealth(Number::toInt(mobProps["maxhealth"]) * level);
 			mob->setHealth(mob->maxHealth());

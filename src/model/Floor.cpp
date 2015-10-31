@@ -44,5 +44,22 @@ namespace dc {
         const std::vector<std::vector<Room *>> &Floor::rooms() const {
             return mRooms;
         }
+
+        std::ostream &operator<<(std::ostream &output, const Floor &f) {
+            output << std::fixed << std::setprecision(15) << "F" << "\t" << f.mLevel << "\t";
+
+            for(std::vector<dc::model::Room*> row : f.mRooms) {
+                for(dc::model::Room* room : row) {
+                    if(room && room->isDirty())
+                        output << *room;
+                }
+            }
+
+            return output;
+        }
+
+        std::istream &operator>>(std::istream &input, Floor &f) {
+            return input;
+        }
     }
 }

@@ -8,6 +8,11 @@
 
 namespace dc {
     namespace model {
+        Mob::Mob(unsigned int id) :
+            mId(id) {
+
+        }
+
         void Mob::kill() {
             mHealth = 0;
         }
@@ -39,5 +44,15 @@ namespace dc {
                 kill();
             }
         };
+
+        std::ostream &operator<<(std::ostream &output, const dc::model::Mob &m) {
+            output << std::fixed << std::setprecision(15) << m.mId << "\t" << m.mHealth;
+
+            return output;
+        }
+
+        std::istream &operator>>(std::istream &input, dc::model::Mob &m) {
+            return input;
+        }
     }
 }

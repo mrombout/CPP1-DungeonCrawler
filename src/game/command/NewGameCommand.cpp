@@ -27,12 +27,12 @@ namespace dc {
 
         void NewGameCommand::execute() const {
             // ask for name
-            std::cout << "What's your name?";
+            std::cout << "What's your name? ";
             std::string name;
             std::cin >> name;
 
             // ask for seed
-            std::cout << "What is your lucky number?";
+            std::cout << "What is your lucky number? ";
             std::string strSeed;
             std::cin >> strSeed;
 

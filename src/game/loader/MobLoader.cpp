@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "util/console.h"
+#include "util/Number.h"
 #include "util/String.h"
 #include "exception/InvalidFormatException.h"
 #include "MobLoader.h"
@@ -37,19 +38,19 @@ namespace dc {
 
                         if (splittedWords.size() >= 7) {
                             std::unordered_map<std::string, std::string> tempMap;
-                            tempMap.emplace("name", splittedWords[0]);
-                            tempMap.emplace("maxhealth", splittedWords[1]);
-                            tempMap.emplace("health", splittedWords[2]);
-                            tempMap.emplace("level", splittedWords[3]);
-                            tempMap.emplace("attack", splittedWords[4]);
-                            tempMap.emplace("defence", splittedWords[5]);
-                            tempMap.emplace("perception", splittedWords[6]);
+                            tempMap.emplace("id", splittedWords[0]);
+                            tempMap.emplace("name", splittedWords[1]);
+                            tempMap.emplace("maxhealth", splittedWords[2]);
+                            tempMap.emplace("health", splittedWords[3]);
+                            tempMap.emplace("level", splittedWords[4]);
+                            tempMap.emplace("attack", splittedWords[5]);
+                            tempMap.emplace("defence", splittedWords[6]);
+                            tempMap.emplace("perception", splittedWords[7]);
 
-                            loadedMobs.emplace(lineCount, tempMap);
-                            lineCount++;
+                            loadedMobs.emplace(Number::toInt(tempMap["id"]), tempMap);
                         } else {
                             std::stringstream ss;
-                            ss << "Format of line '" << (lineCount + 1) << "' in mobs.txt file is not correct.";
+                            ss << "Format in mobs.txt file is not correct.";
                             throw new InvalidFormatException(ss.str());
                         }
                     }
@@ -66,7 +67,7 @@ namespace dc {
                 loadMobs();
             }
 
-            int randomMob = Random::nextInt(0, loadedMobs.size() - 1);
+            int randomMob = Random::nextInt(1, loadedMobs.size() - 1);
             return loadedMobs[randomMob];
         }
     }

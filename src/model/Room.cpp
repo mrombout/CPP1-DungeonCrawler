@@ -27,7 +27,8 @@ namespace dc {
                 mNorth(nullptr),
                 mEast(nullptr),
                 mSouth(nullptr),
-                mWest(nullptr) {
+                mWest(nullptr),
+                mIsDirty(false) {
 
         }
 
@@ -83,6 +84,7 @@ namespace dc {
         }
 
         void Room::setVisited(bool visited) {
+            mIsDirty = true;
             mVisited = visited;
         }
 
@@ -159,6 +161,34 @@ namespace dc {
             }
 
             return weight;
+        }
+
+        std::ostream &operator<<(std::ostream &output, const Room &c) {
+            output << std::fixed << std::setprecision(15) << "R" << "\t" << c.position() << ";";
+
+            // save traps
+            for(dc::model::Trap *trap : c.mTraps) {
+                output << *trap << "\t";
+            }
+            output << ";";
+
+            // save mobs
+            for(dc::model::Mob *mob : c.mMobs) {
+                output << *mob << "\t";
+            }
+            output << ";";
+
+            return output;
+        }
+
+        std::istream &operator>>(std::istream &input, Room &c) {
+            input >> c.mVisited;
+
+            return input;
+        }
+
+        bool Room::isDirty() const {
+            return mIsDirty;
         }
     }
 }

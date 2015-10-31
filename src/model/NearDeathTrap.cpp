@@ -2,15 +2,25 @@
 #include "NearDeathTrap.h"
 #include "Player.h"
 
-void dc::model::NearDeathTrap::onSpring(dc::model::Player &player) {
-    std::cout << "A giant ball of spikes comes hurling towards you. You are just quick enough to jump aside and avoid definite death.";
-    std::cout << "On your way up you hit your head on an inconveniently placed lantern, it hurts.\n";
+namespace dc {
+    namespace model {
+        const std::string NearDeathTrap::ID = "NEARDEATHTRAP";
 
-    player.setHealth(1);
+        void NearDeathTrap::onSpring(Player &player) {
+            std::cout << "A giant ball of spikes comes hurling towards you. You are just quick enough to jump aside and avoid definite death.";
+            std::cout << "On your way up you hit your head on an inconveniently placed lantern, it hurts.\n";
 
-    std::cout << "You health has been decreased to 1." << std::endl;
-}
+            player.setHealth(1);
 
-const std::string dc::model::NearDeathTrap::name() {
-    return "intriguing contraption";
+            std::cout << "You health has been decreased to 1." << std::endl;
+        }
+
+        const std::string NearDeathTrap::name() {
+            return "intriguing contraption";
+        }
+
+        const std::string NearDeathTrap::id() const {
+            return ID;
+        }
+    }
 }

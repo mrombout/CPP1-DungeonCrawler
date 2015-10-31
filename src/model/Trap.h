@@ -25,8 +25,12 @@ namespace dc {
             bool isDismantled();
             void dismantle();
 
+            virtual const std::string id() const = 0;
             virtual const std::string name() = 0;
             virtual void onSpring(dc::model::Player &player) = 0;
+
+            friend std::ostream &operator<<(std::ostream &output, const Trap &t);
+            friend std::istream &operator>>(std::istream &input, Trap &t);
 
         private:
             bool mDiscovered;

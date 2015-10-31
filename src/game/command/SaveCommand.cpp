@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Character.h"
 #include "SaveCommand.h"
+#include "Dungeon.h"
 
 namespace dc {
     namespace game {
@@ -37,6 +38,12 @@ namespace dc {
             std::ofstream ios{outputFile};
 
             ios << mGame.player().inventory();
+
+            // save Dungeon
+            outputFile = basePath + "/dungeon.txt";
+            std::ofstream dos{outputFile};
+
+            dos << mGame.dungeon();
 
             std::cout << "Done!" << std::endl;
         }

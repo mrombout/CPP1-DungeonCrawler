@@ -19,6 +19,9 @@ namespace dc {
 
             Floor &floor(int level) const;
 
+            friend std::ostream &operator<<(std::ostream &output, const Dungeon &d);
+            friend std::istream &operator>>(std::istream &input, Dungeon &d);
+
         private:
             std::string mName;
             int mSeed;
