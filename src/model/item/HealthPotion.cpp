@@ -1,5 +1,6 @@
 #include "util/console.h"
 #include "HealthPotion.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {

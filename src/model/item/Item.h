@@ -2,11 +2,11 @@
 #define DUNGEONCRAWLER_ITEM_H
 
 #include <string>
-#include <Character.h>
 
 namespace dc {
     namespace model {
         class Player;
+        class Character;
     }
 }
 

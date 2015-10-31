@@ -1,5 +1,6 @@
 #include "Consumable.h"
 #include "Inventory.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {

@@ -1,5 +1,6 @@
 #include "ExperiencePotion.h"
 #include "util/console.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {

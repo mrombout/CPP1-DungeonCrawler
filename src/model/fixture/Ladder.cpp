@@ -1,5 +1,6 @@
 #include "Ladder.h"
 #include "Room.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {

@@ -62,11 +62,7 @@ namespace dc {
 
             Inventory &inventory() const;
 
-            friend std::ostream &operator<<(std::ostream &output, const Character &c) {
-                return output << std::fixed << std::setprecision(15) << c.mName << '\t' << c.mMaxHealth << "\t"
-                              << c.mHealth << "\t" << c.mLevel << "\t" << c.mExperience << "\t" << c.mAttack << "\t"
-                              << c.mDefence << "\t" << c.mPerception << "\t" << mWeapon->id();
-            }
+            friend std::ostream &operator<<(std::ostream &output, const Character &c);
 
         protected:
             std::string mName;
@@ -87,6 +83,5 @@ namespace dc {
         };
     }
 }
-
 
 #endif //DUNGEONCRAWLER_CHARACTER_H

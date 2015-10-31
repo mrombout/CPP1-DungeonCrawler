@@ -1,10 +1,11 @@
 #include <iostream>
 #include <map>
 #include <queue>
-#include <fixture/Ladder.h>
+#include "fixture/Ladder.h"
 #include "Talisman.h"
 #include "Room.h"
 #include "Passage.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {
