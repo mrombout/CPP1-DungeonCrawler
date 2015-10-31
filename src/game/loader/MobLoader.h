@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <util/Random.h>
 #include <sstream>
+#include <Mob.h>
 
 namespace dc {
     namespace game {
@@ -18,6 +19,7 @@ namespace dc {
             ~MobLoader();
 
             std::unordered_map<std::string, std::string> getRandomMob();
+            std::unordered_map<std::string, std::string> getMob(int id);
 
         private:
             void loadMobs();

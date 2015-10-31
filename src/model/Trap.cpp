@@ -56,6 +56,8 @@ namespace dc {
         }
 
         std::istream &operator>>(std::istream &input, Trap &t) {
+            input >> t.mDiscovered >> t.mDismantled >> t.mSprung;
+
             return input;
         }
 

@@ -120,7 +120,7 @@ namespace dc {
             return mInventory;
         }
 
-        const std::vector<Trap*> &Room::traps() const {
+        std::vector<Trap*> &Room::traps() {
             return mTraps;
         }
 
@@ -128,7 +128,7 @@ namespace dc {
             mTraps.push_back(trap);
         }
 
-        const std::vector<Mob*> &Room::mobs() const {
+        std::vector<Mob*> &Room::mobs() {
             return mMobs;
         }
 
@@ -153,7 +153,7 @@ namespace dc {
             return isVisited() ? 'N' : '.';
         }
 
-        int Room::weight() const {
+        int Room::weight() {
             int weight = 0;
 
             for(dc::model::Mob *mob : mobs()) {
@@ -164,19 +164,19 @@ namespace dc {
         }
 
         std::ostream &operator<<(std::ostream &output, const Room &c) {
-            output << std::fixed << std::setprecision(15) << "R" << "\t" << c.position() << ";";
+            output << std::fixed << std::setprecision(15) << "R" << "\t" << c.position() << "\t;\t";
 
             // save traps
             for(dc::model::Trap *trap : c.mTraps) {
                 output << *trap << "\t";
             }
-            output << ";";
+            output << ";\t";
 
             // save mobs
             for(dc::model::Mob *mob : c.mMobs) {
                 output << *mob << "\t";
             }
-            output << ";";
+            output << ";\t";
 
             return output;
         }

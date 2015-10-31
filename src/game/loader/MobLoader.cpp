@@ -70,5 +70,9 @@ namespace dc {
             int randomMob = Random::nextInt(1, loadedMobs.size() - 1);
             return loadedMobs[randomMob];
         }
+
+        std::unordered_map<std::string, std::string> MobLoader::getMob(int id) {
+            return loadedMobs[id];
+        }
     }
 }
