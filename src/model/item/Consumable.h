@@ -7,7 +7,7 @@ namespace dc {
     namespace model {
         class Consumable : public Item {
         public:
-            Consumable(std::string name, std::string description);
+            Consumable(unsigned int id, std::string name, std::string description);
             virtual ~Consumable();
 
             virtual void use(Character &character) override;

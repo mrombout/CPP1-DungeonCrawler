@@ -7,11 +7,15 @@
 
 namespace dc {
     namespace model {
-
-        Item::Item(std::string name, std::string description) :
+        Item::Item(unsigned int id, std::string name, std::string description) :
+                mId(id),
                 mName(name),
                 mDescription(description) {
 
+        }
+
+        unsigned int Item::id() const {
+            return mId;
         }
 
         std::string Item::name() const {
@@ -36,7 +40,7 @@ namespace dc {
         }
 
         bool Item::partialMatch(const std::string &string) const {
-            return std::strstr(String::toLower(string).c_str(), String::toLower(mName).c_str()) != nullptr;
+            return String::toLower(mName).find(String::toLower(string)) != std::string::npos;
         }
     }
 }

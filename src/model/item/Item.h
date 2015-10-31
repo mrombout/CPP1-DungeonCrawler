@@ -2,11 +2,11 @@
 #define DUNGEONCRAWLER_ITEM_H
 
 #include <string>
-#include <Character.h>
 
 namespace dc {
     namespace model {
         class Player;
+        class Character;
     }
 }
 
@@ -14,7 +14,7 @@ namespace dc {
     namespace model {
         class Item {
         public:
-            Item(std::string name, std::string description);
+            Item(unsigned int id, std::string name, std::string description);
             virtual ~Item() { }
 
             virtual Item* clone() const = 0;
@@ -24,12 +24,14 @@ namespace dc {
 
             virtual bool partialMatch(const std::string &name) const;
 
+            unsigned int id() const;
             std::string name() const;
             std::string description() const;
         private:
+            unsigned int mId;
+
             std::string mName;
             std::string mDescription;
-            int mDamage;
         };
     }
 }

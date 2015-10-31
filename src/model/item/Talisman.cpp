@@ -1,15 +1,16 @@
 #include <iostream>
 #include <map>
 #include <queue>
-#include <fixture/Ladder.h>
+#include "fixture/Ladder.h"
 #include "Talisman.h"
 #include "Room.h"
 #include "Passage.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {
         Talisman::Talisman()
-                : Item("Talisman", "My grandmother gave this to me. She used it to find the bathroom.") {
+                : Item(0, "Talisman", "My grandmother gave this to me. She used it to find the bathroom.") {
 
         }
 

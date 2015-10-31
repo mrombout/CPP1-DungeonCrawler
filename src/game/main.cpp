@@ -1,3 +1,4 @@
+#include <generator/DungeonGenerator.h>
 #include "loader/MobLoader.h"
 #include "loader/InventoryLoader.h"
 #include "loader/TrapLoader.h"
@@ -9,6 +10,7 @@
 #include "generator/FloorGenerator.h"
 #include "generator/SimpleFloorGenerator.h"
 #include "generator/BSPFloorGenerator.h"
+#include "generator/DungeonGenerator.h"
 #include "state/WelcomeState.h"
 #include "command/NewGameCommand.h"
 #include "Options.h"
@@ -58,6 +60,13 @@ int main(int argc, char *argv[])
         } else {
             return new dc::game::BSPFloorGenerator(roomGenerator);
         }
+    });
+    sl.addFactory<dc::game::DungeonGenerator>([](ServiceLocator &sl) {
+        // TODO: Delete floorGenerator somewhere (cheat and make service locator delete? inb4 not a smartpointer)
+        dc::game::FloorGenerator *floorGenerator = ServiceLocator::getInstance().create<dc::game::FloorGenerator>();
+        dc::game::MobGenerator &mobGenerator = ServiceLocator::getInstance().resolve<dc::game::MobGenerator>();
+
+        return new dc::game::DungeonGenerator(floorGenerator, mobGenerator);
     });
 
     // start game

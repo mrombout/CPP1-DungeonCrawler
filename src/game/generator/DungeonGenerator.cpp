@@ -51,10 +51,14 @@ std::vector<std::string> dungeonNoun {
 
 namespace dc {
     namespace game {
-        DungeonGenerator::DungeonGenerator(FloorGenerator &floorGenerator, MobGenerator &mobGenerator) :
+        DungeonGenerator::DungeonGenerator(FloorGenerator *floorGenerator, MobGenerator &mobGenerator) :
                 mFloorGenerator(floorGenerator),
                 mMobGenerator(mobGenerator) {
 
+        }
+
+        DungeonGenerator::~DungeonGenerator() {
+            delete mFloorGenerator;
         }
 
         model::Dungeon *DungeonGenerator::generate(unsigned int seed, unsigned int width, unsigned int height) const {
@@ -73,7 +77,7 @@ namespace dc {
                 dFloors.push_back(currentFloor);
 
                 if(!previousFloor) {
-                    currentFloor->startRoom().inventory().addItem(new Prop("Breadcrumb", "Oh! It's that breadcrumb I left here so I can find my way back!"));
+                    currentFloor->startRoom().inventory().addItem(new Prop(-1, "Breadcrumb", "Oh! It's that breadcrumb I left here so I can find my way back!"));
                 } else {
                     Room &previousStart = previousFloor->startRoom();
                     Room &previousEnd = previousFloor->exitRoom();
@@ -123,7 +127,7 @@ namespace dc {
         }
 
         Floor *DungeonGenerator::generateDungeonFloor(int level, unsigned int width, unsigned int height) const {
-            return mFloorGenerator.generate(level, width, height);
+            return mFloorGenerator->generate(level, width, height);
         }
     }
 }

@@ -1,24 +1,27 @@
 #include <math.h>
 #include "Character.h"
+#include "Inventory.h"
 #include "item/Equipable.h"
+#include "Room.h"
+#include "Floor.h"
 
 namespace dc {
     namespace model {
         Character::Character() :
-            Character(nullptr) {
+                Character(nullptr) {
 
         }
 
         Character::Character(Room *room) :
-            mMaxHealth(100),
-            mHealth(mMaxHealth),
-            mLevel(1),
-            mExperience(0),
-            mAttack(1),
-            mDefence(1),
-            mPerception(1),
-            mWeapon(0),
-            mRoom(room) {
+                mMaxHealth(100),
+                mHealth(mMaxHealth),
+                mLevel(1),
+                mExperience(0),
+                mAttack(1),
+                mDefence(1),
+                mPerception(1),
+                mWeapon(0),
+                mRoom(room) {
             mInventory = new Inventory();
         }
 
@@ -140,6 +143,28 @@ namespace dc {
 
         bool Character::isDead() const {
             return mHealth <= 0;
+        }
+
+        std::ostream &operator<<(std::ostream &output, const Character &c) {
+            output << std::fixed << std::setprecision(15) << c.mName << '\t' << c.mMaxHealth << "\t"
+            << c.mHealth << "\t" << c.mLevel << "\t" << c.mExperience << "\t" << c.mAttack << "\t"
+            << c.mDefence << "\t" << c.mPerception;
+
+            output << "\t" << (c.mWeapon ? c.mWeapon->id() : 0);
+
+            if (c.mRoom)
+                output << "\t" << c.room()->position() << "\t" << c.room()->floor()->level();
+            else
+                output << "\t" << -1 << "\t" << -1 << "\t" << 0;
+
+            return output;
+        }
+
+        std::istream &operator>>(std::istream &input, Character &c) {
+            input >> c.mName >> c.mMaxHealth >> c.mHealth >> c.mLevel >> c.mExperience >> c.mAttack >> c.mDefence
+                  >> c.mPerception;
+
+            return input;
         }
     }
 }

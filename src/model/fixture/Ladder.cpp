@@ -1,10 +1,11 @@
 #include "Ladder.h"
 #include "Room.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {
         Ladder::Ladder(Ladder::Direction direction, Room &toRoom) :
-            Fixture("Ladder", "Just a ladder leading to " + toRoom.name() + "."),
+            Fixture(-1, "Ladder", "Just a ladder leading to " + toRoom.name() + "."),
             mDirection(direction),
             mToRoom(toRoom) {
 

@@ -2,7 +2,7 @@
 
 namespace dc {
     namespace model {
-        Sword::Sword(std::string name, std::string description, int damage) : Equipable(name, description, damage) { }
+        Sword::Sword(unsigned int id, std::string name, std::string description, int damage) : Equipable(id, name, description, damage) { }
         Sword::~Sword() {
 
         }

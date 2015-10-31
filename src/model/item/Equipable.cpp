@@ -1,8 +1,8 @@
 #include "Equipable.h"
 
-dc::model::Equipable::Equipable(std::string name, std::string description, int damage) :
+dc::model::Equipable::Equipable(unsigned int id, std::string name, std::string description, int damage) :
     mDamage(damage),
-    Item(name, description) {
+    Item(id, name, description) {
 
 }
 

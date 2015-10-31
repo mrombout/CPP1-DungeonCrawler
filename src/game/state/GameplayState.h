@@ -17,7 +17,7 @@ namespace dc {
     namespace game {
         class GameplayState : public game::State {
         public:
-            GameplayState();
+            GameplayState(dc::model::Game *game);
             ~GameplayState();
 
             void onInitialize(game::GameLoop *game) override;

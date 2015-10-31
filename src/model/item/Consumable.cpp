@@ -1,9 +1,11 @@
 #include "Consumable.h"
+#include "Inventory.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {
-        Consumable::Consumable(std::string name, std::string description) :
-                Item(name, description) {
+        Consumable::Consumable(unsigned int id, std::string name, std::string description) :
+                Item(id, name, description) {
 
         }
 

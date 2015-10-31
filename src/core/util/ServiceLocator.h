@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <typeinfo>
+#include <vector>
 #include <map>
 #include <string>
 

@@ -7,7 +7,7 @@ namespace dc {
     namespace model {
         class HealthPotion : public Potion {
         public:
-            HealthPotion(const std::string &name, const std::string &description, int effect);
+            HealthPotion(unsigned int id, const std::string &name, const std::string &description, int effect);
 
             virtual void consume(Character &character) override;
             virtual Item *clone() const;
