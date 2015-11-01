@@ -11,6 +11,7 @@
 #include "Floor.h"
 #include "Passage.h"
 #include "Mob.h"
+#include "util/Random.h"
 
 namespace dc {
     namespace model {
@@ -21,7 +22,7 @@ namespace dc {
             Floor *floor = startRoom->floor();
 
             // explode
-            if(!explode(floor)) {
+            if(!explode(floor, startRoom)) {
                 std::cout << "You don't think that's a good idea right now." << std::endl;
                 return;
             }
@@ -38,7 +39,7 @@ namespace dc {
             character.inventory().removeItem(*this);
         }
 
-        bool Grenade::explode(Floor *floor) {
+        bool Grenade::explode(Floor *floor, Room *startRoom) {
             // initialize
             std::vector<Passage*> A;
             std::vector<Passage*> S;
@@ -76,22 +77,42 @@ namespace dc {
 
             // collapse passages
             bool hasExploded = false;
-            for(std::vector<Room*> row : floor->rooms()) {
-                for(Room* room : row) {
-                    if(!room)
-                        continue;
 
-                    for(Passage *passage : room->adjacantPassages()) {
-                        if(!passage)
-                            continue;
+			std::vector<Room*> removeRoomVect;
+			std::queue<Room*> queue;
+			int collapseRooms = Random::nextInt(10, 15);
 
-                        if(std::find(A.begin(), A.end(), passage) == A.end() && !passage->isCollapsed()) {
-                            hasExploded = true;
-                            passage->setCollapsed(true);
-                        }
-                    }
-                }
-            }
+			removeRoomVect.push_back(startRoom);
+			queue.push(startRoom);
+
+			while (!queue.empty()) {
+				Room *currentRoom = queue.front();
+				queue.pop();
+
+				for (Passage* passage : currentRoom->adjacantPassages()) {
+					if (!passage)
+						continue;
+
+					if (removeRoomVect.size() >= collapseRooms)
+						break;
+
+					Room &otherRoom = passage->otherSide(*currentRoom);
+					queue.push(&otherRoom);
+					removeRoomVect.push_back(&otherRoom);
+				}
+			}
+
+			for (Room *room : removeRoomVect){
+				for (Passage *passage : room->adjacantPassages()) {
+					if (!passage)
+						continue;
+
+					if (std::find(A.begin(), A.end(), passage) == A.end() && !passage->isCollapsed()) {
+						hasExploded = true;
+						passage->setCollapsed(true);
+					}
+				}
+			}
 
             return hasExploded;
         }
