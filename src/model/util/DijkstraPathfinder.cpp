@@ -15,14 +15,6 @@ std::list<dc::model::Passage*> DijkstraPathfinder::findPath(dc::model::Floor &fl
     std::map<dc::model::Room*, dc::model::Passage*> prevEdges;
     std::map<dc::model::Room*, unsigned int> dist;
 
-    /*
-    auto comp = [&dist](dc::model::Room *a, dc::model::Room *b) {
-
-        std::cout << a << " & " << b << " is " << dist[b] - dist[a] << std::endl;
-        return dist[b] - dist[a];
-    };
-    std::priority_queue<dc::model::Room*, std::vector<dc::model::Room*>, decltype(comp)> Q(comp);
-    */
     std::list<dc::model::Room*> Q;
 
     // for each vertex v in Graph
