@@ -49,8 +49,10 @@ namespace dc {
             command = dc::game::SaveCommand::create(parameters);
         }
 
-        if(!command)
+        if(!command) {
             command = new dc::game::NullCommand();
+            std::cout << "Command is not recognized." << std::endl;
+        }
 
         return command;
     }
