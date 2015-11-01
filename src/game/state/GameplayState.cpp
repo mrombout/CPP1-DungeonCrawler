@@ -68,11 +68,9 @@ namespace dc {
 
         // TODO: Duplicate code in WelcomeState
         void GameplayState::onPrint(game::GameLoop &game, game::Command *command) {
-            //game::CommandParameters cp(ServiceLocator::getInstance().resolve<dc::game::GameLoop>(), mGame->player(), *this);
             command->execute();
 
             updateEnemies(game);
-            springTraps(game);
         }
 
         void GameplayState::updateEnemies(game::GameLoop &game) const {
@@ -86,21 +84,6 @@ namespace dc {
 
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame));
-            }
-        }
-
-        void GameplayState::springTraps(game::GameLoop &game) {
-            const std::vector<dc::model::Trap*> &traps = mGame->player().room()->traps();
-            if(!traps.empty()) {
-                std::cout << "You hear a sudden click, ever so lightly echo through the room...\n";
-                for(dc::model::Trap *trap : traps) {
-                    if(trap->isSprung())
-                        continue;
-                    
-                    std::cout << "You sprung a " << trap->name() << " trap!" << "\n";
-                    trap->spring(mGame->player());
-                }
-                std::cout << std::endl;
             }
         }
     }

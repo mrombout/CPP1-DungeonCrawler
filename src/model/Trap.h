@@ -20,7 +20,7 @@ namespace dc {
             void discover();
 
             bool isSprung();
-            void spring(dc::model::Player &player);
+            bool spring(dc::model::Player &player);
 
             bool isDismantled();
             void dismantle();

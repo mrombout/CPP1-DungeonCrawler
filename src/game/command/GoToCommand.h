@@ -20,6 +20,9 @@ namespace dc {
             static GoToCommand *create(Parameters parameters);
 
         private:
+            bool springTraps() const;
+
+        private:
             std::string mHeading;
             dc::model::Player &mPlayer;
             dc::model::Passage &mPassage;

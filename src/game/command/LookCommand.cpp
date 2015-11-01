@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Room.h"
 #include "Player.h"
+#include "Trap.h"
 #include "item/Item.h"
 #include "util/console.h"
 #include "util/ServiceLocator.h"
@@ -48,6 +49,22 @@ namespace dc {
             std::cout << csl::color(csl::RED) << "\n\nIn the darkness of the rooms lurk: \n";
             const std::vector<dc::model::Mob*> &mobs = room->mobs();
             Render::mobList(mobs);
+        }
+
+        // list traps
+        if(!room->traps().empty()) {
+            std::vector<dc::model::Trap*> discoveredTraps;
+            for(dc::model::Trap *trap : room->traps()) {
+                if(trap->isDiscovered())
+                    discoveredTraps.push_back(trap);
+            }
+
+            if(!discoveredTraps.empty()) {
+                std::cout << "\nYou've discovered some traps: \n";
+                for(dc::model::Trap *trap : discoveredTraps) {
+                    std::cout << "- " << trap->name() << " (" << (trap->isSprung() || trap->isDismantled() ? "disarmed" : "armed") << ")" << "\n";
+                }
+            }
         }
 
         // items

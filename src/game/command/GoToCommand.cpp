@@ -6,6 +6,7 @@
 #include "GoToCommand.h"
 #include "Parameters.h"
 #include "Passage.h"
+#include "Trap.h"
 
 namespace dc {
     namespace game {
@@ -17,12 +18,30 @@ namespace dc {
         }
 
         void game::GoToCommand::execute() const {
-            //dc::model::Room &otherRoom = mPassage.otherSide(&mPlayer.room());
-            //mPlayer.setRoom(otherRoom);
+            if(springTraps())
+                return;
+
             dc::model::Room &otherRoom = mPassage.otherSide(*mPlayer.room());
             mPlayer.setRoom(&otherRoom);
 
             std::cout << "You went " << mHeading << " into the next room." << std::endl;
+        }
+
+        bool GoToCommand::springTraps() const {
+            const std::vector<dc::model::Trap*> &traps = mPlayer.room()->traps();
+            if(!traps.empty()) {
+                for(dc::model::Trap *trap : traps) {
+                    if(trap->isSprung() || trap->isDismantled())
+                        continue;
+
+                    std::cout << "You sprung a " << trap->name() << " trap!" << "\n";
+                    trap->spring(mPlayer);
+                    return true;
+                }
+                std::cout << std::endl;
+            }
+
+            return false;
         }
 
         GoToCommand *GoToCommand::create(Parameters parameters) {

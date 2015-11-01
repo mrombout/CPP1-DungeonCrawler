@@ -31,14 +31,13 @@ namespace dc {
             return mSprung;
         }
 
-        void Trap::spring(dc::model::Player &player) {
+        bool Trap::spring(dc::model::Player &player) {
             if (!isDismantled()) {
                 mSprung = true;
-
                 onSpring(player);
-            } else {
-                std::cout << "Luckely you dismantled me, otherwise I would have sprung!" << std::endl;
+                return true;
             }
+            return false;
         }
 
         bool Trap::isDismantled() {
