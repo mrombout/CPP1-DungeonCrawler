@@ -3,9 +3,10 @@
 
 namespace dc {
     namespace model {
-        Options::Options() :
-            mMap{{"dungeon.width", "25"}, {"dungeon.height", "25"}, {"dungeon.type", "bsp"}} {
-
+        Options::Options(){
+			mMap.emplace("dungeon.width", "25");
+			mMap.emplace("dungeon.height", "25");
+			mMap.emplace("dungeon.type", "bsp");
         }
 
         void Options::set(std::string name, std::string value) {

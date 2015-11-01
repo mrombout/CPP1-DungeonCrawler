@@ -78,7 +78,7 @@ namespace csl {
     }
 
     ColorManipulator color(int c) {
-#if defined(__WIN32__)
+#if defined(__WIN32__) || defined(WIN32)
         return ColorManipulator(&setColorWindows, c);
 #else
         return ColorManipulator(&setColorUnix, c);

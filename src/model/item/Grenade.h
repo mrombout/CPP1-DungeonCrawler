@@ -2,6 +2,7 @@
 #define DUNGEONCRAWLER_GRANATE_H
 
 #include "Floor.h"
+#include "Room.h"
 #include "Item.h"
 
 namespace dc {
@@ -15,7 +16,7 @@ namespace dc {
 
             virtual Item *clone() const;
 
-            bool explode(Floor *pFloor);
+            bool explode(Floor *pFloor, Room *pRoom);
         };
     }
 }

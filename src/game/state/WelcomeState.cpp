@@ -46,7 +46,9 @@ namespace dc {
                 return dc::game::LoadGameCommand::create();
             } else if(input == "o") {
                 return dc::game::ChangeStateCommand::create(new dc::game::OptionsState());
-            }
+			} else if (input == "e"){
+				exit(0);
+			}
 
             return nullptr;
         }
