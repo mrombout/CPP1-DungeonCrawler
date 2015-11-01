@@ -6,6 +6,7 @@
 #include "Floor.h"
 #include "Passage.h"
 #include "Player.h"
+#include "Parameters.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
 
@@ -109,14 +110,16 @@ namespace dc {
         grid[y][x] = c;
 
         // draw weight
-        std::string weight{std::to_string(passage->weight())};
-        if(passage->isNorth() || passage->isSouth()) {
-            for(char c : weight)
-                grid[y++][x] = c;
-        } else {
-            for(char c : weight)
-                grid[y][x++] = c;
-        }
+		if(mCheat) {
+			std::string weight{std::to_string(passage->weight())};
+			if(passage->isNorth() || passage->isSouth()) {
+				for(char c : weight)
+					grid[y++][x] = c;
+			} else {
+				for(char c : weight)
+					grid[y][x++] = c;
+			}
+		}
 	}
 
     game::MapCommand *game::MapCommand::create(Parameters parameters) {

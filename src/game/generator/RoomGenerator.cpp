@@ -33,6 +33,7 @@ namespace dc {
         }
 
         void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
+            room->addTrap(ServiceLocator::getInstance().resolve<dc::game::TrapLoader>().getRandomTrap());
             if(rand() % 100 < 25) {
                 dc::model::Trap *trap = ServiceLocator::getInstance().resolve<dc::game::TrapLoader>().getRandomTrap();
                 room->addTrap(trap);
@@ -44,7 +45,7 @@ namespace dc {
                 int numEnemies = Random::nextInt(1, 4);
                 for(int i = 0; i < numEnemies; ++i) {
                     dc::model::Mob *mob = mMobGenerator.generate(level);
-                    room->addMob(mob);
+                    //room->addMob(mob);
                 }
             }
         }

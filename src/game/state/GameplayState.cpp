@@ -1,5 +1,4 @@
 #include <iostream>
-#include <item/HealthPotion.h>
 #include "Inventory.h"
 #include "item/Sword.h"
 #include "generator/FloorGenerator.h"
@@ -19,8 +18,10 @@
 #include "item/Talisman.h"
 #include "item/Grenade.h"
 #include "item/Compass.h"
+#include "item/HealthPotion.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
+#include "util/Render.h"
 
 namespace dc {
     namespace game {
@@ -45,10 +46,14 @@ namespace dc {
         }
 
         std::string GameplayState::onRead() {
-            std::cout << csl::color(csl::GREY) << "> ";
+            dc::game::GameLoop &gameLoop = ServiceLocator::getInstance().resolve<dc::game::GameLoop>();
+            dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
+            dc::model::Player &player = game.player();
+
+            if(!Render::prompt(player, gameLoop))
+                return "";
 
             std::string input;
-
             while(input.empty())
                 std::getline(std::cin, input);
 
