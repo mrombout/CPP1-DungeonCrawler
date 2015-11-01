@@ -15,6 +15,12 @@
 
 namespace dc {
     namespace model {
+        struct PassageComparer {
+            bool operator()(Passage *a, Passage *b) {
+                return a->weight() < b->weight();
+            }
+        };
+
         Grenade::Grenade() : Item(0, "Grenade", "A hand grenade, this will kill everything in the room and destroy half of the dungeon, except you.") { }
 
         void Grenade::use(Character &character) {
@@ -64,6 +70,7 @@ namespace dc {
                     }
                 }
             }
+            std::sort(S.begin(), S.end(), PassageComparer());
 
             // build MST
             for(Passage *uv : S) {
