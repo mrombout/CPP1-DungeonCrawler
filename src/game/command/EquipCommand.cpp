@@ -1,12 +1,8 @@
-//
-// Created by Robin de Mug on 28/10/15.
-//
-
 #include <iostream>
-#include <util/ServiceLocator.h>
-#include <Game.h>
+#include "util/ServiceLocator.h"
+#include "Game.h"
 #include "EquipCommand.h"
-#include <item/Item.h>
+#include "item/Item.h"
 #include "item/Equipable.h"
 
 namespace dc {
@@ -22,12 +18,12 @@ namespace dc {
             dc::model::Item *item = mPlayer.inventory().findItem(mItemName);
             if(item != nullptr) {
                 dc::model::Equipable *equipable = dynamic_cast<dc::model::Equipable*>(item);
-                if (equipable != nullptr) {
+                if (equipable) {
                     std::cout << "Equipping " << item->name() << "..." << std::endl;
                     mPlayer.setWeapon((dc::model::Equipable *) item);
                     std::cout << "Equiped!" << std::endl;
                 } else {
-                    std::cout << item->name() << " is not equipable" << std::endl;
+                    std::cout << "I can't equip that!" << std::endl;
                 }
             } else {
                 std::cout << "I don't know what " << mItemName << " is" << std::endl;

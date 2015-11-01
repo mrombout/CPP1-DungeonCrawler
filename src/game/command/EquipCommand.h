@@ -1,10 +1,5 @@
-//
-// Created by Robin de Mug on 28/10/15.
-//
-
 #ifndef DUNGEONCRAWLER_EQUIPCOMMAND_H
 #define DUNGEONCRAWLER_EQUIPCOMMAND_H
-
 
 #include <command.h>
 #include <Player.h>
@@ -24,6 +19,5 @@ namespace dc {
         };
     }
 }
-
 
 #endif //DUNGEONCRAWLER_EQUIPCOMMAND_H
