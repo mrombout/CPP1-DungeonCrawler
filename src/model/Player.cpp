@@ -20,5 +20,10 @@ namespace dc {
         unsigned int Player::attack() const {
             return 1 + ceil(level() / 2);
         }
+
+
+        unsigned int Player::perception() const {
+            return 1 + ceil(level() / 2);
+        }
     }
 }

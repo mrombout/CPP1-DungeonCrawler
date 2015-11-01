@@ -7,8 +7,9 @@
 
 namespace dc {
     namespace game {
-        InspectCommand::InspectCommand(dc::model::Game &game) :
-                mGame(game) {
+        InspectCommand::InspectCommand(dc::model::Game &game, dc::game::ItemLoader &itemLoader) :
+                mGame(game),
+                mItemLoader(itemLoader) {
 
         }
 
@@ -17,17 +18,31 @@ namespace dc {
 
             // TODO: Hoe hogere perception, hoe meer kan dat speler traps ziet.
 
-            const std::vector<dc::model::Trap*> &traps = mGame.player().room()->traps();
-            if(!traps.empty()) {
-                for(dc::model::Trap *trap : traps) {
-                    std::cout << "You notice a " << trap->name() << ".\n";
-                    trap->discover();
+            if(rand() % 100 > (50 - mGame.player().perception())) {
+                // discover traps
+                const std::vector<dc::model::Trap*> &traps = mGame.player().room()->traps();
+                if(!traps.empty()) {
+                    for(dc::model::Trap *trap : traps) {
+                        std::cout << "You notice a " << trap->name() << ".\n";
+                        trap->discover();
+                    }
+                }
+
+                // discover hidden items
+                if(rand() % 100 > (50 - mGame.player().perception())) {
+                    dc::model::Item *item = mItemLoader.createRandomItem();
+                    std::cout << "You find a '" << item->name() << "' just laying around!" << std::endl;
+                    mGame.player().inventory().add(*item);
                 }
             }
         }
 
         InspectCommand *InspectCommand::create(Parameters parameters) {
-            return new InspectCommand(ServiceLocator::getInstance().resolve<dc::model::Game>());
+            ServiceLocator &sl = ServiceLocator::getInstance();
+            dc::model::Game &game = sl.resolve<dc::model::Game>();
+            dc::game::ItemLoader &itemLoader = sl.resolve<dc::game::ItemLoader>();
+
+            return new InspectCommand(game, itemLoader);
         }
     }
 }

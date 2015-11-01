@@ -51,7 +51,7 @@ namespace dc {
             unsigned int defence() const;
             void setDefence(unsigned int pDefence);
 
-            unsigned int perception() const;
+            virtual unsigned int perception() const;
             void setPerception(unsigned int pPerception);
 
             Equipable &weapon() const;

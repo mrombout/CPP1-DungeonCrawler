@@ -12,8 +12,11 @@ namespace dc {
             Player();
 
             virtual void setRoom(Room *room) override;
+
             virtual unsigned int level() const override;
             virtual unsigned int attack() const override;
+
+            virtual unsigned int perception() const override;
         };
     }
 }
