@@ -49,7 +49,8 @@ namespace dc {
 
             std::string input;
 
-            std::getline(std::cin, input);
+            while(input.empty())
+                std::getline(std::cin, input);
 
             return input;
         }
