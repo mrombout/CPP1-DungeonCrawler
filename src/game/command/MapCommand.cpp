@@ -10,8 +10,10 @@
 #include "util/console.h"
 
 namespace dc {
-	game::MapCommand::MapCommand(dc::model::Player &player) :
-		mPlayer(player) {
+	game::MapCommand::MapCommand(dc::model::Player &player, bool cheat) :
+		mPlayer(player),
+		mCheat(cheat),
+        mZoomFactor(cheat ? 4 : 2) {
 
 	}
 
@@ -22,9 +24,10 @@ namespace dc {
 	}
 
 	void game::MapCommand::render(model::Room &room) const {
+
 		// create buffer
-		int width = room.floor()->width() * 2 + 3;
-		int height = room.floor()->height() * 2 + 3;
+		int width = room.floor()->width() * mZoomFactor + 3;
+		int height = room.floor()->height() * mZoomFactor + 3;
 
 		char ** mGrid = new char*[height];
 		for(int i = 0; i < height; ++i) {
@@ -52,7 +55,7 @@ namespace dc {
 
 				model::Room &otherRoom = passage->otherSide(*currentRoom);
 
-				if(otherRoom.isVisited())
+				if(otherRoom.isVisited() || mCheat)
 					drawPassage(mGrid, passage);
 
 				if(markedRooms.count(&otherRoom) == 0) {
@@ -60,13 +63,13 @@ namespace dc {
 					queue.push(&otherRoom);
 
 					Point position = otherRoom.position();
-					mGrid[(position.y() + 1) * 2][(position.x() + 1) * 2] = otherRoom.repr();
+					mGrid[(position.y() + 1) * mZoomFactor][(position.x() + 1) * mZoomFactor] = otherRoom.repr();
 					i++;
 				}
 			}
 		}
 
-		mGrid[(room.position().y() + 1) * 2][(room.position().x() + 1) * 2] = '@';
+		mGrid[(room.position().y() + 1) * mZoomFactor][(room.position().x() + 1) * mZoomFactor] = '@';
 
 		std::cout << "Drawn" << i << "Rooms" << std::endl;
 
@@ -88,26 +91,36 @@ namespace dc {
 		model::Room &aRoom = passage->sideA();
 		Point aPosition = aRoom.position();
 
-		model::Room &bRoom = passage->sideB();
-		Point bPosition = bRoom.position();
+        int y = (aPosition.y() + 1) * mZoomFactor;
+        int x = (aPosition.x() + 1) * mZoomFactor;
+        char c = passage->isCollapsed() ? '~' : passage->isNorth() || passage->isSouth() ? '|' : '-';
 
-		if(bPosition.y() < aPosition.y()) {
-			// north
-			grid[(aPosition.y() + 1) * 2 - 1][(aPosition.x() + 1) * 2] = !passage->isCollapsed() ? '|' : '.';
-		} else if(bPosition.y() > aPosition.y()) {
-			// south
-			grid[(aPosition.y() + 1) * 2 + 1] [(aPosition.x() + 1) * 2] = !passage->isCollapsed() ? '|' : '.';
-		} else if(bPosition.x() > aPosition.x()) {
-			// east
-			grid[(aPosition.y() + 1) * 2][(aPosition.x() + 1) * 2 + 1] = !passage->isCollapsed() ? '-' : '.';
-		} else if(bPosition.x() < aPosition.x()) {
-			// west
-			grid[(aPosition.y() + 1) * 2][(aPosition.x() + 1) * 2 - 1] = !passage->isCollapsed() ? '-' : '.';
+        // draw passage
+        if(passage->isNorth()) {
+			y -= 1;
+		} else if(passage->isSouth()) {
+            y += 1;
+		} else if(passage->isEast()) {
+            x += 1;
+		} else if(passage->isWest()) {
+			x -= 1;
 		}
+
+        grid[y][x] = c;
+
+        // draw weight
+        std::string weight{std::to_string(passage->weight())};
+        if(passage->isNorth() || passage->isSouth()) {
+            for(char c : weight)
+                grid[y++][x] = c;
+        } else {
+            for(char c : weight)
+                grid[y][x++] = c;
+        }
 	}
 
     game::MapCommand *game::MapCommand::create(Parameters parameters) {
-        return new dc::game::MapCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
+        return new dc::game::MapCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player(), parameters.num() > 0 && parameters.param(0) == "cheat");
     }
 
 	bool game::MapCommand::isAction() const {

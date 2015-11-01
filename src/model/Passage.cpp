@@ -33,5 +33,21 @@ namespace dc {
         void Passage::setCollapsed(bool isCollapsed) {
             mCollapsed = isCollapsed;
         }
+
+        bool Passage::isNorth() const {
+            return mSideB.position().y() < mSideA.position().y();
+        }
+
+        bool Passage::isEast() const {
+            return mSideB.position().x() > mSideA.position().x();
+        }
+
+        bool Passage::isSouth() const {
+            return mSideB.position().y() > mSideA.position().y();
+        }
+
+        bool Passage::isWest() const {
+            return mSideB.position().x() < mSideA.position().x();
+        }
     }
 }

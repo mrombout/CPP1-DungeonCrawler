@@ -15,7 +15,7 @@ namespace dc {
 	namespace game {
 		class MapCommand : public game::Command {
 		public:
-			MapCommand(dc::model::Player &player);
+			MapCommand(dc::model::Player &player, bool cheat);
 
 			virtual void execute() const override;
             virtual bool isAction() const;
@@ -23,10 +23,13 @@ namespace dc {
             static MapCommand *create(Parameters parameters);
 
         private:
-			dc::model::Player &mPlayer;
-
-			void render(model::Room &room) const;
+            void render(model::Room &room) const;
             void drawPassage(char **grid, model::Passage *passage) const;
+
+        private:
+            const unsigned int mZoomFactor;
+            bool mCheat;
+			dc::model::Player &mPlayer;
         };
 	}
 }

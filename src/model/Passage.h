@@ -31,6 +31,11 @@ namespace dc {
             bool isCollapsed() const;
             void setCollapsed(bool isCollapsed);
 
+            bool isNorth() const;
+            bool isEast() const;
+            bool isSouth() const;
+            bool isWest() const;
+
         private:
             Room &mSideA;
             Room &mSideB;
