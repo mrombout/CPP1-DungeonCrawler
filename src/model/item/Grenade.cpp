@@ -78,11 +78,10 @@ namespace dc {
             // collapse passages
             bool hasExploded = false;
 
-			std::vector<Room*> removeRoomVect;
+			int collapsedPassages = 0;
 			std::queue<Room*> queue;
-			int collapseRooms = Random::nextInt(10, 15);
+			int passagesToCollapse = Random::nextInt(10, 15);
 
-			removeRoomVect.push_back(startRoom);
 			queue.push(startRoom);
 
 			while (!queue.empty()) {
@@ -93,23 +92,16 @@ namespace dc {
 					if (!passage)
 						continue;
 
-					if (removeRoomVect.size() >= collapseRooms)
+					if (collapsedPassages >= passagesToCollapse)
 						break;
 
 					Room &otherRoom = passage->otherSide(*currentRoom);
 					queue.push(&otherRoom);
-					removeRoomVect.push_back(&otherRoom);
-				}
-			}
-
-			for (Room *room : removeRoomVect){
-				for (Passage *passage : room->adjacantPassages()) {
-					if (!passage)
-						continue;
-
+					
 					if (std::find(A.begin(), A.end(), passage) == A.end() && !passage->isCollapsed()) {
 						hasExploded = true;
 						passage->setCollapsed(true);
+						collapsedPassages++;
 					}
 				}
 			}
