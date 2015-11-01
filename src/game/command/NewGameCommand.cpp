@@ -49,7 +49,7 @@ namespace dc {
             player->setRoom(&dungeon->floor(0).exitRoom());
 
             // TODO: Load actual weapon from ItemLoader (now uses Chillrends id)
-            model::Item *sword = new model::Sword(33, "Test Sword", "This is a test sword", 1);
+            model::Item *sword = new model::Sword(33, "Test Sword", "This is a test sword", 9);
             player->inventory().add(*sword);
 
             model::Item *iconograph = new Iconograph();
