@@ -21,6 +21,7 @@ namespace dc {
             LoadGameCommand(dc::game::GameLoop &gameLoop, dc::game::ItemLoader &itemLoader, dc::game::TrapLoader &trapLoader, dc::game::MobGenerator &mobGenerator);
 
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static LoadGameCommand *create();
 

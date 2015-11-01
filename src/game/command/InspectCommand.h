@@ -15,7 +15,9 @@ namespace dc {
         class InspectCommand : public dc::game::Command {
         public:
             InspectCommand(dc::model::Game &game, dc::game::ItemLoader &itemLoader);
+
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static InspectCommand *create(Parameters parameters);
 

@@ -14,7 +14,9 @@ namespace dc {
         class InventoryCommand : public game::Command {
         public:
             InventoryCommand(dc::model::Player &player);
+
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static InventoryCommand *create(Parameters parameters);
 

@@ -17,6 +17,7 @@ namespace dc {
             ChangeStateCommand(dc::game::GameLoop &gameLoop, State *state);
 
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static ChangeStateCommand *create(State *state);
 

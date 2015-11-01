@@ -18,5 +18,9 @@ namespace dc {
 
             std::cout << "Changed '" << mName << "' from " << oldValue << " to " << mValue << std::endl;
         }
+
+        bool ChangeOptionCommand::isAction() const {
+            return false;
+        }
     }
 }

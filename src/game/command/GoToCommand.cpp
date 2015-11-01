@@ -75,5 +75,9 @@ namespace dc {
 
             return new dc::game::GoToCommand(heading, player, *passage);
         }
+
+        bool GoToCommand::isAction() const {
+            return true;
+        }
     }
 }

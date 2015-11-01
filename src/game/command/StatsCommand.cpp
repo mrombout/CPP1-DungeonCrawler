@@ -26,5 +26,9 @@ namespace dc {
         StatsCommand *StatsCommand::create(Parameters parameters) {
             return new StatsCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
         }
+
+        bool StatsCommand::isAction() const {
+            return false;
+        }
     }
 }

@@ -109,4 +109,8 @@ namespace dc {
     game::MapCommand *game::MapCommand::create(Parameters parameters) {
         return new dc::game::MapCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
     }
+
+	bool game::MapCommand::isAction() const {
+		return false;
+	}
 }

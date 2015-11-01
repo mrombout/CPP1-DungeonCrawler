@@ -8,6 +8,7 @@ namespace dc {
         class NullCommand : public game::Command {
         public:
             virtual void execute() const;
+            virtual bool isAction() const;
 
             static NullCommand *create(Parameters parameters);
         };

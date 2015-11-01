@@ -14,7 +14,9 @@ namespace dc {
         class LookCommand : public game::Command {
         public:
             LookCommand(dc::model::Player &player);
+
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static LookCommand *create();
 

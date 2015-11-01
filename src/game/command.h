@@ -18,6 +18,7 @@ namespace dc {
             virtual ~Command() { };
 
             virtual void execute() const = 0;
+            virtual bool isAction() const = 0;
         };
     }
 }

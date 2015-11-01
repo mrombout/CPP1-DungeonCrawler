@@ -19,5 +19,9 @@ namespace dc {
         PopStateCommand *PopStateCommand::create() {
             return new PopStateCommand(ServiceLocator::getInstance().resolve<dc::game::GameLoop>());
         }
+
+        bool PopStateCommand::isAction() const {
+            return false;
+        }
     }
 }

@@ -25,18 +25,7 @@ namespace dc {
 
             if (!isDead()) {
                 player.increaseExperience(level() * 1.5);
-                std::cout << csl::color(csl::WHITE) << name() << " is damaged! +" << level() * 1.5 << "XP" << std::endl;
-
-                // Try to attack the player
-                std::cout << csl::color(csl::WHITE) << name() << " tries to attack you and, ";
-                if(rand() % 100 > 50) {
-                    std::cout << csl::color(csl::LIGHTGREEN) << "succeeds!\nYou lose " << attack() << " HP!";
-                    player.damage(attack());
-                } else {
-                    std::cout << csl::color(csl::LIGHTRED) << "misses. Fortunate you!";
-                }
-
-                std::cout << "\n" << std::endl;
+                std::cout << csl::color(csl::WHITE) << " " << name() << " is damaged! +" << level() * 1.5 << "XP" << std::endl;
             } else {
                 player.increaseExperience(level() * 3.0);
 
@@ -53,6 +42,18 @@ namespace dc {
 
         std::istream &operator>>(std::istream &input, dc::model::Mob &m) {
             return input;
+        }
+
+        void Mob::tick(dc::model::Character &character) {
+            // Try to attack the player
+            std::cout << csl::color(csl::WHITE) << name() << " tries to attack you and, ";
+            if(rand() % 100 > 50) {
+                std::cout << csl::color(csl::LIGHTGREEN) << "succeeds!\nYou lose " << attack() << " HP!";
+                character.damage(attack());
+            } else {
+                std::cout << csl::color(csl::LIGHTRED) << "misses.";
+            }
+            std::cout << std::endl;
         }
     }
 }

@@ -30,4 +30,8 @@ namespace dc {
     game::InventoryCommand *game::InventoryCommand::create(Parameters parameters) {
         return new dc::game::InventoryCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
     }
+
+    bool game::InventoryCommand::isAction() const {
+        return false;
+    }
 }

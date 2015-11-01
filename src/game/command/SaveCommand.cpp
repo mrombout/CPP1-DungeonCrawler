@@ -51,5 +51,9 @@ namespace dc {
         SaveCommand *SaveCommand::create(Parameters parameters) {
             return new SaveCommand(ServiceLocator::getInstance().resolve<dc::model::Game>());
         }
+
+        bool SaveCommand::isAction() const {
+            return false;
+        }
     }
 }

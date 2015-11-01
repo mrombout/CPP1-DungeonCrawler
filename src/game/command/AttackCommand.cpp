@@ -65,5 +65,9 @@ namespace dc {
 
             return new AttackCommand(player, *mob);
         }
+
+        bool AttackCommand::isAction() const {
+            return true;
+        }
     }
 }

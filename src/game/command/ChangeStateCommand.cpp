@@ -21,6 +21,10 @@ namespace dc {
         ChangeStateCommand *ChangeStateCommand::create(State *state) {
             return new ChangeStateCommand(ServiceLocator::getInstance().resolve<dc::game::GameLoop>(), state);
         }
+
+        bool ChangeStateCommand::isAction() const {
+            return false;
+        }
     }
 }
 

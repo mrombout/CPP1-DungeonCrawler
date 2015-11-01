@@ -169,5 +169,9 @@ namespace dc {
 
             return new LoadGameCommand(gameLoop, itemLoader, trapLoader, mobGenerator);
         }
+
+        bool LoadGameCommand::isAction() const {
+            return false;
+        }
     }
 }

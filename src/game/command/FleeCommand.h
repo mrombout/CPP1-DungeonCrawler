@@ -13,6 +13,7 @@ namespace dc {
             ~FleeCommand();
 
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static FleeCommand *create(Parameters parameters);
 

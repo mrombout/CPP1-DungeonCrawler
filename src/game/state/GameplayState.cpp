@@ -62,12 +62,16 @@ namespace dc {
 
         void GameplayState::onPrint(game::GameLoop &game, game::Command *command) {
             command->execute();
+            if(!command->isAction())
+                return;
 
             updateEnemies(game);
         }
 
         void GameplayState::updateEnemies(game::GameLoop &game) const {
             std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
+
+            // TODO: Is this neccesary here?
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room()->mobs();
             for(dc::model::Mob *mob : mobs) {
                 if(mob->isDead()) {

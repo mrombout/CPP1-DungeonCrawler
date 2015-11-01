@@ -10,6 +10,7 @@ namespace dc {
             ChangeOptionCommand(std::string mName, std::string mValue);
 
             virtual void execute() const;
+            virtual bool isAction() const;
 
         private:
             std::string mName;

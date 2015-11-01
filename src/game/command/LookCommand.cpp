@@ -69,7 +69,7 @@ namespace dc {
 
         // items
         if(!room->inventory().items().empty()) {
-            std::cout << "\nIn the room you see:\n";
+            std::cout << csl::color(csl::WHITE) << "\nIn the room you see:\n";
             for(dc::model::Item *item : room->inventory().items()) {
                 std::cout << "- a " << item->name() << "\n";
                 std::cout << "\t" << csl::color(csl::DARKGREY) << item->description() << "\n";
@@ -81,5 +81,9 @@ namespace dc {
 
     dc::game::LookCommand *game::LookCommand::create() {
         return new dc::game::LookCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
+    }
+
+    bool game::LookCommand::isAction() const {
+        return false;
     }
 }

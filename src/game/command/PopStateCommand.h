@@ -17,6 +17,7 @@ namespace dc {
             PopStateCommand(dc::game::GameLoop &gameLoop);
 
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static PopStateCommand *create();
 

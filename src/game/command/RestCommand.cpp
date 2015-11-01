@@ -34,5 +34,9 @@ namespace dc {
         RestCommand *RestCommand::create(Parameters parameters) {
             return new RestCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player());
         }
+
+        bool RestCommand::isAction() const {
+            return true;
+        }
     }
 }

@@ -15,7 +15,9 @@ namespace dc {
         class GoToCommand: public game::Command {
         public:
             GoToCommand(std::string heading, dc::model::Player &player, dc::model::Passage &passage);
+
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static GoToCommand *create(Parameters parameters);
 

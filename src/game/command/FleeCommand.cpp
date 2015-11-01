@@ -39,5 +39,8 @@ namespace dc {
             return new FleeCommand(gameLoop, goToCommand);
         }
 
+        bool FleeCommand::isAction() const {
+            return true;
+        }
     }
 }

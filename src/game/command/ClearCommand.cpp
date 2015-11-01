@@ -1,7 +1,3 @@
-//
-// Created by Robin de Mug on 27/10/15.
-//
-
 #include <stdlib.h>
 #include "ClearCommand.h"
 
@@ -17,6 +13,10 @@ namespace dc {
 
         ClearCommand *ClearCommand::create(Parameters parameters) {
             return new dc::game::ClearCommand();
+        }
+
+        bool ClearCommand::isAction() const {
+            return false;
         }
     }
 }

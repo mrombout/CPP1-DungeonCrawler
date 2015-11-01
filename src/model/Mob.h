@@ -12,6 +12,8 @@ namespace dc {
             void kill();
             virtual void damage(unsigned int pDamage) override;
 
+            void tick(dc::model::Character &character);
+
             friend std::ostream &operator<<(std::ostream &output, const Mob &m);
             friend std::istream &operator>>(std::istream &input, Mob &m);
 

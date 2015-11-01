@@ -14,7 +14,9 @@ namespace dc {
         class StatsCommand : public dc::game::Command {
         public:
             StatsCommand(dc::model::Player &player);
+
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static StatsCommand *create(Parameters parameters);
 

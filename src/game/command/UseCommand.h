@@ -15,7 +15,9 @@ namespace dc {
         class UseCommand : public dc::game::Command {
         public:
             UseCommand(model::Player &player, const std::string itemName);
+
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static UseCommand *create(Parameters parameters);
 

@@ -83,16 +83,25 @@ namespace dc {
             return command;
         }
 
-        void CombatState::onPrint(dc::game::GameLoop &game, dc::game::Command *command) {
+        void CombatState::onPrint(dc::game::GameLoop &gameLoop, dc::game::Command *command) {
             // execute player turn
             command->execute();
 
+            if(!command->isAction())
+                return;
+
             // execute enemies turn
-            dc::model::Room *room = ServiceLocator::getInstance().resolve<dc::model::Game>().player().room();
+            dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
+            dc::model::Player &player = game.player();
+            dc::model::Room *room = player.room();
+
             std::vector<dc::model::Mob*> mobs = room->mobs();
             for(dc::model::Mob* mob : mobs) {
-                if(mob->isDead())
+                if(mob->isDead()) {
                     room->removeMob(mob);
+                } else {
+                    mob->tick(player);
+                }
             }
         }
     }

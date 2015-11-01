@@ -39,5 +39,9 @@ namespace dc {
             return new EquipCommand(ServiceLocator::getInstance().resolve<dc::model::Game>().player(),
                                   parameters.param(0));
         }
+
+        bool EquipCommand::isAction() const {
+            return false;
+        }
     }
 }

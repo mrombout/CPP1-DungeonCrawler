@@ -11,6 +11,7 @@ namespace dc {
             SaveCommand(model::Game &game);
 
             virtual void execute() const;
+            virtual bool isAction() const;
 
             static SaveCommand *create(Parameters parameters);
 

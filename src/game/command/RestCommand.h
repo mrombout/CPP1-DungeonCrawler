@@ -14,7 +14,9 @@ namespace dc {
         class RestCommand : public dc::game::Command {
         public:
             RestCommand(dc::model::Player &player);
+
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static RestCommand *create(Parameters parameters);
 

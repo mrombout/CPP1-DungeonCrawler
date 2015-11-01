@@ -42,5 +42,9 @@ namespace dc {
 
             return new InspectCommand(game, itemLoader);
         }
+
+        bool InspectCommand::isAction() const {
+            return true;
+        }
     }
 }

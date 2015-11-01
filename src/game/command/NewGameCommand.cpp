@@ -72,5 +72,9 @@ namespace dc {
 
             mGameLoop.pushState(new GameplayState(game));
         }
+
+        bool NewGameCommand::isAction() const {
+            return false;
+        }
     }
 }

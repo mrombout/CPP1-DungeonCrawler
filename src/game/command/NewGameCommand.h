@@ -17,6 +17,7 @@ namespace dc {
             NewGameCommand(dc::game::GameLoop &gameLoop, dc::game::ItemLoader &itemLoader);
 
             virtual void execute() const override;
+            virtual bool isAction() const;
 
         private:
             dc::game::GameLoop &mGameLoop;

@@ -18,6 +18,7 @@ namespace dc {
             AttackCommand(dc::model::Player &player, dc::model::Mob &mob);
 
             virtual void execute() const override;
+            virtual bool isAction() const;
 
             static AttackCommand *create(Parameters parameters);
 
