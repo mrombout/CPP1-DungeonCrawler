@@ -47,7 +47,7 @@ namespace dc {
 
             model::Player *player = new model::Player();
             player->setName(name);
-            player->setRoom(&dungeon->floor(0).exitRoom());
+            player->setRoom(&dungeon->floor(0).startRoom());
 
             model::Item *sword = mItemLoader.createItem(51);
             player->inventory().add(*sword);
