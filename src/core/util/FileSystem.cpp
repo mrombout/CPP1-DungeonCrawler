@@ -1,16 +1,12 @@
 #include "FileSystem.h"
 
-#ifdef __WIN32__
-	#include <windows.h>
-#elif WIN32
+#if defined (__WIN32__) || defined(WIN32)
 	#include <windows.h>
 #endif
 
 void FileSystem::mkdir(std::string &dir) {
-#ifdef __WIN32__
+#if defined (__WIN32__) || defined(WIN32)
     CreateDirectory(dir.c_str(), nullptr);
-#elif WIN32
-	CreateDirectory(dir.c_str(), nullptr);
 #else
     system("mkdir -p " + dir);
 #endif
