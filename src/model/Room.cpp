@@ -141,16 +141,28 @@ namespace dc {
         }
 
         char Room::repr() const {
+            if(!isVisited())
+                return '.';
+
+            // ladder room?
             Ladder *ladder = dynamic_cast<Ladder*>(mInventory.findItem("Ladder"));
             if(ladder) {
                 return ladder->direction() == Ladder::UP ? 'H' : 'L';
             }
 
+            // start room?
             Item *breadcrumb = mInventory.findItem("Breadcrumb");
             if(breadcrumb)
                 return 'S';
 
-            return isVisited() ? 'N' : '.';
+            // endboss here?
+            for(Mob *mob : mMobs) {
+                if(mob->level() >= 11)
+                    return 'E';
+            }
+
+            // normal room?
+            return 'N';
         }
 
         int Room::weight() {

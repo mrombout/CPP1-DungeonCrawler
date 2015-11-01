@@ -93,6 +93,8 @@ namespace dc {
                 }
             }
 
+            currentFloor->exitRoom().addMob(mMobGenerator.generate(11));
+
             return new Dungeon(seed, dName, dFloors);
         }
 
