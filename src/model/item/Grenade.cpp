@@ -76,8 +76,6 @@ namespace dc {
             }
 
             // collapse passages
-            bool hasExploded = false;
-
 			int collapsedPassages = 0;
 			std::queue<Room*> queue;
 			int passagesToCollapse = Random::nextInt(10, 15);
@@ -99,14 +97,13 @@ namespace dc {
 					queue.push(&otherRoom);
 					
 					if (std::find(A.begin(), A.end(), passage) == A.end() && !passage->isCollapsed()) {
-						hasExploded = true;
 						passage->setCollapsed(true);
 						collapsedPassages++;
 					}
 				}
 			}
 
-            return hasExploded;
+            return collapsedPassages > 0;
         }
 
         Item *Grenade::clone() const {
