@@ -28,8 +28,6 @@ namespace dc {
             } else {
                 std::cout << "I don't know what " << mItemName << " is" << std::endl;
             }
-
-            // TODO: Use items in room? e.g. staircase?
         }
 
         EquipCommand *EquipCommand::create(Parameters parameters) {

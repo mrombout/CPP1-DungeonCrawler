@@ -48,6 +48,7 @@ namespace dc {
             Parameters parameters(input);
 
             if(parameters.commandName() == "back") {
+                delete this;
                 return PopStateCommand::create();
             } else if(parameters.commandName() != "change" || parameters.num() != 2) {
                 std::cout << csl::color(csl::RED) << "Unrecognized command.";

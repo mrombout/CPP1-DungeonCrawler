@@ -41,12 +41,10 @@ namespace dc {
 
         dc::game::Command *WelcomeState::onEval(std::string input) {
             if (input == "n") {
-                // TODO: Replace with ChangeStateCommand
                 return ServiceLocator::getInstance().create<NewGameCommand>();
             } else if(input == "l") {
                 return dc::game::LoadGameCommand::create();
             } else if(input == "o") {
-                // TODO: Delete that state somewhere
                 return dc::game::ChangeStateCommand::create(new dc::game::OptionsState());
             }
 

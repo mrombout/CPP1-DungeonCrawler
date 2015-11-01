@@ -38,8 +38,6 @@ namespace dc {
             }
         }
 
-        // TODO: Kunnen setters van passages niet references vragen? Dan is null check niet nodig.
-
         void Room::setNorth(Passage *passage) {
             mNorth = passage;
         }

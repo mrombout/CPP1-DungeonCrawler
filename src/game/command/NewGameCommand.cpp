@@ -20,8 +20,9 @@
 
 namespace dc {
     namespace game {
-        NewGameCommand::NewGameCommand(dc::game::GameLoop &gameLoop) :
-                mGameLoop(gameLoop) {
+        NewGameCommand::NewGameCommand(dc::game::GameLoop &gameLoop, dc::game::ItemLoader &itemLoader) :
+                mGameLoop(gameLoop),
+                mItemLoader(itemLoader) {
 
         }
 
@@ -48,8 +49,7 @@ namespace dc {
             player->setName(name);
             player->setRoom(&dungeon->floor(0).exitRoom());
 
-            // TODO: Load actual weapon from ItemLoader (now uses Chillrends id)
-            model::Item *sword = new model::Sword(33, "Test Sword", "This is a test sword", 9);
+            model::Item *sword = mItemLoader.createItem(51);
             player->inventory().add(*sword);
 
             model::Item *iconograph = new Iconograph();
@@ -61,8 +61,7 @@ namespace dc {
             model::Item *talisman = new model::Talisman();
             player->inventory().addItem(*talisman);
 
-            // TODO: Request valid HealthPotion from ItemManager
-            model::HealthPotion *healthPotion = new model::HealthPotion(0, "Potion", "Test Potion Description", 50);
+            model::Item *healthPotion = mItemLoader.createItem(1);
             player->inventory().addItem(healthPotion);
 
             model::Item *compass = new model::Compass();

@@ -71,8 +71,7 @@ namespace dc {
         }
 
         void ItemLoader::createHealthPotion(std::vector<std::string> &input) {
-            std::string description = "Heals ";
-            description += Number::toInt(input[3]) + " health points";
+            std::string description = "Heals " + input[3] + " health points";
 
             dc::model::HealthPotion *potion = new dc::model::HealthPotion(Number::toInt(input[1]), input[2], description, Number::toInt(input[3]));
 

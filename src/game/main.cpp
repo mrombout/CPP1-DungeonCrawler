@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 
     // add factories
     sl.addFactory<dc::game::NewGameCommand>([](ServiceLocator &sl) {
-        return new dc::game::NewGameCommand(sl.resolve<dc::game::GameLoop>());
+        return new dc::game::NewGameCommand(sl.resolve<dc::game::GameLoop>(), sl.resolve<dc::game::ItemLoader>());
     });
     sl.addFactory<dc::game::FloorGenerator>([](ServiceLocator &sl) -> dc::game::FloorGenerator* {
         dc::model::Options &options = sl.resolve<dc::model::Options>();
@@ -62,7 +62,6 @@ int main(int argc, char *argv[])
         }
     });
     sl.addFactory<dc::game::DungeonGenerator>([](ServiceLocator &sl) {
-        // TODO: Delete floorGenerator somewhere (cheat and make service locator delete? inb4 not a smartpointer)
         dc::game::FloorGenerator *floorGenerator = ServiceLocator::getInstance().create<dc::game::FloorGenerator>();
         dc::game::MobGenerator &mobGenerator = ServiceLocator::getInstance().resolve<dc::game::MobGenerator>();
 

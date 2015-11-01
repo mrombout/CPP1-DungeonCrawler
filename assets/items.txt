@@ -23,28 +23,29 @@ xp;22;Potion of Plentiful Liquid Experience;15
 xp;23;Potion of Vigorous Liquid Experience;25
 xp;24;Potion of Extreme Liquid Experience;50
 xp;25;Potion of Ultimate Liquid Experience;80
-sw;26;Blade of Falkreath;5
-sw;27;Blade of Haafingar;5
-sw;28;Blade of Hjaalmarch;5
-sw;29;Blade of the Pale;5
-sw;30;Blade of the Reach;5
-sw;31;Blade of the Rift;5
-sw;32;Blade of Whiterun;5
-sw;33;Chillrend;5
-sw;34;Dragonbane;5
+sw;26;Blade of Falkreath;6
+sw;27;Blade of Haafingar;6
+sw;28;Blade of Hjaalmarch;6
+sw;29;Blade of the Pale;6
+sw;30;Blade of the Reach;6
+sw;31;Blade of the Rift;6
+sw;32;Blade of Whiterun;6
+sw;33;Chillrend;8
+sw;34;Dragonbane;9
 sw;35;Dwarven Sword;5
-sw;36;Ebony Sword;5
+sw;36;Ebony Sword;6
 sw;37;Elven Sword;5
-sw;38;Falmer Sword;5
-sw;39;Forsworn Sword;5
-sw;40;Ghostblade;5
-sw;41;Grimsever;5
-sw;42;Hjalti's Sword;5
+sw;38;Falmer Sword;4
+sw;39;Forsworn Sword;4
+sw;40;Ghostblade;7
+sw;41;Grimsever;7
+sw;42;Hjalti's Sword;7
 sw;43;Honed Falmer Sword;5
 sw;44;Imperial Sword;5
-sw;45;Lunar Iron Sword;5
-sw;46;Orcisch Sword;5
+sw;45;Lunar Iron Sword;4
+sw;46;Orcisch Sword;6
 sw;47;Scimitar;5
-sw;48;Silver Sword;5
-sw;49;Windshear;5
-sw;50;Vilkas's Sword;5
+sw;48;Silver Sword;7
+sw;49;Windshear;8
+sw;50;Vilkas's Sword;7
+sw;51;Iron Dagger;2

@@ -57,16 +57,9 @@ namespace dc {
 
         game::Command *GameplayState::onEval(std::string input) {
             game::Command *command = mCommandManager.create(input);
-            if(!command) {
-                std::cout << csl::color(csl::RED) << "Command not recognized" << std::endl;
-                // TODO: Cache this NullCommand
-                return new NullCommand();
-            }
-
             return command;
         }
 
-        // TODO: Duplicate code in WelcomeState
         void GameplayState::onPrint(game::GameLoop &game, game::Command *command) {
             command->execute();
 

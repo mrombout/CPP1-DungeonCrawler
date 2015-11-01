@@ -16,8 +16,6 @@ namespace dc {
         void InspectCommand::execute() const {
             std::cout << "You take a stern look across the room.\n";
 
-            // TODO: Hoe hogere perception, hoe meer kan dat speler traps ziet.
-
             if(rand() % 100 > (50 - mGame.player().perception())) {
                 // discover traps
                 const std::vector<dc::model::Trap*> &traps = mGame.player().room()->traps();

@@ -39,7 +39,6 @@ namespace dc {
 
             dc::game::Rectangle *mRoom;
             std::vector<dc::game::Rectangle*> mHalls;
-            // TODO: Halls
         };
     }
 }
