@@ -16,6 +16,7 @@
 #include "RestCommand.h"
 #include "EquipCommand.h"
 #include "SaveCommand.h"
+#include "CheatMob.h"
 
 namespace dc {
     game::Command *CommandManager::create(std::string input) const {
@@ -24,7 +25,7 @@ namespace dc {
         dc::game::Command *command = nullptr;
         const std::string &commandName = parameters.commandName();
         if(commandName == "look") {
-            command = dc::game::LookCommand::create();
+            command = dc::game::LookCommand::create(parameters);
         } else if(commandName == "map") {
             command = dc::game::MapCommand::create(parameters);
         } else if (commandName == "inv") {
@@ -47,6 +48,8 @@ namespace dc {
             command = dc::game::EquipCommand::create(parameters);
         } else if(commandName == "save") {
             command = dc::game::SaveCommand::create(parameters);
+        } else if(commandName == "cheatmob") {
+            command = dc::game::CheatMob::create(parameters);
         }
 
         if(!command) {
