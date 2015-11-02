@@ -73,10 +73,14 @@ namespace dc {
         std::vector<Passage*> Room::adjacantPassages() const {
             std::vector<Passage*> passages;
 
-            passages.push_back(north());
-            passages.push_back(east());
-            passages.push_back(south());
-            passages.push_back(west());
+            if(north())
+                passages.push_back(north());
+            if(east())
+                passages.push_back(east());
+            if(south())
+                passages.push_back(south());
+            if(west())
+                passages.push_back(west());
 
             return passages;
         }
@@ -131,6 +135,7 @@ namespace dc {
         }
 
         void Room::addMob(Mob *mob) {
+            mob->setRoom(this);
             mMobs.push_back(mob);
         }
 
@@ -199,6 +204,16 @@ namespace dc {
 
         bool Room::isDirty() const {
             return mIsDirty;
+        }
+
+        void Room::tickMobs(dc::model::Character &character) {
+            for(dc::model::Mob* mob : mMobs) {
+                if(mob->isDead()) {
+                    removeMob(mob);
+                } else {
+                    mob->tick(character);
+                }
+            }
         }
     }
 }

@@ -30,6 +30,12 @@ namespace dc {
 
         void CombatState::onEnter(dc::game::GameLoop *game) {
             std::cout << csl::color(csl::LIGHTRED) << "\nA group of enemies storm towards you." << csl::color(csl::GREY) << "\nYou prepare for battle." << std::endl;
+
+            std::vector<dc::model::Mob*> mobs = mGame.player().room()->mobs();
+            for(dc::model::Mob* mob : mobs) {
+                std::cout << "Setting all mobs to COMBAT" << std::endl;
+                mob->setState(dc::model::Mob::State::COMBAT);
+            }
         }
 
         std::string CombatState::onRead() {
@@ -79,15 +85,7 @@ namespace dc {
             dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();
             dc::model::Player &player = game.player();
             dc::model::Room *room = player.room();
-
-            std::vector<dc::model::Mob*> mobs = room->mobs();
-            for(dc::model::Mob* mob : mobs) {
-                if(mob->isDead()) {
-                    room->removeMob(mob);
-                } else {
-                    mob->tick(player);
-                }
-            }
+            room->tickMobs(player);
         }
     }
 }

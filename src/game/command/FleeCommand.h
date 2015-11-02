@@ -9,7 +9,7 @@ namespace dc {
     namespace game {
         class FleeCommand : public dc::game::Command {
         public:
-            FleeCommand(dc::game::GameLoop &gameLoop, dc::game::GoToCommand *command);
+            FleeCommand(GameLoop &gameLoop, model::Player &player, GoToCommand *command);
             ~FleeCommand();
 
             virtual void execute() const override;
@@ -20,6 +20,7 @@ namespace dc {
         private:
             dc::game::GameLoop &mGameLoop;
             dc::game::GoToCommand *mGoToCommand;
+            dc::model::Player &mPlayer;
         };
     }
 }
