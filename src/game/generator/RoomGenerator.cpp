@@ -33,7 +33,7 @@ namespace dc {
         }
 
         void RoomGenerator::generateTraps(dc::model::Room *room, unsigned int level) {
-            if(rand() % 100 < 25 || true) {
+            if(rand() % 100 < 25) {
                 dc::model::Trap *trap = ServiceLocator::getInstance().resolve<dc::game::TrapLoader>().getRandomTrap();
                 room->addTrap(trap);
             }
