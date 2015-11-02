@@ -6,6 +6,11 @@ namespace dc {
     namespace model {
         const std::string NearDeathTrap::ID = "NEARDEATHTRAP";
 
+        NearDeathTrap::NearDeathTrap(int health) :
+            mHealth(health) {
+
+        }
+
         void NearDeathTrap::onSpring(Player &player) {
             std::cout << "A giant ball of spikes comes hurling towards you. You are just quick enough to jump aside and avoid definite death.";
             std::cout << "On your way up you hit your head on an inconveniently placed lantern, it hurts.\n";

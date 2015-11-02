@@ -7,7 +7,7 @@
 #include <sstream>
 #include <list>
 #include <vector>
-#include <unordered_map>
+#include <map>
 #include "util/Random.h"
 #include "Trap.h"
 
@@ -15,6 +15,17 @@ namespace dc {
     namespace game {
         class TrapLoader {
         public:
+            struct TrapData {
+                TrapData(std::string name, int value) :
+                        name(name),
+                        value(value) {
+
+                }
+
+                std::string name;
+                int value;
+            };
+
             TrapLoader();
             ~TrapLoader();
 
@@ -27,6 +38,7 @@ namespace dc {
         private:
             static bool trapsLoaded;
             std::vector<std::string> loadedTraps;
+            std::map<std::string, TrapData*> loadedTrapData;
         };
     }
 }
