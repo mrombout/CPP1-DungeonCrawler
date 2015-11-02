@@ -36,7 +36,8 @@ namespace dc {
                 std::cout << csl::color(csl::GREEN);
             }
             std::cout << player.health() << csl::color(csl::GREEN) << "/" << player.maxHealth() << ")" << csl::color(csl::GREY);
-            std::cout << " Level: " << csl::color(csl::BLUE) << player.level() << csl::color(csl::GREY);
+            std::cout << csl::color(csl::GREY) << " MP " << csl::color(csl::BLUE) << player.mana();
+            std::cout << csl::color(csl::GREY) << " Level: " << csl::color(csl::BLUE) << player.level() << csl::color(csl::GREY);
             std::cout << " XP: " << csl::color(csl::MAGENTA) << player.experience() << csl::color(csl::GREY) << " > ";
 
             return true;

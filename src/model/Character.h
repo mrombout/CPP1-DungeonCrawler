@@ -34,6 +34,11 @@ namespace dc {
             void increaseHealth(int pHealth);
             virtual void damage(unsigned int pDamage);
 
+            unsigned int mana() const;
+            void setMana(unsigned int pMana);
+            void decreaseMana(unsigned int pMana);
+            void increaseMana(unsigned int pMana);
+
             virtual unsigned int level() const;
             void setLevel(unsigned int pLevel);
             void increaseLevel(unsigned int pLevel);
@@ -70,6 +75,8 @@ namespace dc {
 
             unsigned int mMaxHealth;
             int mHealth;
+
+            unsigned int mMana;
 
             unsigned int mLevel;
             double mExperience;

@@ -18,9 +18,10 @@ namespace dc {
             std::cout << "Experience: " << mPlayer.experience() << "\n\n";
             std::cout << "----------------\n\n";
             std::cout << "Health: " << mPlayer.health() << "/" << mPlayer.maxHealth() << "\n";
+            std::cout << "Mana: " << mPlayer.mana() << "\n";
             std::cout << "Attack: " << mPlayer.attack() << "\n";
             std::cout << "Defence: " << mPlayer.defence() << "\n";
-            std::cout << "Perception: " << mPlayer.perception() << "\n\n";
+            std::cout << "Perception: " << mPlayer.perception() << "\n\n" << std::endl;
         }
 
         StatsCommand *StatsCommand::create(Parameters parameters) {
