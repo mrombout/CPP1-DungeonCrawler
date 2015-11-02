@@ -70,6 +70,7 @@ namespace dc {
             if(!command->isAction())
                 return;
 
+            mGame->player().increaseMana(1);
             updateEnemies(game);
         }
 

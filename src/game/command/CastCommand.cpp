@@ -16,6 +16,11 @@ namespace dc {
         void CastCommand::execute() const {
             try {
                 dc::model::Spell &spell = ServiceLocator::getInstance().resolve<dc::model::Spell>(mSpellName);
+                if(mPlayer.mana() < spell.cost()) {
+                    std::cout << "My mana is too low, I can't cast that spell." << std::endl;
+                    return;
+                }
+                mPlayer.decreaseMana(spell.cost());
                 spell.cast(mPlayer, mGame);
             } catch(NoSuchServiceException const &e) {
                 std::cout << "What's that? That's not a spell is it?" << std::endl;

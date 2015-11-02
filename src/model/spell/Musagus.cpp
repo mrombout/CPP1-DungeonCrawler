@@ -18,5 +18,9 @@ namespace dc {
 
             character.increaseHealth(20);
         }
+
+        int Musagus::cost() const {
+            return 10;
+        }
     }
 }

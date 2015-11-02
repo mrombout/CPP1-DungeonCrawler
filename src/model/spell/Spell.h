@@ -8,6 +8,7 @@ namespace dc {
     namespace model {
         class Spell {
         public:
+            virtual int cost() const = 0;
             virtual void cast(dc::model::Character &character, dc::model::Game &game) const = 0;
         };
     }

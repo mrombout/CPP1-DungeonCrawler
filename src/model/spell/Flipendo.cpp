@@ -13,5 +13,9 @@ namespace dc {
                 mob->damage(damage);
             }
         }
+
+        int Flipendo::cost() const {
+            return 5;
+        }
     }
 }

@@ -6,6 +6,9 @@
 namespace dc {
     namespace model {
         class Flipendo : public Spell {
+        public:
+
+            virtual int cost() const;
 
             virtual void cast(dc::model::Character &character, dc::model::Game &game) const;
         };
