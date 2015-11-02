@@ -86,6 +86,12 @@ namespace dc {
 			}
 			std::cout << std::endl;
 		}
+
+		// delete mGrid
+        for(int i = 0; i < height; ++i) {
+            delete[] mGrid[i];
+        }
+        delete[] mGrid;
 	}
 
 	void game::MapCommand::drawPassage(char **grid, model::Passage *passage) const {
