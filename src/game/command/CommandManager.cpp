@@ -40,8 +40,6 @@ namespace dc {
             command = dc::game::StatsCommand::create(parameters);
         } else if(commandName == "inspect") {
             command = dc::game::InspectCommand::create(parameters);
-        } else if (commandName == "attack") {
-            command = dc::game::AttackCommand::create(parameters);
         } else if (commandName == "clear") {
             command = dc::game::ClearCommand::create(parameters);
         } else if (commandName == "rest") {
@@ -56,6 +54,25 @@ namespace dc {
             command = dc::game::LightRoomCommand::create(parameters);
         } else if(commandName == "cast") {
             command = dc::game::CastCommand::create(parameters);
+        } else if(commandName == "") {
+            command = dc::game::NullCommand::create(parameters);
+        } else if(commandName == "exit") {
+            exit(0);
+        } else {
+            std::cout << "Unknown command, please use one of the following commands:\n" << std::endl;
+            std::cout << "- attack [enemy number] - To attack the desired enemy\n" << std::endl;
+            std::cout << "- map - To display a map of the dungeon\n" << std::endl;
+            std::cout << "- inv - To display the items in your inventory\n" << std::endl;
+            std::cout << "- use [item name] - To use the specified item\n" << std::endl;
+            std::cout << "- stats - To display your current statistics\n" << std::endl;
+            std::cout << "- inspect - To inspect the current room\n" << std::endl;
+            std::cout << "- rest - To restore your health\n" << std::endl;
+            std::cout << "- equip [item name] - To equip the specified weapon\n" << std::endl;
+            std::cout << "- light - To enlight nearby torches\n" << std::endl;
+            std::cout << "- cast [spell name] - To cast a spell\n" << std::endl;
+            std::cout << "- clear - To clear the console\n" << std::endl;
+            std::cout << "- save - To save the game\n" << std::endl;
+            std::cout << "- exit - To exit the game (WITHOUT saving)\n" << std::endl;
         }
 
         if(!command) {

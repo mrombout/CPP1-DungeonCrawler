@@ -10,6 +10,7 @@
 #include "StatsCommand.h"
 #include "LightRoomCommand.h"
 #include "CastCommand.h"
+#include "ClearCommand.h"
 
 namespace dc {
     namespace game {
@@ -39,6 +40,21 @@ namespace dc {
                 command = CastCommand::create(parameters);
             } else if(commandName == "light") {
                 command = LightRoomCommand::create(parameters);
+            } else if (commandName == "clear") {
+                command = ClearCommand::create(parameters);
+            } else if(commandName == "") {
+                command = NullCommand::create(parameters);
+            } else {
+                std::cout << "Unknown command, please use one of the following commands:\n" << std::endl;
+                std::cout << "- attack [enemy number] - To attack the desired enemy\n" << std::endl;
+                std::cout << "- flee - To flee the scene\n" << std::endl;
+                std::cout << "- inv - To display the items in your inventory\n" << std::endl;
+                std::cout << "- use [item name] - To use the specified item\n" << std::endl;
+                std::cout << "- equip [item name] - To equip the specified weapon\n" << std::endl;
+                std::cout << "- stats - To display your current statistics\n" << std::endl;
+                std::cout << "- cast [magic] - To cast a magic spell\n" << std::endl;
+                std::cout << "- light - To enlight nearby torches\n" << std::endl;
+                std::cout << "- clear - To clear the console\n" << std::endl;
             }
 
             if(!command)
