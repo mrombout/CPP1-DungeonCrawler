@@ -66,21 +66,21 @@ namespace dc {
         }
 
         void GameplayState::onPrint(game::GameLoop &game, game::Command *command) {
-            command->execute();
-            if(!command->isAction())
+            if(command->isAction() && updateEnemies(game))
                 return;
 
+            command->execute();
             mGame->player().increaseMana(1);
-            updateEnemies(game);
         }
 
-        void GameplayState::updateEnemies(game::GameLoop &game) const {
+        bool GameplayState::updateEnemies(game::GameLoop &game) const {
             std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
 
             // enter combat
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room()->mobs();
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame));
+                return true;
             }
 
             // tick current room
@@ -92,6 +92,8 @@ namespace dc {
             for(dc::model::Passage* passage : adjPassages) {
                 passage->otherSide(*room).tickMobs(mGame->player());
             }
+
+            return false;
         }
     }
 }

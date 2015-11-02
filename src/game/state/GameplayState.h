@@ -26,13 +26,11 @@ namespace dc {
             game::Command *onEval(std::string input) override;
             void onPrint(game::GameLoop &game, game::Command *command) override;
 
-            void updateEnemies(game::GameLoop &game) const;
+            bool updateEnemies(game::GameLoop &game) const;
 
         private:
             const CommandManager mCommandManager;
             model::Game *mGame;
-
-            void springTraps(game::GameLoop &loop);
         };
     }
 }
