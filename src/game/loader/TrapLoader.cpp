@@ -11,7 +11,7 @@
 using namespace dc::game;
 
 namespace dc {
-	namespace game {
+    namespace game {
         TrapLoader::TrapLoader() {
 
         }
@@ -20,37 +20,37 @@ namespace dc {
 
         }
 
-		void TrapLoader::loadTraps() {
-			std::string line;
+        void TrapLoader::loadTraps() {
+            std::string line;
 
-			std::ifstream file("assets/traps.txt");
-			if (file.is_open()) {
-				while (!file.eof()) {
-					getline(file, line);
-					if (line[0] != '*' && !line.empty()) {
-						std::vector<std::string> parts = String::split(line, ';');
+            std::ifstream file("assets/traps.txt");
+            if (file.is_open()) {
+                while (!file.eof()) {
+                    getline(file, line);
+                    if (line[0] != '*' && !line.empty()) {
+                        std::vector<std::string> parts = String::split(line, ';');
 
                         std::string trapName = String::toUpper(parts[0]);
                         loadedTraps.push_back(trapName);
                         loadedTrapData[trapName] = new TrapData(trapName, Number::toInt(parts[1]));
-					}
-				}
-				file.close();
-			} else {
-				std::cout << "Unable to open traps.txt file." << std::endl;
-			}
-		}
+                    }
+                }
+                file.close();
+            } else {
+                std::cout << "Unable to open traps.txt file." << std::endl;
+            }
+        }
 
-		dc::model::Trap *TrapLoader::getRandomTrap() {
-			if (loadedTraps.empty())
-				loadTraps();
+        dc::model::Trap *TrapLoader::getRandomTrap() {
+            if (loadedTraps.empty())
+                loadTraps();
 
-			int randomTrap = Random::nextInt(0, loadedTraps.size() - 1);
+            int randomTrap = Random::nextInt(0, loadedTraps.size() - 1);
 
-			if (loadedTraps.size() != 0)
+            if (loadedTraps.size() != 0)
                 return createTrap(loadedTraps[randomTrap]);
             return nullptr;
-		}
+        }
 
         dc::model::Trap *TrapLoader::createTrap(const std::string &trapName) {
             if (trapName == dc::model::BearTrap::ID)
