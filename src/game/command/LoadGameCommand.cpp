@@ -67,12 +67,17 @@ namespace dc {
                 if (cur == "F") {
                     dungeonFile >> curFloor;
                 } else if(cur == "R") {
+                    bool lighted;
+                    dungeonFile >> lighted;
+
                     Point roomPosition{0, 0};
                     dungeonFile >> roomPosition;
                     dungeonFile >> cur;
 
                     dc::model::Room *room = dungeon->floor(curFloor - 1).rooms()[roomPosition.y()][roomPosition.x()];
                     room->setVisited(true);
+                    if(lighted)
+                        room->lighRoom();
 
                     // read traps
                     room->traps().clear();

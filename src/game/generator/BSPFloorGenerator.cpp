@@ -81,8 +81,14 @@ namespace dc {
 
             for(int y = top; y < bottom; ++y) {
                 for(int x = left; x < right; ++x) {
-                    vector[y][x] = mRoomGenerator.generate(level);
-                    vector[y][x]->setPosition(Point(x, y));
+                    dc::model::Room *room = mRoomGenerator.generate(level);
+                    room->setPosition(Point(x, y));
+                    if(rand() % 100 > 20) {
+                        room->lighRoom();
+                    }
+
+                    vector[y][x] = room;
+
                 }
             }
         }

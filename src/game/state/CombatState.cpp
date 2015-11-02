@@ -1,6 +1,8 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <command/FleeCommand.h>
+#include <command/LightRoomCommand.h>
 #include "Player.h"
 #include "Mob.h"
 #include "command/AttackCommand.h"
@@ -69,11 +71,15 @@ namespace dc {
         }
 
         void CombatState::onPrint(dc::game::GameLoop &gameLoop, dc::game::Command *command) {
-            // execute player turn
-            command->execute();
+            if(!mGame.player().room()->isLighted() && !dynamic_cast<dc::game::FleeCommand*>(command) && !dynamic_cast<dc::game::LightRoomCommand*>(command)) {
+                std::cout << "It's too dark to do anything!" << std::endl;
+            } else {
+                // execute player turn
+                command->execute();
 
-            if(!command->isAction())
-                return;
+                if(!command->isAction())
+                    return;
+            }
 
             // execute enemies turn
             dc::model::Game &game = ServiceLocator::getInstance().resolve<dc::model::Game>();

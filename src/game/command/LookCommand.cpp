@@ -21,6 +21,11 @@ namespace dc {
         void LookCommand::execute() const {
             model::Room *room = mPlayer.room();
 
+            if(!room->isLighted()) {
+                std::cout << "The room is pitch black, you can't see anything. If only you have a magical torch that you could use to 'light' up the room." << std::endl;
+                return;
+            }
+
             // name room
             std::cout << csl::color(csl::YELLOW) << room->name() << "\n";
 

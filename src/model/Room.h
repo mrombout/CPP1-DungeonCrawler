@@ -48,6 +48,9 @@ namespace dc {
 			bool isVisited() const;
             void setVisited(bool visited);
 
+            bool isLighted() const;
+            void lighRoom();
+
             Floor *floor() const;
             void setFloor(Floor* floor);
 
@@ -74,6 +77,7 @@ namespace dc {
             std::string mDescription;
             bool mVisited;
             bool mIsDirty;
+            bool mLighted;
 
             Passage *mNorth;
             Passage *mEast;

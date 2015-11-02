@@ -28,7 +28,8 @@ namespace dc {
                 mEast(nullptr),
                 mSouth(nullptr),
                 mWest(nullptr),
-                mIsDirty(false) {
+                mIsDirty(false),
+                mLighted(false) {
 
         }
 
@@ -174,7 +175,7 @@ namespace dc {
         }
 
         std::ostream &operator<<(std::ostream &output, const Room &c) {
-            output << std::fixed << std::setprecision(15) << "R" << "\t" << c.position() << "\t;\t";
+            output << std::fixed << std::setprecision(15) << "R" << "\t" << c.mLighted << "\t" << c.position() << "\t;\t";
 
             // save traps
             for(dc::model::Trap *trap : c.mTraps) {
@@ -199,6 +200,14 @@ namespace dc {
 
         bool Room::isDirty() const {
             return mIsDirty;
+        }
+
+        bool Room::isLighted() const {
+            return mLighted;
+        }
+
+        void Room::lighRoom() {
+            mLighted = true;
         }
     }
 }
