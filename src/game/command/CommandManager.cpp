@@ -26,7 +26,9 @@ namespace dc {
 
         dc::game::Command *command = nullptr;
         const std::string &commandName = parameters.commandName();
-        if(commandName == "look") {
+        if(commandName == "attack") {
+            command = dc::game::AttackCommand::create(parameters);
+        } else if(commandName == "look") {
             command = dc::game::LookCommand::create(parameters);
         } else if(commandName == "map") {
             command = dc::game::MapCommand::create(parameters);
