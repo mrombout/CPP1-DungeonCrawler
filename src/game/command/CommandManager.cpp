@@ -18,6 +18,7 @@
 #include "SaveCommand.h"
 #include "CheatMob.h"
 #include "LightRoomCommand.h"
+#include "CastCommand.h"
 
 namespace dc {
     game::Command *CommandManager::create(std::string input) const {
@@ -53,6 +54,8 @@ namespace dc {
             command = dc::game::CheatMob::create(parameters);
         } else if(commandName == "light") {
             command = dc::game::LightRoomCommand::create(parameters);
+        } else if(commandName == "cast") {
+            command = dc::game::CastCommand::create(parameters);
         }
 
         if(!command) {

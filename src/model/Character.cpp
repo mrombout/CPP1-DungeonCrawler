@@ -15,6 +15,7 @@ namespace dc {
         Character::Character(Room *room) :
                 mMaxHealth(100),
                 mHealth(mMaxHealth),
+                mMana(100),
                 mLevel(1),
                 mExperience(0),
                 mAttack(1),
@@ -147,7 +148,7 @@ namespace dc {
 
         std::ostream &operator<<(std::ostream &output, const Character &c) {
             output << std::fixed << std::setprecision(15) << c.mName << '\t' << c.mMaxHealth << "\t"
-            << c.mHealth << "\t" << c.mLevel << "\t" << c.mExperience << "\t" << c.mAttack << "\t"
+            << c.mHealth << "\t" << c.mMana << "\t" << c.mLevel << "\t" << c.mExperience << "\t" << c.mAttack << "\t"
             << c.mDefence << "\t" << c.mPerception;
 
             output << "\t" << (c.mWeapon ? c.mWeapon->id() : 0);
@@ -161,10 +162,26 @@ namespace dc {
         }
 
         std::istream &operator>>(std::istream &input, Character &c) {
-            input >> c.mName >> c.mMaxHealth >> c.mHealth >> c.mLevel >> c.mExperience >> c.mAttack >> c.mDefence
+            input >> c.mName >> c.mMaxHealth >> c.mHealth >> c.mMana >> c.mLevel >> c.mExperience >> c.mAttack >> c.mDefence
                   >> c.mPerception;
 
             return input;
+        }
+
+        unsigned int Character::mana() const {
+            return mMana;
+        }
+
+        void Character::setMana(unsigned int pMana) {
+            mMana = pMana;
+        }
+
+        void Character::decreaseMana(unsigned int pMana) {
+            mMana -= pMana;
+        }
+
+        void Character::increaseMana(unsigned int pMana) {
+            mMana += pMana;
         }
     }
 }

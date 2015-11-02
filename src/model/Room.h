@@ -5,6 +5,7 @@
 #include <string>
 #include "Point.h"
 #include "Inventory.h"
+#include "Character.h"
 
 namespace dc {
     namespace model {
@@ -69,6 +70,8 @@ namespace dc {
 
             friend std::ostream &operator<<(std::ostream &output, const Room &c);
             friend std::istream &operator>>(std::istream &input, Room &c);
+
+            void tickMobs(dc::model::Character &character);
 
         private:
             Point mPosition;

@@ -9,6 +9,7 @@
 #include "EquipCommand.h"
 #include "StatsCommand.h"
 #include "LightRoomCommand.h"
+#include "CastCommand.h"
 
 namespace dc {
     namespace game {
@@ -34,6 +35,8 @@ namespace dc {
                 command = EquipCommand::create(parameters);
             } else if(commandName == "stats") {
                 command = StatsCommand::create(parameters);
+            } else if(commandName == "cast") {
+                command = CastCommand::create(parameters);
             } else if(commandName == "light") {
                 command = LightRoomCommand::create(parameters);
             }

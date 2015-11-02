@@ -30,7 +30,7 @@ namespace dc {
         }
 
         std::string WelcomeState::onRead() {
-            std::cout << csl::color(csl::GREEN) << "\t(N)ew GameLoop\n\t(L)oad GameLoop\n\t(O)ptions\n\t(E)xit" << std::endl;
+            std::cout << csl::color(csl::GREEN) << "\t(N)ew Game\n\t(L)oad Game\n\t(O)ptions\n\t(E)xit" << std::endl;
 
             std::string input;
             std::cin >> input;
