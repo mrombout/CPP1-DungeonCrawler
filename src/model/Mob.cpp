@@ -59,10 +59,12 @@ namespace dc {
                     }
                     std::cout << std::endl;
                 } else {
-                    // follow the player :)
-                    room()->removeMob(this);
-                    character.room()->addMob(this);
-                    std::cout << csl::color(csl::RED) << "The " << name() << " followed you into the room." << std::endl;
+                    if(rand() % 100 > 50) {
+                        // follow the player :)
+                        room()->removeMob(this);
+                        character.room()->addMob(this);
+                        std::cout << csl::color(csl::RED) << "The " << name() << " followed you into the room." << std::endl;
+                    }
                 }
             }
         }
