@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "exception/NoSuchServiceException.h"
 
 class ServiceLocator {
 public:
@@ -38,7 +39,10 @@ public:
     }
 
     template<class T> T& resolve(const std::string &name) {
-        return *((T*)typeInstanceMap[typeid(T).name()][name]);
+        T* s = (T*)typeInstanceMap[typeid(T).name()][name];
+        if(!s)
+            throw NoSuchServiceException(name);
+        return *(s);
     }
 
     template<class T> void addFactory(std::function<T*(ServiceLocator&)> factory) {

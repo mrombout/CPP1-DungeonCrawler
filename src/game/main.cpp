@@ -1,4 +1,4 @@
-#include <generator/DungeonGenerator.h>
+#include "generator/DungeonGenerator.h"
 #include "loader/MobLoader.h"
 #include "loader/InventoryLoader.h"
 #include "loader/TrapLoader.h"
@@ -15,6 +15,8 @@
 #include "command/NewGameCommand.h"
 #include "Options.h"
 #include "GameLoop.h"
+#include "spell/Flipendo.h"
+#include "spell/Musagus.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,22 +31,28 @@ int main(int argc, char *argv[])
     dc::game::RoomGenerator roomGenerator = dc::game::RoomGenerator(mobGenerator);
     dc::model::Options options;
 
+    sl.addInstance<dc::game::GameLoop>(gameLoop);
+    sl.addInstance<dc::game::MobGenerator>(mobGenerator);
+    sl.addInstance<dc::game::RoomGenerator>(roomGenerator);
+    sl.addInstance<dc::model::Options>(options);
+
     dc::game::MobLoader mobLoader;
     dc::game::InventoryLoader inventoryLoader;
     dc::game::TrapLoader trapLoader;
     dc::game::RoomDescriptionLoader roomDescriptionLoader;
     dc::game::ItemLoader itemLoader;
 
-    sl.addInstance<dc::game::GameLoop>(gameLoop);
-    sl.addInstance<dc::game::MobGenerator>(mobGenerator);
-    sl.addInstance<dc::game::RoomGenerator>(roomGenerator);
-    sl.addInstance<dc::model::Options>(options);
-
     sl.addInstance<dc::game::MobLoader>(mobLoader);
     sl.addInstance<dc::game::InventoryLoader>(inventoryLoader);
     sl.addInstance<dc::game::TrapLoader>(trapLoader);
     sl.addInstance<dc::game::RoomDescriptionLoader>(roomDescriptionLoader);
     sl.addInstance<dc::game::ItemLoader>(itemLoader);
+
+    dc::model::Flipendo flipendo;
+    dc::model::Musagus musagus;
+
+    sl.addInstance<dc::model::Spell>("flipendo", flipendo);
+    sl.addInstance<dc::model::Spell>("musagus", musagus);
 
     // add factories
     sl.addFactory<dc::game::NewGameCommand>([](ServiceLocator &sl) {

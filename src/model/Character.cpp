@@ -166,5 +166,21 @@ namespace dc {
 
             return input;
         }
+
+        unsigned int Character::mana() const {
+            return mMana;
+        }
+
+        void Character::setMana(unsigned int pMana) {
+            mMana = pMana;
+        }
+
+        void Character::decreaseMana(unsigned int pMana) {
+            mMana -= pMana;
+        }
+
+        void Character::increaseMana(unsigned int pMana) {
+            mMana += pMana;
+        }
     }
 }

@@ -8,6 +8,7 @@
 #include "util/ServiceLocator.h"
 #include "EquipCommand.h"
 #include "StatsCommand.h"
+#include "CastCommand.h"
 
 namespace dc {
     namespace game {
@@ -33,6 +34,8 @@ namespace dc {
                 command = EquipCommand::create(parameters);
             } else if(commandName == "stats") {
                 command = StatsCommand::create(parameters);
+            } else if(commandName == "cast") {
+                command = CastCommand::create(parameters);
             }
 
             if(!command)
