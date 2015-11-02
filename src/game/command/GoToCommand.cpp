@@ -71,6 +71,9 @@ namespace dc {
             if(passage == nullptr) {
                 std::cout << "Invalid direction, either use north, east, south or west" << std::endl;
                 return nullptr;
+            } else if (passage->isCollapsed()) {
+                std::cout << "The passage you are trying to use has collapsed. Bad luck." << std::endl;
+                return nullptr;
             }
 
             return new dc::game::GoToCommand(heading, player, *passage);
