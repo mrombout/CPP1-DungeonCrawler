@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "FileSystem.h"
 
 #if defined (__WIN32__) || defined(WIN32)
@@ -8,6 +9,7 @@ void FileSystem::mkdir(std::string &dir) {
 #if defined (__WIN32__) || defined(WIN32)
     CreateDirectory(dir.c_str(), nullptr);
 #else
-    system("mkdir -p " + dir);
+    std::string cmd = "mkdir -p " + dir;
+    system(cmd.c_str());
 #endif
 }
