@@ -76,16 +76,20 @@ namespace dc {
         void GameplayState::updateEnemies(game::GameLoop &game) const {
             std::cout << csl::color(csl::WHITE) << "The enemies scuffle about." << std::endl;
 
-            // TODO: Is this neccesary here?
+            // enter combat
             const std::vector<dc::model::Mob*> &mobs = mGame->player().room()->mobs();
-            for(dc::model::Mob *mob : mobs) {
-                if(mob->isDead()) {
-                    mGame->player().room()->removeMob(mob);
-                }
-            }
-
             if(!mobs.empty()) {
                 game.pushState(new CombatState(*mGame));
+            }
+
+            // tick current room
+            dc::model::Room *room = mGame->player().room();
+            room->tickMobs(mGame->player());
+
+            // tick adjacent rooms
+            std::vector<dc::model::Passage*> adjPassages = room->adjacantPassages();
+            for(dc::model::Passage* passage : adjPassages) {
+                passage->otherSide(*room).tickMobs(mGame->player());
             }
         }
     }

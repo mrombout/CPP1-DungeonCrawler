@@ -7,6 +7,11 @@ namespace dc {
     namespace model {
         class Mob : public Character {
         public:
+            enum State {
+                IDLE,
+                COMBAT
+            };
+
             Mob(unsigned int id);
 
             void kill();
@@ -17,8 +22,11 @@ namespace dc {
             friend std::ostream &operator<<(std::ostream &output, const Mob &m);
             friend std::istream &operator>>(std::istream &input, Mob &m);
 
+            void setState(State state);
+
         private:
             unsigned int mId;
+            State mState;
         };
     }
 }
