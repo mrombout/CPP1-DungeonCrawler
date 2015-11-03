@@ -2,10 +2,9 @@
 #include "util/console.h"
 #include "util/ServiceLocator.h"
 #include "FleeCommand.h"
-#include "GoToCommand.h"
-#include "GameLoop.h"
 #include "Game.h"
 #include "Player.h"
+#include "state.h"
 
 namespace dc {
     namespace game {
@@ -26,7 +25,10 @@ namespace dc {
 
                 dc::model::Room *room = mPlayer.room();
                 mGoToCommand->execute();
-                mGameLoop.popState();
+
+                dc::game::State *state = mGameLoop.popState();
+                delete state;
+
                 room->tickMobs(mPlayer);
             } else {
                 std::cout << csl::color(csl::RED) << "You tumble over your clumsy feet as you desperately try to escape. There is no other way that to fight.";
