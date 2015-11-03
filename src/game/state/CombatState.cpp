@@ -49,7 +49,9 @@ namespace dc {
             std::vector<dc::model::Mob*> mobs = player.room()->mobs();
             if(mobs.empty()) {
                 std::cout << "Victorious!" << std::endl;
-                gameLoop.popState();
+                dc::game::State *state = gameLoop.popState();
+                delete state;
+
                 return "";
             }
 
