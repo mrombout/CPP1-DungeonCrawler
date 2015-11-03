@@ -96,6 +96,7 @@ namespace dc {
                     // read mobs
                     for(dc::model::Mob* mob : room->mobs())
                         delete mob;
+                    room->mobs().clear();
                     while(dungeonFile >> cur) {
                         if(cur == ";")
                             break;
@@ -109,7 +110,7 @@ namespace dc {
                         dungeonFile >> mobHealth;
                         mob->setHealth(mobHealth);
 
-                        room->mobs().push_back(mob);
+                        room->addMob(mob);
                     }
                 }
             }

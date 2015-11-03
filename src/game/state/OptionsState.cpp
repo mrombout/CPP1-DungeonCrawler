@@ -33,7 +33,7 @@ namespace dc {
                 std::cout << " - " << it->first << ": " << it->second << "\n";
             }
 
-            std::cout << "\nUse \"change <key> <value>\" to change a value\n\n";
+            std::cout << csl::color(csl::GREEN) << "\nUse \"change <key> <value>\" to change a value\n\n";
 
             std::cout << "Command: ";
 
@@ -48,10 +48,9 @@ namespace dc {
             Parameters parameters(input);
 
             if(parameters.commandName() == "back") {
-                delete this;
                 return PopStateCommand::create();
             } else if(parameters.commandName() != "change" || parameters.num() != 2) {
-                std::cout << csl::color(csl::RED) << "Unrecognized command.";
+                std::cout << csl::color(csl::RED) << "Unrecognized command.\n";
                 return new dc::game::NullCommand();
             }
 

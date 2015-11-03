@@ -22,7 +22,7 @@
 * Format:
 * Name; Max Health; Health; Level; Attack; Defence; Perception
 *****************************************************************
-1;Intimidating Goblin; 10; 5; 2; 4; 5; 6
+1;Intimidating Goblin; 7; 5; 2; 4; 5; 6
 2;Dusty Skeleton; 10; 5; 2; 4; 5; 6
 3;Rotting Ghoul; 10; 5; 2; 4; 5; 7
 4;Sticky Slime; 10; 5; 2; 4; 5; 6
@@ -65,7 +65,7 @@
 41;Lava Worm; 10; 5; 2; 4; 5; 7
 42;Lizard; 10; 5; 2; 4; 5; 7
 43;Ogre; 10; 5; 2; 4; 5; 7
-44;Mummy; 10; 5; 2; 4; 5; 7
+44;Mummy; 15; 5; 2; 4; 5; 7
 45;Zombie; 10; 5; 2; 4; 5; 7
 46;Nightmare; 10; 5; 2; 4; 5; 7
 47;Neochu; 10; 5; 2; 4; 5; 7

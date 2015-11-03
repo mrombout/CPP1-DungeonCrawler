@@ -3,6 +3,7 @@
 #include "util/console.h"
 #include "util/ServiceLocator.h"
 #include "GameLoop.h"
+#include "state.h"
 
 namespace dc {
     namespace game {
@@ -13,7 +14,8 @@ namespace dc {
 
         void PopStateCommand::execute() const {
             csl::log() << "Executing PopStateCommand" << std::endl;
-            mGameLoop.popState();
+            dc::game::State *state = mGameLoop.popState();
+            delete state;
         }
 
         PopStateCommand *PopStateCommand::create() {
