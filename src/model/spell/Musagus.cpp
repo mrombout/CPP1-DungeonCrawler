@@ -9,6 +9,12 @@ namespace dc {
         void Musagus::cast(dc::model::Character &character, dc::model::Game &game) const {
             dc::model::Inventory &inventory = character.inventory();
             std::vector<dc::model::Item*> items = inventory.items();
+
+            if(items.size() == 0) {
+                std::cout << "The spell fails since you have no items for the spell to destroy." << std::endl;
+                return;
+            }
+
             dc::model::Item *item = items[Random::nextInt(0, items.size() - 1)];
 
             inventory.removeItem(*item);
