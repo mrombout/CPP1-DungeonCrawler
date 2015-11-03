@@ -34,9 +34,10 @@ namespace dc {
         }
 
         Room::~Room() {
-            for(std::vector<model::Trap*>::iterator it = mTraps.begin(); it != mTraps.end(); ++it) {
+            for(auto it = mTraps.begin(); it != mTraps.end(); ++it)
                 delete *it;
-            }
+            for(auto it = mMobs.begin(); it != mMobs.end(); ++it)
+                delete *it;
         }
 
         void Room::setNorth(Passage *passage) {
@@ -219,6 +220,7 @@ namespace dc {
             for(dc::model::Mob* mob : mMobs) {
                 if(mob->isDead()) {
                     removeMob(mob);
+                    delete mob;
                 } else {
                     mob->tick(character);
                 }

@@ -22,7 +22,13 @@ namespace dc {
         }
 
         Floor::~Floor() {
-
+            for(std::vector<Room*> row : mRooms) {
+                for(Room* room : row) {
+                    if(room) {
+                        delete room;
+                    }
+                }
+            }
         }
 
         Room &Floor::startRoom() const {

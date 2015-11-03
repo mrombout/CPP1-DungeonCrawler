@@ -20,6 +20,8 @@ namespace dc {
             Character();
             Character(Room *room);
 
+            ~Character();
+
             const std::string &name() const;
             void setName(std::string pName);
 

@@ -26,6 +26,10 @@ namespace dc {
             mInventory = new Inventory();
         }
 
+        Character::~Character() {
+            delete mInventory;
+        }
+
         const std::string &Character::name() const {
             return mName;
         }
