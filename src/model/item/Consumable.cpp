@@ -17,6 +17,7 @@ namespace dc {
             consume(character);
 
             character.inventory().removeItem(*this);
+            delete this;
         }
     }
 }
