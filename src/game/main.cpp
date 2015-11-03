@@ -77,7 +77,8 @@ int main(int argc, char *argv[])
     });
 
     // start game
-    gameLoop.setState(new dc::game::WelcomeState());
+    dc::game::WelcomeState welcomeState;
+    gameLoop.setState(&welcomeState);
 	gameLoop.start();
 
     return 0;

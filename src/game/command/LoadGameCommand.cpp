@@ -53,9 +53,10 @@ namespace dc {
             // generate dungeon from seed
             ServiceLocator &sl = ServiceLocator::getInstance();
             dc::model::Options &options = sl.resolve<dc::model::Options>();
-            dc::game::DungeonGenerator *dungeonGenerator = sl.create<dc::game::DungeonGenerator>();
 
+            dc::game::DungeonGenerator *dungeonGenerator = sl.create<dc::game::DungeonGenerator>();
             model::Dungeon* dungeon = dungeonGenerator->generate(seed, options.getInt("dungeon.width"), options.getInt("dungeon.height"));
+            delete dungeonGenerator;
 
             // load dungeon.txt
             std::string dungeonPath{basePath + "/dungeon.txt"};
@@ -80,6 +81,8 @@ namespace dc {
                         room->lighRoom();
 
                     // read traps
+                    for(dc::model::Trap *trap : room->traps())
+                        delete trap;
                     room->traps().clear();
                     while(dungeonFile >> cur) {
                         if(cur == ";")
@@ -91,7 +94,8 @@ namespace dc {
                     }
 
                     // read mobs
-                    room->mobs().clear();
+                    for(dc::model::Mob* mob : room->mobs())
+                        delete mob;
                     while(dungeonFile >> cur) {
                         if(cur == ";")
                             break;

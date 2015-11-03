@@ -23,6 +23,9 @@ namespace dc {
         Leaf::~Leaf() {
             delete mLeftChild;
             delete mRightChild;
+            delete mRoom;
+            for(auto it = mHalls.begin(); it != mHalls.end(); ++it)
+                delete *it;
         }
 
         bool Leaf::split() {

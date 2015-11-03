@@ -41,9 +41,10 @@ namespace dc {
             int seed = Number::toInt(strSeed);
             ServiceLocator &sl = ServiceLocator::getInstance();
             dc::model::Options &options = sl.resolve<dc::model::Options>();
-            dc::game::DungeonGenerator *dungeonGenerator = sl.create<dc::game::DungeonGenerator>();
 
+            dc::game::DungeonGenerator *dungeonGenerator = sl.create<dc::game::DungeonGenerator>();
             model::Dungeon* dungeon = dungeonGenerator->generate(seed, options.getInt("dungeon.width"), options.getInt("dungeon.height"));
+            delete dungeonGenerator;
 
             model::Player *player = new model::Player();
             player->setName(name);

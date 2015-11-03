@@ -19,6 +19,7 @@
 #include "CheatMob.h"
 #include "LightRoomCommand.h"
 #include "CastCommand.h"
+#include "ExitCommand.h"
 
 namespace dc {
     game::Command *CommandManager::create(std::string input) const {
@@ -59,7 +60,7 @@ namespace dc {
         } else if(commandName == "") {
             command = dc::game::NullCommand::create(parameters);
         } else if(commandName == "exit") {
-            exit(0);
+            command = dc::game::ExitCommand::create(parameters);
         } else {
             std::cout << "Unknown command, please use one of the following commands:\n";
             std::cout << "- attack [enemy number] - To attack the desired enemy\n";

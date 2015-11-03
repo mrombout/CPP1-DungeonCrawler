@@ -32,8 +32,7 @@ namespace dc {
         }
 
         GameplayState::~GameplayState() {
-            ServiceLocator::getInstance().removeInstance<dc::model::Game>(*mGame);
-            delete mGame;
+
         }
 
 
@@ -69,8 +68,8 @@ namespace dc {
             if(command->isAction() && updateEnemies(game))
                 return;
 
-            command->execute();
             mGame->player().increaseMana(1);
+            command->execute();
         }
 
         bool GameplayState::updateEnemies(game::GameLoop &game) const {

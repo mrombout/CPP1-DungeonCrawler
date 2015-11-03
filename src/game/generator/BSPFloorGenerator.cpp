@@ -55,6 +55,8 @@ namespace dc {
             dc::model::Room *staircaseUp = determineStaircaseUp(rooms, root);
             dc::model::Room *staircaseDown = determineStaircaseDown(rooms, root);
 
+            delete root;
+
             return new dc::model::Floor(level, rooms, staircaseUp, staircaseDown);
         }
 
@@ -81,14 +83,15 @@ namespace dc {
 
             for(int y = top; y < bottom; ++y) {
                 for(int x = left; x < right; ++x) {
-                    dc::model::Room *room = mRoomGenerator.generate(level);
-                    room->setPosition(Point(x, y));
-                    if(rand() % 100 > 20) {
-                        room->lighRoom();
+                    if(vector[y][x] == nullptr) {
+                        dc::model::Room *room = mRoomGenerator.generate(level);
+                        room->setPosition(Point(x, y));
+                        if(rand() % 100 > 20) {
+                            room->lighRoom();
+                        }
+
+                        vector[y][x] = room;
                     }
-
-                    vector[y][x] = room;
-
                 }
             }
         }

@@ -43,6 +43,7 @@ namespace dc {
 
             // remove grenade
             character.inventory().removeItem(*this);
+            delete this;
         }
 
         bool Grenade::explode(Floor *floor, Room *startRoom) {

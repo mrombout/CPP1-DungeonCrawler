@@ -23,7 +23,8 @@ namespace dc {
             int roomLevel = Random::nextInt(level - VARIANCE, level + VARIANCE);
 
             // create room
-            dc::model::Room *room = new dc::model::Room(Point(0, 0), "Some Room", ServiceLocator::getInstance().resolve<dc::game::RoomDescriptionLoader>().getRandomRoom());
+            std::string roomDescription = ServiceLocator::getInstance().resolve<dc::game::RoomDescriptionLoader>().getRandomRoom();
+            dc::model::Room *room = new dc::model::Room(Point(0, 0), "Some Room", roomDescription);
 
             // populate room
             generateTraps(room, level);
