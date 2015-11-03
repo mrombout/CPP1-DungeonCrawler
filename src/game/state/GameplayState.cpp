@@ -32,8 +32,7 @@ namespace dc {
         }
 
         GameplayState::~GameplayState() {
-            ServiceLocator::getInstance().removeInstance<dc::model::Game>(*mGame);
-            delete mGame;
+
         }
 
 

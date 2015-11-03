@@ -3,6 +3,7 @@
 #include "Room.h"
 #include "Trap.h"
 #include "Mob.h"
+#include "Passage.h"
 
 namespace dc {
     namespace model {
@@ -38,6 +39,8 @@ namespace dc {
                 delete *it;
             for(auto it = mMobs.begin(); it != mMobs.end(); ++it)
                 delete *it;
+            delete mEast;
+            delete mSouth;
         }
 
         void Room::setNorth(Passage *passage) {

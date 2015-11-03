@@ -23,7 +23,8 @@ namespace dc {
             if(player.isDead()) {
                 std::cout << csl::color(csl::LIGHTRED) << "You are dead, you loser." << std::endl;
                 while(!dynamic_cast<dc::game::WelcomeState*>(gameLoop.currentState())) {
-                    gameLoop.popState();
+                    dc::game::State *state = gameLoop.popState();
+                    delete state;
                 }
                 return false;
             }

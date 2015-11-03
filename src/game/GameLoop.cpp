@@ -1,6 +1,8 @@
 #include <iostream>
+#include <state/WelcomeState.h>
 #include "GameLoop.h"
 #include "util/console.h"
+#include "state.h"
 
 namespace dc {
     namespace game {
@@ -32,6 +34,11 @@ namespace dc {
 
         void GameLoop::stop() {
             csl::log() << "STOP - GameLoop";
+
+            while(currentState() && !dynamic_cast<dc::game::WelcomeState*>(currentState())) {
+                dc::game::State *state = popState();
+                delete state;
+            }
 
             mLoop = false;
             quit();

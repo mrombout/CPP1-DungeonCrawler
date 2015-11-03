@@ -81,6 +81,8 @@ namespace dc {
                         room->lighRoom();
 
                     // read traps
+                    for(dc::model::Trap *trap : room->traps())
+                        delete trap;
                     room->traps().clear();
                     while(dungeonFile >> cur) {
                         if(cur == ";")
@@ -92,7 +94,8 @@ namespace dc {
                     }
 
                     // read mobs
-                    room->mobs().clear();
+                    for(dc::model::Mob* mob : room->mobs())
+                        delete mob;
                     while(dungeonFile >> cur) {
                         if(cur == ";")
                             break;

@@ -10,6 +10,7 @@ namespace dc {
         class WelcomeState : public game::State {
         public:
             WelcomeState();
+            ~WelcomeState();
 
             void onInitialize(game::GameLoop *game) override;
 

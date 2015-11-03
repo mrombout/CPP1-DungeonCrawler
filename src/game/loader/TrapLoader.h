@@ -16,6 +16,10 @@ namespace dc {
         class TrapLoader {
         public:
             struct TrapData {
+                TrapData() {
+
+                }
+                
                 TrapData(std::string name, int value) :
                         name(name),
                         value(value) {
@@ -38,7 +42,7 @@ namespace dc {
         private:
             static bool trapsLoaded;
             std::vector<std::string> loadedTraps;
-            std::map<std::string, TrapData*> loadedTrapData;
+            std::map<std::string, TrapData> loadedTrapData;
         };
     }
 }

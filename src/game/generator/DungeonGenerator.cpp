@@ -67,10 +67,9 @@ namespace dc {
             std::string dName = generateDungeonName();
             std::vector<Floor*> dFloors = std::vector<Floor*>();
 
-            //int numFloors = rand() % 10 + 1;
+            int numFloors = rand() % 10 + 1;
             Floor *previousFloor = nullptr;
             Floor *currentFloor = nullptr;
-            int numFloors = 2;
             for(int i = 1; i <= numFloors; ++i) {
                 previousFloor = currentFloor;
                 currentFloor = generateDungeonFloor(i, width, height);

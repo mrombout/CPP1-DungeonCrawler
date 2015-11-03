@@ -17,6 +17,10 @@ namespace dc {
 
         }
 
+        WelcomeState::~WelcomeState() {
+
+        }
+
         void WelcomeState::onInitialize(game::GameLoop *game) {
             std::ifstream file("assets/intro.txt");
             std::string line;

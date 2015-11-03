@@ -20,7 +20,8 @@ namespace dc {
         }
 
         ItemLoader::~ItemLoader() {
-
+            for(auto it = mItems.begin(); it != mItems.end(); ++it)
+                delete it->second;
         }
 
         dc::model::Item *ItemLoader::createRandomItem() {

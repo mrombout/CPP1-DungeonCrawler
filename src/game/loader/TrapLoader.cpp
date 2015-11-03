@@ -32,7 +32,7 @@ namespace dc {
 
                         std::string trapName = String::toUpper(parts[0]);
                         loadedTraps.push_back(trapName);
-                        loadedTrapData[trapName] = new TrapData(trapName, Number::toInt(parts[1]));
+                        loadedTrapData[trapName] = TrapData(trapName, Number::toInt(parts[1]));
                     }
                 }
                 file.close();
@@ -54,11 +54,11 @@ namespace dc {
 
         dc::model::Trap *TrapLoader::createTrap(const std::string &trapName) {
             if (trapName == dc::model::BearTrap::ID)
-                return new dc::model::BearTrap(loadedTrapData[trapName]->value);
+                return new dc::model::BearTrap(loadedTrapData[trapName].value);
             if (trapName == dc::model::MobCallTrap::ID)
                 return new dc::model::MobCallTrap();
             if (trapName == dc::model::NearDeathTrap::ID)
-                return new dc::model::NearDeathTrap(loadedTrapData[trapName]->value);
+                return new dc::model::NearDeathTrap(loadedTrapData[trapName].value);
             if (trapName == dc::model::RatTrap::ID)
                 return new dc::model::RatTrap();
             if (trapName == dc::model::TeleportTrap::ID)
