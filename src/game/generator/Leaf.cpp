@@ -67,16 +67,9 @@ namespace dc {
                     createHall(mLeftChild->room(), mRightChild->room());
                 }
             } else {
-                int roomWidth;
-                int roomHeight;
-                int roomX;
-                int roomY;
-
-                //Point roomSize(Random::nextInt(3, width() - 2), Random::nextInt(3, height() - 2));
                 Point roomSize(Random::nextInt(3, width() - 2), Random::nextInt(3, height() - 2));
                 Point roomPos(Random::nextInt(mX, mX + mWidth - roomSize.x()), Random::nextInt(mY, mY + mHeight - roomSize.y()));
 
-                //mRoom = new Rectangle(mX + roomPos.x(), mY + roomPos.y(), roomSize.x(), roomSize.y());
                 mRoom = new dc::game::Rectangle(roomPos.x(), roomPos.y(), roomSize.x(), roomSize.y());
 
                 csl::log() << "create room(" << mRoom->left() << ", " << mRoom->top() << ", " << mRoom->right() <<", " << mRoom->bottom() << ")" << std::endl;
@@ -112,7 +105,7 @@ namespace dc {
                         }
                     } else {
                         // go left
-                        mHalls.push_back(new dc::game::Rectangle(lPoint.x() + xDiff, lPoint.y(), xDiff, 1));
+                        mHalls.push_back(new dc::game::Rectangle(lPoint.x() + xDiff, lPoint.y(), xDiff - l->width(), 1));
                         if(yDiff > 0) {
                             mHalls.push_back(new dc::game::Rectangle(lPoint.x() + xDiff, lPoint.y(), 1, abs(yDiff)));
                         } else {
@@ -123,15 +116,15 @@ namespace dc {
                     // vertical first
                     if(yDiff < 0) {
                         // go up
-                        mHalls.push_back(new dc::game::Rectangle(lPoint.x(), lPoint.y() + yDiff, 1, abs(yDiff)));
+                        mHalls.push_back(new dc::game::Rectangle(lPoint.x(), lPoint.y() + yDiff, 1, abs(yDiff + 1)));
                         if(xDiff > 0) {
                             mHalls.push_back(new dc::game::Rectangle(lPoint.x(), lPoint.y() + yDiff, xDiff, 1));
                         } else {
-                            mHalls.push_back(new dc::game::Rectangle(lPoint.x() + xDiff, lPoint.y() + yDiff, abs(xDiff), 1));
+                            mHalls.push_back(new dc::game::Rectangle(lPoint.x() - xDiff, lPoint.y() + yDiff, abs(xDiff), 1));
                         }
                     } else {
                         // go down
-                        mHalls.push_back(new dc::game::Rectangle(lPoint.x(), lPoint.y(), 1, yDiff));
+                        mHalls.push_back(new dc::game::Rectangle(lPoint.x(), lPoint.y(), 1, yDiff + 1));
                         if(xDiff > 0) {
                             mHalls.push_back(new dc::game::Rectangle(lPoint.x(), lPoint.y() + yDiff, xDiff, 1));
                         } else {

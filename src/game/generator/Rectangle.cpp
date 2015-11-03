@@ -29,5 +29,13 @@ namespace dc {
         Point Rectangle::center() const {
             return Point(mX + mWidth / 2, mY + mHeight / 2);
         }
+
+        int Rectangle::width() const {
+            return mWidth;
+        }
+
+        int Rectangle::height() const {
+            return mHeight;
+        }
     }
 }

@@ -17,6 +17,9 @@ namespace dc {
             int right() const;
             int bottom() const;
 
+            int width() const;
+            int height() const;
+
         private:
             int mX;
             int mY;
