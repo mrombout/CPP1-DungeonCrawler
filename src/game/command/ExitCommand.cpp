@@ -23,7 +23,14 @@ namespace dc {
 
         ExitCommand *ExitCommand::create(Parameters &parameters) {
             ServiceLocator &sl = ServiceLocator::getInstance();
-            return new ExitCommand(sl.resolve<dc::game::GameLoop>(), &sl.resolve<dc::model::Game>());
+            dc::game::GameLoop &gameLoop = sl.resolve<dc::game::GameLoop>();
+            dc::model::Game *game = nullptr;
+
+            try {
+                game = &sl.resolve<dc::model::Game>();
+            } catch(NoSuchServiceException &e) { /* no-op */ }
+
+            return new ExitCommand(gameLoop, game);
         }
     }
 }
