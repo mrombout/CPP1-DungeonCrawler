@@ -84,8 +84,9 @@ namespace dc {
                     std::cout << csl::color(csl::WHITE);
 				std::cout << mGrid[y][x];
 			}
-			std::cout << std::endl;
+            std::cout << "\n";
 		}
+		std::cout << std::endl;
 
 		// delete mGrid
         for(int i = 0; i < height; ++i) {
