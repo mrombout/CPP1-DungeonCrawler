@@ -2,6 +2,7 @@
 #include "util/ServiceLocator.h"
 #include "ExitCommand.h"
 #include "GameLoop.h"
+#include "exception/NoSuchServiceException.h"
 
 namespace dc {
     namespace game {
@@ -27,8 +28,11 @@ namespace dc {
             dc::model::Game *game = nullptr;
 
             try {
-                game = &sl.resolve<dc::model::Game>();
-            } catch(NoSuchServiceException &e) { /* no-op */ }
+                dc::model::Game &gameRef = sl.resolve<dc::model::Game>();
+                game = &gameRef;
+            } catch(NoSuchServiceException &e) {
+                std::cout << "Er is not geen game!" << std::endl;
+            }
 
             return new ExitCommand(gameLoop, game);
         }

@@ -12,11 +12,11 @@ long Number::toLong(const std::string &str) {
 
     if(endptr == str) {
         // could not convert
-        throw NotANumberException(str);
+        return -1;
     }
     if((result == LONG_MAX || result == LONG_MIN) && errno == ERANGE) {
         // out of range, handle or exit
-        throw NotANumberException(str);
+        return -1;
     }
 
     return result;
