@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "command/ExitCommand.h"
 #include "command/NewGameCommand.h"
 #include "command/ChangeStateCommand.h"
 #include "command/LoadGameCommand.h"
@@ -8,6 +9,7 @@
 #include "OptionsState.h"
 #include "util/ServiceLocator.h"
 #include "util/console.h"
+#include "command/Parameters.h"
 
 namespace dc {
     namespace game {
@@ -40,6 +42,8 @@ namespace dc {
         }
 
         dc::game::Command *WelcomeState::onEval(std::string input) {
+            dc::game::Parameters parameters(input);
+
             if (input == "n") {
                 return ServiceLocator::getInstance().create<NewGameCommand>();
             } else if(input == "l") {
@@ -47,7 +51,7 @@ namespace dc {
             } else if(input == "o") {
                 return dc::game::ChangeStateCommand::create(new dc::game::OptionsState());
 			} else if (input == "e"){
-				exit(0);
+				return dc::game::ExitCommand::create(parameters);
 			}
 
             return nullptr;
