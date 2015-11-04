@@ -1,5 +1,29 @@
-//
-// Created by Mike Rombout on 5/10/2015.
-//
-
+#include <math.h>
 #include "Player.h"
+
+namespace dc {
+    namespace model {
+        Player::Player() :
+            Character() {
+
+        }
+
+        void Player::setRoom(Room *room) {
+            Character::setRoom(room);
+            room->setVisited(true);
+        }
+
+        unsigned int Player::level() const {
+            return 1 + floor(mExperience / 5);
+        }
+
+        unsigned int Player::attack() const {
+            return 1 + ceil(level() / 2);
+        }
+
+
+        unsigned int Player::perception() const {
+            return 1 + ceil(level() / 2);
+        }
+    }
+}

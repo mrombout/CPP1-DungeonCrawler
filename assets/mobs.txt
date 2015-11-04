@@ -1,0 +1,75 @@
+*****************************************************************
+*	Example adjectives:
+*		Deluded
+*		Intimidating
+*		Ignored
+*		Beautiful
+*		Divine
+*		Hellish
+*
+*	Example names:
+*		Goblin
+*		Skeleton
+*		Ghoul
+*		Slime
+*		Vampire
+*		Ghost
+*		Werewolf
+*		Troll
+*****************************************************************
+* Every new line contains a new mob
+*
+* Format:
+* Name; Max Health; Health; Level; Attack; Defence; Perception
+*****************************************************************
+1;Intimidating Goblin; 7; 5; 2; 4; 5; 6
+2;Dusty Skeleton; 10; 5; 2; 4; 5; 6
+3;Rotting Ghoul; 10; 5; 2; 4; 5; 7
+4;Sticky Slime; 10; 5; 2; 4; 5; 6
+5;Glamorous Vampire; 10; 5; 2; 4; 5; 6
+6;Invisible Ghost; 10; 5; 2; 4; 5; 7
+7;Hairy Werewolf; 10; 5; 2; 4; 5; 7
+8;Intellectual Troll; 10; 5; 2; 4; 5; 7
+9;Wyrm; 5; 5; 2; 4; 5; 7
+10;Air Elemental; 10; 5; 2; 4; 5; 7
+11;Ankheg; 10; 5; 2; 4; 5; 7
+12;Baretta; 10; 5; 2; 4; 5; 7
+13;Basilisk; 10; 5; 2; 4; 5; 7
+14;Bigeyes; 10; 5; 2; 4; 5; 7
+15;Knight; 10; 5; 2; 4; 5; 7
+16;Black Widow; 10; 5; 2; 4; 5; 7
+17;Bonesnatch; 10; 5; 2; 4; 5; 7
+18;Bloody Eye; 10; 5; 2; 4; 5; 7
+19;Buccaneer; 10; 5; 2; 4; 5; 7
+20;Catoblepass; 10; 5; 2; 4; 5; 7
+21;Chimera; 10; 5; 2; 4; 5; 7
+22;Clay Golem; 10; 5; 2; 4; 5; 7
+23;Cobra; 10; 5; 2; 4; 5; 7
+24;Cockatrice; 10; 5; 2; 4; 5; 7
+25;Crawler; 10; 5; 2; 4; 5; 7
+26;Crazy Horse; 10; 7; 2; 4; 5; 7
+27;Crocodile; 10; 5; 2; 4; 5; 7
+28;Dark Elemental; 10; 5; 2; 4; 5; 7
+29;Dark Wizard; 10; 5; 2; 4; 5; 7
+30;Death Eye; 10; 5; 2; 4; 5; 7
+31;Desertpede; 10; 5; 2; 4; 5; 7
+32;Feral Hound; 10; 5; 2; 4; 5; 7
+33;Zombie; 10; 5; 2; 4; 5; 7
+34;Elm Gigas; 10; 5; 2; 4; 5; 7
+35;Gargoyle; 10; 5; 2; 4; 5; 7
+36;Ghast; 10; 5; 2; 4; 5; 7
+37;Golem; 10; 5; 2; 4; 5; 7
+38;Iron Golem; 10; 5; 2; 4; 5; 7
+39;Fire Golem; 10; 5; 2; 4; 5; 7
+40;Hill Giant; 10; 5; 2; 4; 5; 7
+41;Lava Worm; 10; 5; 2; 4; 5; 7
+42;Lizard; 10; 5; 2; 4; 5; 7
+43;Ogre; 10; 5; 2; 4; 5; 7
+44;Mummy; 15; 5; 2; 4; 5; 7
+45;Zombie; 10; 5; 2; 4; 5; 7
+46;Nightmare; 10; 5; 2; 4; 5; 7
+47;Neochu; 10; 5; 2; 4; 5; 7
+48;Jelly; 10; 5; 2; 4; 5; 7
+49;Pirate; 10; 5; 2; 4; 5; 7
+50;Eagle; 10; 5; 2; 4; 5; 7
+51;Robot; 10; 5; 2; 4; 5; 7
